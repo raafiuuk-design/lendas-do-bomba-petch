@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lendas do BOMBA PETCH</title>
+    <title>BOMBA PETCH - RAFAGAMER 2026</title>
 
     <style>
 
@@ -13,33 +13,204 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #111111, #2b2b2b);
+            font-family: Arial, Helvetica, sans-serif;
             color: white;
+
+            background:
+                radial-gradient(circle at 75% 15%, #ff730055 0%, transparent 25%),
+                radial-gradient(circle at 20% 40%, #ff000044 0%, transparent 30%),
+                linear-gradient(135deg, #050505 0%, #180000 35%, #321000 70%, #080808 100%);
+
+            min-height: 100vh;
         }
+
 
         /* =========================
-           CABEÇALHO
+           CAPA PRINCIPAL
         ========================= */
 
-        header {
-            background: linear-gradient(90deg, #ff0000, #ff7300);
+        .capa {
+            position: relative;
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 35px 20px;
-            box-shadow: 0 4px 10px #00000080;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #050505 0%,
+                    #250000 30%,
+                    #8a2100 60%,
+                    #170000 100%
+                );
+
+            box-shadow: 0 8px 30px #000;
         }
 
-        header h1 {
+
+        /* LUZES DA CAPA */
+
+        .capa::before {
+            content: "";
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            background: radial-gradient(
+                circle,
+                #ffb30055,
+                #ff450022,
+                transparent 70%
+            );
+
+            top: -250px;
+            right: -100px;
+
+            filter: blur(10px);
+        }
+
+
+        .capa::after {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            background: radial-gradient(
+                circle,
+                #ff000044,
+                transparent 70%
+            );
+
+            bottom: -250px;
+            left: -100px;
+        }
+
+
+        /* LINHAS DE ENERGIA */
+
+        .linhas {
+            position: absolute;
+            width: 150%;
+            height: 2px;
+
+            background: #ff730088;
+
+            transform: rotate(-12deg);
+
+            box-shadow:
+                0 0 10px #ff7300,
+                0 0 25px #ff3300;
+
+            top: 28%;
+            left: -20%;
+        }
+
+        .linha2 {
+            top: 72%;
+            transform: rotate(10deg);
+            background: #ff000066;
+        }
+
+
+        /* TEXTO DA CAPA */
+
+        .titulo-capa {
+            position: relative;
+            z-index: 2;
+        }
+
+        .titulo-capa h1 {
             margin: 0;
-            font-size: 42px;
+
+            font-size: clamp(55px, 9vw, 120px);
+
+            font-weight: 900;
+
             text-transform: uppercase;
+
+            letter-spacing: 8px;
+
+            color: white;
+
+            text-shadow:
+                5px 5px 0 #8b0000,
+                0 0 10px #ff0000,
+                0 0 30px #ff7300,
+                0 0 60px #ff3300;
         }
 
-        header p {
-            font-size: 18px;
-            margin-top: 10px;
+
+        .titulo-capa h2 {
+            margin: 5px 0 20px;
+
+            font-size: clamp(25px, 4vw, 50px);
+
+            color: #ffd000;
+
+            letter-spacing: 12px;
+
+            text-transform: uppercase;
+
+            text-shadow:
+                0 0 10px #ff7300,
+                0 0 25px #ff0000;
+        }
+
+
+        .titulo-capa p {
+            margin: 0;
+
+            font-size: 22px;
+
+            letter-spacing: 5px;
+
+            color: #ffffff;
+
+            text-transform: uppercase;
+
+            text-shadow: 0 0 10px black;
+        }
+
+
+        /* =========================
+           FAIXA PS2 STYLE
+        ========================= */
+
+        .faixa {
+            background: linear-gradient(
+                90deg,
+                #050505,
+                #181818,
+                #050505
+            );
+
+            border-top: 2px solid #ff7300;
+            border-bottom: 2px solid #ff7300;
+
+            padding: 12px;
+
+            text-align: center;
+
+            letter-spacing: 5px;
+
+            color: #ff9800;
+
+            font-weight: bold;
+
+            box-shadow: 0 0 20px #ff330044;
         }
 
 
@@ -48,28 +219,43 @@
         ========================= */
 
         .pagina {
+
             width: 100%;
+
             display: flex;
+
             align-items: flex-start;
+
             gap: 50px;
-            padding: 40px 3%;
+
+            padding: 45px 4%;
         }
 
 
         /* =========================
-           LADO DAS LENDAS
+           LENDAS
         ========================= */
 
         .lendas {
+
             width: 55%;
+
             max-width: 750px;
         }
 
+
         .titulo {
+
             text-align: center;
+
             color: #ff9800;
+
             font-size: 30px;
+
             margin: 0 0 30px;
+
+            text-shadow:
+                0 0 10px #ff4500;
         }
 
 
@@ -78,32 +264,69 @@
         ========================= */
 
         details {
-            background-color: #1e1e1e;
+
+            background-color: #151515;
+
             margin: 20px 0;
+
             border-radius: 12px;
+
             overflow: hidden;
-            box-shadow: 0 4px 12px #00000080;
+
+            box-shadow:
+                0 4px 12px #000000aa,
+                0 0 10px #ff450022;
+
             border: 2px solid #ff7300;
         }
 
+
         summary {
+
             cursor: pointer;
+
             padding: 20px;
+
             font-size: 24px;
+
             font-weight: bold;
+
             color: white;
-            background: linear-gradient(90deg, #d50000, #ff7300);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #9e0000,
+                    #ff4500,
+                    #ff7300
+                );
+
             transition: 0.3s;
+
             list-style: none;
+
+            text-shadow:
+                2px 2px 4px #000;
         }
+
 
         summary::-webkit-details-marker {
             display: none;
         }
 
+
         summary:hover {
-            background: linear-gradient(90deg, #ff7300, #ff0000);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff7300,
+                    #ff0000
+                );
+
             color: #fff700;
+
+            transform: scale(1.01);
         }
 
 
@@ -112,7 +335,9 @@
         ========================= */
 
         .trofeus {
+
             color: gold;
+
             text-shadow:
                 0 0 5px #ffd700,
                 0 0 10px #ffb300;
@@ -122,27 +347,47 @@
 
 
         /* =========================
-           DESCRIÇÃO DOS JOGADORES
+           TEXTO DOS JOGADORES
         ========================= */
 
         .texto {
+
             padding: 25px;
-            background-color: #252525;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #202020,
+                    #111111
+                );
         }
+
 
         .texto h2 {
+
             color: #ff9800;
+
             margin-top: 0;
+
+            text-shadow:
+                0 0 8px #ff4500;
         }
 
+
         .texto p {
+
             font-size: 18px;
+
             line-height: 1.7;
+
             color: #eeeeee;
         }
 
+
         .destaque {
+
             color: #ffd700;
+
             font-weight: bold;
         }
 
@@ -152,12 +397,10 @@
         ========================= */
 
         .lateral {
-            width: 35%;
-            max-width: 500px;
-        }
 
-        .lateral .titulo {
-            margin-bottom: 30px;
+            width: 35%;
+
+            max-width: 500px;
         }
 
 
@@ -166,21 +409,50 @@
         ========================= */
 
         .botao-download {
+
             display: inline-block;
+
             padding: 15px 25px;
-            background: linear-gradient(90deg, #d50000, #ff7300);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #d50000,
+                    #ff7300
+                );
+
             color: white;
+
             text-decoration: none;
+
             font-weight: bold;
+
             border-radius: 8px;
+
             font-size: 18px;
+
             transition: 0.3s;
+
+            box-shadow:
+                0 0 15px #ff330055;
         }
 
+
         .botao-download:hover {
-            background: linear-gradient(90deg, #ff7300, #ff0000);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff7300,
+                    #ff0000
+                );
+
             color: #fff700;
-            transform: scale(1.03);
+
+            transform: scale(1.05);
+
+            box-shadow:
+                0 0 25px #ff4500;
         }
 
 
@@ -189,11 +461,18 @@
         ========================= */
 
         footer {
-            margin-top: 30px;
-            background-color: #000000;
+
+            margin-top: 20px;
+
+            background-color: #050505;
+
             text-align: center;
+
             padding: 25px;
-            color: #bbbbbb;
+
+            color: #888;
+
+            border-top: 2px solid #ff7300;
         }
 
 
@@ -203,26 +482,50 @@
 
         @media (max-width: 800px) {
 
-            header h1 {
-                font-size: 30px;
+            .capa {
+
+                min-height: 350px;
+            }
+
+            .titulo-capa h1 {
+
+                letter-spacing: 3px;
+            }
+
+            .titulo-capa h2 {
+
+                letter-spacing: 5px;
+            }
+
+            .titulo-capa p {
+
+                font-size: 15px;
             }
 
             .pagina {
+
                 flex-direction: column;
+
+                padding: 30px 3%;
             }
 
             .lendas,
             .lateral {
+
                 width: 100%;
+
                 max-width: none;
             }
 
             summary {
+
                 font-size: 19px;
+
                 padding: 16px;
             }
 
             .texto p {
+
                 font-size: 16px;
             }
         }
@@ -236,18 +539,37 @@
 
 
     <!-- =========================
-         CABEÇALHO
+         CAPA
     ========================= -->
 
-    <header>
+    <section class="capa">
 
-        <h1>🔥 LENDAS DO BOMBA PETCH 🔥</h1>
+        <div class="linhas"></div>
 
-        <p>
-            As maiores lendas reunidas em um só lugar!
-        </p>
+        <div class="linha2"></div>
 
-    </header>
+        <div class="titulo-capa">
+
+            <h1>BOMBA PETCH</h1>
+
+            <h2>RAFAGAMER 2026</h2>
+
+            <p>
+                ⚽ A LENDA CONTINUA ⚽
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FAIXA -->
+
+    <div class="faixa">
+
+        BOMBA PETCH • RAFAGAMER • 2026 • LENDAS • FUTEBOL
+
+    </div>
 
 
     <!-- =========================
@@ -268,49 +590,74 @@
             </h2>
 
 
-            <!-- =========================
-                 RAFAGAMER
-            ========================= -->
+            <!-- RAFAGAMER -->
 
             <details>
 
                 <summary>
+
                     RAFAGAMER
-                    <span class="trofeus">🏆 🏆 🏆</span>
+
+                    <span class="trofeus">
+                        🏆 🏆 🏆
+                    </span>
+
                 </summary>
+
 
                 <div class="texto">
 
-                    <h2>🔥 RAFAGAMER — O ESTILO QUE MARCA</h2>
+                    <h2>
+                        🔥 RAFAGAMER — O ESTILO QUE MARCA
+                    </h2>
+
 
                     <p>
+
                         RAFAGAMER é conhecido por ter um estilo de jogo
                         bonito, elegante e cheio de personalidade.
                         Cada movimento parece pensado para deixar sua marca,
                         misturando habilidade, criatividade e muita confiança.
+
                     </p>
 
+
                     <p>
+
                         Seu jeito de jogar chama atenção não apenas pelos
                         resultados, mas pela forma como ele transforma cada
                         partida em um verdadeiro espetáculo. 🎮🔥
+
                     </p>
 
+
                     <p>
+
                         Além de todo esse estilo,
+
                         <span class="destaque">
+
                             RAFAGAMER já conta com 3 temporadas de história
+
                         </span>,
+
                         mostrando sua experiência e sua presença entre
                         as grandes lendas. 🏆🏆🏆
+
                     </p>
 
+
                     <p>
+
                         <span class="destaque">
+
                             Estilo, técnica e presença —
                             essa é a marca do RAFAGAMER.
+
                         </span>
+
                         🏆
+
                     </p>
 
                 </div>
@@ -318,55 +665,88 @@
             </details>
 
 
-            <!-- =========================
-                 CRISTIAN
-            ========================= -->
+            <!-- CRISTIAN -->
 
             <details>
 
                 <summary>
+
                     CRISTIAN
-                    <span class="trofeus">🏆 🏆 🏆 🏆</span>
+
+                    <span class="trofeus">
+                        🏆 🏆 🏆 🏆
+                    </span>
+
                 </summary>
+
 
                 <div class="texto">
 
-                    <h2>⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE</h2>
+                    <h2>
+                        ⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE
+                    </h2>
+
 
                     <p>
+
                         Cristian é uma das maiores lendas do BOMBA PETCH
                         e o jogador com mais temporadas entre todos:
+
                         <span class="destaque">
+
                             4 temporadas de história.
+
                         </span>
+
                         🏆🏆🏆🏆
+
                     </p>
 
+
                     <p>
+
                         Seu estilo de jogo é marcado por uma postura
+
                         <span class="destaque">
+
                             defensiva e estratégica.
+
                         </span>
+
                         Cristian sabe esperar o momento certo, fechar
                         os espaços e deixar o adversário avançar.
+
                     </p>
 
+
                     <p>
+
                         Mas é aí que mora o perigo: quando surge uma
                         oportunidade, ele parte para um
+
                         <span class="destaque">
+
                             contra-ataque mortal
+
                         </span>,
+
                         transformando uma defesa sólida em uma jogada
                         decisiva em poucos segundos. ⚡🔥
+
                     </p>
 
+
                     <p>
+
                         <span class="destaque">
+
                             Defesa, estratégia e um contra-ataque mortal —
                             essa é a marca do Cristian.
+
                         </span>
+
                         🏆🏆🏆🏆
+
                     </p>
 
                 </div>
@@ -374,53 +754,82 @@
             </details>
 
 
-            <!-- =========================
-                 BERNA
-            ========================= -->
+            <!-- BERNA -->
 
             <details>
 
                 <summary>
+
                     BERNA
-                    <span class="trofeus">🏆</span>
+
+                    <span class="trofeus">
+                        🏆
+                    </span>
+
                 </summary>
+
 
                 <div class="texto">
 
-                    <h2>👑 BERNA — O MESTRE DA VERSATILIDADE</h2>
+                    <h2>
+                        👑 BERNA — O MESTRE DA VERSATILIDADE
+                    </h2>
+
 
                     <p>
+
                         Berna é conhecido por seu
+
                         <span class="destaque">
+
                             estilo de jogo versátil
+
                         </span>,
+
                         sendo capaz de se adaptar a diferentes situações
                         durante a partida. 🎮🔥
+
                     </p>
 
+
                     <p>
+
                         Uma das suas principais características é o uso
                         frequente da
+
                         <span class="destaque">
+
                             jogada aérea
+
                         </span>,
+
                         aproveitando muito bem as oportunidades pelo alto
                         para surpreender seus adversários e criar jogadas
                         perigosas.
+
                     </p>
 
+
                     <p>
+
                         Sua capacidade de variar as jogadas torna seu estilo
                         difícil de prever, mantendo o adversário sempre
                         atento ao que pode acontecer.
+
                     </p>
 
+
                     <p>
+
                         <span class="destaque">
+
                             Versatilidade, criatividade e domínio do jogo
                             aéreo — essa é a marca do Berna.
+
                         </span>
+
                         👑🏆
+
                     </p>
 
                 </div>
@@ -441,10 +850,7 @@
             </h2>
 
 
-            <!-- =========================
-                 ATUALIZAÇÕES
-                 VAZIA
-            ========================= -->
+            <!-- ATUALIZAÇÕES -->
 
             <details>
 
@@ -455,10 +861,7 @@
             </details>
 
 
-            <!-- =========================
-                 JORNAL BOMBA PETCH
-                 VAZIA
-            ========================= -->
+            <!-- JORNAL -->
 
             <details>
 
@@ -469,9 +872,7 @@
             </details>
 
 
-            <!-- =========================
-                 DOWNLOAD
-            ========================= -->
+            <!-- DOWNLOAD -->
 
             <details>
 
@@ -479,13 +880,18 @@
                     📥 DOWNLOAD
                 </summary>
 
+
                 <div class="texto">
 
-                    <h2>📥 DOWNLOAD BOMBA PETCH</h2>
+                    <h2>
+                        📥 DOWNLOAD BOMBA PETCH
+                    </h2>
+
 
                     <p>
                         Clique no botão abaixo para acessar o download:
                     </p>
+
 
                     <a
                         class="botao-download"
