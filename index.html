@@ -8,6 +8,7 @@
     <title>Lendas do BOMBA PETCH</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -19,7 +20,10 @@
             color: white;
         }
 
-        /* CABEÇALHO */
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
         header {
             background: linear-gradient(90deg, #ff0000, #ff7300);
             text-align: center;
@@ -38,21 +42,41 @@
             margin-top: 10px;
         }
 
-        /* CONTEÚDO */
-        .conteudo {
-            width: 90%;
-            max-width: 900px;
-            margin: 40px auto;
+
+        /* =========================
+           PÁGINA
+        ========================= */
+
+        .pagina {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+            padding: 40px 3%;
+        }
+
+
+        /* =========================
+           LADO DAS LENDAS
+        ========================= */
+
+        .lendas {
+            width: 55%;
+            max-width: 750px;
         }
 
         .titulo {
             text-align: center;
             color: #ff9800;
             font-size: 30px;
-            margin-bottom: 30px;
+            margin: 0 0 30px;
         }
 
-        /* TÓPICOS */
+
+        /* =========================
+           TÓPICOS
+        ========================= */
+
         details {
             background-color: #1e1e1e;
             margin: 20px 0;
@@ -73,28 +97,34 @@
             list-style: none;
         }
 
-        /* Remove a setinha padrão */
         summary::-webkit-details-marker {
             display: none;
         }
 
-        /* Efeito ao passar o mouse */
         summary:hover {
             background: linear-gradient(90deg, #ff7300, #ff0000);
             color: #fff700;
-            transform: scale(1.01);
         }
 
-        /* TROFÉUS */
+
+        /* =========================
+           TROFÉUS
+        ========================= */
+
         .trofeus {
             color: gold;
             text-shadow:
                 0 0 5px #ffd700,
                 0 0 10px #ffb300;
+
             margin-left: 15px;
         }
 
-        /* HISTÓRIA */
+
+        /* =========================
+           DESCRIÇÃO DOS JOGADORES
+        ========================= */
+
         .texto {
             padding: 25px;
             background-color: #252525;
@@ -111,35 +141,44 @@
             color: #eeeeee;
         }
 
-        /* DESTAQUES */
         .destaque {
             color: #ffd700;
             font-weight: bold;
         }
 
-        /* IMAGENS */
-        .texto img {
-            display: block;
-            max-width: 100%;
-            margin: 20px auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px #00000080;
+
+        /* =========================
+           LADO DIREITO
+        ========================= */
+
+        .lateral {
+            width: 35%;
+            max-width: 500px;
         }
 
-        /* RODAPÉ */
-        footer {
-            margin-top: 60px;
-            background-color: #000000;
-            text-align: center;
-            padding: 25px;
-            color: #bbbbbb;
+        .lateral .titulo {
+            margin-bottom: 30px;
         }
 
-        /* CELULAR */
-        @media (max-width: 600px) {
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 800px) {
 
             header h1 {
                 font-size: 30px;
+            }
+
+            .pagina {
+                flex-direction: column;
+            }
+
+            .lendas,
+            .lateral {
+                width: 100%;
+                max-width: none;
             }
 
             summary {
@@ -147,26 +186,26 @@
                 padding: 16px;
             }
 
-            .conteudo {
-                width: 94%;
-            }
-
             .texto p {
                 font-size: 16px;
             }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ========================= -->
-    <!-- CABEÇALHO -->
-    <!-- ========================= -->
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
 
     <header>
 
-        <h1>🔥 Lendas do BOMBA PETCH 🔥</h1>
+        <h1>🔥 LENDAS DO BOMBA PETCH 🔥</h1>
 
         <p>
             As maiores lendas reunidas em um só lugar!
@@ -175,182 +214,252 @@
     </header>
 
 
-    <!-- ========================= -->
-    <!-- CONTEÚDO -->
-    <!-- ========================= -->
+    <!-- =========================
+         PÁGINA
+    ========================= -->
 
-    <div class="conteudo">
-
-        <h2 class="titulo">
-            🏆 AS LENDAS 🏆
-        </h2>
+    <div class="pagina">
 
 
-        <!-- ========================= -->
-        <!-- RAFAGAMER -->
-        <!-- ========================= -->
+        <!-- =========================
+             LENDAS
+        ========================= -->
 
-        <details>
+        <section class="lendas">
 
-            <summary>
-                RAFAGAMER
-                <span class="trofeus">🏆 🏆 🏆</span>
-            </summary>
-
-            <div class="texto">
-
-                <h2>🔥 RAFAGAMER — O ESTILO QUE MARCA</h2>
-
-                <p>
-                    RAFAGAMER é conhecido por ter um estilo de jogo
-                    bonito, elegante e cheio de personalidade.
-                    Cada movimento parece pensado para deixar sua marca,
-                    misturando habilidade, criatividade e muita confiança.
-                </p>
-
-                <p>
-                    Seu jeito de jogar chama atenção não apenas pelos
-                    resultados, mas pela forma como ele transforma cada
-                    partida em um verdadeiro espetáculo. 🎮🔥
-                </p>
-
-                <p>
-                    Além de todo esse estilo,
-                    <span class="destaque">
-                        RAFAGAMER já conta com 3 temporadas de história
-                    </span>,
-                    mostrando sua experiência e sua presença entre
-                    as grandes lendas. 🏆🏆🏆
-                </p>
-
-                <p>
-                    <span class="destaque">
-                        Estilo, técnica e presença —
-                        essa é a marca do RAFAGAMER.
-                    </span>
-                    🏆
-                </p>
-
-            </div>
-
-        </details>
+            <h2 class="titulo">
+                🏆 AS LENDAS 🏆
+            </h2>
 
 
-        <!-- ========================= -->
-        <!-- CRISTIAN -->
-        <!-- ========================= -->
+            <!-- =========================
+                 RAFAGAMER
+            ========================= -->
 
-        <details>
+            <details>
 
-            <summary>
-                CRISTIAN
-                <span class="trofeus">🏆 🏆 🏆 🏆</span>
-            </summary>
+                <summary>
+                    RAFAGAMER
+                    <span class="trofeus">🏆 🏆 🏆</span>
+                </summary>
 
-            <div class="texto">
+                <div class="texto">
 
-                <h2>⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE</h2>
+                    <h2>🔥 RAFAGAMER — O ESTILO QUE MARCA</h2>
 
-                <p>
-                    Cristian é uma das maiores lendas do BOMBA PETCH
-                    e o jogador com mais temporadas entre todos:
-                    <span class="destaque">
-                        4 temporadas de história.
-                    </span>
-                    🏆🏆🏆🏆
-                </p>
+                    <p>
+                        RAFAGAMER é conhecido por ter um estilo de jogo
+                        bonito, elegante e cheio de personalidade.
+                        Cada movimento parece pensado para deixar sua marca,
+                        misturando habilidade, criatividade e muita confiança.
+                    </p>
 
-                <p>
-                    Seu estilo de jogo é marcado por uma postura
-                    <span class="destaque">
-                        defensiva e estratégica.
-                    </span>
-                    Cristian sabe esperar o momento certo, fechar
-                    os espaços e deixar o adversário avançar.
-                </p>
+                    <p>
+                        Seu jeito de jogar chama atenção não apenas pelos
+                        resultados, mas pela forma como ele transforma cada
+                        partida em um verdadeiro espetáculo. 🎮🔥
+                    </p>
 
-                <p>
-                    Mas é aí que mora o perigo: quando surge uma
-                    oportunidade, ele parte para um
-                    <span class="destaque">
-                        contra-ataque mortal
-                    </span>,
-                    transformando uma defesa sólida em uma jogada
-                    decisiva em poucos segundos. ⚡🔥
-                </p>
+                    <p>
+                        Além de todo esse estilo,
+                        <span class="destaque">
+                            RAFAGAMER já conta com 3 temporadas de história
+                        </span>,
+                        mostrando sua experiência e sua presença entre
+                        as grandes lendas. 🏆🏆🏆
+                    </p>
 
-                <p>
-                    <span class="destaque">
-                        Defesa, estratégia e um contra-ataque mortal —
-                        essa é a marca do Cristian.
-                    </span>
-                    🏆🏆🏆🏆
-                </p>
+                    <p>
+                        <span class="destaque">
+                            Estilo, técnica e presença —
+                            essa é a marca do RAFAGAMER.
+                        </span>
+                        🏆
+                    </p>
 
-            </div>
+                </div>
 
-        </details>
+            </details>
 
 
-        <!-- ========================= -->
-        <!-- BERNA -->
-        <!-- ========================= -->
+            <!-- =========================
+                 CRISTIAN
+            ========================= -->
 
-        <details>
+            <details>
 
-            <summary>
-                BERNA
-                <span class="trofeus">🏆</span>
-            </summary>
+                <summary>
+                    CRISTIAN
+                    <span class="trofeus">🏆 🏆 🏆 🏆</span>
+                </summary>
 
-            <div class="texto">
+                <div class="texto">
 
-                <h2>👑 BERNA — O MESTRE DA VERSATILIDADE</h2>
+                    <h2>⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE</h2>
 
-                <p>
-                    Berna é conhecido por seu
-                    <span class="destaque">
-                        estilo de jogo versátil
-                    </span>,
-                    sendo capaz de se adaptar a diferentes situações
-                    durante a partida. 🎮🔥
-                </p>
+                    <p>
+                        Cristian é uma das maiores lendas do BOMBA PETCH
+                        e o jogador com mais temporadas entre todos:
+                        <span class="destaque">
+                            4 temporadas de história.
+                        </span>
+                        🏆🏆🏆🏆
+                    </p>
 
-                <p>
-                    Uma das suas principais características é o uso
-                    frequente da
-                    <span class="destaque">
-                        jogada aérea
-                    </span>,
-                    aproveitando muito bem as oportunidades pelo alto
-                    para surpreender seus adversários e criar jogadas
-                    perigosas.
-                </p>
+                    <p>
+                        Seu estilo de jogo é marcado por uma postura
+                        <span class="destaque">
+                            defensiva e estratégica.
+                        </span>
+                        Cristian sabe esperar o momento certo, fechar
+                        os espaços e deixar o adversário avançar.
+                    </p>
 
-                <p>
-                    Sua capacidade de variar as jogadas torna seu estilo
-                    difícil de prever, mantendo o adversário sempre
-                    atento ao que pode acontecer.
-                </p>
+                    <p>
+                        Mas é aí que mora o perigo: quando surge uma
+                        oportunidade, ele parte para um
+                        <span class="destaque">
+                            contra-ataque mortal
+                        </span>,
+                        transformando uma defesa sólida em uma jogada
+                        decisiva em poucos segundos. ⚡🔥
+                    </p>
 
-                <p>
-                    <span class="destaque">
-                        Versatilidade, criatividade e domínio do jogo
-                        aéreo — essa é a marca do Berna.
-                    </span>
-                    👑🏆
-                </p>
+                    <p>
+                        <span class="destaque">
+                            Defesa, estratégia e um contra-ataque mortal —
+                            essa é a marca do Cristian.
+                        </span>
+                        🏆🏆🏆🏆
+                    </p>
 
-            </div>
+                </div>
 
-        </details>
+            </details>
+
+
+            <!-- =========================
+                 BERNA
+            ========================= -->
+
+            <details>
+
+                <summary>
+                    BERNA
+                    <span class="trofeus">🏆</span>
+                </summary>
+
+                <div class="texto">
+
+                    <h2>👑 BERNA — O MESTRE DA VERSATILIDADE</h2>
+
+                    <p>
+                        Berna é conhecido por seu
+                        <span class="destaque">
+                            estilo de jogo versátil
+                        </span>,
+                        sendo capaz de se adaptar a diferentes situações
+                        durante a partida. 🎮🔥
+                    </p>
+
+                    <p>
+                        Uma das suas principais características é o uso
+                        frequente da
+                        <span class="destaque">
+                            jogada aérea
+                        </span>,
+                        aproveitando muito bem as oportunidades pelo alto
+                        para surpreender seus adversários e criar jogadas
+                        perigosas.
+                    </p>
+
+                    <p>
+                        Sua capacidade de variar as jogadas torna seu estilo
+                        difícil de prever, mantendo o adversário sempre
+                        atento ao que pode acontecer.
+                    </p>
+
+                    <p>
+                        <span class="destaque">
+                            Versatilidade, criatividade e domínio do jogo
+                            aéreo — essa é a marca do Berna.
+                        </span>
+                        👑🏆
+                    </p>
+
+                </div>
+
+            </details>
+
+        </section>
+
+
+        <!-- =========================
+             LADO DIREITO
+        ========================= -->
+
+        <aside class="lateral">
+
+            <h2 class="titulo">
+                🔥 BOMBA PETCH
+            </h2>
+
+
+            <!-- =========================
+                 ATUALIZAÇÕES
+                 VAZIA POR ENQUANTO
+            ========================= -->
+
+            <details>
+
+                <summary>
+                    🔔 ATUALIZAÇÕES
+                </summary>
+
+                <!-- CONTEÚDO SERÁ COLOCADO AQUI FUTURAMENTE -->
+
+            </details>
+
+
+            <!-- =========================
+                 JORNAL BOMBA PETCH
+                 VAZIO POR ENQUANTO
+            ========================= -->
+
+            <details>
+
+                <summary>
+                    📰 JORNAL BOMBA PETCH
+                </summary>
+
+                <!-- CONTEÚDO SERÁ COLOCADO AQUI FUTURAMENTE -->
+
+            </details>
+
+
+            <!-- =========================
+                 DOWNLOAD
+                 VAZIO POR ENQUANTO
+            ========================= -->
+
+            <details>
+
+                <summary>
+                    📥 DOWNLOAD
+                </summary>
+
+                <!-- CONTEÚDO SERÁ COLOCADO AQUI FUTURAMENTE -->
+
+            </details>
+
+        </aside>
 
     </div>
 
 
-    <!-- ========================= -->
-    <!-- RODAPÉ -->
-    <!-- ========================= -->
+    <!-- =========================
+         RODAPÉ
+    ========================= -->
 
     <footer>
 
@@ -359,6 +468,7 @@
         </p>
 
     </footer>
+
 
 </body>
 
