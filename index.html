@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bomba Petch — Rafagamer 2026</title>
 
 <style>
+
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -22,15 +24,18 @@ body{
     color:#fff;
 }
 
+/* FUNDO */
+
 body::before{
     content:"";
     position:fixed;
     inset:0;
     z-index:-2;
+
     background:
-        radial-gradient(circle at 15% 20%,#ff350018,transparent 30%),
-        radial-gradient(circle at 85% 70%,#ff8c0015,transparent 30%),
-        linear-gradient(135deg,#030303,#151515,#050505);
+    radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
+    radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
+    linear-gradient(135deg,#030303,#171717,#050505);
 }
 
 body::after{
@@ -39,20 +44,16 @@ body::after{
     inset:0;
     z-index:-1;
     pointer-events:none;
-    opacity:.25;
-    background:
-        repeating-linear-gradient(
-            120deg,
-            transparent 0,
-            transparent 90px,
-            #ffffff05 91px,
-            transparent 93px
-        );
-}
+    opacity:.18;
 
-a{
-    color:inherit;
-    text-decoration:none;
+    background:
+    repeating-linear-gradient(
+        120deg,
+        transparent 0,
+        transparent 90px,
+        #ffffff08 91px,
+        transparent 93px
+    );
 }
 
 /* MENU */
@@ -60,14 +61,20 @@ a{
 .navbar{
     position:sticky;
     top:0;
-    z-index:9999;
+    z-index:999;
+
     min-height:65px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 5%;
-    background:#050505ee;
+
+    background:#050505ed;
+
     border-bottom:1px solid #ff730055;
+
     backdrop-filter:blur(15px);
 }
 
@@ -94,6 +101,7 @@ a{
     font-size:10px;
     font-weight:bold;
     letter-spacing:1px;
+    text-decoration:none;
 }
 
 .nav-links a:hover{
@@ -104,15 +112,27 @@ a{
 
 .hero{
     min-height:620px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     position:relative;
     overflow:hidden;
+
     background:
-        radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
-        linear-gradient(115deg,#030303,#300000,#8a0d00,#1a0000,#030303);
+    radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
+    linear-gradient(
+        115deg,
+        #030303,
+        #300000,
+        #8a0d00,
+        #1a0000,
+        #030303
+    );
+
     border-bottom:3px solid #ff7300;
 }
 
@@ -134,10 +154,11 @@ a{
     line-height:.8;
     font-weight:1000;
     letter-spacing:4px;
+
     text-shadow:
-        5px 5px 0 #620000,
-        0 0 20px #ff3c00,
-        0 0 70px #ff730055;
+    5px 5px 0 #620000,
+    0 0 20px #ff3c00,
+    0 0 70px #ff730055;
 }
 
 .hero h2{
@@ -157,14 +178,22 @@ a{
 .hero-button{
     display:inline-block;
     margin-top:40px;
+
     padding:16px 32px;
+
     border-radius:50px;
+
     border:1px solid #ffd000;
+
     color:#ffd000;
+
     background:#00000055;
+
     font-size:11px;
     font-weight:bold;
     letter-spacing:3px;
+
+    text-decoration:none;
 }
 
 .hero-button:hover{
@@ -176,16 +205,19 @@ a{
 
 .season-return{
     padding:38px 20px;
+
     text-align:center;
+
     background:
-        linear-gradient(
-            90deg,
-            #580000,
-            #b51d00,
-            #ff7300,
-            #b51d00,
-            #580000
-        );
+    linear-gradient(
+        90deg,
+        #580000,
+        #b51d00,
+        #ff7300,
+        #b51d00,
+        #580000
+    );
+
     border-bottom:3px solid #ffd000;
 }
 
@@ -238,10 +270,13 @@ a{
 
 .section-header small{
     display:block;
+
     color:#ff7300;
+
     font-size:10px;
     font-weight:bold;
     letter-spacing:6px;
+
     margin-bottom:12px;
 }
 
@@ -260,24 +295,39 @@ a{
     display:flex;
     flex-direction:column;
     gap:20px;
+
     max-width:900px;
     margin:auto;
 }
 
 .legend{
     background:#121212;
+
     border:1px solid #ff730033;
+
     border-radius:15px;
+
     overflow:hidden;
 }
 
 .legend summary{
     cursor:pointer;
+
     list-style:none;
+
     padding:23px;
+
     display:flex;
     align-items:center;
-    background:linear-gradient(90deg,#700000,#bf2900,#ed6900);
+
+    background:
+    linear-gradient(
+        90deg,
+        #700000,
+        #bf2900,
+        #ed6900
+    );
+
     font-size:20px;
     font-weight:bold;
 }
@@ -293,7 +343,13 @@ a{
 
 .legend-body{
     padding:30px;
-    background:linear-gradient(145deg,#242424,#0e0e0e);
+
+    background:
+    linear-gradient(
+        145deg,
+        #242424,
+        #0e0e0e
+    );
 }
 
 .legend-body h3{
@@ -316,9 +372,18 @@ a{
 
 .owner{
     margin-bottom:55px;
+
     padding:25px;
+
     border-radius:18px;
-    background:linear-gradient(145deg,#181818,#080808);
+
+    background:
+    linear-gradient(
+        145deg,
+        #181818,
+        #080808
+    );
+
     border:1px solid #ff730033;
 }
 
@@ -326,8 +391,11 @@ a{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-bottom:22px;
+
     padding-bottom:18px;
+
     border-bottom:1px solid #ffffff0d;
 }
 
@@ -344,15 +412,22 @@ a{
 
 .team-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:16px;
 }
 
 .team-card{
     background:#101010;
+
     border:1px solid #ff730033;
+
     border-radius:12px;
+
     overflow:hidden;
+
     transition:.25s;
 }
 
@@ -363,7 +438,13 @@ a{
 
 .team-head{
     padding:22px;
-    background:linear-gradient(90deg,#650000,#a91d00);
+
+    background:
+    linear-gradient(
+        90deg,
+        #650000,
+        #a91d00
+    );
 }
 
 .team-head h4{
@@ -382,12 +463,23 @@ a{
 
 .team-body button{
     width:100%;
+
     padding:14px;
+
     border:0;
     border-radius:8px;
+
     cursor:pointer;
-    background:linear-gradient(90deg,#b90000,#ff7300);
+
+    background:
+    linear-gradient(
+        90deg,
+        #b90000,
+        #ff7300
+    );
+
     color:white;
+
     font-weight:bold;
 }
 
@@ -397,20 +489,28 @@ a{
 
 .saved-count{
     text-align:center;
+
     color:#777;
+
     font-size:11px;
+
     margin-top:12px;
 }
 
-/* MODAL */
+/* MODAL DOS ELENCOS */
 
 .modal{
     display:none;
+
     position:fixed;
     inset:0;
+
     z-index:10000;
+
     background:#000000e8;
+
     padding:25px;
+
     overflow-y:auto;
 }
 
@@ -421,20 +521,35 @@ a{
 .modal-box{
     width:100%;
     max-width:1200px;
+
     margin:20px auto;
+
     background:#111;
+
     border:1px solid #ff730066;
+
     border-radius:18px;
+
     overflow:hidden;
+
     box-shadow:0 30px 80px #000;
 }
 
 .modal-top{
     display:flex;
+
     align-items:center;
     justify-content:space-between;
+
     padding:22px 25px;
-    background:linear-gradient(90deg,#720000,#c52c00,#ed7000);
+
+    background:
+    linear-gradient(
+        90deg,
+        #720000,
+        #c52c00,
+        #ed7000
+    );
 }
 
 .modal-top h2{
@@ -444,11 +559,16 @@ a{
 .close{
     width:42px;
     height:42px;
+
     border:0;
     border-radius:50%;
+
     background:#00000055;
+
     color:white;
+
     font-size:22px;
+
     cursor:pointer;
 }
 
@@ -460,11 +580,11 @@ a{
     padding:25px;
 }
 
-/* EDITOR */
-
 .squad-intro{
     text-align:center;
+
     margin-bottom:25px;
+
     color:#777;
 }
 
@@ -472,20 +592,30 @@ a{
     color:#ffd000;
 }
 
+/* POSIÇÕES */
+
 .position-section{
     margin-bottom:25px;
+
     background:#0b0b0b;
+
     border:1px solid #ff730033;
+
     border-radius:12px;
+
     padding:20px;
 }
 
 .position-title{
     display:flex;
+
     justify-content:space-between;
     align-items:center;
+
     margin-bottom:15px;
+
     padding-bottom:12px;
+
     border-bottom:1px solid #ffffff0d;
 }
 
@@ -501,19 +631,32 @@ a{
 
 .name-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+    repeat(2,1fr);
+
     gap:10px;
 }
 
+/* CAMPO PARA DIGITAR JOGADOR */
+
 .player-input{
     width:100%;
+
     padding:14px 15px;
+
     background:#171717;
+
     color:#fff;
+
     border:1px solid #ffffff15;
+
     border-radius:8px;
+
     outline:none;
+
     font-size:14px;
+
     transition:.2s;
 }
 
@@ -523,24 +666,37 @@ a{
 
 .player-input:focus{
     border-color:#ff7300;
+
     background:#1c120d;
-    box-shadow:0 0 0 2px #ff730015;
+
+    box-shadow:
+    0 0 0 2px #ff730015;
 }
+
+/* BOTÕES */
 
 .modal-actions{
     display:flex;
+
     justify-content:flex-end;
+
     gap:10px;
+
     padding-top:20px;
+
     margin-top:10px;
+
     border-top:1px solid #ffffff0d;
 }
 
 .action{
     padding:13px 20px;
+
     border:0;
     border-radius:7px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
@@ -572,20 +728,34 @@ a{
 
 .rule{
     display:grid;
+
     grid-template-columns:80px 1fr;
+
     margin-bottom:18px;
+
     background:#131313;
+
     border:1px solid #ff730033;
+
     border-radius:15px;
+
     overflow:hidden;
 }
 
 .rule-number{
     display:flex;
+
     align-items:center;
     justify-content:center;
-    background:linear-gradient(#a90000,#570000);
+
+    background:
+    linear-gradient(
+        #a90000,
+        #570000
+    );
+
     color:#ffd000;
+
     font-size:24px;
     font-weight:bold;
 }
@@ -607,16 +777,23 @@ a{
 
 .formations{
     display:flex;
+
     flex-wrap:wrap;
+
     gap:8px;
+
     margin:15px 0;
 }
 
 .formations span{
     padding:8px 13px;
+
     background:#191919;
+
     color:#ff9800;
+
     border:1px solid #ff730033;
+
     border-radius:6px;
 }
 
@@ -624,43 +801,57 @@ a{
 
 .rank-wrap{
     overflow-x:auto;
+
     border:1px solid #ff730044;
+
     border-radius:15px;
 }
 
 table{
     width:100%;
+
     min-width:700px;
+
     border-collapse:collapse;
 }
 
 th{
     padding:18px;
+
     background:#720000;
+
     color:#ffd000;
+
     font-size:11px;
 }
 
 td{
     padding:18px;
+
     text-align:center;
+
     border-bottom:1px solid #ffffff08;
 }
 
 .player{
     text-align:left;
+
     font-weight:bold;
 }
 
 .points{
     color:#ffd000;
+
     font-size:20px;
+
     font-weight:bold;
 }
 
 .rank-info{
     margin-top:20px;
+
     text-align:center;
+
     color:#777;
 }
 
@@ -668,32 +859,52 @@ td{
 
 .news{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap:20px;
 }
 
 .news-box{
     background:#141414;
+
     border:1px solid #ff730044;
+
     border-radius:14px;
+
     overflow:hidden;
 }
 
 .news-box summary{
     cursor:pointer;
+
     list-style:none;
+
     padding:22px;
-    background:linear-gradient(90deg,#720000,#c52c00);
+
+    background:
+    linear-gradient(
+        90deg,
+        #720000,
+        #c52c00
+    );
+
     font-weight:bold;
 }
 
 .news-content{
     min-height:180px;
+
     padding:30px;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     text-align:center;
+
     color:#777;
 }
 
@@ -701,25 +912,34 @@ td{
 
 .seasons{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+    repeat(3,1fr);
+
     gap:20px;
 }
 
 .season{
     padding:30px;
+
     background:#141414;
+
     border:1px solid #ffffff09;
+
     border-radius:14px;
 }
 
 .season h3{
     color:#ff9800;
+
     margin-bottom:10px;
 }
 
 .year{
     color:#ff7300;
+
     font-size:42px;
+
     font-weight:900;
 }
 
@@ -727,45 +947,70 @@ td{
 
 .download{
     max-width:750px;
+
     margin:auto;
+
     padding:50px;
+
     text-align:center;
+
     background:#121212;
+
     border:1px solid #ff730055;
+
     border-radius:18px;
 }
 
 .download h3{
     color:#ff9800;
+
     margin-bottom:15px;
 }
 
 .download p{
     color:#777;
+
     margin-bottom:25px;
 }
 
 .download a{
     display:inline-block;
+
     padding:16px 35px;
-    background:linear-gradient(90deg,#b90000,#ff7300);
+
+    background:
+    linear-gradient(
+        90deg,
+        #b90000,
+        #ff7300
+    );
+
     border-radius:8px;
+
     font-weight:bold;
+
+    text-decoration:none;
 }
 
 /* FOOTER */
 
 footer{
     padding:50px 20px;
+
     text-align:center;
+
     border-top:1px solid #ff730044;
+
     color:#555;
 }
 
 .footer-logo{
     color:#ff7300;
+
     font-size:24px;
+
     font-weight:bold;
+
     margin-bottom:12px;
 }
 
@@ -774,12 +1019,14 @@ footer{
 @media(max-width:900px){
 
     .team-grid{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+        1fr 1fr;
     }
 
     .seasons{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:650px){
@@ -828,13 +1075,16 @@ footer{
     .action{
         width:100%;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- MENU -->
+
+<!-- ================= MENU ================= -->
 
 <nav class="navbar">
 
@@ -845,11 +1095,17 @@ footer{
     <div class="nav-links">
 
         <a href="#lendas">LENDAS</a>
+
         <a href="#elencos">⚽ ELENCOS</a>
+
         <a href="#regras">REGRAS</a>
+
         <a href="#ranking">RANK</a>
+
         <a href="#jornal">JORNAL</a>
+
         <a href="#temporadas">TEMPORADAS</a>
+
         <a href="#download">DOWNLOAD</a>
 
     </div>
@@ -857,7 +1113,7 @@ footer{
 </nav>
 
 
-<!-- HERO -->
+<!-- ================= CAPA ================= -->
 
 <section class="hero">
 
@@ -879,8 +1135,12 @@ footer{
             A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
         </p>
 
-        <a class="hero-button" href="#elencos">
+        <a
+            class="hero-button"
+            href="#elencos">
+
             ⚽ MONTAR ELENCOS
+
         </a>
 
     </div>
@@ -888,7 +1148,7 @@ footer{
 </section>
 
 
-<!-- RETORNO -->
+<!-- ================= RETORNO ================= -->
 
 <section class="season-return">
 
@@ -923,17 +1183,23 @@ footer{
 </section>
 
 
-<!-- LENDAS -->
+<!-- ================= LENDAS ================= -->
 
-<section class="section" id="lendas">
+<section
+    class="section"
+    id="lendas">
 
 <div class="container">
 
     <div class="section-header">
 
-        <small>HALL DA FAMA</small>
+        <small>
+            HALL DA FAMA
+        </small>
 
-        <h2>🏆 AS LENDAS</h2>
+        <h2>
+            🏆 AS LENDAS
+        </h2>
 
         <p>
             Os jogadores que marcaram a história
@@ -942,21 +1208,29 @@ footer{
 
     </div>
 
+
     <div class="legend-grid">
+
+
+        <!-- RAFA -->
 
         <details class="legend">
 
             <summary>
+
                 🔥 RAFAGAMER
 
                 <span class="trophies">
                     🏆 🏆
                 </span>
+
             </summary>
 
             <div class="legend-body">
 
-                <h3>🔥 RAFAGAMER</h3>
+                <h3>
+                    🔥 RAFAGAMER
+                </h3>
 
                 <p>
                     Conhecido por seu estilo bonito,
@@ -964,9 +1238,11 @@ footer{
                 </p>
 
                 <p>
+
                     <span class="highlight">
                         2 temporadas e 2 troféus.
                     </span>
+
                 </p>
 
             </div>
@@ -974,19 +1250,25 @@ footer{
         </details>
 
 
+        <!-- BERNA -->
+
         <details class="legend">
 
             <summary>
+
                 👑 BERNA
 
                 <span class="trophies">
                     🏆
                 </span>
+
             </summary>
 
             <div class="legend-body">
 
-                <h3>👑 BERNA</h3>
+                <h3>
+                    👑 BERNA
+                </h3>
 
                 <p>
                     Jogador versátil, conhecido
@@ -994,9 +1276,11 @@ footer{
                 </p>
 
                 <p>
+
                     <span class="highlight">
                         Campeão da última temporada.
                     </span>
+
                 </p>
 
             </div>
@@ -1004,19 +1288,25 @@ footer{
         </details>
 
 
+        <!-- CRISTIAN -->
+
         <details class="legend">
 
             <summary>
+
                 ⚡ CRISTIAN
 
                 <span class="trophies">
                     🏆 🏆 🏆
                 </span>
+
             </summary>
 
             <div class="legend-body">
 
-                <h3>⚡ CRISTIAN</h3>
+                <h3>
+                    ⚡ CRISTIAN
+                </h3>
 
                 <p>
                     Estilo defensivo e estratégico,
@@ -1024,15 +1314,19 @@ footer{
                 </p>
 
                 <p>
+
                     <span class="highlight">
                         3 temporadas e 3 troféus.
                     </span>
+
                 </p>
 
             </div>
 
         </details>
 
+
+        <!-- LEANDRO -->
 
         <details class="legend">
 
@@ -1042,7 +1336,9 @@ footer{
 
             <div class="legend-body">
 
-                <h3>🎯 LEANDRO</h3>
+                <h3>
+                    🎯 LEANDRO
+                </h3>
 
                 <p>
                     Jogador versátil, costuma jogar
@@ -1050,10 +1346,13 @@ footer{
                 </p>
 
                 <p>
+
                     Destaque para os
+
                     <span class="highlight">
                         chutes de longa distância.
                     </span>
+
                 </p>
 
             </div>
@@ -1067,17 +1366,24 @@ footer{
 </section>
 
 
-<!-- ELENCOS -->
+<!-- ================= ELENCOS ================= -->
 
-<section class="section" id="elencos">
+<section
+    class="section"
+    id="elencos">
 
 <div class="container">
 
+
     <div class="section-header">
 
-        <small>SISTEMA DE ELENCOS</small>
+        <small>
+            SISTEMA DE ELENCOS
+        </small>
 
-        <h2>⚽ ELENCOS</h2>
+        <h2>
+            ⚽ ELENCOS
+        </h2>
 
         <p>
             4 jogadores • 12 times • 22 jogadores por time
@@ -1086,26 +1392,25 @@ footer{
     </div>
 
 
-    <!-- RAFAGAMER -->
+    <!-- RAFA -->
 
     <div class="owner">
 
         <div class="owner-title">
 
-            <h3>🔥 RAFAGAMER</h3>
+            <h3>
+                🔥 RAFAGAMER
+            </h3>
 
-            <span>3 TIMES</span>
+            <span>
+                3 TIMES
+            </span>
 
         </div>
 
-        <div class="team-grid">
-
-            <script>
-                document.write(createTeamCard("rafagamer",1));
-                document.write(createTeamCard("rafagamer",2));
-                document.write(createTeamCard("rafagamer",3));
-            </script>
-
+        <div
+            class="team-grid"
+            id="teams-rafagamer">
         </div>
 
     </div>
@@ -1117,20 +1422,19 @@ footer{
 
         <div class="owner-title">
 
-            <h3>👑 BERNA</h3>
+            <h3>
+                👑 BERNA
+            </h3>
 
-            <span>3 TIMES</span>
+            <span>
+                3 TIMES
+            </span>
 
         </div>
 
-        <div class="team-grid">
-
-            <script>
-                document.write(createTeamCard("berna",1));
-                document.write(createTeamCard("berna",2));
-                document.write(createTeamCard("berna",3));
-            </script>
-
+        <div
+            class="team-grid"
+            id="teams-berna">
         </div>
 
     </div>
@@ -1142,20 +1446,19 @@ footer{
 
         <div class="owner-title">
 
-            <h3>⚡ CRISTIAN</h3>
+            <h3>
+                ⚡ CRISTIAN
+            </h3>
 
-            <span>3 TIMES</span>
+            <span>
+                3 TIMES
+            </span>
 
         </div>
 
-        <div class="team-grid">
-
-            <script>
-                document.write(createTeamCard("cristian",1));
-                document.write(createTeamCard("cristian",2));
-                document.write(createTeamCard("cristian",3));
-            </script>
-
+        <div
+            class="team-grid"
+            id="teams-cristian">
         </div>
 
     </div>
@@ -1167,34 +1470,37 @@ footer{
 
         <div class="owner-title">
 
-            <h3>🎯 LEANDRO</h3>
+            <h3>
+                🎯 LEANDRO
+            </h3>
 
-            <span>3 TIMES</span>
+            <span>
+                3 TIMES
+            </span>
 
         </div>
 
-        <div class="team-grid">
-
-            <script>
-                document.write(createTeamCard("leandro",1));
-                document.write(createTeamCard("leandro",2));
-                document.write(createTeamCard("leandro",3));
-            </script>
-
+        <div
+            class="team-grid"
+            id="teams-leandro">
         </div>
 
     </div>
+
 
 </div>
 
 </section>
 
 
-<!-- MODAL ELENCO -->
+<!-- ================= MODAL ELENCO ================= -->
 
-<div class="modal" id="squadModal">
+<div
+    class="modal"
+    id="squadModal">
 
     <div class="modal-box">
+
 
         <div class="modal-top">
 
@@ -1205,7 +1511,9 @@ footer{
             <button
                 class="close"
                 onclick="closeModal()">
+
                 ×
+
             </button>
 
         </div>
@@ -1213,15 +1521,21 @@ footer{
 
         <div class="modal-content">
 
+
             <div class="squad-intro">
 
-                Escolha os jogadores do elenco
-                <strong>digitando os nomes livremente</strong>.
+                Aqui você pode
 
-                <br>
+                <strong>
+                    DIGITAR O NOME QUE QUISER
+                </strong>
 
-                Cada time precisa ter
-                <strong>22 jogadores.</strong>
+                para cada jogador.
+
+                <br><br>
+
+                O elenco possui
+                <strong>22 jogadores</strong>.
 
             </div>
 
@@ -1235,7 +1549,7 @@ footer{
                     class="action clear"
                     onclick="clearSquad()">
 
-                    LIMPAR ELENCO
+                    LIMPAR
 
                 </button>
 
@@ -1257,6 +1571,7 @@ footer{
 
             </div>
 
+
         </div>
 
     </div>
@@ -1264,17 +1579,23 @@ footer{
 </div>
 
 
-<!-- REGRAS -->
+<!-- ================= REGRAS ================= -->
 
-<section class="section" id="regras">
+<section
+    class="section"
+    id="regras">
 
 <div class="container">
 
     <div class="section-header">
 
-        <small>REGULAMENTO</small>
+        <small>
+            REGULAMENTO
+        </small>
 
-        <h2>🔥 REGRAS BOMBA PETCH</h2>
+        <h2>
+            🔥 REGRAS BOMBA PETCH
+        </h2>
 
     </div>
 
@@ -1284,11 +1605,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">01</div>
+            <div class="rule-number">
+                01
+            </div>
 
             <div class="rule-text">
 
-                <h3>🏆 DESISTÊNCIA</h3>
+                <h3>
+                    🏆 DESISTÊNCIA
+                </h3>
 
                 <p>
                     Não pode desistir no meio do campeonato.
@@ -1302,6 +1627,7 @@ footer{
 
                 <p>
                     Desistência forçada:
+
                     <strong>
                         perda de 3 pontos no Rank.
                     </strong>
@@ -1314,11 +1640,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">02</div>
+            <div class="rule-number">
+                02
+            </div>
 
             <div class="rule-text">
 
-                <h3>🚫 OFENSAS E BRIGAS</h3>
+                <h3>
+                    🚫 OFENSAS E BRIGAS
+                </h3>
 
                 <p>
                     Proibido ofensas, xingamentos,
@@ -1333,11 +1663,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">03</div>
+            <div class="rule-number">
+                03
+            </div>
 
             <div class="rule-text">
 
-                <h3>🎯 CHUTE DE PRIMEIRINHA</h3>
+                <h3>
+                    🎯 CHUTE DE PRIMEIRINHA
+                </h3>
 
                 <p>
                     O chute de primeirinha valerá
@@ -1351,11 +1685,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">04</div>
+            <div class="rule-number">
+                04
+            </div>
 
             <div class="rule-text">
 
-                <h3>🎮 TÁTICAS</h3>
+                <h3>
+                    🎮 TÁTICAS
+                </h3>
 
                 <p>
                     Só poderão ser usadas as formações
@@ -1385,11 +1723,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">05</div>
+            <div class="rule-number">
+                05
+            </div>
 
             <div class="rule-text">
 
-                <h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
+                <h3>
+                    🚨 ALTERAÇÃO DE JOGADORES
+                </h3>
 
                 <p>
                     EXTREMAMENTE PROIBIDO alterar
@@ -1398,6 +1740,7 @@ footer{
 
                 <p>
                     Caso seja pego:
+
                     <strong>
                         perderá estrelas.
                     </strong>
@@ -1407,6 +1750,7 @@ footer{
 
         </div>
 
+
     </div>
 
 </div>
@@ -1414,17 +1758,24 @@ footer{
 </section>
 
 
-<!-- RANK -->
+<!-- ================= RANK ================= -->
 
-<section class="section" id="ranking">
+<section
+    class="section"
+    id="ranking">
 
 <div class="container">
 
+
     <div class="section-header">
 
-        <small>TEMPORADA 2026</small>
+        <small>
+            TEMPORADA 2026
+        </small>
 
-        <h2>🏆 RANK DO MELHOR DO ANO</h2>
+        <h2>
+            🏆 RANK DO MELHOR DO ANO
+        </h2>
 
         <p>
             Todos começam com 0 pontos.
@@ -1440,53 +1791,114 @@ footer{
             <thead>
 
                 <tr>
-                    <th>POS.</th>
-                    <th>PLAYER</th>
-                    <th>VITÓRIAS</th>
-                    <th>EMPATES</th>
-                    <th>DERROTAS</th>
-                    <th>PONTOS</th>
+
+                    <th>
+                        POS.
+                    </th>
+
+                    <th>
+                        PLAYER
+                    </th>
+
+                    <th>
+                        VITÓRIAS
+                    </th>
+
+                    <th>
+                        EMPATES
+                    </th>
+
+                    <th>
+                        DERROTAS
+                    </th>
+
+                    <th>
+                        PONTOS
+                    </th>
+
                 </tr>
 
             </thead>
 
+
             <tbody>
 
-                <tr>
-                    <td>—</td>
-                    <td class="player">👑 BERNA</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="points">0</td>
-                </tr>
 
                 <tr>
+
                     <td>—</td>
-                    <td class="player">⚡ CRISTIAN</td>
+
+                    <td class="player">
+                        👑 BERNA
+                    </td>
+
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-                    <td class="points">0</td>
+
+                    <td class="points">
+                        0
+                    </td>
+
                 </tr>
 
-                <tr>
-                    <td>—</td>
-                    <td class="player">🔥 RAFAGAMER</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td class="points">0</td>
-                </tr>
 
                 <tr>
+
                     <td>—</td>
-                    <td class="player">🎯 LEANDRO</td>
+
+                    <td class="player">
+                        ⚡ CRISTIAN
+                    </td>
+
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-                    <td class="points">0</td>
+
+                    <td class="points">
+                        0
+                    </td>
+
                 </tr>
+
+
+                <tr>
+
+                    <td>—</td>
+
+                    <td class="player">
+                        🔥 RAFAGAMER
+                    </td>
+
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>—</td>
+
+                    <td class="player">
+                        🎯 LEANDRO
+                    </td>
+
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
+
 
             </tbody>
 
@@ -1497,9 +1909,12 @@ footer{
 
     <div class="rank-info">
 
-        Vitória = +2 &nbsp; • &nbsp;
-        Empate = +1 &nbsp; • &nbsp;
-        Derrota = -1 &nbsp; • &nbsp;
+        Vitória = +2
+        &nbsp; • &nbsp;
+        Empate = +1
+        &nbsp; • &nbsp;
+        Derrota = -1
+        &nbsp; • &nbsp;
         Desistência = -3
 
     </div>
@@ -1509,22 +1924,30 @@ footer{
 </section>
 
 
-<!-- JORNAL -->
+<!-- ================= JORNAL ================= -->
 
-<section class="section" id="jornal">
+<section
+    class="section"
+    id="jornal">
 
 <div class="container">
 
+
     <div class="section-header">
 
-        <small>NOTÍCIAS</small>
+        <small>
+            NOTÍCIAS
+        </small>
 
-        <h2>📰 JORNAL BOMBA PETCH</h2>
+        <h2>
+            📰 JORNAL BOMBA PETCH
+        </h2>
 
     </div>
 
 
     <div class="news">
+
 
         <details class="news-box">
 
@@ -1557,6 +1980,7 @@ footer{
 
         </details>
 
+
     </div>
 
 </div>
@@ -1564,28 +1988,40 @@ footer{
 </section>
 
 
-<!-- TEMPORADAS -->
+<!-- ================= TEMPORADAS ================= -->
 
-<section class="section" id="temporadas">
+<section
+    class="section"
+    id="temporadas">
 
 <div class="container">
 
+
     <div class="section-header">
 
-        <small>HISTÓRIA</small>
+        <small>
+            HISTÓRIA
+        </small>
 
-        <h2>📅 TEMPORADAS</h2>
+        <h2>
+            📅 TEMPORADAS
+        </h2>
 
     </div>
 
 
     <div class="seasons">
 
+
         <div class="season">
 
-            <div class="year">2024</div>
+            <div class="year">
+                2024
+            </div>
 
-            <h3>PRIMEIROS CAPÍTULOS</h3>
+            <h3>
+                PRIMEIROS CAPÍTULOS
+            </h3>
 
             <p>
                 O início da história
@@ -1597,9 +2033,13 @@ footer{
 
         <div class="season">
 
-            <div class="year">2025</div>
+            <div class="year">
+                2025
+            </div>
 
-            <h3>ERA DAS LENDAS</h3>
+            <h3>
+                ERA DAS LENDAS
+            </h3>
 
             <p>
                 Os jogadores começaram
@@ -1611,18 +2051,24 @@ footer{
 
         <div class="season">
 
-            <div class="year">2026</div>
+            <div class="year">
+                2026
+            </div>
 
-            <h3>NOVA TEMPORADA</h3>
+            <h3>
+                NOVA TEMPORADA
+            </h3>
 
             <p>
                 Retorno em
+
                 <strong>
                     17/08/2026 às 19:00
                 </strong>.
             </p>
 
         </div>
+
 
     </div>
 
@@ -1631,17 +2077,24 @@ footer{
 </section>
 
 
-<!-- DOWNLOAD -->
+<!-- ================= DOWNLOAD ================= -->
 
-<section class="section" id="download">
+<section
+    class="section"
+    id="download">
 
 <div class="container">
 
+
     <div class="section-header">
 
-        <small>ARQUIVOS</small>
+        <small>
+            ARQUIVOS
+        </small>
 
-        <h2>📥 DOWNLOAD</h2>
+        <h2>
+            📥 DOWNLOAD
+        </h2>
 
     </div>
 
@@ -1671,6 +2124,8 @@ footer{
 </section>
 
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
     <div class="footer-logo">
@@ -1690,73 +2145,88 @@ footer{
 
 <script>
 
-/* =========================================================
-   CONFIGURAÇÃO DAS POSIÇÕES
-========================================================= */
+/* ==========================================================
+   POSIÇÕES DOS 22 JOGADORES
+========================================================== */
 
-const positions = {
+const positions = [
 
-    GOL:{
+    {
+        id:"goleiros",
         nome:"🧤 GOLEIROS",
-        limite:2
+        quantidade:2
     },
 
-    ZAG:{
+    {
+        id:"zagueiros",
         nome:"🛡️ ZAGUEIROS",
-        limite:5
+        quantidade:5
     },
 
-    LAT:{
+    {
+        id:"laterais",
         nome:"🏃 LATERAIS",
-        limite:3
+        quantidade:3
     },
 
-    VOL:{
+    {
+        id:"volantes",
         nome:"⚙️ VOLANTES",
-        limite:3
+        quantidade:3
     },
 
-    MEI:{
+    {
+        id:"meias",
         nome:"🎯 MEIAS",
-        limite:4
+        quantidade:4
     },
 
-    ATA:{
+    {
+        id:"atacantes",
         nome:"⚡ ATACANTES",
-        limite:5
+        quantidade:5
     }
 
-};
+];
 
 
-/* =========================================================
-   CRIA OS CARDS DOS 12 TIMES
-========================================================= */
+/* ==========================================================
+   CRIA OS 12 TIMES
+========================================================== */
 
-function createTeamCard(owner,number){
+const owners = [
 
-    const id =
-        owner + "-time-" + number;
+    "rafagamer",
+    "berna",
+    "cristian",
+    "leandro"
 
-    const saved =
-        JSON.parse(
-            localStorage.getItem("bomba-" + id) || "{}"
+];
+
+owners.forEach(owner => {
+
+    const container =
+        document.getElementById(
+            "teams-" + owner
         );
 
-    const total =
-        Object.values(saved).reduce(
-            (s,list)=>s + list.length,
-            0
-        );
+    for(let i = 1; i <= 3; i++){
 
-    return `
+        const id =
+            owner + "-time-" + i;
 
-        <div class="team-card">
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "team-card";
+
+        card.innerHTML = `
 
             <div class="team-head">
 
                 <h4>
-                    ⚽ TIME ${number}
+                    ⚽ TIME ${i}
                 </h4>
 
                 <p>
@@ -1770,7 +2240,7 @@ function createTeamCard(owner,number){
                 <button
                     onclick="openSquad(
                         '${id}',
-                        '${owner.toUpperCase()} — TIME ${number}'
+                        '${owner.toUpperCase()} — TIME ${i}'
                     )">
 
                     ⚽ MONTAR ELENCO
@@ -1781,88 +2251,86 @@ function createTeamCard(owner,number){
                     class="saved-count"
                     id="count-${id}">
 
-                    ${total} / 22 jogadores
+                    ${getCount(id)} / 22 jogadores
 
                 </div>
 
             </div>
 
-        </div>
+        `;
 
-    `;
-}
+        container.appendChild(card);
+
+    }
+
+});
 
 
-/* =========================================================
+/* ==========================================================
    VARIÁVEIS
-========================================================= */
+========================================================== */
 
 let currentTeam = null;
 
-let currentSquad = {};
 
-
-/* =========================================================
+/* ==========================================================
    ABRIR ELENCO
-========================================================= */
+========================================================== */
 
 function openSquad(id,title){
 
     currentTeam = id;
 
-    currentSquad =
-        JSON.parse(
-            localStorage.getItem(
-                "bomba-" + id
-            ) || "{}"
-        );
-
     document.getElementById(
         "modalTitle"
-    ).textContent = "⚽ " + title;
+    ).textContent =
+        "⚽ " + title;
 
     document.getElementById(
         "squadModal"
     ).classList.add("active");
 
-    renderPositions();
+    createPlayerFields();
 
 }
 
 
-/* =========================================================
-   FECHAR ELENCO
-========================================================= */
+/* ==========================================================
+   FECHAR
+========================================================== */
 
 function closeModal(){
 
-    document
-        .getElementById("squadModal")
-        .classList.remove("active");
+    document.getElementById(
+        "squadModal"
+    ).classList.remove("active");
 
 }
 
 
-/* =========================================================
-   CRIA OS CAMPOS DE TEXTO
-========================================================= */
+/* ==========================================================
+   CRIA OS 22 CAMPOS
+========================================================== */
 
-function renderPositions(){
+function createPlayerFields(){
 
     const container =
-        document.getElementById("positions");
+        document.getElementById(
+            "positions"
+        );
 
     container.innerHTML = "";
 
 
-    Object.keys(positions).forEach(pos=>{
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-" + currentTeam
+            ) || "{}"
+        );
 
-        const info = positions[pos];
 
-        if(!currentSquad[pos]){
-            currentSquad[pos] = [];
-        }
-
+    positions.forEach(position => {
 
         const section =
             document.createElement("div");
@@ -1871,28 +2339,31 @@ function renderPositions(){
             "position-section";
 
 
-        let fields = "";
+        let inputs = "";
 
 
         for(
             let i = 0;
-            i < info.limite;
+            i < position.quantidade;
             i++
         ){
 
+            const key =
+                position.id + "-" + i;
+
+
             const value =
-                currentSquad[pos][i] || "";
+                saved[key] || "";
 
 
-            fields += `
+            inputs += `
 
                 <input
                     type="text"
                     class="player-input"
-                    data-position="${pos}"
-                    data-index="${i}"
-                    value="${escapeHtml(value)}"
-                    placeholder="${getPlaceholder(pos,i)}"
+                    id="player-${key}"
+                    value="${escapeHTML(value)}"
+                    placeholder="${position.nome.replace(/[^\wÀ-ÿ ]/g,"").trim()} ${i+1} — digite o nome"
                     maxlength="60"
                 >
 
@@ -1906,18 +2377,18 @@ function renderPositions(){
             <div class="position-title">
 
                 <h4>
-                    ${info.nome}
+                    ${position.nome}
                 </h4>
 
                 <span>
-                    ${info.limite} jogadores
+                    ${position.quantidade} jogadores
                 </span>
 
             </div>
 
             <div class="name-grid">
 
-                ${fields}
+                ${inputs}
 
             </div>
 
@@ -1928,174 +2399,72 @@ function renderPositions(){
 
     });
 
-
-    /*
-        Toda vez que o usuário escrever,
-        atualizamos o objeto na memória.
-    */
-
-    document
-        .querySelectorAll(".player-input")
-        .forEach(input=>{
-
-            input.addEventListener(
-                "input",
-                function(){
-
-                    const pos =
-                        this.dataset.position;
-
-                    const index =
-                        Number(this.dataset.index);
-
-
-                    if(!currentSquad[pos]){
-                        currentSquad[pos] = [];
-                    }
-
-
-                    currentSquad[pos][index] =
-                        this.value;
-
-                }
-            );
-
-        });
-
 }
 
 
-/* =========================================================
-   PLACEHOLDER
-========================================================= */
-
-function getPlaceholder(pos,index){
-
-    const nomes = {
-
-        GOL:"Nome do goleiro",
-
-        ZAG:"Nome do zagueiro",
-
-        LAT:"Nome do lateral",
-
-        VOL:"Nome do volante",
-
-        MEI:"Nome do meia",
-
-        ATA:"Nome do atacante"
-
-    };
-
-    return (
-        nomes[pos] +
-        " " +
-        (index + 1)
-    );
-
-}
-
-
-/* =========================================================
-   PROTEGE TEXTO DIGITADO
-========================================================= */
-
-function escapeHtml(text){
-
-    return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/"/g,"&quot;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;");
-
-}
-
-
-/* =========================================================
-   SALVAR ELENCO
-========================================================= */
+/* ==========================================================
+   SALVAR OS NOMES
+========================================================== */
 
 function saveSquad(){
 
-    /*
-        Primeiro pegamos novamente
-        os valores que estão nos campos.
-    */
-
-    document
-        .querySelectorAll(".player-input")
-        .forEach(input=>{
-
-            const pos =
-                input.dataset.position;
-
-            const index =
-                Number(input.dataset.index);
-
-
-            if(!currentSquad[pos]){
-                currentSquad[pos] = [];
-            }
-
-
-            currentSquad[pos][index] =
-                input.value.trim();
-
-        });
-
-
-    /*
-        Conta quantos nomes foram preenchidos.
-    */
+    const data = {};
 
     let total = 0;
 
-    Object.values(currentSquad)
-        .forEach(list=>{
 
-            list.forEach(name=>{
+    positions.forEach(position => {
 
-                if(name.trim() !== ""){
-                    total++;
-                }
+        for(
+            let i = 0;
+            i < position.quantidade;
+            i++
+        ){
 
-            });
+            const key =
+                position.id + "-" + i;
 
-        });
+
+            const input =
+                document.getElementById(
+                    "player-" + key
+                );
+
+
+            const name =
+                input.value.trim();
+
+
+            data[key] = name;
+
+
+            if(name !== ""){
+                total++;
+            }
+
+        }
+
+    });
 
 
     /*
-        Não permite salvar incompleto.
-    */
-
-    if(total < 22){
-
-        alert(
-            "⚠️ O elenco ainda está incompleto.\n\n" +
-            "Preencha os 22 jogadores antes de salvar."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Salva no navegador.
+       Salva mesmo que ainda não estejam
+       preenchidos os 22 jogadores.
     */
 
     localStorage.setItem(
         "bomba-" + currentTeam,
-        JSON.stringify(currentSquad)
+        JSON.stringify(data)
     );
 
 
-    updateTeamCount(currentTeam);
+    updateCount();
 
 
     alert(
-        "✅ ELENCO SALVO COM SUCESSO!\n\n" +
-        "22 jogadores cadastrados."
+        "✅ Elenco salvo!\n\n" +
+        total +
+        " de 22 jogadores preenchidos."
     );
 
 
@@ -2104,47 +2473,40 @@ function saveSquad(){
 }
 
 
-/* =========================================================
-   LIMPAR ELENCO
-========================================================= */
+/* ==========================================================
+   LIMPAR
+========================================================== */
 
 function clearSquad(){
 
-    const confirmar =
-        confirm(
-            "⚠️ Tem certeza que deseja apagar todos os jogadores deste elenco?"
-        );
+    if(
+        !confirm(
+            "Deseja apagar os jogadores deste elenco?"
+        )
+    ){
 
-
-    if(!confirmar){
         return;
+
     }
 
-
-    currentSquad = {};
-
-
-    /*
-        Remove do armazenamento.
-    */
 
     localStorage.removeItem(
         "bomba-" + currentTeam
     );
 
 
-    renderPositions();
+    createPlayerFields();
 
-    updateTeamCount(currentTeam);
+    updateCount();
 
 }
 
 
-/* =========================================================
-   ATUALIZA CONTADOR DO TIME
-========================================================= */
+/* ==========================================================
+   CONTADOR
+========================================================== */
 
-function updateTeamCount(id){
+function getCount(id){
 
     const saved =
         JSON.parse(
@@ -2157,72 +2519,99 @@ function updateTeamCount(id){
     let total = 0;
 
 
-    Object.values(saved)
-        .forEach(list=>{
+    Object.values(saved).forEach(value => {
 
-            list.forEach(name=>{
+        if(
+            typeof value === "string" &&
+            value.trim() !== ""
+        ){
 
-                if(
-                    typeof name === "string" &&
-                    name.trim() !== ""
-                ){
+            total++;
 
-                    total++;
+        }
 
-                }
+    });
 
-            });
 
-        });
+    return total;
 
+}
+
+
+/* ==========================================================
+   ATUALIZA CONTADOR
+========================================================== */
+
+function updateCount(){
 
     const element =
         document.getElementById(
-            "count-" + id
+            "count-" + currentTeam
         );
 
 
     if(element){
 
         element.textContent =
-            total + " / 22 jogadores";
+            getCount(currentTeam) +
+            " / 22 jogadores";
 
     }
 
 }
 
 
-/* =========================================================
-   FECHAR CLICANDO FORA DO PAINEL
-========================================================= */
+/* ==========================================================
+   SEGURANÇA DO TEXTO
+========================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================================
+   CLICAR FORA DO MODAL
+========================================================== */
 
 document
-    .getElementById("squadModal")
-    .addEventListener(
-        "click",
-        function(event){
+.getElementById("squadModal")
+.addEventListener(
+    "click",
+    function(event){
 
-            if(event.target === this){
-                closeModal();
-            }
+        if(event.target === this){
+
+            closeModal();
 
         }
-    );
+
+    }
+);
 
 
-/* =========================================================
-   ESC FECHA O PAINEL
-========================================================= */
+/* ==========================================================
+   ESC FECHA
+========================================================== */
 
 document.addEventListener(
     "keydown",
     function(event){
 
         if(
-            event.key === "Escape" &&
-            document
-                .getElementById("squadModal")
-                .classList.contains("active")
+            event.key === "Escape"
         ){
 
             closeModal();
