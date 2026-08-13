@@ -269,7 +269,7 @@ body::after{
 .season-return{
     position:relative;
 
-    padding:32px 20px;
+    padding:38px 20px;
 
     text-align:center;
 
@@ -320,7 +320,7 @@ body::after{
 
     letter-spacing:5px;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .season-return h2{
@@ -334,9 +334,9 @@ body::after{
 }
 
 .return-date{
-    margin-top:10px;
+    margin-top:15px;
 
-    font-size:18px;
+    font-size:20px;
 
     font-weight:bold;
 
@@ -349,18 +349,34 @@ body::after{
     color:#ffd000;
 }
 
+.return-place{
+    margin-top:12px;
+
+    font-size:15px;
+
+    color:#fff;
+
+    letter-spacing:1px;
+}
+
+.return-place strong{
+    color:#ffd000;
+}
+
 /* =========================
    TICKER
 ========================= */
 
 .ticker{
-    height:45px;
+    min-height:45px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
     gap:14px;
+
+    padding:10px 15px;
 
     background:#090909;
 
@@ -371,6 +387,8 @@ body::after{
     font-size:10px;
 
     letter-spacing:3px;
+
+    text-align:center;
 }
 
 .ticker strong{
@@ -1442,12 +1460,16 @@ footer{
     }
 
     .season-return{
-        padding:27px 15px;
+        padding:30px 15px;
     }
 
     .return-date{
-        font-size:14px;
+        font-size:15px;
         line-height:1.7;
+    }
+
+    .return-place{
+        font-size:13px;
     }
 
 }
@@ -1522,7 +1544,7 @@ footer{
 
 
 <!-- =========================
-     RETORNO
+     RETORNO DA TEMPORADA
 ========================= -->
 
 <section class="season-return">
@@ -1538,7 +1560,22 @@ footer{
         </h2>
 
         <div class="return-date">
-            📅 <span>20/08/2026</span> • QUINTA-FEIRA
+
+            📅 <span>17/08/2026</span>
+
+            &nbsp; • &nbsp;
+
+            🕖 <span>19:00</span>
+
+        </div>
+
+        <div class="return-place">
+
+            📍 Local:
+            <strong>
+                Rua Professor Raul Duarte, 245
+            </strong>
+
         </div>
 
     </div>
@@ -1562,7 +1599,11 @@ footer{
 
     <span>•</span>
 
-    <strong>RETORNO 20/08/2026</strong>
+    <strong>17/08/2026 — 19:00</strong>
+
+    <span>•</span>
+
+    Rua Professor Raul Duarte, 245
 
 </div>
 
@@ -1608,7 +1649,7 @@ footer{
 
 
 <!-- =========================
-     PAINEL
+     PAINEL DA TEMPORADA
 ========================= -->
 
 <section class="section">
@@ -2001,8 +2042,7 @@ footer{
                 </p>
 
                 <p>
-                    Seu posicionamento também é diferente:
-                    Leandro consegue jogar
+                    Além disso, Leandro consegue jogar
                     <span class="highlight">
                         mais recuado e, ao mesmo tempo, avançar
                     </span>
@@ -2566,8 +2606,17 @@ footer{
             <p>
                 Retorno marcado para
                 <span class="highlight">
-                    20/08/2026 — quinta-feira.
+                    17/08/2026 — 19:00.
                 </span>
+            </p>
+
+            <p style="margin-top:12px;">
+
+                📍
+                <span class="highlight">
+                    Rua Professor Raul Duarte, 245
+                </span>
+
             </p>
 
         </div>
