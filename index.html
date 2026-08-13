@@ -1,651 +1,2107 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Lendas do BOMBA PETCH</title>
+<title>BOMBA PETCH — RAFAGAMER 2026</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0b0f;
-            color: white;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* =========================
-           CABEÇALHO
-        ========================= */
+html{
+    scroll-behavior:smooth;
+}
 
-        header {
-            background: linear-gradient(135deg, #11111a, #1d1d2b);
-            padding: 35px 20px;
-            text-align: center;
-            border-bottom: 2px solid #333;
-        }
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
 
-        header h1 {
-            font-size: 42px;
-            color: #ffd700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-        header p {
-            color: #aaa;
-            font-size: 16px;
-        }
+/* =========================
+   FUNDO
+========================= */
 
-        /* =========================
-           MENU
-        ========================= */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
 
-        nav {
-            background: #15151d;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 15px;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #292936;
-        }
+    background:
+        radial-gradient(circle at 15% 20%, #ff350018, transparent 30%),
+        radial-gradient(circle at 85% 70%, #ff8c0012, transparent 30%),
+        linear-gradient(135deg,#030303,#101010,#050505);
+}
 
-        nav button {
-            background: #22222d;
-            color: white;
-            border: 1px solid #444;
-            padding: 10px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-        }
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.25;
 
-        nav button:hover {
-            background: #ffd700;
-            color: #111;
-        }
+    background:
+        repeating-linear-gradient(
+            115deg,
+            transparent 0,
+            transparent 90px,
+            #ffffff05 91px,
+            transparent 93px
+        );
+}
 
-        /* =========================
-           CONTEÚDO
-        ========================= */
+/* =========================
+   MENU
+========================= */
 
-        main {
-            max-width: 1200px;
-            margin: auto;
-            padding: 35px 20px;
-        }
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
 
-        .titulo-secao {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    height:65px;
 
-        .titulo-secao h2 {
-            color: #ffd700;
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .titulo-secao p {
-            color: #999;
-        }
+    padding:0 5%;
 
-        /* =========================
-           CARDS DOS JOGADORES
-        ========================= */
+    background:#050505ee;
+    border-bottom:1px solid #ff730055;
 
-        .jogadores {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+    backdrop-filter:blur(15px);
+}
 
-        .jogador {
-            background: linear-gradient(145deg, #171720, #101016);
-            border: 1px solid #30303c;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            transition: transform 0.2s, border 0.2s;
-        }
+.logo{
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#ff7300;
+}
 
-        .jogador:hover {
-            transform: translateY(-5px);
-            border-color: #ffd700;
-        }
+.logo span{
+    color:#ffd000;
+}
 
-        .jogador h3 {
-            font-size: 25px;
-            color: #fff;
-            margin-bottom: 5px;
-        }
+.nav-links{
+    display:flex;
+    gap:24px;
+}
 
-        .apelido {
-            color: #ffd700;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
+.nav-links a{
+    color:#888;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+    transition:.25s;
+}
 
-        .historia {
-            color: #ccc;
-            line-height: 1.7;
-            font-size: 15px;
-            margin-bottom: 20px;
-        }
+.nav-links a:hover{
+    color:#ff9800;
+}
 
-        /* =========================
-           TROFÉUS
-        ========================= */
+/* =========================
+   CAPA
+========================= */
 
-        .trofeus {
-            border-top: 1px solid #333;
-            padding-top: 18px;
-        }
+.hero{
+    min-height:650px;
 
-        .trofeus h4 {
-            color: #ffd700;
-            margin-bottom: 12px;
-            font-size: 18px;
-        }
+    position:relative;
 
-        .trofeus-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-        .trofeu {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #ffd700, #b8860b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #111;
-            font-size: 20px;
-            font-weight: bold;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
-        }
+    text-align:center;
+    overflow:hidden;
 
-        /* =========================
-           DESTAQUE
-        ========================= */
+    background:
+        radial-gradient(circle at 50% 50%,#ff3c0025,transparent 35%),
+        linear-gradient(
+            115deg,
+            #030303,
+            #270000,
+            #820d00,
+            #190000,
+            #030303
+        );
 
-        .destaque {
-            margin-top: 50px;
-            background: linear-gradient(135deg, #171720, #20202c);
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-        }
+    border-bottom:3px solid #ff7300;
+}
 
-        .destaque h2 {
-            color: #ffd700;
-            margin-bottom: 15px;
-        }
+.hero::before{
+    content:"";
+    position:absolute;
 
-        .destaque p {
-            color: #ccc;
-            line-height: 1.7;
-            max-width: 850px;
-            margin: auto;
-        }
+    width:900px;
+    height:900px;
 
-        /* =========================
-           RANKING
-        ========================= */
+    border-radius:50%;
 
-        .ranking {
-            margin-top: 50px;
-        }
+    background:
+        radial-gradient(
+            circle,
+            #ff730055,
+            transparent 65%
+        );
 
-        .ranking h2 {
-            text-align: center;
-            color: #ffd700;
-            margin-bottom: 25px;
-        }
+    top:-450px;
+    right:-300px;
+}
 
-        .ranking-lista {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
 
-        .ranking-item {
-            background: #171720;
-            border: 1px solid #30303c;
-            border-radius: 10px;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    background:
+        repeating-linear-gradient(
+            120deg,
+            transparent 0,
+            transparent 80px,
+            #ffffff07 81px,
+            transparent 83px
+        );
+}
 
-        .posicao {
-            font-size: 22px;
-            font-weight: bold;
-            color: #ffd700;
-            width: 45px;
-        }
+.hero-content{
+    position:relative;
+    z-index:5;
+    width:90%;
+    max-width:1200px;
+}
 
-        .nome-ranking {
-            flex: 1;
-            font-weight: bold;
-        }
+.edition{
+    color:#ffd000;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:8px;
+    margin-bottom:25px;
+}
 
-        .temporadas {
-            color: #aaa;
-        }
+.hero h1{
+    font-size:clamp(60px,12vw,145px);
+    line-height:.8;
+    font-weight:1000;
+    letter-spacing:4px;
+    text-transform:uppercase;
 
-        /* =========================
-           RODAPÉ
-        ========================= */
+    text-shadow:
+        5px 5px 0 #620000,
+        0 0 20px #ff3c00,
+        0 0 70px #ff730055;
+}
 
-        footer {
-            margin-top: 60px;
-            padding: 30px 20px;
-            text-align: center;
-            background: #111118;
-            border-top: 1px solid #292936;
-            color: #777;
-        }
+.hero h2{
+    margin-top:35px;
 
-        footer strong {
-            color: #ffd700;
-        }
+    color:#ffd000;
 
-        /* =========================
-           RESPONSIVO
-        ========================= */
+    font-size:clamp(25px,5vw,60px);
 
-        @media (max-width: 600px) {
+    letter-spacing:10px;
+}
 
-            header h1 {
-                font-size: 29px;
-            }
+.hero-subtitle{
+    margin-top:25px;
 
-            main {
-                padding: 25px 15px;
-            }
+    color:#ddd;
 
-            .jogador {
-                padding: 20px;
-            }
+    font-size:13px;
 
-            .ranking-item {
-                padding: 13px;
-            }
+    letter-spacing:5px;
+}
 
-            .temporadas {
-                font-size: 13px;
-            }
-        }
-    </style>
+.hero-button{
+    display:inline-block;
+
+    margin-top:40px;
+
+    padding:16px 32px;
+
+    border-radius:50px;
+
+    border:1px solid #ffd000;
+
+    color:#ffd000;
+
+    background:#00000055;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:3px;
+
+    transition:.25s;
+}
+
+.hero-button:hover{
+    background:#ff7300;
+    color:white;
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 30px #000;
+}
+
+/* =========================
+   DESTAQUE TEMPORADA
+========================= */
+
+.season-return{
+    position:relative;
+
+    padding:32px 20px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            90deg,
+            #580000,
+            #b51d00,
+            #ff7300,
+            #b51d00,
+            #580000
+        );
+
+    border-bottom:3px solid #ffd000;
+
+    box-shadow:
+        0 0 35px #ff3c0033;
+}
+
+.season-return::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            120deg,
+            transparent 0,
+            transparent 45px,
+            #ffffff0a 46px,
+            transparent 48px
+        );
+
+    pointer-events:none;
+}
+
+.season-return-content{
+    position:relative;
+    z-index:2;
+}
+
+.return-label{
+    color:#ffd000;
+
+    font-size:11px;
+    font-weight:bold;
+
+    letter-spacing:5px;
+
+    margin-bottom:10px;
+}
+
+.season-return h2{
+    font-size:clamp(28px,5vw,48px);
+
+    font-weight:1000;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 3px 10px #000;
+}
+
+.return-date{
+    margin-top:10px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+
+    color:white;
+}
+
+.return-date span{
+    color:#ffd000;
+}
+
+/* =========================
+   TICKER
+========================= */
+
+.ticker{
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:14px;
+
+    background:#090909;
+
+    border-bottom:1px solid #ffffff0b;
+
+    color:#777;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+}
+
+.ticker strong{
+    color:#ff7300;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section{
+    padding:80px 0;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-header small{
+    display:block;
+
+    color:#ff7300;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:6px;
+
+    margin-bottom:12px;
+}
+
+.section-header h2{
+    font-size:38px;
+}
+
+.section-header p{
+    margin-top:12px;
+
+    color:#777;
+
+    font-size:14px;
+}
+
+/* =========================
+   CAMPEÃO
+========================= */
+
+.champion-banner{
+
+    position:relative;
+
+    padding:55px 30px;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    border:2px solid #ffd000;
+
+    border-radius:20px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #ffd00022,
+            transparent 55%
+        ),
+
+        linear-gradient(
+            145deg,
+            #2a1900,
+            #120d05,
+            #1d1100
+        );
+
+    box-shadow:
+        0 0 30px #ffd00015,
+        inset 0 0 50px #ffd00008;
+}
+
+.champion-banner::before{
+    content:"👑";
+
+    position:absolute;
+
+    font-size:180px;
+
+    opacity:.035;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+}
+
+.champion-label{
+    color:#ffd000;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+    letter-spacing:6px;
+
+    margin-bottom:15px;
+}
+
+.champion-banner h2{
+
+    position:relative;
+
+    font-size:
+        clamp(35px,6vw,65px);
+
+    color:#fff;
+
+    margin-bottom:10px;
+
+    text-shadow:
+        0 0 20px #ffd00055;
+}
+
+.champion-banner h3{
+
+    color:#ff9800;
+
+    font-size:20px;
+
+    letter-spacing:3px;
+
+    margin-bottom:20px;
+}
+
+.champion-banner p{
+
+    position:relative;
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#bbb;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+.champion-crown{
+
+    font-size:55px;
+
+    margin-bottom:10px;
+}
+
+/* =========================
+   PAINEL
+========================= */
+
+.stats{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+}
+
+.stat{
+
+    padding:30px 15px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #0b0b0b
+        );
+
+    border:1px solid #ff730033;
+
+    border-radius:14px;
+
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-6px);
+
+    border-color:#ff7300;
+
+    box-shadow:
+        0 15px 35px #000;
+}
+
+.stat-number{
+
+    color:#ff9800;
+
+    font-size:38px;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+}
+
+.stat-label{
+
+    color:#888;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+/* =========================
+   LENDAS
+========================= */
+
+.legend-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.legend{
+
+    background:#121212;
+
+    border:1px solid #ff730033;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 35px #00000080;
+
+    transition:.3s;
+}
+
+.legend:hover{
+    transform:translateY(-5px);
+    border-color:#ff7300;
+}
+
+.legend summary{
+
+    list-style:none;
+
+    cursor:pointer;
+
+    padding:23px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #700000,
+            #bf2900,
+            #ed6900
+        );
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+.legend summary::-webkit-details-marker{
+    display:none;
+}
+
+.legend summary::after{
+    content:"+";
+
+    margin-left:auto;
+
+    font-size:25px;
+}
+
+.legend[open] summary::after{
+    content:"−";
+}
+
+.trophies{
+
+    color:#ffd700;
+
+    font-size:14px;
+
+    margin-left:auto;
+}
+
+.legend-body{
+
+    padding:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #242424,
+            #0e0e0e
+        );
+}
+
+.legend-body h3{
+
+    color:#ff9800;
+
+    font-size:23px;
+
+    margin-bottom:18px;
+}
+
+.legend-body p{
+
+    color:#ddd;
+
+    font-size:16px;
+
+    line-height:1.75;
+
+    margin-bottom:16px;
+}
+
+.highlight{
+
+    color:#ffd000;
+
+    font-weight:bold;
+}
+
+.achievements{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.achievement{
+
+    padding:9px 13px;
+
+    border-radius:20px;
+
+    background:#00000055;
+
+    border:1px solid #ff730033;
+
+    color:#aaa;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+/* =========================
+   RANKING
+========================= */
+
+.ranking-wrapper{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 360px;
+
+    gap:25px;
+}
+
+.ranking{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.rank{
+
+    display:grid;
+
+    grid-template-columns:
+        65px 1fr 160px;
+
+    align-items:center;
+
+    padding:22px;
+
+    background:#141414;
+
+    border:1px solid #ffffff08;
+
+    border-radius:11px;
+
+    transition:.25s;
+}
+
+.rank:hover{
+
+    border-color:#ff730055;
+
+    transform:translateX(5px);
+}
+
+.rank:first-child{
+
+    border:1px solid #ffd000;
+
+    background:
+        linear-gradient(
+            90deg,
+            #211b09,
+            #141414
+        );
+}
+
+.rank-position{
+
+    color:#ff9800;
+
+    font-size:26px;
+
+    font-weight:bold;
+}
+
+.rank:first-child .rank-position{
+    color:#ffd000;
+}
+
+.rank-name{
+
+    font-size:17px;
+
+    font-weight:bold;
+}
+
+.rank-season{
+
+    color:#777;
+
+    text-align:right;
+
+    font-size:10px;
+}
+
+.champion{
+
+    min-height:260px;
+
+    padding:35px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #ffd00020,
+            transparent 65%
+        ),
+
+        #151515;
+
+    border:1px solid #ffd00066;
+
+    border-radius:15px;
+}
+
+.champion-icon{
+
+    font-size:60px;
+
+    margin-bottom:15px;
+}
+
+.champion h3{
+
+    color:#ffd000;
+
+    font-size:25px;
+
+    margin-bottom:10px;
+}
+
+.champion p{
+
+    color:#888;
+
+    line-height:1.6;
+
+    font-size:13px;
+}
+
+/* =========================
+   RIVALIDADES
+========================= */
+
+.rivalries{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+}
+
+.rivalry{
+
+    padding:30px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191919,
+            #0c0c0c
+        );
+
+    border:1px solid #ffffff0b;
+
+    border-radius:15px;
+}
+
+.rivalry-names{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    margin-bottom:18px;
+
+    font-size:19px;
+
+    font-weight:bold;
+}
+
+.vs{
+
+    color:#ff7300;
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+.rivalry p{
+
+    color:#777;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+.download-area{
+
+    max-width:800px;
+
+    margin:auto;
+
+    padding:50px;
+
+    text-align:center;
+
+    border-radius:18px;
+
+    background:
+
+        radial-gradient(
+            circle,
+            #ff730025,
+            transparent 65%
+        ),
+
+        #121212;
+
+    border:1px solid #ff730066;
+
+    box-shadow:
+        0 20px 50px #000;
+}
+
+.download-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+}
+
+.download-area h3{
+
+    color:#ff9800;
+
+    font-size:27px;
+
+    margin-bottom:12px;
+}
+
+.download-area p{
+
+    color:#888;
+
+    margin-bottom:28px;
+}
+
+.download-button{
+
+    display:inline-block;
+
+    padding:17px 38px;
+
+    border-radius:8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b90000,
+            #ff7300
+        );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    transition:.25s;
+}
+
+.download-button:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 12px 30px #000;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer{
+
+    margin-top:50px;
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    background:#030303;
+
+    border-top:1px solid #ff730044;
+
+    color:#555;
+}
+
+.footer-logo{
+
+    color:#ff7300;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:1000px){
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .ranking-wrapper{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:750px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .rivalries{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .hero{
+        min-height:500px;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .hero h2{
+        font-size:25px;
+        letter-spacing:3px;
+    }
+
+    .hero-subtitle{
+        font-size:9px;
+        letter-spacing:2px;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .stat-number{
+        font-size:28px;
+    }
+
+    .rank{
+        grid-template-columns:
+            45px 1fr 90px;
+    }
+
+    .rank-name{
+        font-size:14px;
+    }
+
+    .rank-season{
+        font-size:8px;
+    }
+
+    .section{
+        padding:55px 0;
+    }
+
+    .section-header h2{
+        font-size:29px;
+    }
+
+    .download-area{
+        padding:35px 20px;
+    }
+
+    .champion-banner{
+        padding:40px 20px;
+    }
+
+    .season-return{
+        padding:27px 15px;
+    }
+
+    .return-date{
+        font-size:14px;
+        line-height:1.7;
+    }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <!-- =========================
-         CABEÇALHO
-    ========================= -->
 
-    <header>
-        <h1>🏆 Lendas do BOMBA PETCH</h1>
-        <p>Os jogadores que fizeram história</p>
-    </header>
+<!-- =========================
+     MENU
+========================= -->
 
-    <!-- =========================
-         MENU
-    ========================= -->
+<nav class="navbar">
 
-    <nav>
-        <button onclick="mostrarSecao('jogadores')">
-            Lendas
-        </button>
+    <div class="logo">
+        🔥 BOMBA <span>PETCH</span>
+    </div>
 
-        <button onclick="mostrarSecao('ranking')">
-            Ranking
-        </button>
+    <div class="nav-links">
 
-        <button onclick="mostrarSecao('destaque')">
-            História
-        </button>
-    </nav>
+        <a href="#lendas">LENDAS</a>
 
-    <main>
+        <a href="#ranking">RANKING</a>
 
-        <!-- =========================
-             JOGADORES
-        ========================= -->
+        <a href="#rivalidades">RIVALIDADES</a>
 
-        <section id="jogadores">
+        <a href="#download">DOWNLOAD</a>
 
-            <div class="titulo-secao">
-                <h2>As Lendas</h2>
-                <p>Jogadores que marcaram época no BOMBA PETCH</p>
-            </div>
+    </div>
 
-            <div class="jogadores">
+</nav>
 
-                <!-- CRISTIAN -->
 
-                <div class="jogador">
+<!-- =========================
+     CAPA
+========================= -->
 
-                    <h3>Cristian</h3>
+<header class="hero">
 
-                    <div class="apelido">
-                        🏆 O Dominante
-                    </div>
+    <div class="hero-content">
 
-                    <p class="historia">
-                        Cristian construiu uma das maiores histórias do
-                        BOMBA PETCH. Conhecido pela regularidade e pela
-                        capacidade de decidir partidas importantes, tornou-se
-                        uma referência entre os jogadores da competição.
-                        Sua trajetória é marcada por grandes confrontos,
-                        títulos e uma presença constante entre os melhores.
-                    </p>
+        <div class="edition">
+            EDIÇÃO ESPECIAL • 2026
+        </div>
 
-                    <div class="trofeus">
+        <h1>
+            BOMBA PETCH
+        </h1>
 
-                        <h4>🏆 Troféus — 3</h4>
+        <h2>
+            RAFAGAMER 2026
+        </h2>
 
-                        <div class="trofeus-container">
+        <p class="hero-subtitle">
+            A HISTÓRIA • AS LENDAS • AS RIVALIDADES
+        </p>
 
-                            <div class="trofeu">🏆</div>
-                            <div class="trofeu">🏆</div>
-                            <div class="trofeu">🏆</div>
+        <a href="#lendas" class="hero-button">
+            🏆 ENTRAR NO HALL DA FAMA
+        </a>
 
-                        </div>
+    </div>
 
-                    </div>
+</header>
 
-                </div>
 
+<!-- =========================
+     DESTAQUE DO RETORNO
+========================= -->
 
-                <!-- RAFAGAMER -->
+<section class="season-return">
 
-                <div class="jogador">
+    <div class="season-return-content">
 
-                    <h3>Rafagamer</h3>
+        <div class="return-label">
+            🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
+        </div>
 
-                    <div class="apelido">
-                        ⚡ O Competitivo
-                    </div>
+        <h2>
+            RETORNO DA NOVA TEMPORADA 2026
+        </h2>
 
-                    <p class="historia">
-                        Rafagamer ficou conhecido por seu estilo agressivo
-                        e pela capacidade de transformar partidas difíceis
-                        em grandes vitórias. Sempre buscando pressionar o
-                        adversário, tornou-se um dos nomes mais respeitados
-                        da história do BOMBA PETCH.
-                    </p>
+        <div class="return-date">
+            📅 <span>20/08/2026</span> • QUINTA-FEIRA
+        </div>
 
-                    <div class="trofeus">
+    </div>
 
-                        <h4>🏆 Troféus — 2</h4>
+</section>
 
-                        <div class="trofeus-container">
 
-                            <div class="trofeu">🏆</div>
-                            <div class="trofeu">🏆</div>
+<!-- =========================
+     TICKER
+========================= -->
 
-                        </div>
+<div class="ticker">
 
-                    </div>
+    🔥
 
-                </div>
+    <strong>BOMBA PETCH</strong>
 
+    <span>•</span>
 
-                <!-- BERNA -->
+    TEMPORADA 2026
 
-                <div class="jogador">
+    <span>•</span>
 
-                    <h3>Berna</h3>
+    <strong>RETORNO 20/08/2026</strong>
 
-                    <div class="apelido">
-                        🧠 O Estratégista
-                    </div>
+</div>
 
-                    <p class="historia">
-                        Berna conquistou seu espaço através de um estilo
-                        inteligente e estratégico. Sua capacidade de analisar
-                        o adversário e encontrar oportunidades durante as
-                        partidas fez dele uma presença perigosa em qualquer
-                        confronto.
-                    </p>
 
-                    <div class="trofeus">
+<!-- =========================
+     CAMPEÃO
+========================= -->
 
-                        <h4>🏆 Troféu — 1</h4>
+<section class="section">
 
-                        <div class="trofeus-container">
+<div class="container">
 
-                            <div class="trofeu">🏆</div>
+    <div class="champion-banner">
 
-                        </div>
+        <div class="champion-crown">
+            👑
+        </div>
 
-                    </div>
+        <div class="champion-label">
+            CAMPEÃO DA ÚLTIMA TEMPORADA
+        </div>
 
-                </div>
+        <h2>
+            BERNA
+        </h2>
 
+        <h3>
+            🏆 O CAMPEÃO DO BOMBA PETCH
+        </h3>
 
-                <!-- LEANDRO -->
+        <p>
+            Berna conquistou a última temporada.
+            Com seu estilo versátil e domínio das jogadas aéreas,
+            ele escreveu seu nome entre as grandes lendas do
+            BOMBA PETCH.
+        </p>
 
-                <div class="jogador">
+    </div>
 
-                    <h3>Leandro</h3>
+</div>
 
-                    <div class="apelido">
-                        🌀 O Imprevisível
-                    </div>
+</section>
 
-                    <p class="historia">
-                        Leandro é conhecido por possuir um estilo de jogo
-                        extremamente imprevisível. Seu grande diferencial
-                        está na capacidade de atuar tanto defensivamente
-                        quanto ofensivamente ao mesmo tempo.
 
-                        <br><br>
+<!-- =========================
+     PAINEL DA TEMPORADA
+========================= -->
 
-                        Ele consegue alternar entre pressão e defesa sem
-                        entregar facilmente sua estratégia. Essa mistura
-                        torna seus movimentos difíceis de prever e faz com
-                        que cada partida contra Leandro seja diferente.
+<section class="section">
 
-                        <br><br>
+<div class="container">
 
-                        Sua principal característica é justamente não deixar
-                        o adversário saber qual será sua próxima decisão.
-                    </p>
+    <div class="section-header">
 
-                    <div class="trofeus">
+        <small>
+            UNIVERSO BOMBA PETCH
+        </small>
 
-                        <h4>🏆 Troféus — 0</h4>
+        <h2>
+            ⚡ PAINEL DA TEMPORADA
+        </h2>
 
-                        <div class="trofeus-container">
+        <p>
+            Um resumo da história até agora.
+        </p>
 
-                            <div class="trofeu"
-                                 style="background:#333;color:#777;">
-                                —
-                            </div>
+    </div>
 
-                        </div>
 
-                    </div>
+    <div class="stats">
 
-                </div>
+        <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Temporadas Cristian</div>
+        </div>
 
-            </div>
+        <div class="stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Temporadas Rafagamer</div>
+        </div>
 
-        </section>
+        <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Temporada Berna</div>
+        </div>
 
+        <div class="stat">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Temporada Leandro</div>
+        </div>
 
-        <!-- =========================
-             RANKING
-        ========================= -->
+    </div>
 
-        <section id="ranking" class="ranking">
+</div>
 
-            <h2>🏆 Ranking de Títulos</h2>
+</section>
 
-            <div class="ranking-lista">
 
-                <div class="ranking-item">
+<!-- =========================
+     LENDAS
+========================= -->
 
-                    <div class="posicao">
-                        1º
-                    </div>
+<section class="section" id="lendas">
 
-                    <div class="nome-ranking">
-                        Cristian
-                    </div>
+<div class="container">
 
-                    <div class="temporadas">
-                        3 temporadas
-                    </div>
+    <div class="section-header">
 
-                </div>
+        <small>
+            HALL DA FAMA
+        </small>
 
+        <h2>
+            🏆 AS LENDAS
+        </h2>
 
-                <div class="ranking-item">
+        <p>
+            Os jogadores que marcaram a história do BOMBA PETCH.
+        </p>
 
-                    <div class="posicao">
-                        2º
-                    </div>
+    </div>
 
-                    <div class="nome-ranking">
-                        Rafagamer
-                    </div>
 
-                    <div class="temporadas">
-                        2 temporadas
-                    </div>
-
-                </div>
-
-
-                <div class="ranking-item">
-
-                    <div class="posicao">
-                        3º
-                    </div>
-
-                    <div class="nome-ranking">
-                        Berna
-                    </div>
-
-                    <div class="temporadas">
-                        1 temporada
-                    </div>
-
-                </div>
-
-
-                <div class="ranking-item">
-
-                    <div class="posicao">
-                        4º
-                    </div>
-
-                    <div class="nome-ranking">
-                        Leandro
-                    </div>
-
-                    <div class="temporadas">
-                        0 temporadas
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
+    <div class="legend-grid">
 
 
         <!-- =========================
-             HISTÓRIA
+             RAFAGAMER
         ========================= -->
 
-        <section id="destaque" class="destaque">
+        <details class="legend">
 
-            <h2>📖 A História do BOMBA PETCH</h2>
+            <summary>
+
+                🔥 RAFAGAMER
+
+                <span class="trophies">
+                    🏆 🏆
+                </span>
+
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>
+                    🔥 RAFAGAMER — O ESTILO QUE MARCA
+                </h3>
+
+                <p>
+                    RAFAGAMER é conhecido por ter um estilo de jogo
+                    bonito, elegante e cheio de personalidade.
+                    Cada movimento parece pensado para deixar sua marca,
+                    misturando habilidade, criatividade e muita confiança.
+                </p>
+
+                <p>
+                    Seu jeito de jogar chama atenção não apenas pelos
+                    resultados, mas pela forma como ele transforma cada
+                    partida em um verdadeiro espetáculo. 🎮🔥
+                </p>
+
+                <p>
+                    Além de todo esse estilo,
+                    <span class="highlight">
+                        RAFAGAMER já conta com 2 temporadas de história
+                    </span>,
+                    mostrando sua experiência e sua presença entre
+                    as grandes lendas. 🏆🏆
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        Estilo, técnica e presença —
+                        essa é a marca do RAFAGAMER.
+                    </span>
+                </p>
+
+                <div class="achievements">
+
+                    <span class="achievement">
+                        🏆 2 TEMPORADAS
+                    </span>
+
+                    <span class="achievement">
+                        🔥 ESTILO
+                    </span>
+
+                    <span class="achievement">
+                        ⚡ TÉCNICA
+                    </span>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+        <!-- =========================
+             BERNA
+        ========================= -->
+
+        <details class="legend">
+
+            <summary>
+
+                👑 BERNA
+
+                <span class="trophies">
+                    🏆
+                </span>
+
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>
+                    👑 BERNA — O MESTRE DA VERSATILIDADE
+                </h3>
+
+                <p>
+                    Berna é conhecido por seu
+                    <span class="highlight">
+                        estilo de jogo versátil
+                    </span>,
+                    sendo capaz de se adaptar a diferentes situações
+                    durante a partida. 🎮🔥
+                </p>
+
+                <p>
+                    Uma das suas principais características é o uso
+                    frequente da
+                    <span class="highlight">
+                        jogada aérea
+                    </span>,
+                    aproveitando muito bem as oportunidades pelo alto
+                    para surpreender seus adversários e criar jogadas
+                    perigosas.
+                </p>
+
+                <p>
+                    Sua capacidade de variar as jogadas torna seu estilo
+                    difícil de prever, mantendo o adversário sempre
+                    atento ao que pode acontecer.
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        Versatilidade, criatividade e domínio do jogo
+                        aéreo — essa é a marca do Berna.
+                    </span>
+                </p>
+
+                <div class="achievements">
+
+                    <span class="achievement">
+                        🏆 1 TEMPORADA
+                    </span>
+
+                    <span class="achievement">
+                        🛫 JOGO AÉREO
+                    </span>
+
+                    <span class="achievement">
+                        ⚡ VERSATILIDADE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+        <!-- =========================
+             CRISTIAN
+        ========================= -->
+
+        <details class="legend">
+
+            <summary>
+
+                ⚡ CRISTIAN
+
+                <span class="trophies">
+                    🏆 🏆 🏆
+                </span>
+
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>
+                    ⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE
+                </h3>
+
+                <p>
+                    Cristian é uma das maiores lendas do BOMBA PETCH
+                    e o jogador com mais temporadas entre todos:
+                    <span class="highlight">
+                        3 temporadas de história.
+                    </span>
+                </p>
+
+                <p>
+                    Seu estilo de jogo é marcado por uma postura
+                    <span class="highlight">
+                        defensiva e estratégica.
+                    </span>
+                    Cristian sabe esperar o momento certo, fechar
+                    os espaços e deixar o adversário avançar.
+                </p>
+
+                <p>
+                    Mas é aí que mora o perigo: quando surge uma
+                    oportunidade, ele parte para um
+                    <span class="highlight">
+                        contra-ataque mortal
+                    </span>,
+                    transformando uma defesa sólida em uma jogada
+                    decisiva em poucos segundos. ⚡🔥
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        Defesa, estratégia e um contra-ataque mortal —
+                        essa é a marca do Cristian.
+                    </span>
+                </p>
+
+                <div class="achievements">
+
+                    <span class="achievement">
+                        🏆 3 TEMPORADAS
+                    </span>
+
+                    <span class="achievement">
+                        🛡️ DEFESA
+                    </span>
+
+                    <span class="achievement">
+                        ⚡ CONTRA-ATAQUE
+                    </span>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+        <!-- =========================
+             LEANDRO
+        ========================= -->
+
+        <details class="legend">
+
+            <summary>
+
+                🔥 LEANDRO
+
+                <span class="trophies">
+                    🏆
+                </span>
+
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>
+                    🔥 LEANDRO — O IMPREVISÍVEL
+                </h3>
+
+                <p>
+                    Leandro possui um estilo de jogo extremamente
+                    <span class="highlight">
+                        imprevisível
+                    </span>.
+                    Seu maior diferencial é conseguir atuar tanto
+                    defensivamente quanto ofensivamente ao mesmo tempo,
+                    tornando difícil descobrir qual será sua próxima jogada.
+                </p>
+
+                <p>
+                    Na defesa, Leandro consegue se posicionar e
+                    controlar os espaços, esperando o momento certo
+                    para reagir. Mas ele não fica preso apenas à defesa.
+                </p>
+
+                <p>
+                    Quando encontra uma oportunidade,
+                    transforma rapidamente uma situação defensiva em
+                    uma jogada ofensiva, surpreendendo o adversário.
+                    ⚡🔥
+                </p>
+
+                <p>
+                    Essa mistura entre
+                    <span class="highlight">
+                        defesa e ataque
+                    </span>
+                    faz com que seu estilo seja difícil de ler.
+                    O adversário nunca sabe se Leandro irá recuar,
+                    pressionar ou atacar de repente.
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        Defesa, ataque e imprevisibilidade —
+                        essa é a marca do Leandro.
+                    </span>
+                </p>
+
+                <div class="achievements">
+
+                    <span class="achievement">
+                        🏆 1 TEMPORADA
+                    </span>
+
+                    <span class="achievement">
+                        🛡️ DEFESA
+                    </span>
+
+                    <span class="achievement">
+                        ⚔️ ATAQUE
+                    </span>
+
+                    <span class="achievement">
+                        🎲 IMPREVISÍVEL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RANKING
+========================= -->
+
+<section class="section" id="ranking">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            CLASSIFICAÇÃO
+        </small>
+
+        <h2>
+            🏆 RANKING DAS LENDAS
+        </h2>
+
+        <p>
+            As lendas do BOMBA PETCH.
+        </p>
+
+    </div>
+
+
+    <div class="ranking-wrapper">
+
+        <div class="ranking">
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    01
+                </div>
+
+                <div class="rank-name">
+                    CRISTIAN
+                </div>
+
+                <div class="rank-season">
+                    3 TEMPORADAS
+                </div>
+
+            </div>
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    02
+                </div>
+
+                <div class="rank-name">
+                    RAFAGAMER
+                </div>
+
+                <div class="rank-season">
+                    2 TEMPORADAS
+                </div>
+
+            </div>
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    03
+                </div>
+
+                <div class="rank-name">
+                    BERNA
+                </div>
+
+                <div class="rank-season">
+                    1 TEMPORADA
+                </div>
+
+            </div>
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    04
+                </div>
+
+                <div class="rank-name">
+                    LEANDRO
+                </div>
+
+                <div class="rank-season">
+                    1 TEMPORADA
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="champion">
+
+            <div class="champion-icon">
+                🏆
+            </div>
+
+            <h3>
+                ÚLTIMA TEMPORADA
+            </h3>
 
             <p>
-                O BOMBA PETCH foi marcado por confrontos intensos,
-                rivalidades e jogadores que deixaram seu nome na história.
-
-                <br><br>
-
-                Entre essas lendas estão Cristian, Rafagamer, Berna e
-                Leandro, cada um com seu próprio estilo de jogo e sua
-                própria maneira de enfrentar os desafios.
-
-                <br><br>
-
-                Os troféus representam as temporadas conquistadas.
-                Quanto maior o número de troféus, maior o número de
-                temporadas vencidas pelo jogador.
-
-                <br><br>
-
-                E a história continua sendo escrita...
+                A última temporada entrou para a história
+                do BOMBA PETCH.
             </p>
 
-        </section>
+        </div>
 
-    </main>
+    </div>
+
+</div>
+
+</section>
 
 
-    <!-- =========================
-         RODAPÉ
-    ========================= -->
+<!-- =========================
+     RIVALIDADES
+========================= -->
 
-    <footer>
+<section class="section" id="rivalidades">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            CONFRONTOS
+        </small>
+
+        <h2>
+            ⚔️ RIVALIDADES
+        </h2>
 
         <p>
-            <strong>Lendas do BOMBA PETCH</strong>
+            Os confrontos que fazem a história do BOMBA PETCH.
         </p>
+
+    </div>
+
+
+    <div class="rivalries">
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>BERNA</span>
+
+                <span class="vs">VS</span>
+
+                <span>RAFAGAMER</span>
+
+            </div>
+
+            <p>
+                Dois estilos diferentes se encontram
+                dentro do BOMBA PETCH.
+            </p>
+
+        </div>
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>BERNA</span>
+
+                <span class="vs">VS</span>
+
+                <span>CRISTIAN</span>
+
+            </div>
+
+            <p>
+                O jogo aéreo e a versatilidade contra
+                a defesa e o contra-ataque.
+            </p>
+
+        </div>
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>RAFAGAMER</span>
+
+                <span class="vs">VS</span>
+
+                <span>CRISTIAN</span>
+
+            </div>
+
+            <p>
+                Estilo e criatividade contra defesa
+                e estratégia.
+            </p>
+
+        </div>
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>LEANDRO</span>
+
+                <span class="vs">VS</span>
+
+                <span>CRISTIAN</span>
+
+            </div>
+
+            <p>
+                A imprevisibilidade de Leandro contra
+                a defesa estratégica e o contra-ataque
+                de Cristian.
+            </p>
+
+        </div>
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>LEANDRO</span>
+
+                <span class="vs">VS</span>
+
+                <span>BERNA</span>
+
+            </div>
+
+            <p>
+                A imprevisibilidade de Leandro contra
+                a versatilidade e o jogo aéreo de Berna.
+            </p>
+
+        </div>
+
+
+        <div class="rivalry">
+
+            <div class="rivalry-names">
+
+                <span>LEANDRO</span>
+
+                <span class="vs">VS</span>
+
+                <span>RAFAGAMER</span>
+
+            </div>
+
+            <p>
+                Um confronto entre imprevisibilidade,
+                criatividade e estilo.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     DOWNLOAD
+========================= -->
+
+<section class="section" id="download">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            ARQUIVOS
+        </small>
+
+        <h2>
+            📥 DOWNLOAD
+        </h2>
 
         <p>
-            História • Rivalidade • Competição
+            Arquivos relacionados ao BOMBA PETCH.
         </p>
 
-    </footer>
+    </div>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+    <div class="download-area">
 
-    <script>
+        <div class="download-icon">
+            💿
+        </div>
 
-        function mostrarSecao(secao) {
+        <h3>
+            BOMBA PETCH — RAFAGAMER 2025
+        </h3>
 
-            const elemento = document.getElementById(secao);
+        <p>
+            Acesse o arquivo através do MediaFire.
+        </p>
 
-            if (elemento) {
 
-                elemento.scrollIntoView({
-                    behavior: "smooth"
-                });
+        <a
+            class="download-button"
+            href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
+            target="_blank"
+            rel="noopener noreferrer">
 
-            }
+            📥 BAIXAR ARQUIVO
 
-        }
+        </a>
 
-    </script>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        🔥 BOMBA PETCH
+    </div>
+
+    <p>
+        RAFAGAMER • BERNA • CRISTIAN • LEANDRO
+    </p>
+
+    <p style="margin-top:15px;font-size:11px;">
+        © 2026 — Lendas do Bomba Petch
+    </p>
+
+</footer>
+
 
 </body>
 
