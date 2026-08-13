@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bomba Petch — Rafagamer 2026</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -24,18 +22,18 @@ body{
     color:#fff;
 }
 
-body:before{
+body::before{
     content:"";
     position:fixed;
     inset:0;
     z-index:-2;
     background:
-    radial-gradient(circle at 15% 20%,#ff350018,transparent 30%),
-    radial-gradient(circle at 85% 70%,#ff8c0015,transparent 30%),
-    linear-gradient(135deg,#030303,#151515,#050505);
+        radial-gradient(circle at 15% 20%,#ff350018,transparent 30%),
+        radial-gradient(circle at 85% 70%,#ff8c0015,transparent 30%),
+        linear-gradient(135deg,#030303,#151515,#050505);
 }
 
-body:after{
+body::after{
     content:"";
     position:fixed;
     inset:0;
@@ -43,13 +41,13 @@ body:after{
     pointer-events:none;
     opacity:.25;
     background:
-    repeating-linear-gradient(
-        120deg,
-        transparent 0,
-        transparent 90px,
-        #ffffff05 91px,
-        transparent 93px
-    );
+        repeating-linear-gradient(
+            120deg,
+            transparent 0,
+            transparent 90px,
+            #ffffff05 91px,
+            transparent 93px
+        );
 }
 
 a{
@@ -57,8 +55,7 @@ a{
     text-decoration:none;
 }
 
-
-/* ================= MENU ================= */
+/* MENU */
 
 .navbar{
     position:sticky;
@@ -103,8 +100,7 @@ a{
     color:#ff9800;
 }
 
-
-/* ================= HERO ================= */
+/* HERO */
 
 .hero{
     min-height:620px;
@@ -114,18 +110,9 @@ a{
     text-align:center;
     position:relative;
     overflow:hidden;
-
     background:
-    radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
-    linear-gradient(
-        115deg,
-        #030303,
-        #300000,
-        #8a0d00,
-        #1a0000,
-        #030303
-    );
-
+        radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
+        linear-gradient(115deg,#030303,#300000,#8a0d00,#1a0000,#030303);
     border-bottom:3px solid #ff7300;
 }
 
@@ -185,23 +172,20 @@ a{
     color:#fff;
 }
 
-
-/* ================= RETORNO ================= */
+/* RETORNO */
 
 .season-return{
     padding:38px 20px;
     text-align:center;
-
     background:
-    linear-gradient(
-        90deg,
-        #580000,
-        #b51d00,
-        #ff7300,
-        #b51d00,
-        #580000
-    );
-
+        linear-gradient(
+            90deg,
+            #580000,
+            #b51d00,
+            #ff7300,
+            #b51d00,
+            #580000
+        );
     border-bottom:3px solid #ffd000;
 }
 
@@ -235,8 +219,7 @@ a{
     color:#ffd000;
 }
 
-
-/* ================= GERAL ================= */
+/* GERAL */
 
 .container{
     width:92%;
@@ -271,8 +254,7 @@ a{
     color:#777;
 }
 
-
-/* ================= LENDAS ================= */
+/* LENDAS */
 
 .legend-grid{
     display:flex;
@@ -330,10 +312,7 @@ a{
     font-weight:bold;
 }
 
-
-/* =====================================================
-   ELENCOS
-===================================================== */
+/* ELENCOS */
 
 .owner{
     margin-bottom:55px;
@@ -423,10 +402,7 @@ a{
     margin-top:12px;
 }
 
-
-/* =====================================================
-   MODAL DO ELENCO
-===================================================== */
+/* MODAL */
 
 .modal{
     display:none;
@@ -444,7 +420,7 @@ a{
 
 .modal-box{
     width:100%;
-    max-width:1250px;
+    max-width:1200px;
     margin:20px auto;
     background:#111;
     border:1px solid #ff730066;
@@ -481,171 +457,74 @@ a{
 }
 
 .modal-content{
-    display:grid;
-    grid-template-columns:320px 1fr;
-    min-height:600px;
-}
-
-
-/* LISTA DE JOGADORES */
-
-.player-list{
-    padding:20px;
-    background:#0b0b0b;
-    border-right:1px solid #ffffff0d;
-}
-
-.player-list h3{
-    color:#ff9800;
-    margin-bottom:15px;
-}
-
-.search{
-    width:100%;
-    padding:13px;
-    border:1px solid #ffffff15;
-    border-radius:8px;
-    outline:none;
-    background:#171717;
-    color:white;
-    margin-bottom:15px;
-}
-
-.position-filter{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-bottom:15px;
-}
-
-.position-filter button{
-    padding:7px 9px;
-    border:1px solid #ffffff15;
-    background:#151515;
-    color:#888;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:9px;
-}
-
-.position-filter button.active{
-    background:#ff7300;
-    color:white;
-}
-
-.available{
-    max-height:480px;
-    overflow-y:auto;
-}
-
-.available-player{
-    padding:12px;
-    margin-bottom:6px;
-    background:#151515;
-    border:1px solid #ffffff08;
-    border-radius:7px;
-    cursor:pointer;
-}
-
-.available-player:hover{
-    background:#291600;
-    border-color:#ff730055;
-}
-
-.available-player strong{
-    display:block;
-    color:white;
-}
-
-.available-player small{
-    color:#777;
-}
-
-
-/* ELENCO ATUAL */
-
-.current-squad{
     padding:25px;
 }
 
-.current-squad-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:20px;
+/* EDITOR */
+
+.squad-intro{
+    text-align:center;
+    margin-bottom:25px;
+    color:#777;
 }
 
-.current-squad-header h3{
+.squad-intro strong{
     color:#ffd000;
 }
 
-.progress{
-    color:#888;
-    font-size:11px;
-}
-
 .position-section{
-    margin-bottom:24px;
+    margin-bottom:25px;
+    background:#0b0b0b;
+    border:1px solid #ff730033;
+    border-radius:12px;
+    padding:20px;
 }
 
 .position-title{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:10px;
-    padding-bottom:8px;
-    border-bottom:1px solid #ff730033;
+    margin-bottom:15px;
+    padding-bottom:12px;
+    border-bottom:1px solid #ffffff0d;
 }
 
 .position-title h4{
     color:#ff9800;
+    font-size:18px;
 }
 
 .position-title span{
     color:#777;
-    font-size:10px;
+    font-size:11px;
 }
 
-.slots{
+.name-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:8px;
-}
-
-.slot{
-    min-height:55px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
     gap:10px;
-    padding:10px;
-    background:#171717;
-    border:1px dashed #ffffff18;
-    border-radius:7px;
 }
 
-.slot.empty{
+.player-input{
+    width:100%;
+    padding:14px 15px;
+    background:#171717;
+    color:#fff;
+    border:1px solid #ffffff15;
+    border-radius:8px;
+    outline:none;
+    font-size:14px;
+    transition:.2s;
+}
+
+.player-input::placeholder{
     color:#555;
 }
 
-.slot-name{
-    color:#ddd;
-    font-size:12px;
-}
-
-.slot-remove{
-    border:0;
-    background:#720000;
-    color:white;
-    width:28px;
-    height:28px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-.slot-remove:hover{
-    background:#ff0000;
+.player-input:focus{
+    border-color:#ff7300;
+    background:#1c120d;
+    box-shadow:0 0 0 2px #ff730015;
 }
 
 .modal-actions{
@@ -653,7 +532,7 @@ a{
     justify-content:flex-end;
     gap:10px;
     padding-top:20px;
-    margin-top:20px;
+    margin-top:10px;
     border-top:1px solid #ffffff0d;
 }
 
@@ -680,8 +559,11 @@ a{
     color:#aaa;
 }
 
+.save:hover{
+    background:#ff9000;
+}
 
-/* ================= REGRAS ================= */
+/* REGRAS */
 
 .rules{
     max-width:1000px;
@@ -738,8 +620,7 @@ a{
     border-radius:6px;
 }
 
-
-/* ================= RANK ================= */
+/* RANK */
 
 .rank-wrap{
     overflow-x:auto;
@@ -783,8 +664,7 @@ td{
     color:#777;
 }
 
-
-/* ================= JORNAL ================= */
+/* JORNAL */
 
 .news{
     display:grid;
@@ -817,8 +697,7 @@ td{
     color:#777;
 }
 
-
-/* ================= TEMPORADAS ================= */
+/* TEMPORADAS */
 
 .seasons{
     display:grid;
@@ -844,8 +723,7 @@ td{
     font-weight:900;
 }
 
-
-/* ================= DOWNLOAD ================= */
+/* DOWNLOAD */
 
 .download{
     max-width:750px;
@@ -875,8 +753,7 @@ td{
     font-weight:bold;
 }
 
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 footer{
     padding:50px 20px;
@@ -892,23 +769,9 @@ footer{
     margin-bottom:12px;
 }
 
-
-/* ================= RESPONSIVO ================= */
+/* RESPONSIVO */
 
 @media(max-width:900px){
-
-    .modal-content{
-        grid-template-columns:1fr;
-    }
-
-    .player-list{
-        border-right:0;
-        border-bottom:1px solid #ffffff0d;
-    }
-
-    .available{
-        max-height:250px;
-    }
 
     .team-grid{
         grid-template-columns:1fr 1fr;
@@ -917,7 +780,6 @@ footer{
     .seasons{
         grid-template-columns:1fr;
     }
-
 }
 
 @media(max-width:650px){
@@ -939,7 +801,7 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .slots{
+    .name-grid{
         grid-template-columns:1fr;
     }
 
@@ -959,18 +821,20 @@ footer{
         font-size:18px;
     }
 
-}
+    .modal-actions{
+        flex-direction:column;
+    }
 
+    .action{
+        width:100%;
+    }
+}
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-MENU
-===================================================== -->
+<!-- MENU -->
 
 <nav class="navbar">
 
@@ -981,17 +845,11 @@ MENU
     <div class="nav-links">
 
         <a href="#lendas">LENDAS</a>
-
         <a href="#elencos">⚽ ELENCOS</a>
-
         <a href="#regras">REGRAS</a>
-
         <a href="#ranking">RANK</a>
-
         <a href="#jornal">JORNAL</a>
-
         <a href="#temporadas">TEMPORADAS</a>
-
         <a href="#download">DOWNLOAD</a>
 
     </div>
@@ -999,9 +857,7 @@ MENU
 </nav>
 
 
-<!-- =====================================================
-HERO
-===================================================== -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1032,9 +888,7 @@ HERO
 </section>
 
 
-<!-- =====================================================
-RETORNO
-===================================================== -->
+<!-- RETORNO -->
 
 <section class="season-return">
 
@@ -1069,9 +923,7 @@ RETORNO
 </section>
 
 
-<!-- =====================================================
-LENDAS
-===================================================== -->
+<!-- LENDAS -->
 
 <section class="section" id="lendas">
 
@@ -1090,27 +942,21 @@ LENDAS
 
     </div>
 
-
     <div class="legend-grid">
-
 
         <details class="legend">
 
             <summary>
-
                 🔥 RAFAGAMER
 
                 <span class="trophies">
                     🏆 🏆
                 </span>
-
             </summary>
 
             <div class="legend-body">
 
-                <h3>
-                    🔥 RAFAGAMER
-                </h3>
+                <h3>🔥 RAFAGAMER</h3>
 
                 <p>
                     Conhecido por seu estilo bonito,
@@ -1131,20 +977,16 @@ LENDAS
         <details class="legend">
 
             <summary>
-
                 👑 BERNA
 
                 <span class="trophies">
                     🏆
                 </span>
-
             </summary>
 
             <div class="legend-body">
 
-                <h3>
-                    👑 BERNA
-                </h3>
+                <h3>👑 BERNA</h3>
 
                 <p>
                     Jogador versátil, conhecido
@@ -1165,20 +1007,16 @@ LENDAS
         <details class="legend">
 
             <summary>
-
                 ⚡ CRISTIAN
 
                 <span class="trophies">
                     🏆 🏆 🏆
                 </span>
-
             </summary>
 
             <div class="legend-body">
 
-                <h3>
-                    ⚡ CRISTIAN
-                </h3>
+                <h3>⚡ CRISTIAN</h3>
 
                 <p>
                     Estilo defensivo e estratégico,
@@ -1199,20 +1037,12 @@ LENDAS
         <details class="legend">
 
             <summary>
-
                 🎯 LEANDRO
-
-                <span class="trophies">
-                    🏆
-                </span>
-
             </summary>
 
             <div class="legend-body">
 
-                <h3>
-                    🎯 LEANDRO
-                </h3>
+                <h3>🎯 LEANDRO</h3>
 
                 <p>
                     Jogador versátil, costuma jogar
@@ -1237,9 +1067,7 @@ LENDAS
 </section>
 
 
-<!-- =====================================================
-ELENCOS
-===================================================== -->
+<!-- ELENCOS -->
 
 <section class="section" id="elencos">
 
@@ -1247,13 +1075,9 @@ ELENCOS
 
     <div class="section-header">
 
-        <small>
-            SISTEMA DE ELENCOS
-        </small>
+        <small>SISTEMA DE ELENCOS</small>
 
-        <h2>
-            ⚽ ELENCOS
-        </h2>
+        <h2>⚽ ELENCOS</h2>
 
         <p>
             4 jogadores • 12 times • 22 jogadores por time
@@ -1268,17 +1092,21 @@ ELENCOS
 
         <div class="owner-title">
 
-            <h3>
-                🔥 RAFAGAMER
-            </h3>
+            <h3>🔥 RAFAGAMER</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div class="team-grid" id="teams-rafagamer"></div>
+        <div class="team-grid">
+
+            <script>
+                document.write(createTeamCard("rafagamer",1));
+                document.write(createTeamCard("rafagamer",2));
+                document.write(createTeamCard("rafagamer",3));
+            </script>
+
+        </div>
 
     </div>
 
@@ -1289,17 +1117,21 @@ ELENCOS
 
         <div class="owner-title">
 
-            <h3>
-                👑 BERNA
-            </h3>
+            <h3>👑 BERNA</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div class="team-grid" id="teams-berna"></div>
+        <div class="team-grid">
+
+            <script>
+                document.write(createTeamCard("berna",1));
+                document.write(createTeamCard("berna",2));
+                document.write(createTeamCard("berna",3));
+            </script>
+
+        </div>
 
     </div>
 
@@ -1310,17 +1142,21 @@ ELENCOS
 
         <div class="owner-title">
 
-            <h3>
-                ⚡ CRISTIAN
-            </h3>
+            <h3>⚡ CRISTIAN</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div class="team-grid" id="teams-cristian"></div>
+        <div class="team-grid">
+
+            <script>
+                document.write(createTeamCard("cristian",1));
+                document.write(createTeamCard("cristian",2));
+                document.write(createTeamCard("cristian",3));
+            </script>
+
+        </div>
 
     </div>
 
@@ -1331,17 +1167,21 @@ ELENCOS
 
         <div class="owner-title">
 
-            <h3>
-                🎯 LEANDRO
-            </h3>
+            <h3>🎯 LEANDRO</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div class="team-grid" id="teams-leandro"></div>
+        <div class="team-grid">
+
+            <script>
+                document.write(createTeamCard("leandro",1));
+                document.write(createTeamCard("leandro",2));
+                document.write(createTeamCard("leandro",3));
+            </script>
+
+        </div>
 
     </div>
 
@@ -1350,14 +1190,11 @@ ELENCOS
 </section>
 
 
-<!-- =====================================================
-MODAL
-===================================================== -->
+<!-- MODAL ELENCO -->
 
 <div class="modal" id="squadModal">
 
     <div class="modal-box">
-
 
         <div class="modal-top">
 
@@ -1368,9 +1205,7 @@ MODAL
             <button
                 class="close"
                 onclick="closeModal()">
-
                 ×
-
             </button>
 
         </div>
@@ -1378,125 +1213,49 @@ MODAL
 
         <div class="modal-content">
 
+            <div class="squad-intro">
 
-            <!-- LISTA -->
+                Escolha os jogadores do elenco
+                <strong>digitando os nomes livremente</strong>.
 
-            <aside class="player-list">
+                <br>
 
-                <h3>
-                    👥 JOGADORES DISPONÍVEIS
-                </h3>
+                Cada time precisa ter
+                <strong>22 jogadores.</strong>
 
-                <input
-                    class="search"
-                    id="searchPlayer"
-                    type="text"
-                    placeholder="🔎 Procurar jogador..."
-                    oninput="renderPlayers()"
-                >
+            </div>
 
 
-                <div class="position-filter">
-
-                    <button
-                        class="active"
-                        onclick="setFilter('TODOS',this)">
-                        TODOS
-                    </button>
-
-                    <button
-                        onclick="setFilter('GOL',this)">
-                        GOL
-                    </button>
-
-                    <button
-                        onclick="setFilter('ZAG',this)">
-                        ZAG
-                    </button>
-
-                    <button
-                        onclick="setFilter('LAT',this)">
-                        LAT
-                    </button>
-
-                    <button
-                        onclick="setFilter('VOL',this)">
-                        VOL
-                    </button>
-
-                    <button
-                        onclick="setFilter('MEI',this)">
-                        MEI
-                    </button>
-
-                    <button
-                        onclick="setFilter('ATA',this)">
-                        ATA
-                    </button>
-
-                </div>
+            <div id="positions"></div>
 
 
-                <div
-                    class="available"
-                    id="availablePlayers">
+            <div class="modal-actions">
 
-                </div>
+                <button
+                    class="action clear"
+                    onclick="clearSquad()">
 
-            </aside>
+                    LIMPAR ELENCO
 
+                </button>
 
-            <!-- ELENCO -->
+                <button
+                    class="action cancel"
+                    onclick="closeModal()">
 
-            <main class="current-squad">
+                    FECHAR
 
-                <div class="current-squad-header">
+                </button>
 
-                    <h3>
-                        ⚽ ELENCO ATUAL
-                    </h3>
+                <button
+                    class="action save"
+                    onclick="saveSquad()">
 
-                    <span
-                        class="progress"
-                        id="progress">
-                        0 / 22
-                    </span>
+                    💾 SALVAR ELENCO
 
-                </div>
+                </button>
 
-
-                <div id="positions"></div>
-
-
-                <div class="modal-actions">
-
-                    <button
-                        class="action clear"
-                        onclick="clearSquad()">
-
-                        LIMPAR
-
-                    </button>
-
-                    <button
-                        class="action cancel"
-                        onclick="closeModal()">
-
-                        FECHAR
-
-                    </button>
-
-                    <button
-                        class="action save"
-                        onclick="saveSquad()">
-
-                        💾 SALVAR ELENCO
-
-                    </button>
-
-                </div>
-
-            </main>
+            </div>
 
         </div>
 
@@ -1505,9 +1264,7 @@ MODAL
 </div>
 
 
-<!-- =====================================================
-REGRAS
-===================================================== -->
+<!-- REGRAS -->
 
 <section class="section" id="regras">
 
@@ -1515,13 +1272,9 @@ REGRAS
 
     <div class="section-header">
 
-        <small>
-            REGULAMENTO
-        </small>
+        <small>REGULAMENTO</small>
 
-        <h2>
-            🔥 REGRAS BOMBA PETCH
-        </h2>
+        <h2>🔥 REGRAS BOMBA PETCH</h2>
 
     </div>
 
@@ -1531,15 +1284,11 @@ REGRAS
 
         <div class="rule">
 
-            <div class="rule-number">
-                01
-            </div>
+            <div class="rule-number">01</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🏆 DESISTÊNCIA
-                </h3>
+                <h3>🏆 DESISTÊNCIA</h3>
 
                 <p>
                     Não pode desistir no meio do campeonato.
@@ -1565,15 +1314,11 @@ REGRAS
 
         <div class="rule">
 
-            <div class="rule-number">
-                02
-            </div>
+            <div class="rule-number">02</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🚫 OFENSAS E BRIGAS
-                </h3>
+                <h3>🚫 OFENSAS E BRIGAS</h3>
 
                 <p>
                     Proibido ofensas, xingamentos,
@@ -1588,15 +1333,11 @@ REGRAS
 
         <div class="rule">
 
-            <div class="rule-number">
-                03
-            </div>
+            <div class="rule-number">03</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🎯 CHUTE DE PRIMEIRINHA
-                </h3>
+                <h3>🎯 CHUTE DE PRIMEIRINHA</h3>
 
                 <p>
                     O chute de primeirinha valerá
@@ -1610,15 +1351,11 @@ REGRAS
 
         <div class="rule">
 
-            <div class="rule-number">
-                04
-            </div>
+            <div class="rule-number">04</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🎮 TÁTICAS
-                </h3>
+                <h3>🎮 TÁTICAS</h3>
 
                 <p>
                     Só poderão ser usadas as formações
@@ -1648,15 +1385,11 @@ REGRAS
 
         <div class="rule">
 
-            <div class="rule-number">
-                05
-            </div>
+            <div class="rule-number">05</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🚨 ALTERAÇÃO DE JOGADORES
-                </h3>
+                <h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
 
                 <p>
                     EXTREMAMENTE PROIBIDO alterar
@@ -1674,7 +1407,6 @@ REGRAS
 
         </div>
 
-
     </div>
 
 </div>
@@ -1682,9 +1414,7 @@ REGRAS
 </section>
 
 
-<!-- =====================================================
-RANK
-===================================================== -->
+<!-- RANK -->
 
 <section class="section" id="ranking">
 
@@ -1692,13 +1422,9 @@ RANK
 
     <div class="section-header">
 
-        <small>
-            TEMPORADA 2026
-        </small>
+        <small>TEMPORADA 2026</small>
 
-        <h2>
-            🏆 RANK DO MELHOR DO ANO
-        </h2>
+        <h2>🏆 RANK DO MELHOR DO ANO</h2>
 
         <p>
             Todos começam com 0 pontos.
@@ -1783,9 +1509,7 @@ RANK
 </section>
 
 
-<!-- =====================================================
-JORNAL
-===================================================== -->
+<!-- JORNAL -->
 
 <section class="section" id="jornal">
 
@@ -1793,19 +1517,14 @@ JORNAL
 
     <div class="section-header">
 
-        <small>
-            NOTÍCIAS
-        </small>
+        <small>NOTÍCIAS</small>
 
-        <h2>
-            📰 CENTRAL DE NOTÍCIAS
-        </h2>
+        <h2>📰 JORNAL BOMBA PETCH</h2>
 
     </div>
 
 
     <div class="news">
-
 
         <details class="news-box">
 
@@ -1838,7 +1557,6 @@ JORNAL
 
         </details>
 
-
     </div>
 
 </div>
@@ -1846,9 +1564,7 @@ JORNAL
 </section>
 
 
-<!-- =====================================================
-TEMPORADAS
-===================================================== -->
+<!-- TEMPORADAS -->
 
 <section class="section" id="temporadas">
 
@@ -1856,29 +1572,20 @@ TEMPORADAS
 
     <div class="section-header">
 
-        <small>
-            HISTÓRIA
-        </small>
+        <small>HISTÓRIA</small>
 
-        <h2>
-            📅 TEMPORADAS
-        </h2>
+        <h2>📅 TEMPORADAS</h2>
 
     </div>
 
 
     <div class="seasons">
 
-
         <div class="season">
 
-            <div class="year">
-                2024
-            </div>
+            <div class="year">2024</div>
 
-            <h3>
-                PRIMEIROS CAPÍTULOS
-            </h3>
+            <h3>PRIMEIROS CAPÍTULOS</h3>
 
             <p>
                 O início da história
@@ -1890,13 +1597,9 @@ TEMPORADAS
 
         <div class="season">
 
-            <div class="year">
-                2025
-            </div>
+            <div class="year">2025</div>
 
-            <h3>
-                ERA DAS LENDAS
-            </h3>
+            <h3>ERA DAS LENDAS</h3>
 
             <p>
                 Os jogadores começaram
@@ -1908,13 +1611,9 @@ TEMPORADAS
 
         <div class="season">
 
-            <div class="year">
-                2026
-            </div>
+            <div class="year">2026</div>
 
-            <h3>
-                NOVA TEMPORADA
-            </h3>
+            <h3>NOVA TEMPORADA</h3>
 
             <p>
                 Retorno em
@@ -1925,7 +1624,6 @@ TEMPORADAS
 
         </div>
 
-
     </div>
 
 </div>
@@ -1933,9 +1631,7 @@ TEMPORADAS
 </section>
 
 
-<!-- =====================================================
-DOWNLOAD
-===================================================== -->
+<!-- DOWNLOAD -->
 
 <section class="section" id="download">
 
@@ -1943,13 +1639,9 @@ DOWNLOAD
 
     <div class="section-header">
 
-        <small>
-            ARQUIVOS
-        </small>
+        <small>ARQUIVOS</small>
 
-        <h2>
-            📥 DOWNLOAD
-        </h2>
+        <h2>📥 DOWNLOAD</h2>
 
     </div>
 
@@ -1965,8 +1657,8 @@ DOWNLOAD
         </p>
 
         <a
-        href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
-        target="_blank">
+            href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
+            target="_blank">
 
             📥 BAIXAR ARQUIVO
 
@@ -1998,14 +1690,9 @@ DOWNLOAD
 
 <script>
 
-/* =====================================================
-   SISTEMA DE ELENCOS
-===================================================== */
-
-
-/*
-    POSIÇÕES E LIMITES
-*/
+/* =========================================================
+   CONFIGURAÇÃO DAS POSIÇÕES
+========================================================= */
 
 const positions = {
 
@@ -2042,455 +1729,179 @@ const positions = {
 };
 
 
-/*
-    LISTA DE JOGADORES
+/* =========================================================
+   CRIA OS CARDS DOS 12 TIMES
+========================================================= */
 
-    Depois podemos substituir pelos
-    jogadores reais do jogo.
-*/
+function createTeamCard(owner,number){
 
-const players = [
+    const id =
+        owner + "-time-" + number;
 
-    {id:1,nome:"Jogador 01",pos:"GOL"},
-    {id:2,nome:"Jogador 02",pos:"GOL"},
-    {id:3,nome:"Jogador 03",pos:"GOL"},
-    {id:4,nome:"Jogador 04",pos:"GOL"},
+    const saved =
+        JSON.parse(
+            localStorage.getItem("bomba-" + id) || "{}"
+        );
 
-    {id:5,nome:"Jogador 05",pos:"ZAG"},
-    {id:6,nome:"Jogador 06",pos:"ZAG"},
-    {id:7,nome:"Jogador 07",pos:"ZAG"},
-    {id:8,nome:"Jogador 08",pos:"ZAG"},
-    {id:9,nome:"Jogador 09",pos:"ZAG"},
-    {id:10,nome:"Jogador 10",pos:"ZAG"},
-    {id:11,nome:"Jogador 11",pos:"ZAG"},
+    const total =
+        Object.values(saved).reduce(
+            (s,list)=>s + list.length,
+            0
+        );
 
-    {id:12,nome:"Jogador 12",pos:"LAT"},
-    {id:13,nome:"Jogador 13",pos:"LAT"},
-    {id:14,nome:"Jogador 14",pos:"LAT"},
-    {id:15,nome:"Jogador 15",pos:"LAT"},
-    {id:16,nome:"Jogador 16",pos:"LAT"},
+    return `
 
-    {id:17,nome:"Jogador 17",pos:"VOL"},
-    {id:18,nome:"Jogador 18",pos:"VOL"},
-    {id:19,nome:"Jogador 19",pos:"VOL"},
-    {id:20,nome:"Jogador 20",pos:"VOL"},
-    {id:21,nome:"Jogador 21",pos:"VOL"},
+        <div class="team-card">
 
-    {id:22,nome:"Jogador 22",pos:"MEI"},
-    {id:23,nome:"Jogador 23",pos:"MEI"},
-    {id:24,nome:"Jogador 24",pos:"MEI"},
-    {id:25,nome:"Jogador 25",pos:"MEI"},
-    {id:26,nome:"Jogador 26",pos:"MEI"},
-    {id:27,nome:"Jogador 27",pos:"MEI"},
+            <div class="team-head">
 
-    {id:28,nome:"Jogador 28",pos:"ATA"},
-    {id:29,nome:"Jogador 29",pos:"ATA"},
-    {id:30,nome:"Jogador 30",pos:"ATA"},
-    {id:31,nome:"Jogador 31",pos:"ATA"},
-    {id:32,nome:"Jogador 32",pos:"ATA"},
-    {id:33,nome:"Jogador 33",pos:"ATA"},
-    {id:34,nome:"Jogador 34",pos:"ATA"},
-    {id:35,nome:"Jogador 35",pos:"ATA"},
-    {id:36,nome:"Jogador 36",pos:"ATA"},
-    {id:37,nome:"Jogador 37",pos:"ATA"}
+                <h4>
+                    ⚽ TIME ${number}
+                </h4>
 
-];
+                <p>
+                    22 jogadores
+                </p>
+
+            </div>
+
+            <div class="team-body">
+
+                <button
+                    onclick="openSquad(
+                        '${id}',
+                        '${owner.toUpperCase()} — TIME ${number}'
+                    )">
+
+                    ⚽ MONTAR ELENCO
+
+                </button>
+
+                <div
+                    class="saved-count"
+                    id="count-${id}">
+
+                    ${total} / 22 jogadores
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
 
 
-/*
-    TIMES
-*/
-
-const owners = [
-    "rafagamer",
-    "berna",
-    "cristian",
-    "leandro"
-];
-
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
 
 let currentTeam = null;
 
 let currentSquad = {};
 
-let currentFilter = "TODOS";
 
-
-/*
-    CRIA OS 12 TIMES
-*/
-
-function createTeams(){
-
-    owners.forEach(owner=>{
-
-        const container =
-            document.getElementById(
-                "teams-"+owner
-            );
-
-        for(let i=1;i<=3;i++){
-
-            const teamId =
-                owner+"-time-"+i;
-
-            const card =
-                document.createElement("div");
-
-            card.className="team-card";
-
-            card.innerHTML=`
-
-                <div class="team-head">
-
-                    <h4>
-                        ⚽ TIME ${i}
-                    </h4>
-
-                    <p>
-                        22 jogadores
-                    </p>
-
-                </div>
-
-                <div class="team-body">
-
-                    <button
-                    onclick="openSquad('${teamId}','${owner.toUpperCase()} — TIME ${i}')">
-
-                        ⚽ MONTAR ELENCO
-
-                    </button>
-
-                    <div
-                    class="saved-count"
-                    id="count-${teamId}">
-
-                        0 / 22 jogadores
-
-                    </div>
-
-                </div>
-            `;
-
-            container.appendChild(card);
-
-            updateTeamCount(teamId);
-
-        }
-
-    });
-
-}
-
-
-/*
-    ABRE O EDITOR
-*/
+/* =========================================================
+   ABRIR ELENCO
+========================================================= */
 
 function openSquad(id,title){
 
-    currentTeam=id;
+    currentTeam = id;
 
     currentSquad =
         JSON.parse(
             localStorage.getItem(
-                "bomba-"+id
+                "bomba-" + id
             ) || "{}"
         );
 
     document.getElementById(
         "modalTitle"
-    ).textContent =
-        "⚽ "+title;
+    ).textContent = "⚽ " + title;
 
     document.getElementById(
         "squadModal"
     ).classList.add("active");
 
-    currentFilter="TODOS";
-
-    document.getElementById(
-        "searchPlayer"
-    ).value="";
-
     renderPositions();
-
-    renderPlayers();
-
-    updateProgress();
 
 }
 
 
-/*
-    FECHA
-*/
+/* =========================================================
+   FECHAR ELENCO
+========================================================= */
 
 function closeModal(){
 
-    document.getElementById(
-        "squadModal"
-    ).classList.remove("active");
-
-}
-
-
-/*
-    FILTRO
-*/
-
-function setFilter(filter,button){
-
-    currentFilter=filter;
-
     document
-        .querySelectorAll(".position-filter button")
-        .forEach(btn=>{
-            btn.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
-    renderPlayers();
+        .getElementById("squadModal")
+        .classList.remove("active");
 
 }
 
 
-/*
-    MOSTRA JOGADORES
-*/
-
-function renderPlayers(){
-
-    const container =
-        document.getElementById(
-            "availablePlayers"
-        );
-
-    const search =
-        document.getElementById(
-            "searchPlayer"
-        ).value
-        .toLowerCase();
-
-    const selectedIds =
-        Object.values(currentSquad)
-        .flat()
-        .map(Number);
-
-
-    const filtered =
-        players.filter(player=>{
-
-            const matchesSearch =
-                player.nome
-                .toLowerCase()
-                .includes(search);
-
-            const matchesPosition =
-                currentFilter==="TODOS"
-                ||
-                player.pos===currentFilter;
-
-            const notSelected =
-                !selectedIds.includes(
-                    player.id
-                );
-
-            return (
-                matchesSearch &&
-                matchesPosition &&
-                notSelected
-            );
-
-        });
-
-
-    container.innerHTML="";
-
-
-    if(filtered.length===0){
-
-        container.innerHTML=`
-            <div style="
-                color:#555;
-                text-align:center;
-                padding:30px;
-                font-size:12px;
-            ">
-                Nenhum jogador disponível.
-            </div>
-        `;
-
-        return;
-
-    }
-
-
-    filtered.forEach(player=>{
-
-        const div =
-            document.createElement("div");
-
-        div.className="available-player";
-
-        div.innerHTML=`
-
-            <strong>
-                ${player.nome}
-            </strong>
-
-            <small>
-                ${positions[player.pos].nome}
-            </small>
-
-        `;
-
-        div.onclick=()=>{
-
-            addPlayer(player);
-
-        };
-
-        container.appendChild(div);
-
-    });
-
-}
-
-
-/*
-    ADICIONA JOGADOR
-*/
-
-function addPlayer(player){
-
-    const pos=player.pos;
-
-    if(!currentSquad[pos]){
-        currentSquad[pos]=[];
-    }
-
-
-    if(
-        currentSquad[pos].length
-        >=
-        positions[pos].limite
-    ){
-
-        alert(
-            "Essa posição já está completa."
-        );
-
-        return;
-
-    }
-
-
-    currentSquad[pos].push(
-        player.id
-    );
-
-
-    renderPositions();
-
-    renderPlayers();
-
-    updateProgress();
-
-}
-
-
-/*
-    MOSTRA POSIÇÕES
-*/
+/* =========================================================
+   CRIA OS CAMPOS DE TEXTO
+========================================================= */
 
 function renderPositions(){
 
     const container =
-        document.getElementById(
-            "positions"
-        );
+        document.getElementById("positions");
 
-    container.innerHTML="";
+    container.innerHTML = "";
 
 
     Object.keys(positions).forEach(pos=>{
 
-        const info=positions[pos];
+        const info = positions[pos];
+
+        if(!currentSquad[pos]){
+            currentSquad[pos] = [];
+        }
+
 
         const section =
             document.createElement("div");
 
-        section.className=
+        section.className =
             "position-section";
 
 
-        const selected =
-            currentSquad[pos] || [];
-
-
-        let slots="";
+        let fields = "";
 
 
         for(
-            let i=0;
-            i<info.limite;
+            let i = 0;
+            i < info.limite;
             i++
         ){
 
-            const id=selected[i];
+            const value =
+                currentSquad[pos][i] || "";
 
 
-            if(id){
+            fields += `
 
-                const player =
-                    players.find(
-                        p=>p.id==id
-                    );
+                <input
+                    type="text"
+                    class="player-input"
+                    data-position="${pos}"
+                    data-index="${i}"
+                    value="${escapeHtml(value)}"
+                    placeholder="${getPlaceholder(pos,i)}"
+                    maxlength="60"
+                >
 
-
-                slots+=`
-
-                    <div class="slot">
-
-                        <span class="slot-name">
-
-                            ${player.nome}
-
-                        </span>
-
-                        <button
-                        class="slot-remove"
-                        onclick="removePlayer('${pos}',${id})">
-
-                            ×
-
-                        </button>
-
-                    </div>
-
-                `;
-
-            }else{
-
-                slots+=`
-
-                    <div class="slot empty">
-
-                        Vaga disponível
-
-                    </div>
-
-                `;
-
-            }
+            `;
 
         }
 
 
-        section.innerHTML=`
+        section.innerHTML = `
 
             <div class="position-title">
 
@@ -2499,14 +1910,14 @@ function renderPositions(){
                 </h4>
 
                 <span>
-                    ${selected.length}/${info.limite}
+                    ${info.limite} jogadores
                 </span>
 
             </div>
 
-            <div class="slots">
+            <div class="name-grid">
 
-                ${slots}
+                ${fields}
 
             </div>
 
@@ -2517,78 +1928,151 @@ function renderPositions(){
 
     });
 
-}
+
+    /*
+        Toda vez que o usuário escrever,
+        atualizamos o objeto na memória.
+    */
+
+    document
+        .querySelectorAll(".player-input")
+        .forEach(input=>{
+
+            input.addEventListener(
+                "input",
+                function(){
+
+                    const pos =
+                        this.dataset.position;
+
+                    const index =
+                        Number(this.dataset.index);
 
 
-/*
-    REMOVE JOGADOR
-*/
-
-function removePlayer(pos,id){
-
-    if(!currentSquad[pos])
-        return;
+                    if(!currentSquad[pos]){
+                        currentSquad[pos] = [];
+                    }
 
 
-    currentSquad[pos] =
-        currentSquad[pos]
-        .filter(
-            playerId =>
-            Number(playerId)!==Number(id)
-        );
+                    currentSquad[pos][index] =
+                        this.value;
 
+                }
+            );
 
-    renderPositions();
-
-    renderPlayers();
-
-    updateProgress();
-
-}
-
-
-/*
-    PROGRESSO
-*/
-
-function updateProgress(){
-
-    const total =
-        Object.values(currentSquad)
-        .reduce(
-            (total,list)=>
-            total+list.length,
-            0
-        );
-
-
-    document.getElementById(
-        "progress"
-    ).textContent =
-        total+" / 22 jogadores";
+        });
 
 }
 
 
-/*
-    SALVA
-*/
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+function getPlaceholder(pos,index){
+
+    const nomes = {
+
+        GOL:"Nome do goleiro",
+
+        ZAG:"Nome do zagueiro",
+
+        LAT:"Nome do lateral",
+
+        VOL:"Nome do volante",
+
+        MEI:"Nome do meia",
+
+        ATA:"Nome do atacante"
+
+    };
+
+    return (
+        nomes[pos] +
+        " " +
+        (index + 1)
+    );
+
+}
+
+
+/* =========================================================
+   PROTEGE TEXTO DIGITADO
+========================================================= */
+
+function escapeHtml(text){
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/"/g,"&quot;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;");
+
+}
+
+
+/* =========================================================
+   SALVAR ELENCO
+========================================================= */
 
 function saveSquad(){
 
-    const total =
-        Object.values(currentSquad)
-        .reduce(
-            (total,list)=>
-            total+list.length,
-            0
-        );
+    /*
+        Primeiro pegamos novamente
+        os valores que estão nos campos.
+    */
+
+    document
+        .querySelectorAll(".player-input")
+        .forEach(input=>{
+
+            const pos =
+                input.dataset.position;
+
+            const index =
+                Number(input.dataset.index);
 
 
-    if(total!==22){
+            if(!currentSquad[pos]){
+                currentSquad[pos] = [];
+            }
+
+
+            currentSquad[pos][index] =
+                input.value.trim();
+
+        });
+
+
+    /*
+        Conta quantos nomes foram preenchidos.
+    */
+
+    let total = 0;
+
+    Object.values(currentSquad)
+        .forEach(list=>{
+
+            list.forEach(name=>{
+
+                if(name.trim() !== ""){
+                    total++;
+                }
+
+            });
+
+        });
+
+
+    /*
+        Não permite salvar incompleto.
+    */
+
+    if(total < 22){
 
         alert(
-            "O elenco precisa ter exatamente 22 jogadores."
+            "⚠️ O elenco ainda está incompleto.\n\n" +
+            "Preencha os 22 jogadores antes de salvar."
         );
 
         return;
@@ -2596,8 +2080,12 @@ function saveSquad(){
     }
 
 
+    /*
+        Salva no navegador.
+    */
+
     localStorage.setItem(
-        "bomba-"+currentTeam,
+        "bomba-" + currentTeam,
         JSON.stringify(currentSquad)
     );
 
@@ -2606,7 +2094,8 @@ function saveSquad(){
 
 
     alert(
-        "✅ Elenco salvo com sucesso!"
+        "✅ ELENCO SALVO COM SUCESSO!\n\n" +
+        "22 jogadores cadastrados."
     );
 
 
@@ -2615,89 +2104,126 @@ function saveSquad(){
 }
 
 
-/*
-    LIMPAR
-*/
+/* =========================================================
+   LIMPAR ELENCO
+========================================================= */
 
 function clearSquad(){
 
-    if(
-        !confirm(
-            "Tem certeza que deseja limpar este elenco?"
-        )
-    ){
+    const confirmar =
+        confirm(
+            "⚠️ Tem certeza que deseja apagar todos os jogadores deste elenco?"
+        );
+
+
+    if(!confirmar){
         return;
     }
 
 
-    currentSquad={};
+    currentSquad = {};
+
+
+    /*
+        Remove do armazenamento.
+    */
+
+    localStorage.removeItem(
+        "bomba-" + currentTeam
+    );
+
 
     renderPositions();
 
-    renderPlayers();
-
-    updateProgress();
+    updateTeamCount(currentTeam);
 
 }
 
 
-/*
-    ATUALIZA CONTADOR DO TIME
-*/
+/* =========================================================
+   ATUALIZA CONTADOR DO TIME
+========================================================= */
 
 function updateTeamCount(id){
 
     const saved =
         JSON.parse(
             localStorage.getItem(
-                "bomba-"+id
+                "bomba-" + id
             ) || "{}"
         );
 
 
-    const total =
-        Object.values(saved)
-        .reduce(
-            (total,list)=>
-            total+list.length,
-            0
-        );
+    let total = 0;
+
+
+    Object.values(saved)
+        .forEach(list=>{
+
+            list.forEach(name=>{
+
+                if(
+                    typeof name === "string" &&
+                    name.trim() !== ""
+                ){
+
+                    total++;
+
+                }
+
+            });
+
+        });
 
 
     const element =
         document.getElementById(
-            "count-"+id
+            "count-" + id
         );
 
 
     if(element){
 
         element.textContent =
-            total+" / 22 jogadores";
+            total + " / 22 jogadores";
 
     }
 
 }
 
 
-/*
-    INICIALIZA
-*/
-
-createTeams();
-
-
-/*
-    FECHAR CLICANDO FORA
-*/
+/* =========================================================
+   FECHAR CLICANDO FORA DO PAINEL
+========================================================= */
 
 document
-.getElementById("squadModal")
-.addEventListener(
-    "click",
+    .getElementById("squadModal")
+    .addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === this){
+                closeModal();
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ESC FECHA O PAINEL
+========================================================= */
+
+document.addEventListener(
+    "keydown",
     function(event){
 
-        if(event.target===this){
+        if(
+            event.key === "Escape" &&
+            document
+                .getElementById("squadModal")
+                .classList.contains("active")
+        ){
 
             closeModal();
 
