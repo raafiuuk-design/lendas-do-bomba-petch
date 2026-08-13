@@ -450,187 +450,6 @@ body::after{
 
 
 /* =========================
-   CAMPEÃO
-========================= */
-
-.champion-banner{
-
-    position:relative;
-
-    padding:55px 30px;
-
-    text-align:center;
-
-    overflow:hidden;
-
-    border:2px solid #ffd000;
-
-    border-radius:20px;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            #ffd00022,
-            transparent 55%
-        ),
-
-        linear-gradient(
-            145deg,
-            #2a1900,
-            #120d05,
-            #1d1100
-        );
-
-    box-shadow:
-        0 0 30px #ffd00015,
-        inset 0 0 50px #ffd00008;
-}
-
-.champion-banner::before{
-    content:"👑";
-
-    position:absolute;
-
-    font-size:180px;
-
-    opacity:.035;
-
-    left:50%;
-
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-}
-
-.champion-label{
-    color:#ffd000;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    letter-spacing:6px;
-
-    margin-bottom:15px;
-}
-
-.champion-banner h2{
-
-    position:relative;
-
-    font-size:
-        clamp(35px,6vw,65px);
-
-    color:#fff;
-
-    margin-bottom:10px;
-
-    text-shadow:
-        0 0 20px #ffd00055;
-}
-
-.champion-banner h3{
-
-    color:#ff9800;
-
-    font-size:20px;
-
-    letter-spacing:3px;
-
-    margin-bottom:20px;
-}
-
-.champion-banner p{
-
-    position:relative;
-
-    max-width:700px;
-
-    margin:auto;
-
-    color:#bbb;
-
-    line-height:1.7;
-
-    font-size:14px;
-}
-
-.champion-crown{
-
-    font-size:55px;
-
-    margin-bottom:10px;
-}
-
-
-/* =========================
-   PAINEL
-========================= */
-
-.stats{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:16px;
-}
-
-.stat{
-
-    padding:30px 15px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #1b1b1b,
-            #0b0b0b
-        );
-
-    border:1px solid #ff730033;
-
-    border-radius:14px;
-
-    transition:.3s;
-}
-
-.stat:hover{
-    transform:translateY(-6px);
-
-    border-color:#ff7300;
-
-    box-shadow:
-        0 15px 35px #000;
-}
-
-.stat-number{
-
-    color:#ff9800;
-
-    font-size:38px;
-
-    font-weight:900;
-
-    margin-bottom:8px;
-}
-
-.stat-label{
-
-    color:#888;
-
-    font-size:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-}
-
-
-/* =========================
    LENDAS
 ========================= */
 
@@ -906,23 +725,6 @@ body::after{
     font-weight:bold;
 }
 
-.rule-warning{
-
-    margin-top:20px;
-
-    padding:14px 17px;
-
-    border-left:3px solid #ff9800;
-
-    background:#ff73000d;
-
-    color:#aaa;
-
-    font-size:12px;
-
-    line-height:1.6;
-}
-
 .rule-limit{
 
     display:inline-block;
@@ -1044,7 +846,7 @@ body::after{
 
 
 /* =====================================================
-   RANKING OFICIAL
+   RANK DO MELHOR DO ANO
 ===================================================== */
 
 .ranking-table-wrapper{
@@ -1673,11 +1475,6 @@ footer{
 
 @media(max-width:1000px){
 
-    .stats{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
     .central-grid{
         grid-template-columns:
             repeat(2,1fr);
@@ -1763,15 +1560,6 @@ footer{
         letter-spacing:2px;
     }
 
-    .stats{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .stat-number{
-        font-size:28px;
-    }
-
     .central-grid{
         grid-template-columns:1fr;
     }
@@ -1786,10 +1574,6 @@ footer{
 
     .download-area{
         padding:35px 20px;
-    }
-
-    .champion-banner{
-        padding:40px 20px;
     }
 
     .season-return{
@@ -1830,7 +1614,7 @@ footer{
 
         <a href="#regras">🔥 REGRAS</a>
 
-        <a href="#ranking">🏆 RANKING</a>
+        <a href="#ranking">🏆 RANK</a>
 
         <a href="#rivalidades">RIVALIDADES</a>
 
@@ -1879,7 +1663,7 @@ footer{
 
 
 <!-- =====================================================
-     RETORNO
+     RETORNO DA TEMPORADA
 ===================================================== -->
 
 <section class="season-return">
@@ -1907,6 +1691,7 @@ footer{
         <div class="return-place">
 
             📍 Local:
+
             <strong>
                 Rua Professor Raul Duarte, 245
             </strong>
@@ -1941,100 +1726,6 @@ footer{
     Rua Professor Raul Duarte, 245
 
 </div>
-
-
-<!-- =====================================================
-     CAMPEÃO
-===================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="champion-banner">
-
-        <div class="champion-crown">
-            👑
-        </div>
-
-        <div class="champion-label">
-            CAMPEÃO DA ÚLTIMA TEMPORADA
-        </div>
-
-        <h2>
-            BERNA
-        </h2>
-
-        <h3>
-            🏆 O CAMPEÃO DO BOMBA PETCH
-        </h3>
-
-        <p>
-            Berna conquistou a última temporada.
-            Com seu estilo versátil e domínio das jogadas aéreas,
-            ele escreveu seu nome entre as grandes lendas do
-            BOMBA PETCH.
-        </p>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     PAINEL DA TEMPORADA
-===================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>
-            UNIVERSO BOMBA PETCH
-        </small>
-
-        <h2>
-            ⚡ PAINEL DA TEMPORADA
-        </h2>
-
-        <p>
-            Um resumo da história até agora.
-        </p>
-
-    </div>
-
-
-    <div class="stats">
-
-        <div class="stat">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Temporadas Cristian</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number">2</div>
-            <div class="stat-label">Temporadas Rafagamer</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Temporada Berna</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Temporada Leandro</div>
-        </div>
-
-    </div>
-
-</div>
-
-</section>
 
 
 <!-- =====================================================
@@ -2584,7 +2275,7 @@ footer{
 
 
 <!-- =====================================================
-     RANKING OFICIAL
+     RANK DO MELHOR DO ANO
 ===================================================== -->
 
 <section class="section" id="ranking">
@@ -2598,7 +2289,7 @@ footer{
         </small>
 
         <h2>
-            🏆 RANKING OFICIAL
+            🏆 RANK DO MELHOR DO ANO
         </h2>
 
         <p>
@@ -2648,8 +2339,6 @@ footer{
             <tbody>
 
 
-                <!-- BERNA -->
-
                 <tr>
 
                     <td class="position">
@@ -2678,8 +2367,6 @@ footer{
 
                 </tr>
 
-
-                <!-- CRISTIAN -->
 
                 <tr>
 
@@ -2710,8 +2397,6 @@ footer{
                 </tr>
 
 
-                <!-- RAFAGAMER -->
-
                 <tr>
 
                     <td class="position">
@@ -2740,8 +2425,6 @@ footer{
 
                 </tr>
 
-
-                <!-- LEANDRO -->
 
                 <tr>
 
@@ -2778,8 +2461,6 @@ footer{
 
     </div>
 
-
-    <!-- SISTEMA DE PONTOS -->
 
     <div class="ranking-info">
 
@@ -3203,6 +2884,7 @@ footer{
             <p style="margin-top:12px;">
 
                 📍
+
                 <span class="highlight">
                     Rua Professor Raul Duarte, 245
                 </span>
