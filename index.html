@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bomba Petch — Rafagamer 2026</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -337,6 +335,171 @@ body::after{
     font-weight:bold;
 }
 
+/* =====================================================
+   LISTA DE JOGADORES
+===================================================== */
+
+.player-list-card{
+    background:
+    linear-gradient(145deg,#181818,#090909);
+
+    border:1px solid #ff730044;
+    border-radius:18px;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    transition:.25s;
+}
+
+.player-list-card:hover{
+    border-color:#ff7300;
+    transform:translateY(-2px);
+}
+
+.player-list-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.player-list-name{
+    font-size:24px;
+    font-weight:900;
+}
+
+.player-list-sub{
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:6px;
+}
+
+.list-access{
+    min-width:170px;
+
+    padding:13px 18px;
+
+    border:0;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    color:#fff;
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        90deg,
+        #790000,
+        #ff7300
+    );
+}
+
+.list-access:hover{
+    opacity:.85;
+}
+
+.list-status{
+    padding:9px 12px;
+    border-radius:7px;
+
+    text-align:center;
+
+    font-size:10px;
+    font-weight:bold;
+
+    margin-bottom:20px;
+}
+
+.list-locked{
+    background:#260000;
+    border:1px solid #750000;
+    color:#ff7777;
+}
+
+.list-unlocked{
+    background:#152600;
+    border:1px solid #477500;
+    color:#9dff50;
+}
+
+.list-modal-content{
+    padding:25px;
+}
+
+.list-category{
+    margin-bottom:22px;
+
+    background:#0b0b0b;
+
+    border:1px solid #ff730033;
+
+    border-radius:12px;
+
+    padding:20px;
+}
+
+.list-category-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #ffffff0d;
+}
+
+.list-category-title h4{
+    color:#ff9800;
+    font-size:18px;
+}
+
+.list-category-title span{
+    color:#666;
+    font-size:10px;
+}
+
+.player-notes{
+    width:100%;
+    min-height:130px;
+
+    resize:vertical;
+
+    padding:15px;
+
+    background:#171717;
+
+    color:#fff;
+
+    border:1px solid #ffffff15;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-family:Arial,sans-serif;
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+.player-notes:focus{
+    border-color:#ff7300;
+    background:#1c120d;
+}
+
+.player-notes::placeholder{
+    color:#555;
+}
+
 /* ELENCOS */
 
 .owner{
@@ -447,8 +610,6 @@ body::after{
     margin-top:12px;
 }
 
-/* CADEADO */
-
 .lock-status{
     margin-top:14px;
     padding:10px;
@@ -474,7 +635,7 @@ body::after{
     border:1px solid #477500;
 }
 
-/* MODAL */
+/* MODAIS */
 
 .modal{
     display:none;
@@ -556,135 +717,6 @@ body::after{
     padding:25px;
 }
 
-.squad-intro{
-    text-align:center;
-    margin-bottom:25px;
-    color:#777;
-}
-
-.squad-intro strong{
-    color:#ffd000;
-}
-
-/* POSIÇÕES */
-
-.position-section{
-    margin-bottom:25px;
-
-    background:#0b0b0b;
-
-    border:1px solid #ff730033;
-
-    border-radius:12px;
-
-    padding:20px;
-}
-
-.position-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    margin-bottom:15px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid #ffffff0d;
-}
-
-.position-title h4{
-    color:#ff9800;
-    font-size:18px;
-}
-
-.position-title span{
-    color:#777;
-    font-size:11px;
-}
-
-.name-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-}
-
-.player-input{
-    width:100%;
-
-    padding:14px 15px;
-
-    background:#171717;
-
-    color:#fff;
-
-    border:1px solid #ffffff15;
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-size:14px;
-
-    transition:.2s;
-}
-
-.player-input::placeholder{
-    color:#555;
-}
-
-.player-input:focus{
-    border-color:#ff7300;
-    background:#1c120d;
-    box-shadow:0 0 0 2px #ff730015;
-}
-
-/* AÇÕES */
-
-.modal-actions{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-
-    padding-top:20px;
-    margin-top:10px;
-
-    border-top:1px solid #ffffff0d;
-}
-
-.action{
-    padding:13px 20px;
-    border:0;
-    border-radius:7px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.save{
-    background:#ff7300;
-    color:white;
-}
-
-.clear{
-    background:#450000;
-    color:#ff7777;
-}
-
-.cancel{
-    background:#252525;
-    color:#aaa;
-}
-
-.lock{
-    background:#550000;
-    color:#fff;
-}
-
-.action:hover{
-    opacity:.85;
-}
-
-/* MODAL SENHA */
-
 .password-box{
     max-width:500px;
     margin:100px auto;
@@ -757,6 +789,130 @@ body::after{
 .btn-dark{
     background:#292929;
     color:#aaa;
+}
+
+/* POSIÇÕES */
+
+.position-section{
+    margin-bottom:25px;
+
+    background:#0b0b0b;
+
+    border:1px solid #ff730033;
+
+    border-radius:12px;
+
+    padding:20px;
+}
+
+.position-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #ffffff0d;
+}
+
+.position-title h4{
+    color:#ff9800;
+    font-size:18px;
+}
+
+.position-title span{
+    color:#777;
+    font-size:11px;
+}
+
+.name-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.player-input{
+    width:100%;
+
+    padding:14px 15px;
+
+    background:#171717;
+
+    color:#fff;
+
+    border:1px solid #ffffff15;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.2s;
+}
+
+.player-input::placeholder{
+    color:#555;
+}
+
+.player-input:focus{
+    border-color:#ff7300;
+    background:#1c120d;
+}
+
+.squad-intro{
+    text-align:center;
+    margin-bottom:25px;
+    color:#777;
+}
+
+.squad-intro strong{
+    color:#ffd000;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+
+    padding-top:20px;
+    margin-top:10px;
+
+    border-top:1px solid #ffffff0d;
+}
+
+.action{
+    padding:13px 20px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.save{
+    background:#ff7300;
+    color:white;
+}
+
+.clear{
+    background:#450000;
+    color:#ff7777;
+}
+
+.cancel{
+    background:#252525;
+    color:#aaa;
+}
+
+.lock{
+    background:#550000;
+    color:#fff;
+}
+
+.action:hover{
+    opacity:.85;
 }
 
 /* REGRAS */
@@ -868,6 +1024,13 @@ td{
     color:#ffd000;
     font-size:20px;
     font-weight:bold;
+}
+
+.rank-info{
+    text-align:center;
+    margin-top:20px;
+    color:#777;
+    font-size:12px;
 }
 
 /* JORNAL */
@@ -984,6 +1147,8 @@ td{
 
     font-weight:bold;
     text-decoration:none;
+
+    color:#fff;
 }
 
 /* FOOTER */
@@ -1067,6 +1232,15 @@ footer{
         margin:60px auto;
     }
 
+    .player-list-head{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .list-access{
+        width:100%;
+    }
+
 }
 
 </style>
@@ -1085,6 +1259,7 @@ footer{
     <div class="nav-links">
 
         <a href="#lendas">LENDAS</a>
+        <a href="#listas">📝 LISTAS</a>
         <a href="#elencos">⚽ ELENCOS</a>
         <a href="#regras">REGRAS</a>
         <a href="#ranking">RANK</a>
@@ -1097,7 +1272,7 @@ footer{
 </nav>
 
 
-<!-- CAPA -->
+<!-- HERO -->
 
 <section class="hero">
 
@@ -1143,9 +1318,7 @@ footer{
     <div class="return-date">
 
         📅 <span>17/08/2026</span>
-
         &nbsp; • &nbsp;
-
         🕖 <span>19:00</span>
 
     </div>
@@ -1153,7 +1326,6 @@ footer{
     <div class="return-place">
 
         📍 Local:
-
         <strong>
             Rua Professor Raul Duarte, 245
         </strong>
@@ -1183,17 +1355,11 @@ footer{
 
     <div class="legend-grid">
 
-
         <details class="legend">
 
             <summary>
-
                 🔥 RAFAGAMER
-
-                <span class="trophies">
-                    🏆 🏆
-                </span>
-
+                <span class="trophies">🏆 🏆</span>
             </summary>
 
             <div class="legend-body">
@@ -1219,13 +1385,8 @@ footer{
         <details class="legend">
 
             <summary>
-
                 👑 BERNA
-
-                <span class="trophies">
-                    🏆
-                </span>
-
+                <span class="trophies">🏆</span>
             </summary>
 
             <div class="legend-body">
@@ -1251,13 +1412,8 @@ footer{
         <details class="legend">
 
             <summary>
-
                 ⚡ CRISTIAN
-
-                <span class="trophies">
-                    🏆 🏆 🏆
-                </span>
-
+                <span class="trophies">🏆 🏆 🏆</span>
             </summary>
 
             <div class="legend-body">
@@ -1313,6 +1469,188 @@ footer{
 </section>
 
 
+<!-- =====================================================
+     LISTA DE JOGADORES
+===================================================== -->
+
+<section class="section" id="listas">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>LISTA PRIVADA</small>
+
+        <h2>📝 LISTA DE JOGADORES</h2>
+
+        <p>
+            Anote os jogadores que você quer lembrar
+            durante o “tirar times”.
+        </p>
+
+    </div>
+
+
+    <!-- RAFAGAMER -->
+
+    <div class="player-list-card">
+
+        <div class="player-list-head">
+
+            <div>
+
+                <div class="player-list-name">
+                    🔥 RAFAGAMER
+                </div>
+
+                <div class="player-list-sub">
+                    LISTA PARTICULAR
+                </div>
+
+            </div>
+
+            <button
+                class="list-access"
+                onclick="accessList('rafagamer')">
+
+                🔒 ACESSAR LISTA
+
+            </button>
+
+        </div>
+
+        <div
+            id="list-status-rafagamer"
+            class="list-status list-locked">
+
+            🔒 LISTA PROTEGIDA
+
+        </div>
+
+    </div>
+
+
+    <!-- BERNA -->
+
+    <div class="player-list-card">
+
+        <div class="player-list-head">
+
+            <div>
+
+                <div class="player-list-name">
+                    👑 BERNA
+                </div>
+
+                <div class="player-list-sub">
+                    LISTA PARTICULAR
+                </div>
+
+            </div>
+
+            <button
+                class="list-access"
+                onclick="accessList('berna')">
+
+                🔒 ACESSAR LISTA
+
+            </button>
+
+        </div>
+
+        <div
+            id="list-status-berna"
+            class="list-status list-locked">
+
+            🔒 LISTA PROTEGIDA
+
+        </div>
+
+    </div>
+
+
+    <!-- CRISTIAN -->
+
+    <div class="player-list-card">
+
+        <div class="player-list-head">
+
+            <div>
+
+                <div class="player-list-name">
+                    ⚡ CRISTIAN
+                </div>
+
+                <div class="player-list-sub">
+                    LISTA PARTICULAR
+                </div>
+
+            </div>
+
+            <button
+                class="list-access"
+                onclick="accessList('cristian')">
+
+                🔒 ACESSAR LISTA
+
+            </button>
+
+        </div>
+
+        <div
+            id="list-status-cristian"
+            class="list-status list-locked">
+
+            🔒 LISTA PROTEGIDA
+
+        </div>
+
+    </div>
+
+
+    <!-- LEANDRO -->
+
+    <div class="player-list-card">
+
+        <div class="player-list-head">
+
+            <div>
+
+                <div class="player-list-name">
+                    🎯 LEANDRO
+                </div>
+
+                <div class="player-list-sub">
+                    LISTA PARTICULAR
+                </div>
+
+            </div>
+
+            <button
+                class="list-access"
+                onclick="accessList('leandro')">
+
+                🔒 ACESSAR LISTA
+
+            </button>
+
+        </div>
+
+        <div
+            id="list-status-leandro"
+            class="list-status list-locked">
+
+            🔒 LISTA PROTEGIDA
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
 <!-- ELENCOS -->
 
 <section class="section" id="elencos">
@@ -1332,16 +1670,11 @@ footer{
     </div>
 
 
-    <!-- RAFAGAMER -->
-
     <div class="owner">
 
         <div class="owner-title">
-
             <h3>🔥 RAFAGAMER</h3>
-
             <span>3 TIMES</span>
-
         </div>
 
         <div class="team-grid" id="teams-rafagamer"></div>
@@ -1349,16 +1682,11 @@ footer{
     </div>
 
 
-    <!-- BERNA -->
-
     <div class="owner">
 
         <div class="owner-title">
-
             <h3>👑 BERNA</h3>
-
             <span>3 TIMES</span>
-
         </div>
 
         <div class="team-grid" id="teams-berna"></div>
@@ -1366,16 +1694,11 @@ footer{
     </div>
 
 
-    <!-- CRISTIAN -->
-
     <div class="owner">
 
         <div class="owner-title">
-
             <h3>⚡ CRISTIAN</h3>
-
             <span>3 TIMES</span>
-
         </div>
 
         <div class="team-grid" id="teams-cristian"></div>
@@ -1383,16 +1706,11 @@ footer{
     </div>
 
 
-    <!-- LEANDRO -->
-
     <div class="owner">
 
         <div class="owner-title">
-
             <h3>🎯 LEANDRO</h3>
-
             <span>3 TIMES</span>
-
         </div>
 
         <div class="team-grid" id="teams-leandro"></div>
@@ -1415,7 +1733,7 @@ footer{
         </h2>
 
         <p id="passwordMessage">
-            Digite a senha para acessar este elenco.
+            Digite a senha para acessar.
         </p>
 
         <input
@@ -1451,7 +1769,7 @@ footer{
 </div>
 
 
-<!-- MODAL DO ELENCO -->
+<!-- MODAL ELENCO -->
 
 <div class="modal" id="squadModal">
 
@@ -1473,27 +1791,17 @@ footer{
 
         </div>
 
-
         <div class="modal-content">
 
             <div class="squad-intro">
 
                 Você pode
-                <strong>
-                    DIGITAR O NOME QUE QUISER
-                </strong>
+                <strong>DIGITAR O NOME QUE QUISER</strong>
                 nos 22 espaços.
-
-                <br><br>
-
-                🔒 Quando terminar, bloqueie o elenco
-                para esconder os jogadores.
 
             </div>
 
-
             <div id="positions"></div>
-
 
             <div class="modal-actions">
 
@@ -1538,6 +1846,77 @@ footer{
 </div>
 
 
+<!-- MODAL LISTA -->
+
+<div class="modal" id="listModal">
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h2 id="listModalTitle">
+                📝 Lista de jogadores
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeList()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <div class="list-modal-content">
+
+            <div
+                id="listCategories">
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="action clear"
+                    onclick="clearList()">
+
+                    🗑 LIMPAR LISTA
+
+                </button>
+
+                <button
+                    class="action cancel"
+                    onclick="closeList()">
+
+                    FECHAR
+
+                </button>
+
+                <button
+                    class="action lock"
+                    onclick="lockCurrentList()">
+
+                    🔒 BLOQUEAR LISTA
+
+                </button>
+
+                <button
+                    class="action save"
+                    onclick="saveList()">
+
+                    💾 SALVAR LISTA
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <!-- REGRAS -->
 
 <section class="section" id="regras">
@@ -1552,9 +1931,7 @@ footer{
 
     </div>
 
-
     <div class="rules">
-
 
         <div class="rule">
 
@@ -1575,9 +1952,7 @@ footer{
 
                 <p>
                     Desistência forçada:
-                    <strong>
-                        perda de 3 pontos no Rank.
-                    </strong>
+                    <strong>perda de 3 pontos no Rank.</strong>
                 </p>
 
             </div>
@@ -1594,8 +1969,9 @@ footer{
                 <h3>🚫 OFENSAS E BRIGAS</h3>
 
                 <p>
-                    Proibido ofensas, xingamentos, brigas constantes
-                    e zoeira contínua de forma que faça alguém desistir.
+                    Proibido ofensas, xingamentos,
+                    brigas constantes e zoeira contínua
+                    de forma que faça alguém desistir.
                 </p>
 
             </div>
@@ -1669,15 +2045,12 @@ footer{
 
                 <p>
                     Caso seja pego:
-                    <strong>
-                        perderá estrelas.
-                    </strong>
+                    <strong>perderá estrelas.</strong>
                 </p>
 
             </div>
 
         </div>
-
 
     </div>
 
@@ -1704,7 +2077,6 @@ footer{
 
     </div>
 
-
     <div class="rank-wrap">
 
         <table>
@@ -1712,14 +2084,12 @@ footer{
             <thead>
 
                 <tr>
-
                     <th>POS.</th>
                     <th>PLAYER</th>
                     <th>VITÓRIAS</th>
                     <th>EMPATES</th>
                     <th>DERROTAS</th>
                     <th>PONTOS</th>
-
                 </tr>
 
             </thead>
@@ -1768,7 +2138,6 @@ footer{
 
     </div>
 
-
     <div class="rank-info">
 
         Vitória = +2
@@ -1800,7 +2169,6 @@ footer{
 
     </div>
 
-
     <div class="news">
 
         <details class="news-box">
@@ -1814,7 +2182,6 @@ footer{
             </div>
 
         </details>
-
 
         <details class="news-box">
 
@@ -1849,7 +2216,6 @@ footer{
 
     </div>
 
-
     <div class="seasons">
 
         <div class="season">
@@ -1864,7 +2230,6 @@ footer{
 
         </div>
 
-
         <div class="season">
 
             <div class="year">2025</div>
@@ -1877,7 +2242,6 @@ footer{
 
         </div>
 
-
         <div class="season">
 
             <div class="year">2026</div>
@@ -1886,9 +2250,7 @@ footer{
 
             <p>
                 Retorno em
-                <strong>
-                    17/08/2026 às 19:00
-                </strong>.
+                <strong>17/08/2026 às 19:00</strong>.
             </p>
 
         </div>
@@ -1913,7 +2275,6 @@ footer{
         <h2>📥 DOWNLOAD</h2>
 
     </div>
-
 
     <div class="download">
 
@@ -1940,8 +2301,6 @@ footer{
 </section>
 
 
-<!-- FOOTER -->
-
 <footer>
 
     <div class="footer-logo">
@@ -1961,9 +2320,9 @@ footer{
 
 <script>
 
-/* =========================================================
-   POSIÇÕES
-========================================================= */
+/* =====================================================
+   POSIÇÕES DOS ELENCOS
+===================================================== */
 
 const positions = [
 
@@ -2006,9 +2365,48 @@ const positions = [
 ];
 
 
-/* =========================================================
+/* =====================================================
+   CATEGORIAS DAS LISTAS
+===================================================== */
+
+const listCategories = [
+
+    {
+        id:"goleiros",
+        nome:"🧤 GOLEIROS"
+    },
+
+    {
+        id:"zagueiros",
+        nome:"🛡️ ZAGUEIROS"
+    },
+
+    {
+        id:"laterais",
+        nome:"🏃 LATERAIS"
+    },
+
+    {
+        id:"volantes",
+        nome:"⚙️ VOLANTES"
+    },
+
+    {
+        id:"meias",
+        nome:"🎯 MEIAS"
+    },
+
+    {
+        id:"atacantes",
+        nome:"⚡ ATACANTES"
+    }
+
+];
+
+
+/* =====================================================
    PLAYERS
-========================================================= */
+===================================================== */
 
 const owners = [
     "rafagamer",
@@ -2018,20 +2416,22 @@ const owners = [
 ];
 
 
-/* =========================================================
-   VARIÁVEIS
-========================================================= */
-
 let currentTeam = null;
 
 let pendingTeam = null;
 
 let passwordMode = null;
 
+let currentList = null;
 
-/* =========================================================
-   CRIAR 12 TIMES
-========================================================= */
+let pendingList = null;
+
+let listPasswordMode = null;
+
+
+/* =====================================================
+   CRIAR TIMES
+===================================================== */
 
 owners.forEach(owner => {
 
@@ -2040,12 +2440,10 @@ owners.forEach(owner => {
             "teams-" + owner
         );
 
-
-    for(let i = 1; i <= 3; i++){
+    for(let i=1;i<=3;i++){
 
         const id =
             owner + "-time-" + i;
-
 
         const card =
             document.createElement("div");
@@ -2053,18 +2451,13 @@ owners.forEach(owner => {
         card.className =
             "team-card";
 
-
         card.innerHTML = `
 
             <div class="team-head">
 
-                <h4>
-                    ⚽ TIME ${i}
-                </h4>
+                <h4>⚽ TIME ${i}</h4>
 
-                <p>
-                    22 jogadores
-                </p>
+                <p>22 jogadores</p>
 
             </div>
 
@@ -2094,9 +2487,7 @@ owners.forEach(owner => {
                 </div>
 
             </div>
-
         `;
-
 
         container.appendChild(card);
 
@@ -2107,19 +2498,13 @@ owners.forEach(owner => {
 });
 
 
-/* =========================================================
-   ACESSAR TIME
-========================================================= */
+/* =====================================================
+   ACESSAR ELENCO
+===================================================== */
 
 function accessTeam(id){
 
     pendingTeam = id;
-
-
-    /*
-       Se ainda não existe senha,
-       o player precisa criar uma.
-    */
 
     if(!getPassword(id)){
 
@@ -2131,14 +2516,7 @@ function accessTeam(id){
         );
 
         return;
-
     }
-
-
-    /*
-       Se já existe senha,
-       pede a senha.
-    */
 
     passwordMode = "unlock";
 
@@ -2150,9 +2528,9 @@ function accessTeam(id){
 }
 
 
-/* =========================================================
-   ABRIR MODAL SENHA
-========================================================= */
+/* =====================================================
+   MODAL SENHA
+===================================================== */
 
 function openPasswordModal(title,message){
 
@@ -2160,38 +2538,27 @@ function openPasswordModal(title,message){
         "passwordTitle"
     ).textContent = title;
 
-
     document.getElementById(
         "passwordMessage"
     ).textContent = message;
-
 
     const input =
         document.getElementById(
             "passwordInput"
         );
 
-
     input.value = "";
-
 
     document.getElementById(
         "passwordModal"
     ).classList.add("active");
 
-
-    setTimeout(() => {
-
+    setTimeout(()=>{
         input.focus();
-
     },100);
 
 }
 
-
-/* =========================================================
-   FECHAR SENHA
-========================================================= */
 
 function closePasswordModal(){
 
@@ -2206,9 +2573,9 @@ function closePasswordModal(){
 }
 
 
-/* =========================================================
-   SENHA
-========================================================= */
+/* =====================================================
+   SENHA DO ELENCO
+===================================================== */
 
 function submitPassword(){
 
@@ -2217,25 +2584,16 @@ function submitPassword(){
             "passwordInput"
         );
 
-
     const password =
         input.value;
 
-
     if(!password){
 
-        alert(
-            "⚠️ Digite uma senha."
-        );
-
-        input.focus();
+        alert("⚠️ Digite uma senha.");
 
         return;
 
     }
-
-
-    /* CRIAR */
 
     if(passwordMode === "create"){
 
@@ -2246,56 +2604,38 @@ function submitPassword(){
             );
 
             return;
-
         }
-
 
         savePassword(
             pendingTeam,
             password
         );
 
-
-        alert(
-            "🔐 Senha criada com sucesso!\n\n" +
-            "Guarde essa senha. Ela será necessária para acessar este elenco."
-        );
-
-
         const team =
             pendingTeam;
 
-
         closePasswordModal();
-
 
         openSquad(
             team,
             getTeamTitle(team)
         );
 
-
         return;
-
     }
 
-
-    /* DESBLOQUEAR */
 
     if(passwordMode === "unlock"){
 
         const saved =
             getPassword(pendingTeam);
 
-
         if(password === saved){
 
             const team =
                 pendingTeam;
 
-
             closePasswordModal();
-
 
             openSquad(
                 team,
@@ -2304,9 +2644,7 @@ function submitPassword(){
 
         }else{
 
-            alert(
-                "❌ Senha incorreta."
-            );
+            alert("❌ Senha incorreta.");
 
             input.value = "";
 
@@ -2318,10 +2656,6 @@ function submitPassword(){
 
 }
 
-
-/* =========================================================
-   SENHA LOCAL
-========================================================= */
 
 function getPassword(id){
 
@@ -2342,31 +2676,21 @@ function savePassword(id,password){
 }
 
 
-/* =========================================================
-   NOME DO TIME
-========================================================= */
+/* =====================================================
+   ELENCOS
+===================================================== */
 
 function getTeamTitle(id){
 
     const parts =
         id.split("-");
 
-    const owner =
-        parts[0].toUpperCase();
-
-    const number =
-        parts[2];
-
-    return owner +
-        " — TIME " +
-        number;
+    return parts[0].toUpperCase()
+        + " — TIME "
+        + parts[2];
 
 }
 
-
-/* =========================================================
-   ABRIR ELENCO
-========================================================= */
 
 function openSquad(id,title){
 
@@ -2377,20 +2701,14 @@ function openSquad(id,title){
     ).textContent =
         "⚽ " + title;
 
-
     document.getElementById(
         "squadModal"
     ).classList.add("active");
-
 
     createPlayerFields();
 
 }
 
-
-/* =========================================================
-   FECHAR ELENCO
-========================================================= */
 
 function closeSquad(){
 
@@ -2403,10 +2721,6 @@ function closeSquad(){
 }
 
 
-/* =========================================================
-   CRIAR CAMPOS
-========================================================= */
-
 function createPlayerFields(){
 
     const container =
@@ -2414,9 +2728,7 @@ function createPlayerFields(){
             "positions"
         );
 
-
     container.innerHTML = "";
-
 
     const saved =
         JSON.parse(
@@ -2425,33 +2737,23 @@ function createPlayerFields(){
             ) || "{}"
         );
 
-
-    positions.forEach(position => {
+    positions.forEach(position=>{
 
         const section =
             document.createElement("div");
 
-
         section.className =
             "position-section";
 
-
         let inputs = "";
 
-
-        for(
-            let i = 0;
-            i < position.quantidade;
-            i++
-        ){
+        for(let i=0;i<position.quantidade;i++){
 
             const key =
                 position.id + "-" + i;
 
-
             const value =
                 saved[key] || "";
-
 
             inputs += `
 
@@ -2465,9 +2767,7 @@ function createPlayerFields(){
                 >
 
             `;
-
         }
-
 
         section.innerHTML = `
 
@@ -2484,13 +2784,10 @@ function createPlayerFields(){
             </div>
 
             <div class="name-grid">
-
                 ${inputs}
-
             </div>
 
         `;
-
 
         container.appendChild(section);
 
@@ -2499,90 +2796,50 @@ function createPlayerFields(){
 }
 
 
-/* =========================================================
-   SALVAR ELENCO
-========================================================= */
-
 function saveSquad(){
 
     const data = {};
 
-    let total = 0;
+    positions.forEach(position=>{
 
-
-    positions.forEach(position => {
-
-        for(
-            let i = 0;
-            i < position.quantidade;
-            i++
-        ){
+        for(let i=0;i<position.quantidade;i++){
 
             const key =
                 position.id + "-" + i;
-
 
             const input =
                 document.getElementById(
                     "player-" + key
                 );
 
-
-            const name =
+            data[key] =
                 input.value.trim();
-
-
-            data[key] = name;
-
-
-            if(name !== ""){
-                total++;
-            }
 
         }
 
     });
-
 
     localStorage.setItem(
         "bomba-" + currentTeam,
         JSON.stringify(data)
     );
 
-
     updateCount();
 
-
-    alert(
-        "✅ Elenco salvo!\n\n" +
-        total +
-        " de 22 jogadores preenchidos."
-    );
+    alert("✅ Elenco salvo!");
 
 }
 
 
-/* =========================================================
-   LIMPAR
-========================================================= */
-
 function clearSquad(){
 
-    if(
-        !confirm(
-            "Deseja apagar todos os jogadores deste elenco?"
-        )
-    ){
-
-        return;
-
-    }
-
+    if(!confirm(
+        "Deseja apagar todos os jogadores deste elenco?"
+    )) return;
 
     localStorage.removeItem(
         "bomba-" + currentTeam
     );
-
 
     createPlayerFields();
 
@@ -2591,41 +2848,23 @@ function clearSquad(){
 }
 
 
-/* =========================================================
-   BLOQUEAR ELENCO
-========================================================= */
-
 function lockCurrentTeam(){
-
-    /*
-       Primeiro salva os nomes.
-    */
 
     saveSquad();
 
+    const team =
+        currentTeam;
 
-    /*
-       Fecha a janela.
-    */
-
-    setTimeout(() => {
+    setTimeout(()=>{
 
         closeSquad();
 
-        updateTeamStatus(
-            currentTeam
-        );
-
-        currentTeam = null;
+        updateTeamStatus(team);
 
     },100);
 
 }
 
-
-/* =========================================================
-   CONTADOR
-========================================================= */
 
 function getCount(id){
 
@@ -2636,60 +2875,34 @@ function getCount(id){
             ) || "{}"
         );
 
-
-    let total = 0;
-
-
-    Object.values(saved).forEach(value => {
-
-        if(
-            typeof value === "string" &&
-            value.trim() !== ""
-        ){
-
-            total++;
-
-        }
-
-    });
-
-
-    return total;
+    return Object.values(saved)
+        .filter(v =>
+            typeof v === "string" &&
+            v.trim() !== ""
+        ).length;
 
 }
 
 
-/* =========================================================
-   ATUALIZAR CONTADOR
-========================================================= */
-
 function updateCount(){
 
-    if(!currentTeam){
-        return;
-    }
-
+    if(!currentTeam) return;
 
     const element =
         document.getElementById(
             "count-" + currentTeam
         );
 
-
     if(element){
 
         element.textContent =
-            getCount(currentTeam) +
-            " / 22 jogadores";
+            getCount(currentTeam)
+            + " / 22 jogadores";
 
     }
 
 }
 
-
-/* =========================================================
-   STATUS DO CADEADO
-========================================================= */
 
 function updateTeamStatus(id){
 
@@ -2698,11 +2911,7 @@ function updateTeamStatus(id){
             "status-" + id
         );
 
-
-    if(!status){
-        return;
-    }
-
+    if(!status) return;
 
     if(getPassword(id)){
 
@@ -2725,30 +2934,411 @@ function updateTeamStatus(id){
 }
 
 
-/* =========================================================
+/* =====================================================
+   LISTAS PRIVADAS
+===================================================== */
+
+function accessList(player){
+
+    pendingList = player;
+
+    const password =
+        getListPassword(player);
+
+    if(!password){
+
+        listPasswordMode = "create";
+
+        openListPasswordModal(
+            "🔐 CRIAR SENHA DA LISTA",
+            "Crie uma senha particular para sua lista de jogadores."
+        );
+
+    }else{
+
+        listPasswordMode = "unlock";
+
+        openListPasswordModal(
+            "🔒 LISTA BLOQUEADA",
+            "Digite sua senha para visualizar sua lista."
+        );
+
+    }
+
+}
+
+
+function openListPasswordModal(title,message){
+
+    document.getElementById(
+        "passwordTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "passwordMessage"
+    ).textContent = message;
+
+    document.getElementById(
+        "passwordInput"
+    ).value = "";
+
+    document.getElementById(
+        "passwordModal"
+    ).classList.add("active");
+
+}
+
+
+function submitListPassword(){
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+    const password =
+        input.value;
+
+    if(!password){
+
+        alert("⚠️ Digite uma senha.");
+
+        return;
+
+    }
+
+    if(listPasswordMode === "create"){
+
+        if(password.length < 4){
+
+            alert(
+                "⚠️ A senha precisa ter pelo menos 4 caracteres."
+            );
+
+            return;
+        }
+
+        saveListPassword(
+            pendingList,
+            password
+        );
+
+        const player =
+            pendingList;
+
+        closePasswordModal();
+
+        openList(player);
+
+        return;
+
+    }
+
+
+    if(listPasswordMode === "unlock"){
+
+        if(
+            password ===
+            getListPassword(pendingList)
+        ){
+
+            const player =
+                pendingList;
+
+            closePasswordModal();
+
+            openList(player);
+
+        }else{
+
+            alert("❌ Senha incorreta.");
+
+            input.value = "";
+
+        }
+
+    }
+
+}
+
+
+function getListPassword(player){
+
+    return localStorage.getItem(
+        "bomba-list-password-" + player
+    );
+
+}
+
+
+function saveListPassword(player,password){
+
+    localStorage.setItem(
+        "bomba-list-password-" + player,
+        password
+    );
+
+}
+
+
+function openList(player){
+
+    currentList = player;
+
+    document.getElementById(
+        "listModalTitle"
+    ).textContent =
+        "📝 LISTA — "
+        + player.toUpperCase();
+
+    document.getElementById(
+        "listModal"
+    ).classList.add("active");
+
+    createListFields();
+
+}
+
+
+function closeList(){
+
+    document.getElementById(
+        "listModal"
+    ).classList.remove("active");
+
+    currentList = null;
+
+}
+
+
+function createListFields(){
+
+    const container =
+        document.getElementById(
+            "listCategories"
+        );
+
+    container.innerHTML = "";
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-list-" + currentList
+            ) || "{}"
+        );
+
+
+    listCategories.forEach(category=>{
+
+        const box =
+            document.createElement("div");
+
+        box.className =
+            "list-category";
+
+        const value =
+            saved[category.id] || "";
+
+        box.innerHTML = `
+
+            <div class="list-category-title">
+
+                <h4>
+                    ${category.nome}
+                </h4>
+
+                <span>
+                    LISTA PRIVADA
+                </span>
+
+            </div>
+
+            <textarea
+                class="player-notes"
+                id="list-${category.id}"
+                placeholder="Digite os jogadores que você quer lembrar..."
+            >${escapeHTML(value)}</textarea>
+
+        `;
+
+        container.appendChild(box);
+
+    });
+
+}
+
+
+function saveList(){
+
+    if(!currentList) return;
+
+    const data = {};
+
+    listCategories.forEach(category=>{
+
+        const field =
+            document.getElementById(
+                "list-" + category.id
+            );
+
+        data[category.id] =
+            field.value;
+
+    });
+
+    localStorage.setItem(
+        "bomba-list-" + currentList,
+        JSON.stringify(data)
+    );
+
+    alert(
+        "✅ Lista de jogadores salva!"
+    );
+
+}
+
+
+function clearList(){
+
+    if(!currentList) return;
+
+    if(!confirm(
+        "Deseja apagar toda a lista deste jogador?"
+    )) return;
+
+    localStorage.removeItem(
+        "bomba-list-" + currentList
+    );
+
+    createListFields();
+
+}
+
+
+function lockCurrentList(){
+
+    saveList();
+
+    const player =
+        currentList;
+
+    setTimeout(()=>{
+
+        closeList();
+
+        updateListStatus(player);
+
+    },100);
+
+}
+
+
+function updateListStatus(player){
+
+    const element =
+        document.getElementById(
+            "list-status-" + player
+        );
+
+    if(!element) return;
+
+    if(getListPassword(player)){
+
+        element.className =
+            "list-status list-locked";
+
+        element.textContent =
+            "🔒 LISTA PROTEGIDA";
+
+    }
+
+}
+
+
+/* =====================================================
    ESCAPAR HTML
-========================================================= */
+===================================================== */
 
 function escapeHTML(text){
 
     return String(text)
-
         .replace(/&/g,"&amp;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;");
 
 }
 
 
-/* =========================================================
-   CLICAR FORA DOS MODAIS
-========================================================= */
+/* =====================================================
+   INICIALIZAR STATUS
+===================================================== */
+
+owners.forEach(player=>{
+    updateListStatus(player);
+});
+
+
+/* =====================================================
+   MODAL SENHA — ROTEAMENTO
+===================================================== */
+
+const originalSubmitPassword =
+    submitPassword;
+
+
+/*
+   O botão da senha precisa saber
+   se estamos abrindo elenco ou lista.
+*/
+
+document
+.getElementById("passwordInput")
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        if(listPasswordMode){
+
+            submitListPassword();
+
+        }else{
+
+            submitPassword();
+
+        }
+
+    }
+
+});
+
+
+/*
+   Alteramos o botão de continuar
+   para detectar o tipo de senha.
+*/
+
+document
+.querySelector(".password-actions .btn-orange")
+.addEventListener("click",function(){
+
+    if(listPasswordMode){
+
+        submitListPassword();
+
+    }else{
+
+        submitPassword();
+
+    }
+
+});
+
+
+/* =====================================================
+   FECHAR MODAIS
+===================================================== */
 
 document
 .getElementById("passwordModal")
@@ -2782,9 +3372,21 @@ document
 );
 
 
-/* =========================================================
-   ESC
-========================================================= */
+document
+.getElementById("listModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeList();
+
+        }
+
+    }
+);
+
 
 document.addEventListener(
     "keydown",
@@ -2793,25 +3395,8 @@ document.addEventListener(
         if(event.key === "Escape"){
 
             closePasswordModal();
-
             closeSquad();
-
-        }
-
-
-        /*
-           Enter no campo de senha
-        */
-
-        if(
-            event.key === "Enter" &&
-            document
-            .getElementById("passwordModal")
-            .classList
-            .contains("active")
-        ){
-
-            submitPassword();
+            closeList();
 
         }
 
