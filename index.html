@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,690 +6,1369 @@
 <title>Bomba Petch — Rafagamer 2026</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#050505;
-color:#fff
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050505;
+    color:#fff;
 }
+
 body::before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-2;
-background:
-radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
-radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
-linear-gradient(135deg,#030303,#171717,#050505)
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
+    radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
+    linear-gradient(135deg,#030303,#171717,#050505);
 }
+
 body::after{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-pointer-events:none;
-opacity:.18;
-background:repeating-linear-gradient(
-120deg,
-transparent 0,
-transparent 90px,
-#ffffff08 91px,
-transparent 93px
-)
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.18;
+    background:
+    repeating-linear-gradient(
+        120deg,
+        transparent 0,
+        transparent 90px,
+        #ffffff08 91px,
+        transparent 93px
+    );
 }
+
+/* MENU */
 
 .navbar{
-position:sticky;
-top:0;
-z-index:999;
-min-height:65px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 5%;
-background:#050505ed;
-border-bottom:1px solid #ff730055;
-backdrop-filter:blur(15px)
+    position:sticky;
+    top:0;
+    z-index:999;
+    min-height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    background:#050505ed;
+    border-bottom:1px solid #ff730055;
+    backdrop-filter:blur(15px);
 }
+
 .logo{
-font-size:20px;
-font-weight:900;
-letter-spacing:2px;
-color:#ff7300
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#ff7300;
 }
-.logo span{color:#ffd000}
+
+.logo span{
+    color:#ffd000;
+}
+
 .nav-links{
-display:flex;
-flex-wrap:wrap;
-justify-content:flex-end;
-gap:18px
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:18px;
 }
+
 .nav-links a{
-color:#888;
-font-size:10px;
-font-weight:bold;
-letter-spacing:1px;
-text-decoration:none
+    color:#888;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+    text-decoration:none;
 }
-.nav-links a:hover{color:#ff9800}
+
+.nav-links a:hover{
+    color:#ff9800;
+}
+
+/* HERO */
 
 .hero{
-min-height:620px;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-position:relative;
-overflow:hidden;
-background:
-radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
-linear-gradient(115deg,#030303,#300000,#8a0d00,#1a0000,#030303);
-border-bottom:3px solid #ff7300
+    min-height:620px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
+    linear-gradient(
+        115deg,
+        #030303,
+        #300000,
+        #8a0d00,
+        #1a0000,
+        #030303
+    );
+
+    border-bottom:3px solid #ff7300;
 }
-.hero-content{width:90%;max-width:1200px}
+
+.hero-content{
+    width:90%;
+    max-width:1200px;
+}
+
 .edition{
-color:#ffd000;
-font-size:11px;
-font-weight:bold;
-letter-spacing:8px;
-margin-bottom:25px
+    color:#ffd000;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:8px;
+    margin-bottom:25px;
 }
+
 .hero h1{
-font-size:clamp(55px,12vw,145px);
-line-height:.8;
-font-weight:1000;
-letter-spacing:4px;
-text-shadow:5px 5px 0 #620000,0 0 20px #ff3c00,0 0 70px #ff730055
+    font-size:clamp(55px,12vw,145px);
+    line-height:.8;
+    font-weight:1000;
+    letter-spacing:4px;
+
+    text-shadow:
+    5px 5px 0 #620000,
+    0 0 20px #ff3c00,
+    0 0 70px #ff730055;
 }
+
 .hero h2{
-margin-top:35px;
-color:#ffd000;
-font-size:clamp(25px,5vw,60px);
-letter-spacing:10px
+    margin-top:35px;
+    color:#ffd000;
+    font-size:clamp(25px,5vw,60px);
+    letter-spacing:10px;
 }
+
 .hero-subtitle{
-margin-top:25px;
-color:#ddd;
-font-size:13px;
-letter-spacing:5px
+    margin-top:25px;
+    color:#ddd;
+    font-size:13px;
+    letter-spacing:5px;
 }
+
 .hero-button{
-display:inline-block;
-margin-top:40px;
-padding:16px 32px;
-border-radius:50px;
-border:1px solid #ffd000;
-color:#ffd000;
-background:#00000055;
-font-size:11px;
-font-weight:bold;
-letter-spacing:3px;
-text-decoration:none
+    display:inline-block;
+    margin-top:40px;
+    padding:16px 32px;
+    border-radius:50px;
+    border:1px solid #ffd000;
+    color:#ffd000;
+    background:#00000055;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:3px;
+    text-decoration:none;
 }
-.hero-button:hover{background:#ff7300;color:#fff}
+
+.hero-button:hover{
+    background:#ff7300;
+    color:#fff;
+}
+
+/* RETORNO */
 
 .season-return{
-padding:38px 20px;
-text-align:center;
-background:linear-gradient(90deg,#580000,#b51d00,#ff7300,#b51d00,#580000);
-border-bottom:3px solid #ffd000
-}
-.return-label{
-color:#ffd000;
-font-size:11px;
-font-weight:bold;
-letter-spacing:5px;
-margin-bottom:12px
-}
-.season-return h2{font-size:clamp(28px,5vw,48px)}
-.return-date{
-margin-top:15px;
-font-size:20px;
-font-weight:bold
-}
-.return-date span{color:#ffd000}
-.return-place{margin-top:12px}
-.return-place strong{color:#ffd000}
+    padding:38px 20px;
+    text-align:center;
 
-.container{width:92%;max-width:1250px;margin:auto}
-.section{padding:80px 0}
-.section-header{text-align:center;margin-bottom:45px}
-.section-header small{
-display:block;
-color:#ff7300;
-font-size:10px;
-font-weight:bold;
-letter-spacing:6px;
-margin-bottom:12px
+    background:
+    linear-gradient(
+        90deg,
+        #580000,
+        #b51d00,
+        #ff7300,
+        #b51d00,
+        #580000
+    );
+
+    border-bottom:3px solid #ffd000;
 }
-.section-header h2{font-size:38px}
-.section-header p{margin-top:12px;color:#777}
+
+.return-label{
+    color:#ffd000;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:5px;
+    margin-bottom:12px;
+}
+
+.season-return h2{
+    font-size:clamp(28px,5vw,48px);
+}
+
+.return-date{
+    margin-top:15px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.return-date span{
+    color:#ffd000;
+}
+
+.return-place{
+    margin-top:12px;
+}
+
+.return-place strong{
+    color:#ffd000;
+}
+
+/* GERAL */
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
+
+.section{
+    padding:80px 0;
+}
+
+.section-header{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-header small{
+    display:block;
+    color:#ff7300;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:6px;
+    margin-bottom:12px;
+}
+
+.section-header h2{
+    font-size:38px;
+}
+
+.section-header p{
+    margin-top:12px;
+    color:#777;
+}
+
+/* LENDAS */
 
 .legend-grid{
-display:flex;
-flex-direction:column;
-gap:20px;
-max-width:900px;
-margin:auto
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    max-width:900px;
+    margin:auto;
 }
+
 .legend{
-background:#121212;
-border:1px solid #ff730033;
-border-radius:15px;
-overflow:hidden
+    background:#121212;
+    border:1px solid #ff730033;
+    border-radius:15px;
+    overflow:hidden;
 }
+
 .legend summary{
-cursor:pointer;
-list-style:none;
-padding:23px;
-display:flex;
-align-items:center;
-background:linear-gradient(90deg,#700000,#bf2900,#ed6900);
-font-size:20px;
-font-weight:bold
+    cursor:pointer;
+    list-style:none;
+    padding:23px;
+
+    display:flex;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        90deg,
+        #700000,
+        #bf2900,
+        #ed6900
+    );
+
+    font-size:20px;
+    font-weight:bold;
 }
-.legend summary::-webkit-details-marker{display:none}
-.trophies{margin-left:auto;color:#ffd700}
+
+.legend summary::-webkit-details-marker{
+    display:none;
+}
+
+.trophies{
+    margin-left:auto;
+    color:#ffd700;
+}
+
 .legend-body{
-padding:30px;
-background:linear-gradient(145deg,#242424,#0e0e0e)
+    padding:30px;
+    background:
+    linear-gradient(
+        145deg,
+        #242424,
+        #0e0e0e
+    );
 }
-.legend-body h3{color:#ff9800;margin-bottom:18px}
-.legend-body p{color:#ddd;line-height:1.75;margin-bottom:15px}
-.highlight{color:#ffd000;font-weight:bold}
+
+.legend-body h3{
+    color:#ff9800;
+    margin-bottom:18px;
+}
+
+.legend-body p{
+    color:#ddd;
+    line-height:1.75;
+    margin-bottom:15px;
+}
+
+.highlight{
+    color:#ffd000;
+    font-weight:bold;
+}
+
+/* LISTAS */
 
 .player-list-card{
-background:linear-gradient(145deg,#181818,#090909);
-border:1px solid #ff730044;
-border-radius:18px;
-padding:28px;
-margin-bottom:25px
+    background:
+    linear-gradient(145deg,#181818,#090909);
+
+    border:1px solid #ff730044;
+    border-radius:18px;
+
+    padding:28px;
+
+    margin-bottom:25px;
+
+    transition:.25s;
 }
+
+.player-list-card:hover{
+    border-color:#ff7300;
+    transform:translateY(-2px);
+}
+
 .player-list-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-margin-bottom:20px
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:20px;
 }
-.player-list-name{font-size:24px;font-weight:900}
+
+.player-list-name{
+    font-size:24px;
+    font-weight:900;
+}
+
 .player-list-sub{
-color:#777;
-font-size:10px;
-letter-spacing:2px;
-margin-top:6px
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:6px;
 }
+
 .list-access{
-min-width:170px;
-padding:13px 18px;
-border:0;
-border-radius:8px;
-cursor:pointer;
-color:#fff;
-font-weight:bold;
-background:linear-gradient(90deg,#790000,#ff7300)
+    min-width:170px;
+
+    padding:13px 18px;
+
+    border:0;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    color:#fff;
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        90deg,
+        #790000,
+        #ff7300
+    );
 }
+
+.list-access:hover{
+    opacity:.85;
+}
+
 .list-status{
-padding:9px 12px;
-border-radius:7px;
-text-align:center;
-font-size:10px;
-font-weight:bold;
-margin-bottom:20px
+    padding:9px 12px;
+    border-radius:7px;
+
+    text-align:center;
+
+    font-size:10px;
+    font-weight:bold;
+
+    margin-bottom:20px;
 }
-.list-locked{background:#260000;border:1px solid #750000;color:#ff7777}
-.list-unlocked{background:#152600;border:1px solid #477500;color:#9dff50}
-.list-modal-content{padding:25px}
+
+.list-locked{
+    background:#260000;
+    border:1px solid #750000;
+    color:#ff7777;
+}
+
+.list-unlocked{
+    background:#152600;
+    border:1px solid #477500;
+    color:#9dff50;
+}
+
+.list-modal-content{
+    padding:25px;
+}
+
 .list-category{
-margin-bottom:22px;
-background:#0b0b0b;
-border:1px solid #ff730033;
-border-radius:12px;
-padding:20px
+    margin-bottom:22px;
+
+    background:#0b0b0b;
+
+    border:1px solid #ff730033;
+
+    border-radius:12px;
+
+    padding:20px;
 }
+
 .list-category-title{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:14px;
-padding-bottom:12px;
-border-bottom:1px solid #ffffff0d
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #ffffff0d;
 }
-.list-category-title h4{color:#ff9800;font-size:18px}
-.list-category-title span{color:#666;font-size:10px}
+
+.list-category-title h4{
+    color:#ff9800;
+    font-size:18px;
+}
+
+.list-category-title span{
+    color:#666;
+    font-size:10px;
+}
+
 .player-notes{
-width:100%;
-min-height:130px;
-resize:vertical;
-padding:15px;
-background:#171717;
-color:#fff;
-border:1px solid #ffffff15;
-border-radius:8px;
-outline:none;
-font-family:Arial,sans-serif;
-font-size:14px;
-line-height:1.6
+    width:100%;
+    min-height:130px;
+
+    resize:vertical;
+
+    padding:15px;
+
+    background:#171717;
+
+    color:#fff;
+
+    border:1px solid #ffffff15;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-family:Arial,sans-serif;
+
+    font-size:14px;
+
+    line-height:1.6;
 }
+
+.player-notes:focus{
+    border-color:#ff7300;
+    background:#1c120d;
+}
+
+.player-notes::placeholder{
+    color:#555;
+}
+
+/* ELENCOS */
 
 .owner{
-margin-bottom:55px;
-padding:25px;
-border-radius:18px;
-background:linear-gradient(145deg,#181818,#080808);
-border:1px solid #ff730033
+    margin-bottom:55px;
+    padding:25px;
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #181818,
+        #080808
+    );
+
+    border:1px solid #ff730033;
 }
+
 .owner-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:22px;
-padding-bottom:18px;
-border-bottom:1px solid #ffffff0d
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+    padding-bottom:18px;
+    border-bottom:1px solid #ffffff0d;
 }
-.owner-title h3{font-size:27px;color:#ff9800}
-.owner-title span{color:#777;font-size:10px;letter-spacing:2px}
+
+.owner-title h3{
+    font-size:27px;
+    color:#ff9800;
+}
+
+.owner-title span{
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
 .team-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
 }
+
 .team-card{
-background:#101010;
-border:1px solid #ff730033;
-border-radius:12px;
-overflow:hidden
+    background:#101010;
+    border:1px solid #ff730033;
+    border-radius:12px;
+    overflow:hidden;
+    transition:.25s;
 }
+
+.team-card:hover{
+    border-color:#ff7300;
+    transform:translateY(-3px);
+}
+
 .team-head{
-padding:22px;
-background:linear-gradient(90deg,#650000,#a91d00)
+    padding:22px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #650000,
+        #a91d00
+    );
 }
-.team-head h4{font-size:18px}
-.team-head p{color:#ffd000;font-size:10px;margin-top:6px}
-.team-body{padding:20px}
+
+.team-head h4{
+    font-size:18px;
+}
+
+.team-head p{
+    color:#ffd000;
+    font-size:10px;
+    margin-top:6px;
+}
+
+.team-body{
+    padding:20px;
+}
+
 .team-body button{
-width:100%;
-padding:14px;
-border:0;
-border-radius:8px;
-cursor:pointer;
-background:linear-gradient(90deg,#b90000,#ff7300);
-color:white;
-font-weight:bold
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        90deg,
+        #b90000,
+        #ff7300
+    );
+
+    color:white;
+    font-weight:bold;
 }
-.saved-count{text-align:center;color:#777;font-size:11px;margin-top:12px}
+
+.team-body button:hover{
+    transform:translateY(-2px);
+}
+
+.saved-count{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    margin-top:12px;
+}
+
 .lock-status{
-margin-top:14px;
-padding:10px;
-text-align:center;
-border-radius:7px;
-font-size:10px;
-font-weight:bold;
-letter-spacing:1px
+    margin-top:14px;
+    padding:10px;
+
+    text-align:center;
+
+    border-radius:7px;
+
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
 }
-.locked{background:#260000;color:#ff7777;border:1px solid #750000}
-.unlocked{background:#152600;color:#9dff50;border:1px solid #477500}
+
+.locked{
+    background:#260000;
+    color:#ff7777;
+    border:1px solid #750000;
+}
+
+.unlocked{
+    background:#152600;
+    color:#9dff50;
+    border:1px solid #477500;
+}
+
+/* MODAIS */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-z-index:10000;
-background:#000000e8;
-padding:25px;
-overflow-y:auto
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    z-index:10000;
+
+    background:#000000e8;
+
+    padding:25px;
+
+    overflow-y:auto;
 }
-.modal.active{display:block}
+
+.modal.active{
+    display:block;
+}
+
 .modal-box{
-width:100%;
-max-width:1200px;
-margin:20px auto;
-background:#111;
-border:1px solid #ff730066;
-border-radius:18px;
-overflow:hidden
+    width:100%;
+    max-width:1200px;
+
+    margin:20px auto;
+
+    background:#111;
+
+    border:1px solid #ff730066;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 30px 80px #000;
 }
+
 .modal-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:22px 25px;
-background:linear-gradient(90deg,#720000,#c52c00,#ed7000)
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:22px 25px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #720000,
+        #c52c00,
+        #ed7000
+    );
 }
-.modal-top h2{font-size:24px}
+
+.modal-top h2{
+    font-size:24px;
+}
+
 .close{
-width:42px;
-height:42px;
-border:0;
-border-radius:50%;
-background:#00000055;
-color:white;
-font-size:22px;
-cursor:pointer
+    width:42px;
+    height:42px;
+
+    border:0;
+    border-radius:50%;
+
+    background:#00000055;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
 }
-.modal-content{padding:25px}
+
+.close:hover{
+    background:#000;
+}
+
+.modal-content{
+    padding:25px;
+}
+
 .password-box{
-max-width:500px;
-margin:100px auto;
-padding:35px;
-background:#111;
-border:1px solid #ff730066;
-border-radius:18px;
-text-align:center
+    max-width:500px;
+    margin:100px auto;
+    padding:35px;
+
+    background:#111;
+
+    border:1px solid #ff730066;
+
+    border-radius:18px;
+
+    text-align:center;
 }
-.password-box h2{color:#ff9800;margin-bottom:15px}
-.password-box p{color:#777;line-height:1.6;margin-bottom:25px}
+
+.password-box h2{
+    color:#ff9800;
+    margin-bottom:15px;
+}
+
+.password-box p{
+    color:#777;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
 .password-input{
-width:100%;
-padding:15px;
-border-radius:8px;
-border:1px solid #ffffff20;
-background:#1b1b1b;
-color:white;
-outline:none;
-font-size:16px;
-text-align:center
+    width:100%;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    border:1px solid #ffffff20;
+
+    background:#1b1b1b;
+
+    color:white;
+
+    outline:none;
+
+    font-size:16px;
+
+    text-align:center;
 }
-.password-actions{display:flex;gap:10px;margin-top:15px}
+
+.password-input:focus{
+    border-color:#ff7300;
+}
+
+.password-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
 .password-actions button{
-flex:1;
-padding:14px;
-border:0;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold
+    flex:1;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
-.btn-orange{background:#ff7300;color:#fff}
-.btn-dark{background:#292929;color:#aaa}
+
+.btn-orange{
+    background:#ff7300;
+    color:#fff;
+}
+
+.btn-dark{
+    background:#292929;
+    color:#aaa;
+}
+
+/* POSIÇÕES */
 
 .position-section{
-margin-bottom:25px;
-background:#0b0b0b;
-border:1px solid #ff730033;
-border-radius:12px;
-padding:20px
+    margin-bottom:25px;
+
+    background:#0b0b0b;
+
+    border:1px solid #ff730033;
+
+    border-radius:12px;
+
+    padding:20px;
 }
+
 .position-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;
-padding-bottom:12px;
-border-bottom:1px solid #ffffff0d
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #ffffff0d;
 }
-.position-title h4{color:#ff9800;font-size:18px}
-.position-title span{color:#777;font-size:11px}
+
+.position-title h4{
+    color:#ff9800;
+    font-size:18px;
+}
+
+.position-title span{
+    color:#777;
+    font-size:11px;
+}
+
 .name-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
 }
+
 .player-input{
-width:100%;
-padding:14px 15px;
-background:#171717;
-color:#fff;
-border:1px solid #ffffff15;
-border-radius:8px;
-outline:none;
-font-size:14px
+    width:100%;
+
+    padding:14px 15px;
+
+    background:#171717;
+
+    color:#fff;
+
+    border:1px solid #ffffff15;
+
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:.2s;
 }
-.squad-intro{text-align:center;margin-bottom:25px;color:#777}
-.squad-intro strong{color:#ffd000}
+
+.player-input::placeholder{
+    color:#555;
+}
+
+.player-input:focus{
+    border-color:#ff7300;
+    background:#1c120d;
+}
+
+.squad-intro{
+    text-align:center;
+    margin-bottom:25px;
+    color:#777;
+}
+
+.squad-intro strong{
+    color:#ffd000;
+}
 
 .modal-actions{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-padding-top:20px;
-margin-top:10px;
-border-top:1px solid #ffffff0d
-}
-.action{
-padding:13px 20px;
-border:0;
-border-radius:7px;
-cursor:pointer;
-font-weight:bold
-}
-.save{background:#ff7300;color:white}
-.clear{background:#450000;color:#ff7777}
-.cancel{background:#252525;color:#aaa}
-.lock{background:#550000;color:#fff}
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
 
-.rules{max-width:1000px;margin:auto}
+    padding-top:20px;
+    margin-top:10px;
+
+    border-top:1px solid #ffffff0d;
+}
+
+.action{
+    padding:13px 20px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.save{
+    background:#ff7300;
+    color:white;
+}
+
+.clear{
+    background:#450000;
+    color:#ff7777;
+}
+
+.cancel{
+    background:#252525;
+    color:#aaa;
+}
+
+.lock{
+    background:#550000;
+    color:#fff;
+}
+
+.action:hover{
+    opacity:.85;
+}
+
+/* REGRAS */
+
+.rules{
+    max-width:1000px;
+    margin:auto;
+}
+
 .rule{
-display:grid;
-grid-template-columns:80px 1fr;
-margin-bottom:18px;
-background:#131313;
-border:1px solid #ff730033;
-border-radius:15px;
-overflow:hidden
+    display:grid;
+    grid-template-columns:80px 1fr;
+
+    margin-bottom:18px;
+
+    background:#131313;
+
+    border:1px solid #ff730033;
+
+    border-radius:15px;
+
+    overflow:hidden;
 }
+
 .rule-number{
-display:flex;
-align-items:center;
-justify-content:center;
-background:linear-gradient(#a90000,#570000);
-color:#ffd000;
-font-size:24px;
-font-weight:bold
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(
+        #a90000,
+        #570000
+    );
+
+    color:#ffd000;
+
+    font-size:24px;
+    font-weight:bold;
 }
-.rule-text{padding:25px}
-.rule-text h3{color:#ff9800;margin-bottom:13px}
-.rule-text p{color:#bbb;line-height:1.7;margin-bottom:10px}
-.formations{display:flex;flex-wrap:wrap;gap:8px;margin:15px 0}
+
+.rule-text{
+    padding:25px;
+}
+
+.rule-text h3{
+    color:#ff9800;
+    margin-bottom:13px;
+}
+
+.rule-text p{
+    color:#bbb;
+    line-height:1.7;
+    margin-bottom:10px;
+}
+
+.formations{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:15px 0;
+}
+
 .formations span{
-padding:8px 13px;
-background:#191919;
-color:#ff9800;
-border:1px solid #ff730033;
-border-radius:6px
+    padding:8px 13px;
+
+    background:#191919;
+
+    color:#ff9800;
+
+    border:1px solid #ff730033;
+
+    border-radius:6px;
+}
+
+/* RANK */
+
+.rank-box{
+    margin-bottom:50px;
+}
+
+.rank-box:last-child{
+    margin-bottom:0;
+}
+
+.rank-box-title{
+    margin-bottom:20px;
+    padding:22px;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #720000,
+        #b72000,
+        #720000
+    );
+
+    border:1px solid #ff730055;
+}
+
+.rank-box-title h3{
+    color:#ffd000;
+    font-size:24px;
+}
+
+.rank-box-title p{
+    color:#ddd;
+    font-size:12px;
+    margin-top:8px;
 }
 
 .rank-wrap{
-overflow-x:auto;
-border:1px solid #ff730044;
-border-radius:15px
+    overflow-x:auto;
+    border:1px solid #ff730044;
+    border-radius:15px;
 }
-table{width:100%;min-width:700px;border-collapse:collapse}
+
+table{
+    width:100%;
+    min-width:750px;
+    border-collapse:collapse;
+}
+
 th{
-padding:18px;
-background:#720000;
-color:#ffd000;
-font-size:11px
+    padding:18px;
+    background:#720000;
+    color:#ffd000;
+    font-size:11px;
 }
+
 td{
-padding:18px;
-text-align:center;
-border-bottom:1px solid #ffffff08
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #ffffff08;
 }
-.player{text-align:left;font-weight:bold}
-.points{color:#ffd000;font-size:20px;font-weight:bold}
-.rank-info{text-align:center;margin-top:20px;color:#777;font-size:12px}
 
-/* CAMPEONATO */
+.player{
+    text-align:left;
+    font-weight:bold;
+}
 
-.championship-box{
-max-width:1100px;
-margin:auto
+.points{
+    color:#ffd000;
+    font-size:20px;
+    font-weight:bold;
 }
-.championship-table-wrap{
-overflow-x:auto;
-border:1px solid #ff730055;
-border-radius:15px;
-background:#101010
+
+.edit-rank{
+    padding:9px 14px;
+    border:0;
+    border-radius:6px;
+    background:#ff7300;
+    color:#fff;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:11px;
 }
-.championship-table{
-min-width:800px
+
+.edit-rank:hover{
+    background:#ff9800;
 }
-.championship-table th{
-background:linear-gradient(90deg,#8b0000,#d74300)
+
+.rank-info{
+    text-align:center;
+    margin-top:20px;
+    color:#777;
+    font-size:12px;
 }
-.championship-table td{
-font-size:14px
+
+.rank-last-change{
+    margin-top:15px;
+    padding:15px;
+
+    background:#0d0d0d;
+
+    border:1px solid #ffffff0d;
+
+    border-radius:10px;
+
+    color:#777;
+
+    font-size:11px;
+
+    text-align:center;
 }
-.championship-table input{
-width:70px;
-padding:10px;
-background:#181818;
-border:1px solid #ffffff18;
-border-radius:6px;
-color:#fff;
-text-align:center;
-outline:none
+
+.rank-history{
+    margin-top:20px;
 }
-.championship-table input:focus{
-border-color:#ff7300
+
+.rank-history summary{
+    cursor:pointer;
+
+    padding:15px;
+
+    background:#111;
+
+    border:1px solid #ff730033;
+
+    border-radius:8px;
+
+    color:#ff9800;
+
+    font-weight:bold;
 }
-.championship-points{
-font-size:20px;
-font-weight:bold;
-color:#ffd000
+
+.history-list{
+    margin-top:10px;
 }
-.championship-controls{
-margin-top:20px;
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap
-}
-.championship-controls button{
-padding:13px 22px;
-border:0;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold
-}
-.btn-champ-save{background:#ff7300;color:#fff}
-.btn-champ-reset{background:#450000;color:#ff7777}
-.last-change{
-margin-top:20px;
-padding:15px;
-background:#121212;
-border:1px solid #ff730033;
-border-radius:10px;
-text-align:center;
-color:#777;
-font-size:12px
-}
-.last-change strong{color:#ff9800}
-.history{
-margin-top:20px;
-background:#101010;
-border:1px solid #ffffff0d;
-border-radius:12px;
-padding:20px
-}
-.history h3{
-color:#ff9800;
-margin-bottom:15px
-}
+
 .history-item{
-padding:12px;
-border-bottom:1px solid #ffffff08;
-color:#999;
-font-size:12px
+    padding:14px;
+
+    margin-bottom:8px;
+
+    background:#101010;
+
+    border-left:3px solid #ff7300;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    line-height:1.6;
 }
-.history-item strong{color:#ffd000}
+
+.history-item strong{
+    color:#ffd000;
+}
+
+.stat-input{
+    width:70px;
+    padding:8px;
+
+    text-align:center;
+
+    background:#181818;
+    color:#fff;
+
+    border:1px solid #ffffff20;
+    border-radius:6px;
+}
+
+.stat-input:focus{
+    border-color:#ff7300;
+    outline:none;
+}
+
+/* JORNAL */
 
 .news{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
+
 .news-box{
-background:#141414;
-border:1px solid #ff730044;
-border-radius:14px;
-overflow:hidden
+    background:#141414;
+    border:1px solid #ff730044;
+    border-radius:14px;
+    overflow:hidden;
 }
+
 .news-box summary{
-cursor:pointer;
-list-style:none;
-padding:22px;
-background:linear-gradient(90deg,#720000,#c52c00);
-font-weight:bold
+    cursor:pointer;
+    list-style:none;
+    padding:22px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #720000,
+        #c52c00
+    );
+
+    font-weight:bold;
 }
+
 .news-content{
-min-height:180px;
-padding:30px;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-color:#777
+    min-height:180px;
+    padding:30px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    color:#777;
 }
+
+/* TEMPORADAS */
 
 .seasons{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
+
 .season{
-padding:30px;
-background:#141414;
-border:1px solid #ffffff09;
-border-radius:14px
+    padding:30px;
+
+    background:#141414;
+
+    border:1px solid #ffffff09;
+
+    border-radius:14px;
 }
-.season h3{color:#ff9800;margin-bottom:10px}
-.year{color:#ff7300;font-size:42px;font-weight:900}
+
+.season h3{
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+.year{
+    color:#ff7300;
+    font-size:42px;
+    font-weight:900;
+}
+
+/* DOWNLOAD */
 
 .download{
-max-width:750px;
-margin:auto;
-padding:50px;
-text-align:center;
-background:#121212;
-border:1px solid #ff730055;
-border-radius:18px
+    max-width:750px;
+    margin:auto;
+
+    padding:50px;
+
+    text-align:center;
+
+    background:#121212;
+
+    border:1px solid #ff730055;
+
+    border-radius:18px;
 }
-.download h3{color:#ff9800;margin-bottom:15px}
-.download p{color:#777;margin-bottom:25px}
+
+.download h3{
+    color:#ff9800;
+    margin-bottom:15px;
+}
+
+.download p{
+    color:#777;
+    margin-bottom:25px;
+}
+
 .download a{
-display:inline-block;
-padding:16px 35px;
-background:linear-gradient(90deg,#b90000,#ff7300);
-border-radius:8px;
-font-weight:bold;
-text-decoration:none;
-color:#fff
+    display:inline-block;
+
+    padding:16px 35px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #b90000,
+        #ff7300
+    );
+
+    border-radius:8px;
+
+    font-weight:bold;
+    text-decoration:none;
+
+    color:#fff;
 }
+
+/* FOOTER */
 
 footer{
-padding:50px 20px;
-text-align:center;
-border-top:1px solid #ff730044;
-color:#555
-}
-.footer-logo{
-color:#ff7300;
-font-size:24px;
-font-weight:bold;
-margin-bottom:12px
+    padding:50px 20px;
+    text-align:center;
+    border-top:1px solid #ff730044;
+    color:#555;
 }
 
-@media(max-width:900px){
-.team-grid{grid-template-columns:1fr 1fr}
-.seasons{grid-template-columns:1fr}
+.footer-logo{
+    color:#ff7300;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:12px;
 }
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+    .team-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .seasons{
+        grid-template-columns:1fr;
+    }
+
+}
+
 @media(max-width:650px){
-.navbar{justify-content:center}
-.logo{display:none}
-.nav-links{justify-content:center;gap:10px}
-.team-grid{grid-template-columns:1fr}
-.name-grid{grid-template-columns:1fr}
-.rule{grid-template-columns:55px 1fr}
-.news{grid-template-columns:1fr}
-.modal{padding:8px}
-.modal-top h2{font-size:18px}
-.modal-actions{flex-direction:column}
-.action{width:100%}
-.password-box{margin:60px auto}
-.player-list-head{flex-direction:column;align-items:stretch}
-.list-access{width:100%}
+
+    .navbar{
+        justify-content:center;
+    }
+
+    .logo{
+        display:none;
+    }
+
+    .nav-links{
+        justify-content:center;
+        gap:10px;
+    }
+
+    .team-grid{
+        grid-template-columns:1fr;
+    }
+
+    .name-grid{
+        grid-template-columns:1fr;
+    }
+
+    .rule{
+        grid-template-columns:55px 1fr;
+    }
+
+    .news{
+        grid-template-columns:1fr;
+    }
+
+    .modal{
+        padding:8px;
+    }
+
+    .modal-top h2{
+        font-size:18px;
+    }
+
+    .modal-actions{
+        flex-direction:column;
+    }
+
+    .action{
+        width:100%;
+    }
+
+    .password-box{
+        margin:60px auto;
+    }
+
+    .player-list-head{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .list-access{
+        width:100%;
+    }
+
 }
 </style>
 </head>
@@ -698,680 +1376,1407 @@ margin-bottom:12px
 <body>
 
 <nav class="navbar">
-<div class="logo">🔥 BOMBA <span>PETCH</span></div>
-<div class="nav-links">
-<a href="#lendas">LENDAS</a>
-<a href="#listas">📝 LISTAS</a>
-<a href="#elencos">⚽ ELENCOS</a>
-<a href="#regras">REGRAS</a>
-<a href="#ranking">RANK</a>
-<a href="#campeonato">🏆 CAMPEONATO</a>
-<a href="#jornal">JORNAL</a>
-<a href="#temporadas">TEMPORADAS</a>
-<a href="#download">DOWNLOAD</a>
-</div>
+
+    <div class="logo">
+        🔥 BOMBA <span>PETCH</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="#lendas">LENDAS</a>
+        <a href="#listas">📝 LISTAS</a>
+        <a href="#elencos">⚽ ELENCOS</a>
+        <a href="#regras">REGRAS</a>
+        <a href="#ranking">RANK</a>
+        <a href="#jornal">JORNAL</a>
+        <a href="#temporadas">TEMPORADAS</a>
+        <a href="#download">DOWNLOAD</a>
+    </div>
+
 </nav>
 
+
 <section class="hero">
-<div class="hero-content">
-<div class="edition">EDIÇÃO ESPECIAL • 2026</div>
-<h1>BOMBA PETCH</h1>
-<h2>RAFAGAMER 2026</h2>
-<p class="hero-subtitle">A HISTÓRIA • AS LENDAS • A COMPETIÇÃO</p>
-<a class="hero-button" href="#elencos">⚽ MONTAR ELENCOS</a>
-</div>
+
+    <div class="hero-content">
+
+        <div class="edition">
+            EDIÇÃO ESPECIAL • 2026
+        </div>
+
+        <h1>BOMBA PETCH</h1>
+
+        <h2>RAFAGAMER 2026</h2>
+
+        <p class="hero-subtitle">
+            A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
+        </p>
+
+        <a class="hero-button" href="#elencos">
+            ⚽ MONTAR ELENCOS
+        </a>
+
+    </div>
+
 </section>
+
 
 <section class="season-return">
-<div class="return-label">🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥</div>
-<h2>RETORNO DA NOVA TEMPORADA 2026</h2>
-<div class="return-date">📅 <span>17/08/2026</span> &nbsp;•&nbsp; 🕖 <span>19:00</span></div>
-<div class="return-place">📍 Local: <strong>Rua Professor Raul Duarte, 245</strong></div>
+
+    <div class="return-label">
+        🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
+    </div>
+
+    <h2>
+        RETORNO DA NOVA TEMPORADA 2026
+    </h2>
+
+    <div class="return-date">
+        📅 <span>17/08/2026</span>
+        &nbsp; • &nbsp;
+        🕖 <span>19:00</span>
+    </div>
+
+    <div class="return-place">
+        📍 Local:
+        <strong>
+            Rua Professor Raul Duarte, 245
+        </strong>
+    </div>
+
 </section>
+
+
+<!-- LENDAS -->
 
 <section class="section" id="lendas">
+
 <div class="container">
-<div class="section-header">
-<small>HALL DA FAMA</small>
-<h2>🏆 AS LENDAS</h2>
-<p>Os jogadores que marcaram a história do BOMBA PETCH.</p>
+
+    <div class="section-header">
+
+        <small>HALL DA FAMA</small>
+
+        <h2>🏆 AS LENDAS</h2>
+
+        <p>
+            Os jogadores que marcaram a história do BOMBA PETCH.
+        </p>
+
+    </div>
+
+    <div class="legend-grid">
+
+        <details class="legend">
+
+            <summary>
+                🔥 RAFAGAMER
+                <span class="trophies">🏆 🏆</span>
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>🔥 RAFAGAMER</h3>
+
+                <p>
+                    Conhecido por seu estilo bonito,
+                    técnico e cheio de personalidade.
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        2 temporadas e 2 troféus.
+                    </span>
+                </p>
+
+            </div>
+
+        </details>
+
+
+        <details class="legend">
+
+            <summary>
+                👑 BERNA
+                <span class="trophies">🏆</span>
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>👑 BERNA</h3>
+
+                <p>
+                    Jogador versátil, conhecido principalmente
+                    pelas jogadas aéreas.
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        Campeão da última temporada.
+                    </span>
+                </p>
+
+            </div>
+
+        </details>
+
+
+        <details class="legend">
+
+            <summary>
+                ⚡ CRISTIAN
+                <span class="trophies">🏆 🏆 🏆</span>
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>⚡ CRISTIAN</h3>
+
+                <p>
+                    Estilo defensivo e estratégico,
+                    utilizando bastante o contra-ataque.
+                </p>
+
+                <p>
+                    <span class="highlight">
+                        3 temporadas e 3 troféus.
+                    </span>
+                </p>
+
+            </div>
+
+        </details>
+
+
+        <details class="legend">
+
+            <summary>
+                🎯 LEANDRO
+            </summary>
+
+            <div class="legend-body">
+
+                <h3>🎯 LEANDRO</h3>
+
+                <p>
+                    Jogador versátil, costuma jogar
+                    recuado e também avançar.
+                </p>
+
+                <p>
+                    Destaque para os
+                    <span class="highlight">
+                        chutes de longa distância.
+                    </span>
+                </p>
+
+            </div>
+
+        </details>
+
+    </div>
+
 </div>
 
-<div class="legend-grid">
-
-<details class="legend">
-<summary>🔥 RAFAGAMER <span class="trophies">🏆 🏆</span></summary>
-<div class="legend-body">
-<h3>🔥 RAFAGAMER</h3>
-<p>Conhecido por seu estilo bonito, técnico e cheio de personalidade.</p>
-<p><span class="highlight">2 temporadas e 2 troféus.</span></p>
-</div>
-</details>
-
-<details class="legend">
-<summary>👑 BERNA <span class="trophies">🏆</span></summary>
-<div class="legend-body">
-<h3>👑 BERNA</h3>
-<p>Jogador versátil, conhecido principalmente pelas jogadas aéreas.</p>
-<p><span class="highlight">Campeão da última temporada.</span></p>
-</div>
-</details>
-
-<details class="legend">
-<summary>⚡ CRISTIAN <span class="trophies">🏆 🏆 🏆</span></summary>
-<div class="legend-body">
-<h3>⚡ CRISTIAN</h3>
-<p>Estilo defensivo e estratégico, utilizando bastante o contra-ataque.</p>
-<p><span class="highlight">3 temporadas e 3 troféus.</span></p>
-</div>
-</details>
-
-<details class="legend">
-<summary>🎯 LEANDRO</summary>
-<div class="legend-body">
-<h3>🎯 LEANDRO</h3>
-<p>Jogador versátil, costuma jogar recuado e também avançar.</p>
-<p>Destaque para os <span class="highlight">chutes de longa distância.</span></p>
-</div>
-</details>
-
-</div>
-</div>
 </section>
+
+
+<!-- LISTAS -->
 
 <section class="section" id="listas">
+
 <div class="container">
-<div class="section-header">
-<small>LISTA PRIVADA</small>
-<h2>📝 LISTA DE JOGADORES</h2>
-<p>Anote os jogadores que você quer lembrar durante o “tirar times”.</p>
+
+    <div class="section-header">
+
+        <small>LISTA PRIVADA</small>
+
+        <h2>📝 LISTA DE JOGADORES</h2>
+
+        <p>
+            Anote os jogadores que você quer lembrar
+            durante o “tirar times”.
+        </p>
+
+    </div>
+
+
+    <div id="playerLists"></div>
+
 </div>
 
-<div id="playersLists"></div>
-</div>
 </section>
+
+
+<!-- ELENCOS -->
 
 <section class="section" id="elencos">
+
 <div class="container">
-<div class="section-header">
-<small>SISTEMA DE ELENCOS</small>
-<h2>⚽ ELENCOS</h2>
-<p>4 players • 3 times cada • 22 jogadores por time</p>
+
+    <div class="section-header">
+
+        <small>SISTEMA DE ELENCOS</small>
+
+        <h2>⚽ ELENCOS</h2>
+
+        <p>
+            4 players • 3 times cada • 22 jogadores por time
+        </p>
+
+    </div>
+
+    <div class="owner">
+
+        <div class="owner-title">
+            <h3>🔥 RAFAGAMER</h3>
+            <span>3 TIMES</span>
+        </div>
+
+        <div class="team-grid" id="teams-rafagamer"></div>
+
+    </div>
+
+
+    <div class="owner">
+
+        <div class="owner-title">
+            <h3>👑 BERNA</h3>
+            <span>3 TIMES</span>
+        </div>
+
+        <div class="team-grid" id="teams-berna"></div>
+
+    </div>
+
+
+    <div class="owner">
+
+        <div class="owner-title">
+            <h3>⚡ CRISTIAN</h3>
+            <span>3 TIMES</span>
+        </div>
+
+        <div class="team-grid" id="teams-cristian"></div>
+
+    </div>
+
+
+    <div class="owner">
+
+        <div class="owner-title">
+            <h3>🎯 LEANDRO</h3>
+            <span>3 TIMES</span>
+        </div>
+
+        <div class="team-grid" id="teams-leandro"></div>
+
+    </div>
+
 </div>
 
-<div id="ownersTeams"></div>
-</div>
 </section>
+
+
+<!-- MODAL SENHA -->
 
 <div class="modal" id="passwordModal">
-<div class="password-box">
-<h2 id="passwordTitle">🔒 ACESSO</h2>
-<p id="passwordMessage">Digite a senha.</p>
-<input type="password" id="passwordInput" class="password-input" placeholder="Digite a senha">
-<div class="password-actions">
-<button class="btn-dark" onclick="closePasswordModal()">CANCELAR</button>
-<button class="btn-orange" onclick="submitAccessPassword()">🔓 CONTINUAR</button>
+
+    <div class="password-box">
+
+        <h2 id="passwordTitle">
+            🔒 ACESSO
+        </h2>
+
+        <p id="passwordMessage">
+            Digite a senha.
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="Digite a senha"
+            autocomplete="off"
+        >
+
+        <div class="password-actions">
+
+            <button
+                class="btn-dark"
+                onclick="closePasswordModal()">
+                CANCELAR
+            </button>
+
+            <button
+                class="btn-orange"
+                onclick="submitPassword()">
+                🔓 CONTINUAR
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
-</div>
-</div>
+
+
+<!-- MODAL ELENCO -->
 
 <div class="modal" id="squadModal">
-<div class="modal-box">
-<div class="modal-top">
-<h2 id="modalTitle">⚽ Montar elenco</h2>
-<button class="close" onclick="closeSquad()">×</button>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h2 id="modalTitle">
+                ⚽ Montar elenco
+            </h2>
+
+            <button class="close" onclick="closeSquad()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="modal-content">
+
+            <div class="squad-intro">
+
+                Você pode
+                <strong>DIGITAR O NOME QUE QUISER</strong>
+                nos 22 espaços.
+
+            </div>
+
+            <div id="positions"></div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="action clear"
+                    onclick="clearSquad()">
+                    🗑 LIMPAR
+                </button>
+
+                <button
+                    class="action cancel"
+                    onclick="closeSquad()">
+                    FECHAR
+                </button>
+
+                <button
+                    class="action lock"
+                    onclick="lockCurrentTeam()">
+                    🔒 BLOQUEAR ELENCO
+                </button>
+
+                <button
+                    class="action save"
+                    onclick="saveSquad()">
+                    💾 SALVAR
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
-<div class="modal-content">
-<div class="squad-intro">
-Você pode <strong>DIGITAR O NOME QUE QUISER</strong> nos 22 espaços.
-</div>
-<div id="positions"></div>
-<div class="modal-actions">
-<button class="action clear" onclick="clearSquad()">🗑 LIMPAR</button>
-<button class="action cancel" onclick="closeSquad()">FECHAR</button>
-<button class="action save" onclick="saveSquad()">💾 SALVAR</button>
-</div>
-</div>
-</div>
-</div>
+
+
+<!-- MODAL LISTA -->
 
 <div class="modal" id="listModal">
-<div class="modal-box">
-<div class="modal-top">
-<h2 id="listModalTitle">📝 Lista de jogadores</h2>
-<button class="close" onclick="closeList()">×</button>
+
+    <div class="modal-box">
+
+        <div class="modal-top">
+
+            <h2 id="listModalTitle">
+                📝 Lista de jogadores
+            </h2>
+
+            <button class="close" onclick="closeList()">
+                ×
+            </button>
+
+        </div>
+
+        <div class="list-modal-content">
+
+            <div id="listCategories"></div>
+
+            <div class="modal-actions">
+
+                <button
+                    class="action clear"
+                    onclick="clearList()">
+                    🗑 LIMPAR LISTA
+                </button>
+
+                <button
+                    class="action cancel"
+                    onclick="closeList()">
+                    FECHAR
+                </button>
+
+                <button
+                    class="action lock"
+                    onclick="lockCurrentList()">
+                    🔒 BLOQUEAR LISTA
+                </button>
+
+                <button
+                    class="action save"
+                    onclick="saveList()">
+                    💾 SALVAR LISTA
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
-<div class="list-modal-content">
-<div id="listCategories"></div>
-<div class="modal-actions">
-<button class="action clear" onclick="clearList()">🗑 LIMPAR LISTA</button>
-<button class="action cancel" onclick="closeList()">FECHAR</button>
-<button class="action save" onclick="saveList()">💾 SALVAR LISTA</button>
+
+
+<!-- MODAL ALTERAÇÃO DE RANK -->
+
+<div class="modal" id="rankModal">
+
+    <div class="password-box">
+
+        <h2>
+            🔐 ALTERAR TABELA
+        </h2>
+
+        <p id="rankModalMessage">
+            Digite a senha do jogador.
+        </p>
+
+        <input
+            type="password"
+            id="rankPasswordInput"
+            class="password-input"
+            placeholder="Senha do jogador"
+            autocomplete="off"
+        >
+
+        <div class="password-actions">
+
+            <button
+                class="btn-dark"
+                onclick="closeRankModal()">
+                CANCELAR
+            </button>
+
+            <button
+                class="btn-orange"
+                onclick="authenticateRankChange()">
+                🔓 CONTINUAR
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
+
+
+<!-- MODAL EDIÇÃO DA TABELA -->
+
+<div class="modal" id="editRankModal">
+
+    <div class="password-box">
+
+        <h2 id="editRankTitle">
+            ✏️ ALTERAR RESULTADOS
+        </h2>
+
+        <p>
+            Altere os números deste jogador.
+        </p>
+
+        <input
+            type="number"
+            id="editV"
+            class="stat-input"
+            min="0"
+            placeholder="V"
+        >
+
+        <br><br>
+
+        <input
+            type="number"
+            id="editE"
+            class="stat-input"
+            min="0"
+            placeholder="E"
+        >
+
+        <br><br>
+
+        <input
+            type="number"
+            id="editD"
+            class="stat-input"
+            min="0"
+            placeholder="D"
+        >
+
+        <div class="password-actions">
+
+            <button
+                class="btn-dark"
+                onclick="closeEditRankModal()">
+                CANCELAR
+            </button>
+
+            <button
+                class="btn-orange"
+                onclick="saveRankChange()">
+                💾 SALVAR
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
-</div>
-</div>
+
+
+<!-- REGRAS -->
 
 <section class="section" id="regras">
+
 <div class="container">
-<div class="section-header">
-<small>REGULAMENTO</small>
-<h2>🔥 REGRAS BOMBA PETCH</h2>
-</div>
-<div class="rules">
 
-<div class="rule">
-<div class="rule-number">01</div>
-<div class="rule-text">
-<h3>🏆 DESISTÊNCIA</h3>
-<p>Não pode desistir no meio do campeonato.</p>
-<p>Só poderá desistir quando os jogos restantes não tiverem mais interferência no campeonato.</p>
-<p>Desistência forçada: <strong>perda de 3 pontos no Rank.</strong></p>
-</div>
+    <div class="section-header">
+
+        <small>REGULAMENTO</small>
+
+        <h2>🔥 REGRAS BOMBA PETCH</h2>
+
+    </div>
+
+    <div class="rules">
+
+        <div class="rule">
+            <div class="rule-number">01</div>
+            <div class="rule-text">
+                <h3>🏆 DESISTÊNCIA</h3>
+
+                <p>
+                    Não pode desistir no meio do campeonato.
+                </p>
+
+                <p>
+                    Só poderá desistir quando os jogos restantes
+                    não tiverem mais interferência no campeonato.
+                </p>
+
+                <p>
+                    Desistência forçada:
+                    <strong>perda de 3 pontos no Rank.</strong>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="rule">
+            <div class="rule-number">02</div>
+
+            <div class="rule-text">
+                <h3>🚫 OFENSAS E BRIGAS</h3>
+
+                <p>
+                    Proibido ofensas, xingamentos,
+                    brigas constantes e zoeira contínua
+                    de forma que faça alguém desistir.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="rule">
+            <div class="rule-number">03</div>
+
+            <div class="rule-text">
+                <h3>🎯 CHUTE DE PRIMEIRINHA</h3>
+
+                <p>
+                    O chute de primeirinha valerá apenas
+                    <strong>1 vez por jogo.</strong>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="rule">
+            <div class="rule-number">04</div>
+
+            <div class="rule-text">
+                <h3>🎮 TÁTICAS</h3>
+
+                <p>
+                    Só poderão ser usadas as formações
+                    oferecidas pelo próprio jogo.
+                </p>
+
+                <div class="formations">
+                    <span>4-5-1</span>
+                    <span>3-5-2</span>
+                    <span>4-3-3</span>
+                    <span>4-4-2</span>
+                </div>
+
+                <p>
+                    Proibido mexer nas formações,
+                    mover jogadores, utilizar atalhos para
+                    atacar/defender ou sobrepor jogadores na área.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="rule">
+            <div class="rule-number">05</div>
+
+            <div class="rule-text">
+                <h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
+
+                <p>
+                    EXTREMAMENTE PROIBIDO alterar jogadores
+                    ou criar jogadores.
+                </p>
+
+                <p>
+                    Caso seja pego:
+                    <strong>perderá estrelas.</strong>
+                </p>
+            </div>
+        </div>
+
+    </div>
+
 </div>
 
-<div class="rule">
-<div class="rule-number">02</div>
-<div class="rule-text">
-<h3>🚫 OFENSAS E BRIGAS</h3>
-<p>Proibido ofensas, xingamentos, brigas constantes e zoeira contínua de forma que faça alguém desistir.</p>
-</div>
-</div>
-
-<div class="rule">
-<div class="rule-number">03</div>
-<div class="rule-text">
-<h3>🎯 CHUTE DE PRIMEIRINHA</h3>
-<p>O chute de primeirinha valerá apenas <strong>1 vez por jogo.</strong></p>
-</div>
-</div>
-
-<div class="rule">
-<div class="rule-number">04</div>
-<div class="rule-text">
-<h3>🎮 TÁTICAS</h3>
-<p>Só poderão ser usadas as formações oferecidas pelo próprio jogo.</p>
-<div class="formations">
-<span>4-5-1</span>
-<span>3-5-2</span>
-<span>4-3-3</span>
-<span>4-4-2</span>
-</div>
-<p>Proibido mexer nas formações, mover jogadores, utilizar atalhos para atacar/defender ou sobrepor jogadores na área.</p>
-</div>
-</div>
-
-<div class="rule">
-<div class="rule-number">05</div>
-<div class="rule-text">
-<h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
-<p>EXTREMAMENTE PROIBIDO alterar jogadores ou criar jogadores.</p>
-<p>Caso seja pego: <strong>perderá estrelas.</strong></p>
-</div>
-</div>
-
-</div>
-</div>
 </section>
 
-<!-- RANK DO MELHOR DO ANO -->
+
+<!-- =====================================================
+     DUAS TABELAS
+===================================================== -->
 
 <section class="section" id="ranking">
+
 <div class="container">
 
-<div class="section-header">
-<small>RANK OFICIAL</small>
-<h2>🏆 RANK DO MELHOR DO ANO</h2>
-<p>Esta tabela é independente da classificação do campeonato.</p>
+    <div class="section-header">
+
+        <small>CLASSIFICAÇÕES OFICIAIS</small>
+
+        <h2>🏆 RANKING</h2>
+
+        <p>
+            As duas tabelas possuem pontuação e função diferentes.
+        </p>
+
+    </div>
+
+
+    <!-- TABELA 1 -->
+
+    <div class="rank-box">
+
+        <div class="rank-box-title">
+
+            <h3>
+                🏆 RANK DO MELHOR DO ANO
+            </h3>
+
+            <p>
+                Vitória +2 • Empate +1 • Derrota -1 • Desistência -3
+            </p>
+
+        </div>
+
+        <div class="rank-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>POS.</th>
+                        <th>PLAYER</th>
+                        <th>V</th>
+                        <th>E</th>
+                        <th>D</th>
+                        <th>PT</th>
+                        <th>ALTERAR</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="yearRankBody"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="rank-last-change" id="yearLastChange">
+            Nenhuma alteração registrada.
+        </div>
+
+        <details class="rank-history">
+
+            <summary>
+                📜 HISTÓRICO DE ALTERAÇÕES
+            </summary>
+
+            <div
+                class="history-list"
+                id="yearHistory">
+            </div>
+
+        </details>
+
+        <div class="rank-info">
+
+            Vitória = +2
+            &nbsp; • &nbsp;
+            Empate = +1
+            &nbsp; • &nbsp;
+            Derrota = -1
+            &nbsp; • &nbsp;
+            Desistência = -3
+
+        </div>
+
+    </div>
+
+
+    <!-- TABELA 2 -->
+
+    <div class="rank-box">
+
+        <div class="rank-box-title">
+
+            <h3>
+                🏅 TABELA DO CAMPEONATO
+            </h3>
+
+            <p>
+                Vitória +3 • Empate +1 • Derrota -1
+            </p>
+
+        </div>
+
+        <div class="rank-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>POS.</th>
+                        <th>PLAYER</th>
+                        <th>V</th>
+                        <th>E</th>
+                        <th>D</th>
+                        <th>PT</th>
+                        <th>ALTERAR</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="championshipBody"></tbody>
+
+            </table>
+
+        </div>
+
+        <div class="rank-last-change" id="championshipLastChange">
+            Nenhuma alteração registrada.
+        </div>
+
+        <details class="rank-history">
+
+            <summary>
+                📜 HISTÓRICO DE ALTERAÇÕES
+            </summary>
+
+            <div
+                class="history-list"
+                id="championshipHistory">
+            </div>
+
+        </details>
+
+        <div class="rank-info">
+
+            Vitória = +3
+            &nbsp; • &nbsp;
+            Empate = +1
+            &nbsp; • &nbsp;
+            Derrota = -1
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="rank-wrap">
-<table>
-<thead>
-<tr>
-<th>POS.</th>
-<th>PLAYER</th>
-<th>V</th>
-<th>E</th>
-<th>D</th>
-<th>PT</th>
-</tr>
-</thead>
-<tbody id="annualRankBody"></tbody>
-</table>
-</div>
-
-<div class="rank-info">
-Vitória = +2 &nbsp;•&nbsp;
-Empate = +1 &nbsp;•&nbsp;
-Derrota = -1 &nbsp;•&nbsp;
-Desistência = -3
-</div>
-
-</div>
 </section>
 
-<!-- SEGUNDA TABELA -->
 
-<section class="section" id="campeonato">
-<div class="container">
-
-<div class="section-header">
-<small>CLASSIFICAÇÃO OFICIAL</small>
-<h2>🏅 CAMPEONATO 2026</h2>
-<p>
-Tabela exclusiva do campeonato.
-<br>
-Vitória = +3 • Empate = +1 • Derrota = -1
-</p>
-</div>
-
-<div class="championship-box">
-
-<div class="championship-table-wrap">
-<table class="championship-table">
-<thead>
-<tr>
-<th>POS.</th>
-<th>PLAYER</th>
-<th>V</th>
-<th>E</th>
-<th>D</th>
-<th>PT</th>
-</tr>
-</thead>
-<tbody id="championshipBody"></tbody>
-</table>
-</div>
-
-<div class="championship-controls">
-<button class="btn-champ-save" onclick="saveChampionship()">
-💾 SALVAR RESULTADOS
-</button>
-
-<button class="btn-champ-reset" onclick="resetChampionship()">
-🔄 ZERAR CAMPEONATO
-</button>
-</div>
-
-<div class="last-change" id="lastChange">
-Nenhuma alteração registrada.
-</div>
-
-<div class="history">
-<h3>📜 HISTÓRICO DE ALTERAÇÕES</h3>
-<div id="championshipHistory">
-Nenhuma alteração registrada.
-</div>
-</div>
-
-</div>
-</div>
-</section>
+<!-- JORNAL -->
 
 <section class="section" id="jornal">
+
 <div class="container">
-<div class="section-header">
-<small>NOTÍCIAS</small>
-<h2>📰 JORNAL BOMBA PETCH</h2>
-</div>
-<div class="news">
 
-<details class="news-box">
-<summary>🔔 ATUALIZAÇÕES</summary>
-<div class="news-content">Área reservada para futuras atualizações.</div>
-</details>
+    <div class="section-header">
 
-<details class="news-box">
-<summary>📰 JORNAL BOMBA PETCH</summary>
-<div class="news-content">Área reservada para futuras notícias.</div>
-</details>
+        <small>NOTÍCIAS</small>
+
+        <h2>📰 JORNAL BOMBA PETCH</h2>
+
+    </div>
+
+    <div class="news">
+
+        <details class="news-box">
+
+            <summary>
+                🔔 ATUALIZAÇÕES
+            </summary>
+
+            <div class="news-content">
+                Área reservada para futuras atualizações.
+            </div>
+
+        </details>
+
+        <details class="news-box">
+
+            <summary>
+                📰 JORNAL BOMBA PETCH
+            </summary>
+
+            <div class="news-content">
+                Área reservada para futuras notícias.
+            </div>
+
+        </details>
+
+    </div>
 
 </div>
-</div>
+
 </section>
+
+
+<!-- TEMPORADAS -->
 
 <section class="section" id="temporadas">
+
 <div class="container">
-<div class="section-header">
-<small>HISTÓRIA</small>
-<h2>📅 TEMPORADAS</h2>
-</div>
-<div class="seasons">
 
-<div class="season">
-<div class="year">2024</div>
-<h3>PRIMEIROS CAPÍTULOS</h3>
-<p>O início da história do BOMBA PETCH.</p>
+    <div class="section-header">
+
+        <small>HISTÓRIA</small>
+
+        <h2>📅 TEMPORADAS</h2>
+
+    </div>
+
+    <div class="seasons">
+
+        <div class="season">
+
+            <div class="year">2024</div>
+
+            <h3>PRIMEIROS CAPÍTULOS</h3>
+
+            <p>
+                O início da história do BOMBA PETCH.
+            </p>
+
+        </div>
+
+        <div class="season">
+
+            <div class="year">2025</div>
+
+            <h3>ERA DAS LENDAS</h3>
+
+            <p>
+                Os jogadores começaram a construir seus legados.
+            </p>
+
+        </div>
+
+        <div class="season">
+
+            <div class="year">2026</div>
+
+            <h3>NOVA TEMPORADA</h3>
+
+            <p>
+                Retorno em
+                <strong>17/08/2026 às 19:00</strong>.
+            </p>
+
+        </div>
+
+    </div>
+
 </div>
 
-<div class="season">
-<div class="year">2025</div>
-<h3>ERA DAS LENDAS</h3>
-<p>Os jogadores começaram a construir seus legados.</p>
-</div>
-
-<div class="season">
-<div class="year">2026</div>
-<h3>NOVA TEMPORADA</h3>
-<p>Retorno em <strong>17/08/2026 às 19:00</strong>.</p>
-</div>
-
-</div>
-</div>
 </section>
+
+
+<!-- DOWNLOAD -->
 
 <section class="section" id="download">
+
 <div class="container">
-<div class="section-header">
-<small>ARQUIVOS</small>
-<h2>📥 DOWNLOAD</h2>
+
+    <div class="section-header">
+
+        <small>ARQUIVOS</small>
+
+        <h2>📥 DOWNLOAD</h2>
+
+    </div>
+
+    <div class="download">
+
+        <h3>
+            💿 BOMBA PETCH — RAFAGAMER 2025
+        </h3>
+
+        <p>
+            Arquivo disponível para download.
+        </p>
+
+        <a
+            href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
+            target="_blank">
+
+            📥 BAIXAR ARQUIVO
+
+        </a>
+
+    </div>
+
 </div>
-<div class="download">
-<h3>💿 BOMBA PETCH — RAFAGAMER 2025</h3>
-<p>Arquivo disponível para download.</p>
-<a href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file" target="_blank">
-📥 BAIXAR ARQUIVO
-</a>
-</div>
-</div>
+
 </section>
 
+
 <footer>
-<div class="footer-logo">🔥 BOMBA PETCH</div>
-<p>RAFAGAMER • BERNA • CRISTIAN • LEANDRO</p>
-<p style="margin-top:12px;font-size:11px;">© 2026 — Lendas do Bomba Petch</p>
+
+    <div class="footer-logo">
+        🔥 BOMBA PETCH
+    </div>
+
+    <p>
+        RAFAGAMER • BERNA • CRISTIAN • LEANDRO
+    </p>
+
+    <p style="margin-top:12px;font-size:11px;">
+        © 2026 — Lendas do Bomba Petch
+    </p>
+
 </footer>
+
 
 <script>
 
 /* =====================================================
-   CONFIGURAÇÕES
+   CONFIGURAÇÃO DOS PLAYERS
 ===================================================== */
 
-const owners=[
-"rafagamer",
-"berna",
-"cristian",
-"leandro"
+const players = [
+    {
+        id:"rafagamer",
+        nome:"RAFAGAMER",
+        emoji:"🔥"
+    },
+    {
+        id:"berna",
+        nome:"BERNA",
+        emoji:"👑"
+    },
+    {
+        id:"cristian",
+        nome:"CRISTIAN",
+        emoji:"⚡"
+    },
+    {
+        id:"leandro",
+        nome:"LEANDRO",
+        emoji:"🎯"
+    }
 ];
 
-const ownerNames={
-rafagamer:"🔥 RAFAGAMER",
-berna:"👑 BERNA",
-cristian:"⚡ CRISTIAN",
-leandro:"🎯 LEANDRO"
+
+/* =====================================================
+   SENHAS DOS PLAYERS
+=====================================================
+
+   TROQUE AQUI AS SENHAS.
+
+   Cada jogador possui uma senha diferente.
+
+===================================================== */
+
+const PLAYER_PASSWORDS = {
+
+    rafagamer:"Rafa2026",
+    berna:"Berna2026",
+    cristian:"Cristian2026",
+    leandro:"Leandro2026"
+
 };
 
-const positions=[
-{id:"goleiros",nome:"🧤 GOLEIROS",quantidade:2},
-{id:"zagueiros",nome:"🛡️ ZAGUEIROS",quantidade:5},
-{id:"laterais",nome:"🏃 LATERAIS",quantidade:3},
-{id:"volantes",nome:"⚙️ VOLANTES",quantidade:3},
-{id:"meias",nome:"🎯 MEIAS",quantidade:4},
-{id:"atacantes",nome:"⚡ ATACANTES",quantidade:5}
+
+/* =====================================================
+   POSIÇÕES DOS ELENCOS
+===================================================== */
+
+const positions = [
+
+    {
+        id:"goleiros",
+        nome:"🧤 GOLEIROS",
+        quantidade:2
+    },
+
+    {
+        id:"zagueiros",
+        nome:"🛡️ ZAGUEIROS",
+        quantidade:5
+    },
+
+    {
+        id:"laterais",
+        nome:"🏃 LATERAIS",
+        quantidade:3
+    },
+
+    {
+        id:"volantes",
+        nome:"⚙️ VOLANTES",
+        quantidade:3
+    },
+
+    {
+        id:"meias",
+        nome:"🎯 MEIAS",
+        quantidade:4
+    },
+
+    {
+        id:"atacantes",
+        nome:"⚡ ATACANTES",
+        quantidade:5
+    }
+
 ];
 
-const listCategories=positions.map(p=>({
-id:p.id,
-nome:p.nome
-}));
-
-let currentTeam=null;
-let pendingTeam=null;
-let currentList=null;
-let pendingList=null;
-let accessType=null;
 
 /* =====================================================
-   CRIAR LISTAS
+   CATEGORIAS DAS LISTAS
 ===================================================== */
 
-const listsContainer=document.getElementById("playersLists");
+const listCategories = [
 
-owners.forEach(player=>{
+    {
+        id:"goleiros",
+        nome:"🧤 GOLEIROS"
+    },
 
-const card=document.createElement("div");
-card.className="player-list-card";
+    {
+        id:"zagueiros",
+        nome:"🛡️ ZAGUEIROS"
+    },
 
-card.innerHTML=`
-<div class="player-list-head">
-<div>
-<div class="player-list-name">${ownerNames[player]}</div>
-<div class="player-list-sub">LISTA PARTICULAR</div>
-</div>
-<button class="list-access" onclick="accessList('${player}')">
-🔒 ACESSAR LISTA
-</button>
-</div>
+    {
+        id:"laterais",
+        nome:"🏃 LATERAIS"
+    },
 
-<div id="list-status-${player}" class="list-status list-locked">
-🔒 LISTA PROTEGIDA
-</div>
-`;
+    {
+        id:"volantes",
+        nome:"⚙️ VOLANTES"
+    },
 
-listsContainer.appendChild(card);
+    {
+        id:"meias",
+        nome:"🎯 MEIAS"
+    },
 
-updateListStatus(player);
+    {
+        id:"atacantes",
+        nome:"⚡ ATACANTES"
+    }
+
+];
+
+
+let currentTeam = null;
+let pendingTeam = null;
+let passwordMode = null;
+
+let currentList = null;
+let pendingList = null;
+let listPasswordMode = null;
+
+
+/* =====================================================
+   CRIAR TIMES
+===================================================== */
+
+players.forEach(player=>{
+
+    const container =
+        document.getElementById(
+            "teams-" + player.id
+        );
+
+    for(let i=1;i<=3;i++){
+
+        const id =
+            player.id + "-time-" + i;
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "team-card";
+
+        card.innerHTML = `
+
+            <div class="team-head">
+
+                <h4>⚽ TIME ${i}</h4>
+
+                <p>22 jogadores</p>
+
+            </div>
+
+            <div class="team-body">
+
+                <button
+                    onclick="accessTeam('${id}')">
+
+                    🔒 ACESSAR ELENCO
+
+                </button>
+
+                <div
+                    class="saved-count"
+                    id="count-${id}">
+
+                    ${getCount(id)} / 22 jogadores
+
+                </div>
+
+                <div
+                    class="lock-status locked"
+                    id="status-${id}">
+
+                    🔒 BLOQUEADO
+
+                </div>
+
+            </div>
+        `;
+
+        container.appendChild(card);
+
+        updateTeamStatus(id);
+
+    }
 
 });
 
-/* =====================================================
-   CRIAR ELENCOS
-===================================================== */
-
-const ownersTeams=document.getElementById("ownersTeams");
-
-owners.forEach(owner=>{
-
-const section=document.createElement("div");
-section.className="owner";
-
-section.innerHTML=`
-<div class="owner-title">
-<h3>${ownerNames[owner]}</h3>
-<span>3 TIMES</span>
-</div>
-<div class="team-grid" id="teams-${owner}"></div>
-`;
-
-ownersTeams.appendChild(section);
-
-for(let i=1;i<=3;i++){
-
-const id=`${owner}-time-${i}`;
-
-const card=document.createElement("div");
-card.className="team-card";
-
-card.innerHTML=`
-<div class="team-head">
-<h4>⚽ TIME ${i}</h4>
-<p>22 jogadores</p>
-</div>
-
-<div class="team-body">
-
-<button onclick="accessTeam('${id}')">
-🔒 ACESSAR ELENCO
-</button>
-
-<div class="saved-count" id="count-${id}">
-${getCount(id)} / 22 jogadores
-</div>
-
-<div class="lock-status locked" id="status-${id}">
-🔒 BLOQUEADO
-</div>
-
-</div>
-`;
-
-section.querySelector(".team-grid").appendChild(card);
-
-updateTeamStatus(id);
-
-}
-
-});
 
 /* =====================================================
-   SENHAS
-===================================================== */
-
-function getPassword(id){
-return localStorage.getItem("bomba-password-"+id);
-}
-
-function savePassword(id,password){
-localStorage.setItem("bomba-password-"+id,password);
-}
-
-function getListPassword(id){
-return localStorage.getItem("bomba-list-password-"+id);
-}
-
-function saveListPassword(id,password){
-localStorage.setItem("bomba-list-password-"+id,password);
-}
-
-/* =====================================================
-   MODAL DE SENHA
-===================================================== */
-
-function openPasswordModal(title,message){
-document.getElementById("passwordTitle").textContent=title;
-document.getElementById("passwordMessage").textContent=message;
-
-const input=document.getElementById("passwordInput");
-input.value="";
-
-document.getElementById("passwordModal").classList.add("active");
-
-setTimeout(()=>input.focus(),100);
-}
-
-function closePasswordModal(){
-document.getElementById("passwordModal").classList.remove("active");
-
-pendingTeam=null;
-pendingList=null;
-accessType=null;
-}
-
-/* =====================================================
-   ACESSO ELENCO
+   ACESSAR ELENCO
 ===================================================== */
 
 function accessTeam(id){
 
-pendingTeam=id;
-accessType="team";
+    pendingTeam = id;
 
-if(!getPassword(id)){
+    if(!getPassword(id)){
 
-openPasswordModal(
-"🔐 CRIAR SENHA",
-"Crie uma senha para proteger este elenco."
-);
+        passwordMode = "create";
 
-}else{
+        openPasswordModal(
+            "🔐 CRIAR SENHA",
+            "Crie uma senha para proteger este elenco."
+        );
 
-openPasswordModal(
-"🔒 ELENCO BLOQUEADO",
-"Digite a senha para abrir este elenco."
-);
+        return;
+    }
 
-}
+    passwordMode = "unlock";
 
-}
-
-function submitAccessPassword(){
-
-const input=document.getElementById("passwordInput");
-const password=input.value;
-
-if(!password){
-alert("⚠️ Digite uma senha.");
-return;
-}
-
-if(accessType==="team"){
-
-if(!getPassword(pendingTeam)){
-
-if(password.length<4){
-alert("⚠️ A senha precisa ter pelo menos 4 caracteres.");
-return;
-}
-
-savePassword(pendingTeam,password);
-
-const team=pendingTeam;
-
-closePasswordModal();
-openSquad(team,getTeamTitle(team));
-
-}else{
-
-if(password===getPassword(pendingTeam)){
-
-const team=pendingTeam;
-
-closePasswordModal();
-openSquad(team,getTeamTitle(team));
-
-}else{
-
-alert("❌ Senha incorreta.");
-input.value="";
-input.focus();
+    openPasswordModal(
+        "🔒 ELENCO BLOQUEADO",
+        "Digite a senha para abrir este elenco."
+    );
 
 }
 
-}
 
-return;
-}
+function openPasswordModal(title,message){
 
-if(accessType==="list"){
+    document.getElementById(
+        "passwordTitle"
+    ).textContent = title;
 
-if(!getListPassword(pendingList)){
+    document.getElementById(
+        "passwordMessage"
+    ).textContent = message;
 
-if(password.length<4){
-alert("⚠️ A senha precisa ter pelo menos 4 caracteres.");
-return;
-}
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
 
-saveListPassword(pendingList,password);
+    input.value = "";
 
-const player=pendingList;
+    document.getElementById(
+        "passwordModal"
+    ).classList.add("active");
 
-closePasswordModal();
-openList(player);
-
-}else{
-
-if(password===getListPassword(pendingList)){
-
-const player=pendingList;
-
-closePasswordModal();
-openList(player);
-
-}else{
-
-alert("❌ Senha incorreta.");
-input.value="";
-input.focus();
+    setTimeout(()=>{
+        input.focus();
+    },100);
 
 }
 
-}
+
+function closePasswordModal(){
+
+    document.getElementById(
+        "passwordModal"
+    ).classList.remove("active");
+
+    pendingTeam = null;
+    passwordMode = null;
 
 }
 
+
+function submitPassword(){
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+    const password =
+        input.value;
+
+    if(!password){
+
+        alert("⚠️ Digite uma senha.");
+
+        return;
+
+    }
+
+    if(passwordMode === "create"){
+
+        if(password.length < 4){
+
+            alert(
+                "⚠️ A senha precisa ter pelo menos 4 caracteres."
+            );
+
+            return;
+        }
+
+        savePassword(
+            pendingTeam,
+            password
+        );
+
+        const team =
+            pendingTeam;
+
+        closePasswordModal();
+
+        openSquad(
+            team,
+            getTeamTitle(team)
+        );
+
+        return;
+    }
+
+
+    if(passwordMode === "unlock"){
+
+        const saved =
+            getPassword(pendingTeam);
+
+        if(password === saved){
+
+            const team =
+                pendingTeam;
+
+            closePasswordModal();
+
+            openSquad(
+                team,
+                getTeamTitle(team)
+            );
+
+        }else{
+
+            alert("❌ Senha incorreta.");
+
+            input.value = "";
+
+            input.focus();
+
+        }
+
+    }
+
 }
+
+
+function getPassword(id){
+
+    return localStorage.getItem(
+        "bomba-password-" + id
+    );
+
+}
+
+
+function savePassword(id,password){
+
+    localStorage.setItem(
+        "bomba-password-" + id,
+        password
+    );
+
+}
+
 
 /* =====================================================
    ELENCOS
@@ -1379,799 +2784,1530 @@ input.focus();
 
 function getTeamTitle(id){
 
-const parts=id.split("-");
+    const parts =
+        id.split("-");
 
-return parts[0].toUpperCase()+" — TIME "+parts[2];
+    return parts[0].toUpperCase()
+        + " — TIME "
+        + parts[2];
 
 }
+
 
 function openSquad(id,title){
 
-currentTeam=id;
+    currentTeam = id;
 
-document.getElementById("modalTitle").textContent="⚽ "+title;
-document.getElementById("squadModal").classList.add("active");
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "⚽ " + title;
 
-createPlayerFields();
+    document.getElementById(
+        "squadModal"
+    ).classList.add("active");
+
+    createPlayerFields();
 
 }
+
 
 function closeSquad(){
 
-document.getElementById("squadModal").classList.remove("active");
-currentTeam=null;
+    document.getElementById(
+        "squadModal"
+    ).classList.remove("active");
+
+    currentTeam = null;
 
 }
+
 
 function createPlayerFields(){
 
-const container=document.getElementById("positions");
-container.innerHTML="";
+    const container =
+        document.getElementById(
+            "positions"
+        );
 
-const saved=JSON.parse(
-localStorage.getItem("bomba-"+currentTeam)||"{}"
-);
+    container.innerHTML = "";
 
-positions.forEach(position=>{
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-" + currentTeam
+            ) || "{}"
+        );
 
-const section=document.createElement("div");
-section.className="position-section";
+    positions.forEach(position=>{
 
-let inputs="";
+        const section =
+            document.createElement("div");
 
-for(let i=0;i<position.quantidade;i++){
+        section.className =
+            "position-section";
 
-const key=position.id+"-"+i;
-const value=saved[key]||"";
+        let inputs = "";
 
-inputs+=`
-<input
-type="text"
-class="player-input"
-id="player-${key}"
-value="${escapeHTML(value)}"
-placeholder="Digite o nome do jogador"
-maxlength="60"
->
-`;
+        for(let i=0;i<position.quantidade;i++){
+
+            const key =
+                position.id + "-" + i;
+
+            const value =
+                saved[key] || "";
+
+            inputs += `
+
+                <input
+                    type="text"
+                    class="player-input"
+                    id="player-${key}"
+                    value="${escapeHTML(value)}"
+                    placeholder="Digite o nome do jogador"
+                    maxlength="60"
+                >
+
+            `;
+        }
+
+        section.innerHTML = `
+
+            <div class="position-title">
+
+                <h4>
+                    ${position.nome}
+                </h4>
+
+                <span>
+                    ${position.quantidade} jogadores
+                </span>
+
+            </div>
+
+            <div class="name-grid">
+                ${inputs}
+            </div>
+
+        `;
+
+        container.appendChild(section);
+
+    });
 
 }
 
-section.innerHTML=`
-<div class="position-title">
-<h4>${position.nome}</h4>
-<span>${position.quantidade} jogadores</span>
-</div>
-
-<div class="name-grid">${inputs}</div>
-`;
-
-container.appendChild(section);
-
-});
-
-}
 
 function saveSquad(){
 
-if(!currentTeam)return;
+    const data = {};
 
-const data={};
+    positions.forEach(position=>{
 
-positions.forEach(position=>{
+        for(let i=0;i<position.quantidade;i++){
 
-for(let i=0;i<position.quantidade;i++){
+            const key =
+                position.id + "-" + i;
 
-const key=position.id+"-"+i;
+            const input =
+                document.getElementById(
+                    "player-" + key
+                );
 
-data[key]=document
-.getElementById("player-"+key)
-.value.trim();
+            data[key] =
+                input.value.trim();
+
+        }
+
+    });
+
+    localStorage.setItem(
+        "bomba-" + currentTeam,
+        JSON.stringify(data)
+    );
+
+    updateCount();
+
+    alert("✅ Elenco salvo!");
 
 }
 
-});
-
-localStorage.setItem(
-"bomba-"+currentTeam,
-JSON.stringify(data)
-);
-
-updateCount();
-
-alert("✅ Elenco salvo!");
-
-}
 
 function clearSquad(){
 
-if(!confirm("Deseja apagar todos os jogadores deste elenco?"))return;
+    if(!confirm(
+        "Deseja apagar todos os jogadores deste elenco?"
+    )) return;
 
-localStorage.removeItem("bomba-"+currentTeam);
+    localStorage.removeItem(
+        "bomba-" + currentTeam
+    );
 
-createPlayerFields();
-updateCount();
+    createPlayerFields();
+
+    updateCount();
 
 }
+
+
+function lockCurrentTeam(){
+
+    saveSquad();
+
+    const team =
+        currentTeam;
+
+    setTimeout(()=>{
+
+        closeSquad();
+
+        updateTeamStatus(team);
+
+    },100);
+
+}
+
 
 function getCount(id){
 
-const saved=JSON.parse(
-localStorage.getItem("bomba-"+id)||"{}"
-);
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-" + id
+            ) || "{}"
+        );
 
-return Object.values(saved).filter(
-v=>typeof v==="string"&&v.trim()!==""
-).length;
+    return Object.values(saved)
+        .filter(v =>
+            typeof v === "string" &&
+            v.trim() !== ""
+        ).length;
 
 }
+
 
 function updateCount(){
 
-if(!currentTeam)return;
+    if(!currentTeam) return;
 
-const element=document.getElementById(
-"count-"+currentTeam
-);
+    const element =
+        document.getElementById(
+            "count-" + currentTeam
+        );
 
-if(element){
+    if(element){
 
-element.textContent=
-getCount(currentTeam)+" / 22 jogadores";
+        element.textContent =
+            getCount(currentTeam)
+            + " / 22 jogadores";
+
+    }
 
 }
 
-}
 
 function updateTeamStatus(id){
 
-const element=document.getElementById(
-"status-"+id
-);
+    const status =
+        document.getElementById(
+            "status-" + id
+        );
 
-if(!element)return;
+    if(!status) return;
 
-if(getPassword(id)){
+    if(getPassword(id)){
 
-element.className="lock-status locked";
-element.textContent="🔒 PROTEGIDO POR SENHA";
+        status.className =
+            "lock-status locked";
 
-}else{
+        status.textContent =
+            "🔒 PROTEGIDO POR SENHA";
 
-element.className="lock-status unlocked";
-element.textContent="🔐 SENHA AINDA NÃO DEFINIDA";
+    }else{
+
+        status.className =
+            "lock-status unlocked";
+
+        status.textContent =
+            "🔐 SENHA AINDA NÃO DEFINIDA";
+
+    }
 
 }
 
-}
 
 /* =====================================================
    LISTAS PRIVADAS
 ===================================================== */
 
+function createPlayerLists(){
+
+    const container =
+        document.getElementById("playerLists");
+
+    container.innerHTML = "";
+
+    players.forEach(player=>{
+
+        container.innerHTML += `
+
+            <div class="player-list-card">
+
+                <div class="player-list-head">
+
+                    <div>
+
+                        <div class="player-list-name">
+                            ${player.emoji} ${player.nome}
+                        </div>
+
+                        <div class="player-list-sub">
+                            LISTA PARTICULAR
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="list-access"
+                        onclick="accessList('${player.id}')">
+
+                        🔒 ACESSAR LISTA
+
+                    </button>
+
+                </div>
+
+                <div
+                    id="list-status-${player.id}"
+                    class="list-status list-locked">
+
+                    🔒 LISTA PROTEGIDA
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    players.forEach(player=>{
+        updateListStatus(player.id);
+    });
+
+}
+
+createPlayerLists();
+
+
 function accessList(player){
 
-pendingList=player;
-accessType="list";
+    pendingList = player;
 
-if(!getListPassword(player)){
+    const password =
+        getListPassword(player);
 
-openPasswordModal(
-"🔐 CRIAR SENHA DA LISTA",
-"Crie uma senha particular para sua lista."
-);
+    if(!password){
 
-}else{
+        listPasswordMode = "create";
 
-openPasswordModal(
-"🔒 LISTA BLOQUEADA",
-"Digite sua senha para visualizar sua lista."
-);
+        openListPasswordModal(
+            "🔐 CRIAR SENHA DA LISTA",
+            "Crie uma senha particular para sua lista de jogadores."
+        );
+
+    }else{
+
+        listPasswordMode = "unlock";
+
+        openListPasswordModal(
+            "🔒 LISTA BLOQUEADA",
+            "Digite sua senha para visualizar sua lista."
+        );
+
+    }
 
 }
 
+
+function openListPasswordModal(title,message){
+
+    document.getElementById(
+        "passwordTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "passwordMessage"
+    ).textContent = message;
+
+    document.getElementById(
+        "passwordInput"
+    ).value = "";
+
+    document.getElementById(
+        "passwordModal"
+    ).classList.add("active");
+
 }
+
+
+function submitListPassword(){
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+    const password =
+        input.value;
+
+    if(!password){
+
+        alert("⚠️ Digite uma senha.");
+
+        return;
+
+    }
+
+    if(listPasswordMode === "create"){
+
+        if(password.length < 4){
+
+            alert(
+                "⚠️ A senha precisa ter pelo menos 4 caracteres."
+            );
+
+            return;
+        }
+
+        saveListPassword(
+            pendingList,
+            password
+        );
+
+        const player =
+            pendingList;
+
+        closePasswordModal();
+
+        openList(player);
+
+        return;
+
+    }
+
+
+    if(listPasswordMode === "unlock"){
+
+        if(
+            password ===
+            getListPassword(pendingList)
+        ){
+
+            const player =
+                pendingList;
+
+            closePasswordModal();
+
+            openList(player);
+
+        }else{
+
+            alert("❌ Senha incorreta.");
+
+            input.value = "";
+
+        }
+
+    }
+
+}
+
+
+function getListPassword(player){
+
+    return localStorage.getItem(
+        "bomba-list-password-" + player
+    );
+
+}
+
+
+function saveListPassword(player,password){
+
+    localStorage.setItem(
+        "bomba-list-password-" + player,
+        password
+    );
+
+}
+
 
 function openList(player){
 
-currentList=player;
+    currentList = player;
 
-document.getElementById("listModalTitle").textContent=
-"📝 LISTA — "+player.toUpperCase();
+    document.getElementById(
+        "listModalTitle"
+    ).textContent =
+        "📝 LISTA — "
+        + player.toUpperCase();
 
-document.getElementById("listModal").classList.add("active");
+    document.getElementById(
+        "listModal"
+    ).classList.add("active");
 
-createListFields();
+    createListFields();
 
 }
+
 
 function closeList(){
 
-document.getElementById("listModal").classList.remove("active");
-currentList=null;
+    document.getElementById(
+        "listModal"
+    ).classList.remove("active");
+
+    currentList = null;
 
 }
+
 
 function createListFields(){
 
-const container=document.getElementById("listCategories");
-container.innerHTML="";
+    const container =
+        document.getElementById(
+            "listCategories"
+        );
 
-const saved=JSON.parse(
-localStorage.getItem("bomba-list-"+currentList)||"{}"
-);
+    container.innerHTML = "";
 
-listCategories.forEach(category=>{
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-list-" + currentList
+            ) || "{}"
+        );
 
-const box=document.createElement("div");
-box.className="list-category";
 
-const value=saved[category.id]||"";
+    listCategories.forEach(category=>{
 
-box.innerHTML=`
-<div class="list-category-title">
-<h4>${category.nome}</h4>
-<span>LISTA PRIVADA</span>
-</div>
+        const box =
+            document.createElement("div");
 
-<textarea
-class="player-notes"
-id="list-${category.id}"
-placeholder="Digite os jogadores que você quer lembrar..."
->${escapeHTML(value)}</textarea>
-`;
+        box.className =
+            "list-category";
 
-container.appendChild(box);
+        const value =
+            saved[category.id] || "";
 
-});
+        box.innerHTML = `
+
+            <div class="list-category-title">
+
+                <h4>
+                    ${category.nome}
+                </h4>
+
+                <span>
+                    LISTA PRIVADA
+                </span>
+
+            </div>
+
+            <textarea
+                class="player-notes"
+                id="list-${category.id}"
+                placeholder="Digite os jogadores que você quer lembrar..."
+            >${escapeHTML(value)}</textarea>
+
+        `;
+
+        container.appendChild(box);
+
+    });
 
 }
+
 
 function saveList(){
 
-if(!currentList)return;
+    if(!currentList) return;
 
-const data={};
+    const data = {};
 
-listCategories.forEach(category=>{
+    listCategories.forEach(category=>{
 
-data[category.id]=
-document.getElementById(
-"list-"+category.id
-).value;
+        const field =
+            document.getElementById(
+                "list-" + category.id
+            );
 
-});
+        data[category.id] =
+            field.value;
 
-localStorage.setItem(
-"bomba-list-"+currentList,
-JSON.stringify(data)
-);
+    });
 
-alert("✅ Lista de jogadores salva!");
+    localStorage.setItem(
+        "bomba-list-" + currentList,
+        JSON.stringify(data)
+    );
+
+    alert(
+        "✅ Lista de jogadores salva!"
+    );
 
 }
+
 
 function clearList(){
 
-if(!currentList)return;
+    if(!currentList) return;
 
-if(!confirm("Deseja apagar toda a lista?"))return;
+    if(!confirm(
+        "Deseja apagar toda a lista deste jogador?"
+    )) return;
 
-localStorage.removeItem(
-"bomba-list-"+currentList
-);
+    localStorage.removeItem(
+        "bomba-list-" + currentList
+    );
 
-createListFields();
+    createListFields();
 
 }
+
+
+function lockCurrentList(){
+
+    saveList();
+
+    const player =
+        currentList;
+
+    setTimeout(()=>{
+
+        closeList();
+
+        updateListStatus(player);
+
+    },100);
+
+}
+
 
 function updateListStatus(player){
 
-const element=document.getElementById(
-"list-status-"+player
-);
+    const element =
+        document.getElementById(
+            "list-status-" + player
+        );
 
-if(!element)return;
+    if(!element) return;
 
-if(getListPassword(player)){
+    if(getListPassword(player)){
 
-element.className="list-status list-locked";
-element.textContent="🔒 LISTA PROTEGIDA";
+        element.className =
+            "list-status list-locked";
+
+        element.textContent =
+            "🔒 LISTA PROTEGIDA";
+
+    }
 
 }
 
-}
 
 /* =====================================================
-   RANK DO MELHOR DO ANO
-   REGRA: +2 / +1 / -1
+   SISTEMA DAS DUAS TABELAS
 ===================================================== */
 
-function getAnnualData(){
+const defaultStats = {
 
-return JSON.parse(
-localStorage.getItem("bomba-annual-rank")||
-"{}"
-);
+    rafagamer:{
+        v:0,
+        e:0,
+        d:0
+    },
 
-}
+    berna:{
+        v:0,
+        e:0,
+        d:0
+    },
 
-function renderAnnualRank(){
+    cristian:{
+        v:0,
+        e:0,
+        d:0
+    },
 
-const body=document.getElementById("annualRankBody");
+    leandro:{
+        v:0,
+        e:0,
+        d:0
+    }
 
-const data=getAnnualData();
-
-const rows=owners.map(player=>{
-
-const item=data[player]||{
-v:0,
-e:0,
-d:0,
-pt:0
 };
 
-return{
-player,
-v:Number(item.v)||0,
-e:Number(item.e)||0,
-d:Number(item.d)||0,
-pt:Number(item.v||0)*2+
-Number(item.e||0)-
-Number(item.d||0)
-};
-
-});
-
-rows.sort((a,b)=>b.pt-a.pt);
-
-body.innerHTML="";
-
-rows.forEach((row,index)=>{
-
-const tr=document.createElement("tr");
-
-tr.innerHTML=`
-<td>${index+1}º</td>
-<td class="player">${ownerNames[row.player]}</td>
-<td>${row.v}</td>
-<td>${row.e}</td>
-<td>${row.d}</td>
-<td class="points">${row.pt}</td>
-`;
-
-body.appendChild(tr);
-
-});
-
-}
-
-renderAnnualRank();
 
 /* =====================================================
-   CAMPEONATO 2026
-   REGRA DIFERENTE:
-   V = +3
-   E = +1
-   D = -1
+   CARREGAR DADOS
 ===================================================== */
 
-function getChampionshipData(){
+function getTableData(table){
 
-const saved=JSON.parse(
-localStorage.getItem("bomba-championship")||"{}"
-);
+    const key =
+        table === "year"
+        ? "bomba-rank-year"
+        : "bomba-rank-championship";
 
-owners.forEach(player=>{
+    const saved =
+        localStorage.getItem(key);
 
-if(!saved[player]){
+    if(saved){
 
-saved[player]={
-v:0,
-e:0,
-d:0
-};
+        try{
+            return JSON.parse(saved);
+        }catch(e){}
 
-}
+    }
 
-});
-
-return saved;
-
-}
-
-function renderChampionship(){
-
-const body=document.getElementById(
-"championshipBody"
-);
-
-const data=getChampionshipData();
-
-const rows=owners.map(player=>{
-
-const item=data[player];
-
-const v=Number(item.v)||0;
-const e=Number(item.e)||0;
-const d=Number(item.d)||0;
-
-const pt=
-(v*3)+
-(e*1)-
-(d*1);
-
-return{
-player,
-v,
-e,
-d,
-pt
-};
-
-});
-
-rows.sort((a,b)=>{
-
-if(b.pt!==a.pt){
-return b.pt-a.pt;
-}
-
-return b.v-a.v;
-
-});
-
-body.innerHTML="";
-
-rows.forEach((row,index)=>{
-
-const tr=document.createElement("tr");
-
-tr.innerHTML=`
-
-<td>
-<strong>${index+1}º</strong>
-</td>
-
-<td class="player">
-${ownerNames[row.player]}
-</td>
-
-<td>
-<input
-type="number"
-min="0"
-id="champ-v-${row.player}"
-value="${row.v}"
->
-</td>
-
-<td>
-<input
-type="number"
-min="0"
-id="champ-e-${row.player}"
-value="${row.e}"
->
-</td>
-
-<td>
-<input
-type="number"
-min="0"
-id="champ-d-${row.player}"
-value="${row.d}"
->
-</td>
-
-<td class="championship-points">
-${row.pt}
-</td>
-
-`;
-
-body.appendChild(tr);
-
-});
-
-renderLastChange();
-renderHistory();
+    return JSON.parse(
+        JSON.stringify(defaultStats)
+    );
 
 }
 
-function saveChampionship(){
 
-const data={};
+function saveTableData(table,data){
 
-owners.forEach(player=>{
+    const key =
+        table === "year"
+        ? "bomba-rank-year"
+        : "bomba-rank-championship";
 
-const v=Number(
-document.getElementById("champ-v-"+player).value
-)||0;
-
-const e=Number(
-document.getElementById("champ-e-"+player).value
-)||0;
-
-const d=Number(
-document.getElementById("champ-d-"+player).value
-)||0;
-
-data[player]={v,e,d};
-
-});
-
-localStorage.setItem(
-"bomba-championship",
-JSON.stringify(data)
-);
-
-/*
-   Quem alterou
-*/
-
-let changedBy=prompt(
-"Quem está fazendo esta alteração?\n\nDigite o nome do player:\nRafagamer, Berna, Cristian ou Leandro"
-);
-
-if(!changedBy){
-changedBy="Não informado";
-}
-
-const now=new Date();
-
-const date=now.toLocaleDateString("pt-BR");
-const time=now.toLocaleTimeString("pt-BR",{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-});
-
-const change={
-player:changedBy,
-date,
-time
-};
-
-localStorage.setItem(
-"bomba-championship-last-change",
-JSON.stringify(change)
-);
-
-/*
-   Histórico
-*/
-
-const history=JSON.parse(
-localStorage.getItem(
-"bomba-championship-history"
-)||"[]"
-);
-
-history.unshift(change);
-
-if(history.length>30){
-history.splice(30);
-}
-
-localStorage.setItem(
-"bomba-championship-history",
-JSON.stringify(history)
-);
-
-renderChampionship();
-
-alert(
-"✅ Campeonato atualizado!\n\nAlteração registrada em nome de "+changedBy+"."
-);
+    localStorage.setItem(
+        key,
+        JSON.stringify(data)
+    );
 
 }
 
-function resetChampionship(){
-
-if(!confirm(
-"Tem certeza que deseja zerar a tabela do campeonato?"
-))return;
-
-const data={};
-
-owners.forEach(player=>{
-data[player]={
-v:0,
-e:0,
-d:0
-};
-});
-
-localStorage.setItem(
-"bomba-championship",
-JSON.stringify(data)
-);
-
-let changedBy=prompt(
-"Quem está zerando o campeonato?"
-);
-
-if(!changedBy){
-changedBy="Não informado";
-}
-
-const now=new Date();
-
-const change={
-player:changedBy,
-date:now.toLocaleDateString("pt-BR"),
-time:now.toLocaleTimeString("pt-BR",{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}),
-action:"Tabela zerada"
-};
-
-localStorage.setItem(
-"bomba-championship-last-change",
-JSON.stringify(change)
-);
-
-const history=JSON.parse(
-localStorage.getItem(
-"bomba-championship-history"
-)||"[]"
-);
-
-history.unshift(change);
-
-localStorage.setItem(
-"bomba-championship-history",
-JSON.stringify(history.slice(0,30))
-);
-
-renderChampionship();
-
-}
-
-function renderLastChange(){
-
-const element=document.getElementById("lastChange");
-
-const change=JSON.parse(
-localStorage.getItem(
-"bomba-championship-last-change"
-)||"null"
-);
-
-if(!change){
-
-element.innerHTML="Nenhuma alteração registrada.";
-return;
-
-}
-
-element.innerHTML=`
-Última alteração:
-<strong>${escapeHTML(change.player)}</strong>
-•
-${escapeHTML(change.date)}
-•
-${escapeHTML(change.time)}
-${change.action?` • ${escapeHTML(change.action)}`:""}
-`;
-
-}
-
-function renderHistory(){
-
-const container=document.getElementById(
-"championshipHistory"
-);
-
-const history=JSON.parse(
-localStorage.getItem(
-"bomba-championship-history"
-)||"[]"
-);
-
-if(!history.length){
-
-container.innerHTML="Nenhuma alteração registrada.";
-return;
-
-}
-
-container.innerHTML="";
-
-history.forEach(item=>{
-
-const div=document.createElement("div");
-div.className="history-item";
-
-div.innerHTML=`
-<strong>${escapeHTML(item.player)}</strong>
-alterou a tabela em
-${escapeHTML(item.date)}
-às
-${escapeHTML(item.time)}
-${item.action?` — ${escapeHTML(item.action)}`:""}
-`;
-
-container.appendChild(div);
-
-});
-
-}
-
-renderChampionship();
 
 /* =====================================================
-   UTILITÁRIO
+   CALCULAR PONTOS
+===================================================== */
+
+function calculatePoints(table,stats){
+
+    if(table === "year"){
+
+        return (
+            stats.v * 2 +
+            stats.e * 1 -
+            stats.d * 1
+        );
+
+    }
+
+    return (
+        stats.v * 3 +
+        stats.e * 1 -
+        stats.d * 1
+    );
+
+}
+
+
+/* =====================================================
+   RENDERIZAR TABELAS
+===================================================== */
+
+function renderRankTable(table){
+
+    const data =
+        getTableData(table);
+
+    const sorted =
+        Object.entries(data)
+        .sort((a,b)=>{
+
+            const ptsA =
+                calculatePoints(table,a[1]);
+
+            const ptsB =
+                calculatePoints(table,b[1]);
+
+            return ptsB - ptsA;
+
+        });
+
+    const body =
+        document.getElementById(
+            table === "year"
+            ? "yearRankBody"
+            : "championshipBody"
+        );
+
+    body.innerHTML = "";
+
+    sorted.forEach((entry,index)=>{
+
+        const id =
+            entry[0];
+
+        const stats =
+            entry[1];
+
+        const player =
+            players.find(
+                p=>p.id === id
+            );
+
+        const points =
+            calculatePoints(
+                table,
+                stats
+            );
+
+        const row =
+            document.createElement("tr");
+
+        row.innerHTML = `
+
+            <td>
+                ${index + 1}º
+            </td>
+
+            <td class="player">
+                ${player.emoji}
+                ${player.nome}
+            </td>
+
+            <td>
+                ${stats.v}
+            </td>
+
+            <td>
+                ${stats.e}
+            </td>
+
+            <td>
+                ${stats.d}
+            </td>
+
+            <td class="points">
+                ${points}
+            </td>
+
+            <td>
+
+                <button
+                    class="edit-rank"
+                    onclick="requestRankEdit('${table}','${id}')">
+
+                    ✏️ ALTERAR
+
+                </button>
+
+            </td>
+
+        `;
+
+        body.appendChild(row);
+
+    });
+
+    renderHistory(table);
+
+}
+
+
+/* =====================================================
+   ABRIR EDIÇÃO
+===================================================== */
+
+let pendingRankTable = null;
+let pendingRankPlayer = null;
+
+
+function requestRankEdit(table,player){
+
+    pendingRankTable =
+        table;
+
+    pendingRankPlayer =
+        player;
+
+    const playerData =
+        players.find(
+            p=>p.id === player
+        );
+
+    document.getElementById(
+        "rankModalMessage"
+    ).textContent =
+        "Digite a senha de "
+        + playerData.nome
+        + " para alterar os dados dele.";
+
+    document.getElementById(
+        "rankPasswordInput"
+    ).value = "";
+
+    document.getElementById(
+        "rankModal"
+    ).classList.add("active");
+
+    setTimeout(()=>{
+        document.getElementById(
+            "rankPasswordInput"
+        ).focus();
+    },100);
+
+}
+
+
+function closeRankModal(){
+
+    document.getElementById(
+        "rankModal"
+    ).classList.remove("active");
+
+    pendingRankTable = null;
+    pendingRankPlayer = null;
+
+    document.getElementById(
+        "rankPasswordInput"
+    ).value = "";
+
+}
+
+
+/* =====================================================
+   AUTENTICAR ALTERAÇÃO
+===================================================== */
+
+function authenticateRankChange(){
+
+    const password =
+        document.getElementById(
+            "rankPasswordInput"
+        ).value;
+
+    if(!password){
+
+        alert("⚠️ Digite a senha.");
+
+        return;
+
+    }
+
+    const correctPassword =
+        PLAYER_PASSWORDS[
+            pendingRankPlayer
+        ];
+
+    if(password !== correctPassword){
+
+        alert(
+            "❌ Senha incorreta. Você não pode alterar os dados deste jogador."
+        );
+
+        document.getElementById(
+            "rankPasswordInput"
+        ).value = "";
+
+        return;
+
+    }
+
+    const table =
+        pendingRankTable;
+
+    const player =
+        pendingRankPlayer;
+
+    closeRankModal();
+
+    openEditRankModal(
+        table,
+        player
+    );
+
+}
+
+
+function openEditRankModal(table,player){
+
+    pendingRankTable =
+        table;
+
+    pendingRankPlayer =
+        player;
+
+    const data =
+        getTableData(table);
+
+    const stats =
+        data[player];
+
+    const playerData =
+        players.find(
+            p=>p.id === player
+        );
+
+    const tableName =
+        table === "year"
+        ? "RANK DO MELHOR DO ANO"
+        : "TABELA DO CAMPEONATO";
+
+    document.getElementById(
+        "editRankTitle"
+    ).textContent =
+        "✏️ " +
+        tableName +
+        " — " +
+        playerData.nome;
+
+    document.getElementById(
+        "editV"
+    ).value =
+        stats.v;
+
+    document.getElementById(
+        "editE"
+    ).value =
+        stats.e;
+
+    document.getElementById(
+        "editD"
+    ).value =
+        stats.d;
+
+    document.getElementById(
+        "editRankModal"
+    ).classList.add("active");
+
+}
+
+
+function closeEditRankModal(){
+
+    document.getElementById(
+        "editRankModal"
+    ).classList.remove("active");
+
+    pendingRankTable = null;
+    pendingRankPlayer = null;
+
+}
+
+
+/* =====================================================
+   SALVAR ALTERAÇÃO
+===================================================== */
+
+function saveRankChange(){
+
+    const table =
+        pendingRankTable;
+
+    const player =
+        pendingRankPlayer;
+
+    if(!table || !player){
+
+        alert("❌ Erro ao identificar a tabela.");
+
+        return;
+
+    }
+
+    const newV =
+        Math.max(
+            0,
+            parseInt(
+                document.getElementById("editV").value
+            ) || 0
+        );
+
+    const newE =
+        Math.max(
+            0,
+            parseInt(
+                document.getElementById("editE").value
+            ) || 0
+        );
+
+    const newD =
+        Math.max(
+            0,
+            parseInt(
+                document.getElementById("editD").value
+            ) || 0
+        );
+
+
+    const data =
+        getTableData(table);
+
+    const oldStats =
+        {...data[player]};
+
+    data[player] = {
+
+        v:newV,
+        e:newE,
+        d:newD
+
+    };
+
+
+    saveTableData(
+        table,
+        data
+    );
+
+
+    /* DATA E HORÁRIO */
+
+    const now =
+        new Date();
+
+    const date =
+        now.toLocaleDateString(
+            "pt-BR"
+        );
+
+    const time =
+        now.toLocaleTimeString(
+            "pt-BR",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
+
+
+    const playerData =
+        players.find(
+            p=>p.id === player
+        );
+
+
+    const oldPoints =
+        calculatePoints(
+            table,
+            oldStats
+        );
+
+    const newPoints =
+        calculatePoints(
+            table,
+            data[player]
+        );
+
+
+    const tableName =
+        table === "year"
+        ? "Rank do Melhor do Ano"
+        : "Tabela do Campeonato";
+
+
+    const historyKey =
+        table === "year"
+        ? "bomba-history-year"
+        : "bomba-history-championship";
+
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                historyKey
+            ) || "[]"
+        );
+
+
+    history.unshift({
+
+        player:
+            playerData.nome,
+
+        playerId:
+            player,
+
+        date:
+            date,
+
+        time:
+            time,
+
+        oldV:
+            oldStats.v,
+
+        oldE:
+            oldStats.e,
+
+        oldD:
+            oldStats.d,
+
+        oldPoints:
+            oldPoints,
+
+        newV:
+            newV,
+
+        newE:
+            newE,
+
+        newD:
+            newD,
+
+        newPoints:
+            newPoints
+
+    });
+
+
+    localStorage.setItem(
+        historyKey,
+        JSON.stringify(
+            history.slice(0,50)
+        )
+    );
+
+
+    closeEditRankModal();
+
+    renderRankTable(table);
+
+    updateLastChange(table);
+
+    alert(
+        "✅ Alteração registrada!\n\n"
+        + "Jogador: "
+        + playerData.nome
+        + "\n"
+        + "Data: "
+        + date
+        + "\n"
+        + "Horário: "
+        + time
+    );
+
+}
+
+
+/* =====================================================
+   HISTÓRICO
+===================================================== */
+
+function renderHistory(table){
+
+    const historyKey =
+        table === "year"
+        ? "bomba-history-year"
+        : "bomba-history-championship";
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                historyKey
+            ) || "[]"
+        );
+
+    const container =
+        document.getElementById(
+            table === "year"
+            ? "yearHistory"
+            : "championshipHistory"
+        );
+
+    if(history.length === 0){
+
+        container.innerHTML = `
+
+            <div class="history-item">
+                Nenhuma alteração registrada ainda.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        history.map(item=>`
+
+            <div class="history-item">
+
+                <strong>
+                    ${item.player}
+                </strong>
+
+                alterou a tabela em
+                <strong>
+                    ${item.date}
+                </strong>
+                às
+                <strong>
+                    ${item.time}
+                </strong>.
+
+                <br>
+
+                Antes:
+                V ${item.oldV}
+                • E ${item.oldE}
+                • D ${item.oldD}
+                • PT ${item.oldPoints}
+
+                <br>
+
+                Depois:
+                V ${item.newV}
+                • E ${item.newE}
+                • D ${item.newD}
+                • PT ${item.newPoints}
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =====================================================
+   ÚLTIMA ALTERAÇÃO
+===================================================== */
+
+function updateLastChange(table){
+
+    const historyKey =
+        table === "year"
+        ? "bomba-history-year"
+        : "bomba-history-championship";
+
+    const history =
+        JSON.parse(
+            localStorage.getItem(
+                historyKey
+            ) || "[]"
+        );
+
+    const element =
+        document.getElementById(
+            table === "year"
+            ? "yearLastChange"
+            : "championshipLastChange"
+        );
+
+    if(!history.length){
+
+        element.textContent =
+            "Nenhuma alteração registrada.";
+
+        return;
+
+    }
+
+    const last =
+        history[0];
+
+    element.innerHTML = `
+
+        🔄 Última alteração:
+        <strong>${last.player}</strong>
+
+        • ${last.date}
+        • ${last.time}
+
+    `;
+
+}
+
+
+/* =====================================================
+   INICIALIZAR RANKINGS
+===================================================== */
+
+renderRankTable("year");
+renderRankTable("championship");
+
+updateLastChange("year");
+updateLastChange("championship");
+
+
+/* =====================================================
+   ESCAPAR HTML
 ===================================================== */
 
 function escapeHTML(text){
 
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
 }
+
 
 /* =====================================================
-   FECHAR MODAIS
+   ENTER NAS SENHAS
 ===================================================== */
 
-document.getElementById("passwordInput")
-.addEventListener("keydown",function(event){
+document
+.getElementById("passwordInput")
+.addEventListener(
+    "keydown",
+    function(event){
 
-if(event.key==="Enter"){
-submitAccessPassword();
-}
+        if(event.key === "Enter"){
 
-});
+            if(listPasswordMode){
 
-document.getElementById("passwordModal")
-.addEventListener("click",function(event){
+                submitListPassword();
 
-if(event.target===this){
-closePasswordModal();
-}
+            }else{
 
-});
+                submitPassword();
 
-document.getElementById("squadModal")
-.addEventListener("click",function(event){
+            }
 
-if(event.target===this){
-closeSquad();
-}
+        }
 
-});
+    }
+);
 
-document.getElementById("listModal")
-.addEventListener("click",function(event){
 
-if(event.target===this){
-closeList();
-}
+document
+.getElementById("rankPasswordInput")
+.addEventListener(
+    "keydown",
+    function(event){
 
-});
+        if(event.key === "Enter"){
 
-document.addEventListener("keydown",function(event){
+            authenticateRankChange();
 
-if(event.key==="Escape"){
+        }
 
-closePasswordModal();
-closeSquad();
-closeList();
+    }
+);
 
-}
 
-});
+/* =====================================================
+   FECHAR MODAIS CLICANDO FORA
+===================================================== */
+
+document
+.getElementById("passwordModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closePasswordModal();
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("squadModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeSquad();
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("listModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeList();
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("rankModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeRankModal();
+
+        }
+
+    }
+);
+
+
+document
+.getElementById("editRankModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closeEditRankModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESC
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closePasswordModal();
+            closeSquad();
+            closeList();
+            closeRankModal();
+            closeEditRankModal();
+
+        }
+
+    }
+);
 
 </script>
 
 </body>
 </html>
-```
