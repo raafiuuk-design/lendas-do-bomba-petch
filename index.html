@@ -978,6 +978,247 @@ body::after{
 }
 
 /* =========================
+   CENTRAL
+========================= */
+
+.central-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+}
+
+.central-card{
+
+    min-height:210px;
+
+    padding:27px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #0c0c0c
+        );
+
+    border:1px solid #ffffff0a;
+
+    border-radius:14px;
+
+    transition:.3s;
+}
+
+.central-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#ff730055;
+}
+
+.central-icon{
+
+    font-size:37px;
+
+    margin-bottom:20px;
+}
+
+.central-card h3{
+
+    color:#ff9800;
+
+    margin-bottom:10px;
+}
+
+.central-card p{
+
+    color:#888;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+/* =========================
+   JORNAL
+========================= */
+
+.news-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:20px;
+}
+
+.news-box{
+
+    background:#151515;
+
+    border:1px solid #ff730044;
+
+    border-radius:14px;
+
+    overflow:hidden;
+}
+
+.news-box summary{
+
+    list-style:none;
+
+    cursor:pointer;
+
+    padding:23px;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            90deg,
+            #720000,
+            #c52c00,
+            #ed7000
+        );
+}
+
+.news-box summary::-webkit-details-marker{
+    display:none;
+}
+
+.news-content{
+
+    min-height:180px;
+
+    padding:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    color:#777;
+
+    line-height:1.7;
+}
+
+.news-content strong{
+    color:#ff9800;
+}
+
+.future{
+
+    margin-top:25px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px dashed #ff730044;
+
+    border-radius:12px;
+
+    color:#666;
+}
+
+.future strong{
+
+    display:block;
+
+    color:#ff9800;
+
+    margin-bottom:8px;
+}
+
+/* =========================
+   TEMPORADAS
+========================= */
+
+.timeline{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.season{
+
+    position:relative;
+
+    padding:32px;
+
+    background:#141414;
+
+    border-radius:14px;
+
+    border:1px solid #ffffff09;
+
+    overflow:hidden;
+}
+
+.season::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8b0000,
+            #ff7300
+        );
+}
+
+.season.current{
+
+    border:1px solid #ff730055;
+
+    background:#141414;
+}
+
+.season-year{
+
+    color:#ff9800;
+
+    font-size:42px;
+
+    font-weight:900;
+
+    margin-bottom:12px;
+}
+
+.season h3{
+    margin-bottom:10px;
+}
+
+.season p{
+
+    color:#888;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+/* =========================
    DOWNLOAD
 ========================= */
 
@@ -1107,6 +1348,11 @@ footer{
             repeat(2,1fr);
     }
 
+    .central-grid{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
     .ranking-wrapper{
         grid-template-columns:1fr;
     }
@@ -1118,8 +1364,18 @@ footer{
         display:none;
     }
 
-    .rivalries{
+    .rivalries,
+    .timeline{
         grid-template-columns:1fr;
+    }
+
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+
+    .central-grid{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 }
 
@@ -1150,6 +1406,10 @@ footer{
 
     .stat-number{
         font-size:28px;
+    }
+
+    .central-grid{
+        grid-template-columns:1fr;
     }
 
     .rank{
@@ -1217,6 +1477,10 @@ footer{
 
         <a href="#rivalidades">RIVALIDADES</a>
 
+        <a href="#jornal">JORNAL</a>
+
+        <a href="#temporadas">TEMPORADAS</a>
+
         <a href="#download">DOWNLOAD</a>
 
     </div>
@@ -1274,7 +1538,7 @@ footer{
         </h2>
 
         <div class="return-date">
-            📅 <span>17/08/2026</span> • SEGUNDA-FEIRA
+            📅 <span>20/08/2026</span> • QUINTA-FEIRA
         </div>
 
     </div>
@@ -1371,12 +1635,12 @@ footer{
     <div class="stats">
 
         <div class="stat">
-            <div class="stat-number">3</div>
+            <div class="stat-number">4</div>
             <div class="stat-label">Temporadas Cristian</div>
         </div>
 
         <div class="stat">
-            <div class="stat-number">2</div>
+            <div class="stat-number">3</div>
             <div class="stat-label">Temporadas Rafagamer</div>
         </div>
 
@@ -1386,8 +1650,8 @@ footer{
         </div>
 
         <div class="stat">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Temporada Leandro</div>
+            <div class="stat-number">🔥</div>
+            <div class="stat-label">Nova temporada 2026</div>
         </div>
 
     </div>
@@ -1399,6 +1663,11 @@ footer{
 
 <!-- =========================
      LENDAS
+     
+     ORDEM:
+     1 - RAFAGAMER
+     2 - BERNA
+     3 - CRISTIAN
 ========================= -->
 
 <section class="section" id="lendas">
@@ -1425,9 +1694,7 @@ footer{
     <div class="legend-grid">
 
 
-        <!-- =========================
-             RAFAGAMER
-        ========================= -->
+        <!-- RAFAGAMER -->
 
         <details class="legend">
 
@@ -1436,7 +1703,7 @@ footer{
                 🔥 RAFAGAMER
 
                 <span class="trophies">
-                    🏆 🏆
+                    🏆 🏆 🏆
                 </span>
 
             </summary>
@@ -1463,10 +1730,10 @@ footer{
                 <p>
                     Além de todo esse estilo,
                     <span class="highlight">
-                        RAFAGAMER já conta com 2 temporadas de história
+                        RAFAGAMER já conta com 3 temporadas de história
                     </span>,
                     mostrando sua experiência e sua presença entre
-                    as grandes lendas. 🏆🏆
+                    as grandes lendas. 🏆🏆🏆
                 </p>
 
                 <p>
@@ -1479,7 +1746,7 @@ footer{
                 <div class="achievements">
 
                     <span class="achievement">
-                        🏆 2 TEMPORADAS
+                        🏆 3 TEMPORADAS
                     </span>
 
                     <span class="achievement">
@@ -1499,6 +1766,7 @@ footer{
 
         <!-- =========================
              BERNA
+             AGORA VEM ANTES DO CRISTIAN
         ========================= -->
 
         <details class="legend">
@@ -1575,6 +1843,7 @@ footer{
 
         <!-- =========================
              CRISTIAN
+             AGORA FICA EMBAIXO DO BERNA
         ========================= -->
 
         <details class="legend">
@@ -1584,7 +1853,7 @@ footer{
                 ⚡ CRISTIAN
 
                 <span class="trophies">
-                    🏆 🏆 🏆
+                    🏆 🏆 🏆 🏆
                 </span>
 
             </summary>
@@ -1599,7 +1868,7 @@ footer{
                     Cristian é uma das maiores lendas do BOMBA PETCH
                     e o jogador com mais temporadas entre todos:
                     <span class="highlight">
-                        3 temporadas de história.
+                        4 temporadas de história.
                     </span>
                 </p>
 
@@ -1632,7 +1901,7 @@ footer{
                 <div class="achievements">
 
                     <span class="achievement">
-                        🏆 3 TEMPORADAS
+                        🏆 4 TEMPORADAS
                     </span>
 
                     <span class="achievement">
@@ -1641,93 +1910,6 @@ footer{
 
                     <span class="achievement">
                         ⚡ CONTRA-ATAQUE
-                    </span>
-
-                </div>
-
-            </div>
-
-        </details>
-
-
-        <!-- =========================
-             LEANDRO
-        ========================= -->
-
-        <details class="legend">
-
-            <summary>
-
-                🔥 LEANDRO
-
-                <span class="trophies">
-                    🏆
-                </span>
-
-            </summary>
-
-            <div class="legend-body">
-
-                <h3>
-                    🔥 LEANDRO — O IMPREVISÍVEL
-                </h3>
-
-                <p>
-                    Leandro possui um estilo de jogo extremamente
-                    <span class="highlight">
-                        imprevisível
-                    </span>.
-                    Seu maior diferencial é conseguir atuar tanto
-                    defensivamente quanto ofensivamente ao mesmo tempo,
-                    tornando difícil descobrir qual será sua próxima jogada.
-                </p>
-
-                <p>
-                    Na defesa, Leandro consegue se posicionar e
-                    controlar os espaços, esperando o momento certo
-                    para reagir. Mas ele não fica preso apenas à defesa.
-                </p>
-
-                <p>
-                    Quando encontra uma oportunidade,
-                    transforma rapidamente uma situação defensiva em
-                    uma jogada ofensiva, surpreendendo o adversário.
-                    ⚡🔥
-                </p>
-
-                <p>
-                    Essa mistura entre
-                    <span class="highlight">
-                        defesa e ataque
-                    </span>
-                    faz com que seu estilo seja difícil de ler.
-                    O adversário nunca sabe se Leandro irá recuar,
-                    pressionar ou atacar de repente.
-                </p>
-
-                <p>
-                    <span class="highlight">
-                        Defesa, ataque e imprevisibilidade —
-                        essa é a marca do Leandro.
-                    </span>
-                </p>
-
-                <div class="achievements">
-
-                    <span class="achievement">
-                        🏆 1 TEMPORADA
-                    </span>
-
-                    <span class="achievement">
-                        🛡️ DEFESA
-                    </span>
-
-                    <span class="achievement">
-                        ⚔️ ATAQUE
-                    </span>
-
-                    <span class="achievement">
-                        🎲 IMPREVISÍVEL
                     </span>
 
                 </div>
@@ -1755,6 +1937,84 @@ footer{
     <div class="section-header">
 
         <small>
+            CLASSIFICAÇÃO
+        </small>
+
+        <h2>
+            🏆 RANKING DAS LENDAS
+        </h2>
+
+        <p>
+            As lendas do BOMBA PETCH.
+        </p>
+
+    </div>
+
+
+    <div class="ranking-wrapper">
+
+        <div class="ranking">
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    01
+                </div>
+
+                <div class="rank-name">
+                    BERNA
+                </div>
+
+                <div class="rank-season">
+                    1 TEMPORADA
+                </div>
+
+            </div>
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    02
+                </div>
+
+                <div class="rank-name">
+                    CRISTIAN
+                </div>
+
+                <div class="rank-season">
+                    4 TEMPORADAS
+                </div>
+
+            </div>
+
+
+            <div class="rank">
+
+                <div class="rank-position">
+                    03
+                </div>
+
+                <div class="rank-name">
+                    RAFAGAMER
+                </div>
+
+                <div class="rank-season">
+                    3 TEMPORADAS
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="champion">
+
+            <div class="champion-icon">
+                🏆
+            </div>
+
+            <h3>
                 ÚLTIMA TEMPORADA
             </h3>
 
@@ -1860,62 +2120,291 @@ footer{
         </div>
 
 
-        <div class="rivalry">
+    </div>
 
-            <div class="rivalry-names">
+</div>
 
-                <span>LEANDRO</span>
+</section>
 
-                <span class="vs">VS</span>
 
-                <span>CRISTIAN</span>
+<!-- =========================
+     CENTRAL
+========================= -->
 
+<section class="section">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            UNIVERSO
+        </small>
+
+        <h2>
+            🎮 CENTRAL BOMBA PETCH
+        </h2>
+
+    </div>
+
+
+    <div class="central-grid">
+
+
+        <div class="central-card">
+
+            <div class="central-icon">
+                👑
             </div>
 
+            <h3>
+                Campeões
+            </h3>
+
             <p>
-                A imprevisibilidade de Leandro contra
-                a defesa estratégica e o contra-ataque
-                de Cristian.
+                A história dos jogadores que chegaram
+                ao topo do BOMBA PETCH.
             </p>
 
         </div>
 
 
-        <div class="rivalry">
+        <div class="central-card">
 
-            <div class="rivalry-names">
-
-                <span>LEANDRO</span>
-
-                <span class="vs">VS</span>
-
-                <span>BERNA</span>
-
+            <div class="central-icon">
+                🏆
             </div>
 
+            <h3>
+                Hall da Fama
+            </h3>
+
             <p>
-                A imprevisibilidade de Leandro contra
-                a versatilidade e o jogo aéreo de Berna.
+                As maiores lendas e os jogadores
+                que fizeram história.
             </p>
 
         </div>
 
 
-        <div class="rivalry">
+        <div class="central-card">
 
-            <div class="rivalry-names">
+            <div class="central-icon">
+                📰
+            </div>
 
-                <span>LEANDRO</span>
+            <h3>
+                Jornal
+            </h3>
 
-                <span class="vs">VS</span>
+            <p>
+                Notícias, acontecimentos e
+                histórias das temporadas.
+            </p>
 
-                <span>RAFAGAMER</span>
+        </div>
+
+
+        <div class="central-card">
+
+            <div class="central-icon">
+                🔥
+            </div>
+
+            <h3>
+                Atualizações
+            </h3>
+
+            <p>
+                Espaço preparado para as
+                próximas novidades.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     JORNAL
+========================= -->
+
+<section class="section" id="jornal">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            CENTRAL DE INFORMAÇÕES
+        </small>
+
+        <h2>
+            📰 NOTÍCIAS
+        </h2>
+
+        <p>
+            Os próximos capítulos serão escritos aqui.
+        </p>
+
+    </div>
+
+
+    <div class="news-grid">
+
+
+        <details class="news-box">
+
+            <summary>
+                🔔 ATUALIZAÇÕES
+            </summary>
+
+            <div class="news-content">
+
+                <div>
+
+                    <strong>
+                        ÁREA RESERVADA
+                    </strong>
+
+                    <br><br>
+
+                    Novas atualizações do
+                    BOMBA PETCH poderão ser
+                    colocadas aqui.
+
+                </div>
 
             </div>
 
+        </details>
+
+
+        <details class="news-box">
+
+            <summary>
+                📰 JORNAL BOMBA PETCH
+            </summary>
+
+            <div class="news-content">
+
+                <div>
+
+                    <strong>
+                        EDIÇÃO EM BREVE
+                    </strong>
+
+                    <br><br>
+
+                    Este espaço está preparado
+                    para receber o Jornal Bomba Petch.
+
+                </div>
+
+            </div>
+
+        </details>
+
+
+    </div>
+
+
+    <div class="future">
+
+        <strong>
+            📢 CENTRAL BOMBA PETCH
+        </strong>
+
+        Novidades, notícias e acontecimentos
+        poderão ser adicionados aqui futuramente.
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     TEMPORADAS
+========================= -->
+
+<section class="section" id="temporadas">
+
+<div class="container">
+
+    <div class="section-header">
+
+        <small>
+            HISTÓRIA
+        </small>
+
+        <h2>
+            📅 LINHA DO TEMPO
+        </h2>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <div class="season">
+
+            <div class="season-year">
+                2024
+            </div>
+
+            <h3>
+                OS PRIMEIROS CAPÍTULOS
+            </h3>
+
             <p>
-                Um confronto entre imprevisibilidade,
-                criatividade e estilo.
+                O início da história e o surgimento
+                das primeiras grandes rivalidades.
+            </p>
+
+        </div>
+
+
+        <div class="season">
+
+            <div class="season-year">
+                2025
+            </div>
+
+            <h3>
+                A ERA DAS LENDAS
+            </h3>
+
+            <p>
+                As disputas ficam maiores e os
+                jogadores começam a construir seu legado.
+            </p>
+
+        </div>
+
+
+        <div class="season current">
+
+            <div class="season-year">
+                2026
+            </div>
+
+            <h3>
+                NOVA TEMPORADA
+            </h3>
+
+            <p>
+                Retorno marcado para
+                <span class="highlight">
+                    20/08/2026 — quinta-feira.
+                </span>
             </p>
 
         </div>
@@ -1996,7 +2485,7 @@ footer{
     </div>
 
     <p>
-        RAFAGAMER • BERNA • CRISTIAN • LEANDRO
+        RAFAGAMER • BERNA • CRISTIAN
     </p>
 
     <p style="margin-top:15px;font-size:11px;">
