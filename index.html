@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BOMBA PETCH — RAFAGAMER 2026</title>
-
-<meta name="theme-color" content="#ff7300">
-
+<title>Bomba Petch — Rafagamer 2026</title>
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 html{
@@ -29,722 +19,315 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#050505;
-    color:white;
-    overflow-x:hidden;
+    color:#fff;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:
+    radial-gradient(circle at 15% 20%,#ff350018,transparent 30%),
+    radial-gradient(circle at 85% 70%,#ff8c0015,transparent 30%),
+    linear-gradient(135deg,#030303,#151515,#050505);
+}
+
+body:after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    opacity:.25;
+    background:
+    repeating-linear-gradient(
+        120deg,
+        transparent 0,
+        transparent 90px,
+        #ffffff05 91px,
+        transparent 93px
+    );
 }
 
 a{
-    text-decoration:none;
     color:inherit;
+    text-decoration:none;
 }
 
 
-/* =====================================================
-   FUNDO
-===================================================== */
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-2;
-
-    background:
-
-        radial-gradient(
-            circle at 15% 20%,
-            #ff350018,
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 70%,
-            #ff8c0012,
-            transparent 30%
-        ),
-
-        linear-gradient(
-            135deg,
-            #030303,
-            #101010,
-            #050505
-        );
-}
-
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:-1;
-
-    pointer-events:none;
-
-    opacity:.25;
-
-    background:
-
-        repeating-linear-gradient(
-            115deg,
-            transparent 0,
-            transparent 90px,
-            #ffffff05 91px,
-            transparent 93px
-        );
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
+/* ================= MENU ================= */
 
 .navbar{
-
     position:sticky;
-
     top:0;
-
-    z-index:1000;
-
+    z-index:9999;
     min-height:65px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     padding:0 5%;
-
     background:#050505ee;
-
-    border-bottom:
-        1px solid #ff730055;
-
+    border-bottom:1px solid #ff730055;
     backdrop-filter:blur(15px);
 }
 
-
 .logo{
-
     font-size:20px;
-
     font-weight:900;
-
     letter-spacing:2px;
-
     color:#ff7300;
 }
-
 
 .logo span{
     color:#ffd000;
 }
 
-
 .nav-links{
-
     display:flex;
-
-    gap:18px;
-
     flex-wrap:wrap;
-
     justify-content:flex-end;
+    gap:18px;
 }
-
 
 .nav-links a{
-
     color:#888;
-
     font-size:10px;
-
     font-weight:bold;
-
     letter-spacing:1px;
-
-    transition:.25s;
 }
 
-
 .nav-links a:hover{
-
     color:#ff9800;
 }
 
 
-/* =====================================================
-   HERO
-===================================================== */
+/* ================= HERO ================= */
 
 .hero{
-
-    min-height:650px;
-
-    position:relative;
-
+    min-height:620px;
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     text-align:center;
-
+    position:relative;
     overflow:hidden;
 
     background:
+    radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
+    linear-gradient(
+        115deg,
+        #030303,
+        #300000,
+        #8a0d00,
+        #1a0000,
+        #030303
+    );
 
-        radial-gradient(
-            circle at 50% 50%,
-            #ff3c0025,
-            transparent 35%
-        ),
-
-        linear-gradient(
-            115deg,
-            #030303,
-            #270000,
-            #820d00,
-            #190000,
-            #030303
-        );
-
-    border-bottom:
-        3px solid #ff7300;
+    border-bottom:3px solid #ff7300;
 }
-
-
-.hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:900px;
-
-    height:900px;
-
-    border-radius:50%;
-
-    background:
-
-        radial-gradient(
-            circle,
-            #ff730055,
-            transparent 65%
-        );
-
-    top:-450px;
-
-    right:-300px;
-}
-
-
-.hero::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-        repeating-linear-gradient(
-            120deg,
-            transparent 0,
-            transparent 80px,
-            #ffffff07 81px,
-            transparent 83px
-        );
-}
-
 
 .hero-content{
-
-    position:relative;
-
-    z-index:5;
-
     width:90%;
-
     max-width:1200px;
 }
 
-
 .edition{
-
     color:#ffd000;
-
     font-size:11px;
-
     font-weight:bold;
-
     letter-spacing:8px;
-
     margin-bottom:25px;
 }
 
-
 .hero h1{
-
-    font-size:
-        clamp(60px,12vw,145px);
-
+    font-size:clamp(55px,12vw,145px);
     line-height:.8;
-
     font-weight:1000;
-
     letter-spacing:4px;
-
-    text-transform:uppercase;
-
     text-shadow:
-
         5px 5px 0 #620000,
-
         0 0 20px #ff3c00,
-
         0 0 70px #ff730055;
 }
 
-
 .hero h2{
-
     margin-top:35px;
-
     color:#ffd000;
-
-    font-size:
-        clamp(25px,5vw,60px);
-
+    font-size:clamp(25px,5vw,60px);
     letter-spacing:10px;
 }
 
-
 .hero-subtitle{
-
     margin-top:25px;
-
     color:#ddd;
-
     font-size:13px;
-
     letter-spacing:5px;
 }
 
-
 .hero-button{
-
     display:inline-block;
-
     margin-top:40px;
-
     padding:16px 32px;
-
     border-radius:50px;
-
-    border:
-        1px solid #ffd000;
-
+    border:1px solid #ffd000;
     color:#ffd000;
-
     background:#00000055;
-
     font-size:11px;
-
     font-weight:bold;
-
     letter-spacing:3px;
-
-    transition:.25s;
 }
-
 
 .hero-button:hover{
-
     background:#ff7300;
-
-    color:white;
-
-    transform:translateY(-4px);
-
-    box-shadow:
-        0 10px 30px #000;
+    color:#fff;
 }
 
 
-/* =====================================================
-   RETORNO DA TEMPORADA
-===================================================== */
+/* ================= RETORNO ================= */
 
 .season-return{
-
-    position:relative;
-
     padding:38px 20px;
-
     text-align:center;
 
     background:
+    linear-gradient(
+        90deg,
+        #580000,
+        #b51d00,
+        #ff7300,
+        #b51d00,
+        #580000
+    );
 
-        linear-gradient(
-            90deg,
-            #580000,
-            #b51d00,
-            #ff7300,
-            #b51d00,
-            #580000
-        );
-
-    border-bottom:
-        3px solid #ffd000;
-
-    box-shadow:
-        0 0 35px #ff3c0033;
+    border-bottom:3px solid #ffd000;
 }
 
-
 .return-label{
-
     color:#ffd000;
-
     font-size:11px;
-
     font-weight:bold;
-
     letter-spacing:5px;
-
     margin-bottom:12px;
 }
 
-
 .season-return h2{
-
-    font-size:
-        clamp(28px,5vw,48px);
-
-    font-weight:1000;
-
-    text-transform:uppercase;
+    font-size:clamp(28px,5vw,48px);
 }
-
 
 .return-date{
-
     margin-top:15px;
-
     font-size:20px;
-
     font-weight:bold;
-
-    letter-spacing:2px;
 }
-
 
 .return-date span{
     color:#ffd000;
 }
 
-
 .return-place{
-
     margin-top:12px;
-
-    font-size:15px;
 }
-
 
 .return-place strong{
     color:#ffd000;
 }
 
 
-/* =====================================================
-   TICKER
-===================================================== */
-
-.ticker{
-
-    min-height:45px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:14px;
-
-    padding:10px 15px;
-
-    background:#090909;
-
-    border-bottom:
-        1px solid #ffffff0b;
-
-    color:#777;
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    text-align:center;
-}
-
-
-.ticker strong{
-    color:#ff7300;
-}
-
-
-/* =====================================================
-   SEÇÕES
-===================================================== */
+/* ================= GERAL ================= */
 
 .container{
-
     width:92%;
-
     max-width:1250px;
-
     margin:auto;
 }
 
-
 .section{
-
     padding:80px 0;
 }
 
-
 .section-header{
-
     text-align:center;
-
     margin-bottom:45px;
 }
 
-
 .section-header small{
-
     display:block;
-
     color:#ff7300;
-
     font-size:10px;
-
     font-weight:bold;
-
     letter-spacing:6px;
-
     margin-bottom:12px;
 }
 
-
 .section-header h2{
-
     font-size:38px;
 }
 
-
 .section-header p{
-
     margin-top:12px;
-
     color:#777;
-
-    font-size:14px;
 }
 
 
-/* =====================================================
-   LENDAS
-===================================================== */
+/* ================= LENDAS ================= */
 
 .legend-grid{
-
     display:flex;
-
     flex-direction:column;
-
-    gap:22px;
-
+    gap:20px;
     max-width:900px;
-
     margin:auto;
 }
 
-
 .legend{
-
     background:#121212;
-
-    border:
-        1px solid #ff730033;
-
+    border:1px solid #ff730033;
     border-radius:15px;
-
     overflow:hidden;
-
-    box-shadow:
-        0 15px 35px #00000080;
-
-    transition:.3s;
 }
-
-
-.legend:hover{
-
-    transform:translateY(-5px);
-
-    border-color:#ff7300;
-}
-
 
 .legend summary{
-
-    list-style:none;
-
     cursor:pointer;
-
+    list-style:none;
     padding:23px;
-
     display:flex;
-
     align-items:center;
-
-    gap:12px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #700000,
-            #bf2900,
-            #ed6900
-        );
-
+    background:linear-gradient(90deg,#700000,#bf2900,#ed6900);
     font-size:20px;
-
     font-weight:bold;
 }
-
 
 .legend summary::-webkit-details-marker{
     display:none;
 }
 
-
-.legend summary::after{
-
-    content:"+";
-
-    margin-left:auto;
-
-    font-size:25px;
-}
-
-
-.legend[open] summary::after{
-    content:"−";
-}
-
-
 .trophies{
-
-    color:#ffd700;
-
-    font-size:14px;
-
     margin-left:auto;
+    color:#ffd700;
 }
-
 
 .legend-body{
-
     padding:30px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #242424,
-            #0e0e0e
-        );
+    background:linear-gradient(145deg,#242424,#0e0e0e);
 }
 
-
 .legend-body h3{
-
     color:#ff9800;
-
-    font-size:23px;
-
     margin-bottom:18px;
 }
 
-
 .legend-body p{
-
     color:#ddd;
-
-    font-size:16px;
-
     line-height:1.75;
-
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
-
 
 .highlight{
-
     color:#ffd000;
-
     font-weight:bold;
-}
-
-
-.achievements{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin-top:25px;
-}
-
-
-.achievement{
-
-    padding:9px 13px;
-
-    border-radius:20px;
-
-    background:#00000055;
-
-    border:
-        1px solid #ff730033;
-
-    color:#aaa;
-
-    font-size:10px;
-
-    letter-spacing:1px;
 }
 
 
@@ -752,1163 +335,633 @@ body::after{
    ELENCOS
 ===================================================== */
 
-.squad-owner{
-
-    margin-bottom:45px;
-
+.owner{
+    margin-bottom:55px;
     padding:25px;
-
     border-radius:18px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #171717,
-            #090909
-        );
-
-    border:
-        1px solid #ff730033;
-
-    box-shadow:
-        0 15px 40px #00000080;
+    background:linear-gradient(145deg,#181818,#080808);
+    border:1px solid #ff730033;
 }
 
-
-.squad-owner-title{
-
+.owner-title{
     display:flex;
-
-    align-items:center;
-
     justify-content:space-between;
-
+    align-items:center;
     margin-bottom:22px;
-
     padding-bottom:18px;
-
-    border-bottom:
-        1px solid #ffffff0d;
+    border-bottom:1px solid #ffffff0d;
 }
 
-
-.squad-owner-title span{
-
-    color:#ff9800;
-
-    font-size:26px;
-
-    font-weight:900;
-
-    letter-spacing:1px;
-}
-
-
-.squad-owner-title small{
-
-    color:#777;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
-}
-
-
-.squad-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:15px;
-}
-
-
-.squad-card{
-
-    overflow:hidden;
-
-    border:
-        1px solid #ff730033;
-
-    border-radius:12px;
-
-    background:#0d0d0d;
-
-    transition:.3s;
-}
-
-
-.squad-card:hover{
-
-    border-color:#ff7300;
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 10px 25px #000;
-}
-
-
-.squad-card summary{
-
-    list-style:none;
-
-    cursor:pointer;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:20px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #650000,
-            #a91d00
-        );
-
-    color:white;
-
-    font-weight:bold;
-
-    font-size:15px;
-}
-
-
-.squad-card summary::-webkit-details-marker{
-    display:none;
-}
-
-
-.squad-card summary span{
-
-    color:#ffd000;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-}
-
-
-.squad-content{
-
-    padding:25px;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #191919,
-            #0b0b0b
-        );
-}
-
-
-.squad-content h3{
-
-    margin-top:22px;
-
-    margin-bottom:12px;
-
-    padding-bottom:8px;
-
-    color:#ff9800;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-
-    border-bottom:
-        1px solid #ff730022;
-}
-
-
-.squad-content h3:first-child{
-    margin-top:0;
-}
-
-
-.players{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:6px;
-}
-
-
-.players div{
-
-    padding:9px 12px;
-
-    border-radius:6px;
-
-    background:#101010;
-
-    border:
-        1px solid #ffffff08;
-
-    color:#aaa;
-
-    font-size:11px;
-
-    transition:.2s;
-}
-
-
-.players div:hover{
-
-    color:#ffd000;
-
-    border-color:#ff730044;
-
-    background:#ff730008;
-}
-
-
-.empty-squad{
-
-    min-height:180px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    color:#ff9800;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
-}
-
-
-.empty-squad small{
-
-    margin-top:10px;
-
-    color:#555;
-
-    font-size:10px;
-
-    letter-spacing:1px;
-}
-
-
-/* =====================================================
-   REGRAS
-===================================================== */
-
-.rules-container{
-
-    max-width:1000px;
-
-    margin:auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-}
-
-
-.rule-card{
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:90px 1fr;
-
-    overflow:hidden;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #191919,
-            #0c0c0c
-        );
-
-    border:
-        1px solid #ff730033;
-
-    border-radius:16px;
-
-    box-shadow:
-        0 12px 30px #00000080;
-
-    transition:.3s;
-}
-
-
-.rule-card:hover{
-
-    transform:translateY(-4px);
-
-    border-color:#ff7300;
-
-    box-shadow:
-        0 18px 40px #000000;
-}
-
-
-.rule-number{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #b90000,
-            #620000
-        );
-
-    color:#ffd000;
-
-    font-size:30px;
-
-    font-weight:900;
-
-    border-right:
-        2px solid #ff730055;
-}
-
-
-.rule-content{
-
-    padding:30px;
-}
-
-
-.rule-content h3{
-
-    color:#ff9800;
-
-    font-size:20px;
-
-    margin-bottom:18px;
-}
-
-
-.rule-content p{
-
-    color:#ccc;
-
-    font-size:15px;
-
-    line-height:1.75;
-
-    margin-bottom:13px;
-}
-
-
-.rule-highlight{
-
-    color:#ffd000;
-
-    font-weight:bold;
-}
-
-
-.penalty{
-
-    color:#ff5b36;
-
-    font-weight:bold;
-}
-
-
-.formations{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
-    margin:18px 0 20px;
-}
-
-
-.formations span{
-
-    padding:10px 16px;
-
-    border-radius:8px;
-
-    background:#111;
-
-    border:
-        1px solid #ff730055;
-
-    color:#ff9800;
-
-    font-size:13px;
-
-    font-weight:bold;
-}
-
-
-.rule-card.extreme{
-
-    border:
-        2px solid #ff000066;
-
-    background:#120808;
-}
-
-
-.rule-card.extreme .rule-number{
-
-    background:
-
-        linear-gradient(
-            180deg,
-            #ff0000,
-            #720000
-        );
-
-    color:white;
-}
-
-
-.extreme-text{
-
-    color:#ff2929;
-
-    font-weight:900;
-}
-
-
-.extreme-warning{
-
-    margin-top:22px;
-
-    padding:17px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:7px;
-
-    text-align:center;
-
-    border:
-        1px solid #ff000066;
-
-    border-radius:10px;
-
-    background:#ff00000d;
-
-    color:#ff3c3c;
-
-    font-size:11px;
-
-    letter-spacing:3px;
-}
-
-
-.extreme-warning strong{
-
-    color:#ff0000;
-
-    font-size:18px;
-}
-
-
-/* =====================================================
-   RANK
-===================================================== */
-
-.ranking-table-wrapper{
-
-    width:100%;
-
-    overflow-x:auto;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #181818,
-            #090909
-        );
-
-    border:
-        1px solid #ff730044;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 50px #00000099;
-}
-
-
-.ranking-table{
-
-    width:100%;
-
-    min-width:650px;
-
-    border-collapse:collapse;
-}
-
-
-.ranking-table th{
-
-    padding:20px 18px;
-
-    text-align:center;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #700000,
-            #a91500,
-            #d95200
-        );
-
-    color:#ffd000;
-
-    font-size:11px;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-    border-bottom:
-        2px solid #ff7300;
-}
-
-
-.ranking-table td{
-
-    padding:22px 18px;
-
-    text-align:center;
-
-    border-bottom:
-        1px solid #ffffff08;
-
-    color:#ccc;
-
-    font-size:14px;
-}
-
-
-.position{
-
-    font-size:20px;
-
-    font-weight:900;
-
-    color:#ff9800;
-}
-
-
-.player{
-
-    text-align:left !important;
-
-    font-weight:bold;
-
-    font-size:16px !important;
-
-    color:white !important;
-}
-
-
-.player-berna{
-
-    color:#ffd000 !important;
-}
-
-
-.points{
-
-    font-size:22px !important;
-
-    font-weight:900;
-
-    color:#ffd000 !important;
-}
-
-
-.victory{
-
-    color:#4cff76 !important;
-
-    font-weight:bold;
-}
-
-
-.draw{
-
-    color:#ffd000 !important;
-
-    font-weight:bold;
-}
-
-
-.defeat{
-
-    color:#ff4545 !important;
-
-    font-weight:bold;
-}
-
-
-.ranking-info{
-
-    display:flex;
-
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-
-    margin-top:25px;
-}
-
-
-.score-box{
-
-    padding:12px 18px;
-
-    border-radius:8px;
-
-    background:#111;
-
-    border:
-        1px solid #ffffff0d;
-
-    font-size:11px;
-
-    color:#aaa;
-}
-
-
-/* =====================================================
-   JORNAL
-===================================================== */
-
-.news-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:20px;
-}
-
-
-.news-box{
-
-    background:#151515;
-
-    border:
-        1px solid #ff730044;
-
-    border-radius:14px;
-
-    overflow:hidden;
-}
-
-
-.news-box summary{
-
-    list-style:none;
-
-    cursor:pointer;
-
-    padding:23px;
-
-    font-size:19px;
-
-    font-weight:bold;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #720000,
-            #c52c00,
-            #ed7000
-        );
-}
-
-
-.news-box summary::-webkit-details-marker{
-    display:none;
-}
-
-
-.news-content{
-
-    min-height:180px;
-
-    padding:35px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    color:#777;
-
-    line-height:1.7;
-}
-
-
-.news-content strong{
-    color:#ff9800;
-}
-
-
-.future{
-
-    margin-top:25px;
-
-    padding:30px;
-
-    text-align:center;
-
-    border:
-        1px dashed #ff730044;
-
-    border-radius:12px;
-
-    color:#666;
-}
-
-
-.future strong{
-
-    display:block;
-
-    color:#ff9800;
-
-    margin-bottom:8px;
-}
-
-
-/* =====================================================
-   TEMPORADAS
-===================================================== */
-
-.timeline{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:20px;
-}
-
-
-.season{
-
-    position:relative;
-
-    padding:32px;
-
-    background:#141414;
-
-    border-radius:14px;
-
-    border:
-        1px solid #ffffff09;
-
-    overflow:hidden;
-}
-
-
-.season::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:3px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #8b0000,
-            #ff7300
-        );
-}
-
-
-.season.current{
-
-    border:
-        1px solid #ff730055;
-}
-
-
-.season-year{
-
-    color:#ff9800;
-
-    font-size:42px;
-
-    font-weight:900;
-
-    margin-bottom:12px;
-}
-
-
-.season h3{
-    margin-bottom:10px;
-}
-
-
-.season p{
-
-    color:#888;
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
-
-/* =====================================================
-   DOWNLOAD
-===================================================== */
-
-.download-area{
-
-    max-width:800px;
-
-    margin:auto;
-
-    padding:50px;
-
-    text-align:center;
-
-    border-radius:18px;
-
-    background:
-
-        radial-gradient(
-            circle,
-            #ff730025,
-            transparent 65%
-        ),
-
-        #121212;
-
-    border:
-        1px solid #ff730066;
-
-    box-shadow:
-        0 20px 50px #000;
-}
-
-
-.download-icon{
-
-    font-size:55px;
-
-    margin-bottom:15px;
-}
-
-
-.download-area h3{
-
-    color:#ff9800;
-
+.owner-title h3{
     font-size:27px;
-
-    margin-bottom:12px;
+    color:#ff9800;
 }
 
-
-.download-area p{
-
-    color:#888;
-
-    margin-bottom:28px;
+.owner-title span{
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
 }
 
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
 
-.download-button{
-
-    display:inline-block;
-
-    padding:17px 38px;
-
-    border-radius:8px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #b90000,
-            #ff7300
-        );
-
-    color:white;
-
-    font-weight:bold;
-
-    font-size:12px;
-
-    letter-spacing:1px;
-
+.team-card{
+    background:#101010;
+    border:1px solid #ff730033;
+    border-radius:12px;
+    overflow:hidden;
     transition:.25s;
 }
 
+.team-card:hover{
+    border-color:#ff7300;
+    transform:translateY(-3px);
+}
 
-.download-button:hover{
+.team-head{
+    padding:22px;
+    background:linear-gradient(90deg,#650000,#a91d00);
+}
 
-    transform:translateY(-4px);
+.team-head h4{
+    font-size:18px;
+}
 
-    box-shadow:
-        0 12px 30px #000;
+.team-head p{
+    color:#ffd000;
+    font-size:10px;
+    margin-top:6px;
+}
+
+.team-body{
+    padding:20px;
+}
+
+.team-body button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    background:linear-gradient(90deg,#b90000,#ff7300);
+    color:white;
+    font-weight:bold;
+}
+
+.team-body button:hover{
+    transform:translateY(-2px);
+}
+
+.saved-count{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    margin-top:12px;
 }
 
 
 /* =====================================================
-   RODAPÉ
+   MODAL DO ELENCO
 ===================================================== */
 
-footer{
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:#000000e8;
+    padding:25px;
+    overflow-y:auto;
+}
 
-    margin-top:50px;
+.modal.active{
+    display:block;
+}
 
-    padding:50px 20px;
+.modal-box{
+    width:100%;
+    max-width:1250px;
+    margin:20px auto;
+    background:#111;
+    border:1px solid #ff730066;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 30px 80px #000;
+}
 
-    text-align:center;
+.modal-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 25px;
+    background:linear-gradient(90deg,#720000,#c52c00,#ed7000);
+}
 
-    background:#030303;
+.modal-top h2{
+    font-size:24px;
+}
 
-    border-top:
-        1px solid #ff730044;
+.close{
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:#00000055;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
 
-    color:#555;
+.close:hover{
+    background:#000;
+}
+
+.modal-content{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    min-height:600px;
 }
 
 
-.footer-logo{
+/* LISTA DE JOGADORES */
 
-    color:#ff7300;
+.player-list{
+    padding:20px;
+    background:#0b0b0b;
+    border-right:1px solid #ffffff0d;
+}
 
-    font-size:24px;
+.player-list h3{
+    color:#ff9800;
+    margin-bottom:15px;
+}
 
+.search{
+    width:100%;
+    padding:13px;
+    border:1px solid #ffffff15;
+    border-radius:8px;
+    outline:none;
+    background:#171717;
+    color:white;
+    margin-bottom:15px;
+}
+
+.position-filter{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:15px;
+}
+
+.position-filter button{
+    padding:7px 9px;
+    border:1px solid #ffffff15;
+    background:#151515;
+    color:#888;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:9px;
+}
+
+.position-filter button.active{
+    background:#ff7300;
+    color:white;
+}
+
+.available{
+    max-height:480px;
+    overflow-y:auto;
+}
+
+.available-player{
+    padding:12px;
+    margin-bottom:6px;
+    background:#151515;
+    border:1px solid #ffffff08;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.available-player:hover{
+    background:#291600;
+    border-color:#ff730055;
+}
+
+.available-player strong{
+    display:block;
+    color:white;
+}
+
+.available-player small{
+    color:#777;
+}
+
+
+/* ELENCO ATUAL */
+
+.current-squad{
+    padding:25px;
+}
+
+.current-squad-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.current-squad-header h3{
+    color:#ffd000;
+}
+
+.progress{
+    color:#888;
+    font-size:11px;
+}
+
+.position-section{
+    margin-bottom:24px;
+}
+
+.position-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+    padding-bottom:8px;
+    border-bottom:1px solid #ff730033;
+}
+
+.position-title h4{
+    color:#ff9800;
+}
+
+.position-title span{
+    color:#777;
+    font-size:10px;
+}
+
+.slots{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+
+.slot{
+    min-height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:10px;
+    background:#171717;
+    border:1px dashed #ffffff18;
+    border-radius:7px;
+}
+
+.slot.empty{
+    color:#555;
+}
+
+.slot-name{
+    color:#ddd;
+    font-size:12px;
+}
+
+.slot-remove{
+    border:0;
+    background:#720000;
+    color:white;
+    width:28px;
+    height:28px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.slot-remove:hover{
+    background:#ff0000;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    padding-top:20px;
+    margin-top:20px;
+    border-top:1px solid #ffffff0d;
+}
+
+.action{
+    padding:13px 20px;
+    border:0;
+    border-radius:7px;
+    cursor:pointer;
     font-weight:bold;
+}
 
+.save{
+    background:#ff7300;
+    color:white;
+}
+
+.clear{
+    background:#450000;
+    color:#ff7777;
+}
+
+.cancel{
+    background:#252525;
+    color:#aaa;
+}
+
+
+/* ================= REGRAS ================= */
+
+.rules{
+    max-width:1000px;
+    margin:auto;
+}
+
+.rule{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    margin-bottom:18px;
+    background:#131313;
+    border:1px solid #ff730033;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.rule-number{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(#a90000,#570000);
+    color:#ffd000;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.rule-text{
+    padding:25px;
+}
+
+.rule-text h3{
+    color:#ff9800;
+    margin-bottom:13px;
+}
+
+.rule-text p{
+    color:#bbb;
+    line-height:1.7;
+    margin-bottom:10px;
+}
+
+.formations{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:15px 0;
+}
+
+.formations span{
+    padding:8px 13px;
+    background:#191919;
+    color:#ff9800;
+    border:1px solid #ff730033;
+    border-radius:6px;
+}
+
+
+/* ================= RANK ================= */
+
+.rank-wrap{
+    overflow-x:auto;
+    border:1px solid #ff730044;
+    border-radius:15px;
+}
+
+table{
+    width:100%;
+    min-width:700px;
+    border-collapse:collapse;
+}
+
+th{
+    padding:18px;
+    background:#720000;
+    color:#ffd000;
+    font-size:11px;
+}
+
+td{
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #ffffff08;
+}
+
+.player{
+    text-align:left;
+    font-weight:bold;
+}
+
+.points{
+    color:#ffd000;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.rank-info{
+    margin-top:20px;
+    text-align:center;
+    color:#777;
+}
+
+
+/* ================= JORNAL ================= */
+
+.news{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.news-box{
+    background:#141414;
+    border:1px solid #ff730044;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.news-box summary{
+    cursor:pointer;
+    list-style:none;
+    padding:22px;
+    background:linear-gradient(90deg,#720000,#c52c00);
+    font-weight:bold;
+}
+
+.news-content{
+    min-height:180px;
+    padding:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#777;
+}
+
+
+/* ================= TEMPORADAS ================= */
+
+.seasons{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.season{
+    padding:30px;
+    background:#141414;
+    border:1px solid #ffffff09;
+    border-radius:14px;
+}
+
+.season h3{
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+.year{
+    color:#ff7300;
+    font-size:42px;
+    font-weight:900;
+}
+
+
+/* ================= DOWNLOAD ================= */
+
+.download{
+    max-width:750px;
+    margin:auto;
+    padding:50px;
+    text-align:center;
+    background:#121212;
+    border:1px solid #ff730055;
+    border-radius:18px;
+}
+
+.download h3{
+    color:#ff9800;
+    margin-bottom:15px;
+}
+
+.download p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.download a{
+    display:inline-block;
+    padding:16px 35px;
+    background:linear-gradient(90deg,#b90000,#ff7300);
+    border-radius:8px;
+    font-weight:bold;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:50px 20px;
+    text-align:center;
+    border-top:1px solid #ff730044;
+    color:#555;
+}
+
+.footer-logo{
+    color:#ff7300;
+    font-size:24px;
+    font-weight:bold;
     margin-bottom:12px;
 }
 
 
-/* =====================================================
-   RESPONSIVO
-===================================================== */
+/* ================= RESPONSIVO ================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
-    .squad-grid{
-
-        grid-template-columns:
-            1fr 1fr;
-
+    .modal-content{
+        grid-template-columns:1fr;
     }
 
-    .timeline{
+    .player-list{
+        border-right:0;
+        border-bottom:1px solid #ffffff0d;
+    }
 
-        grid-template-columns:
-            1fr;
+    .available{
+        max-height:250px;
+    }
 
+    .team-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .seasons{
+        grid-template-columns:1fr;
     }
 
 }
 
-
-@media(max-width:750px){
+@media(max-width:650px){
 
     .navbar{
-
         justify-content:center;
-
     }
 
     .logo{
-
         display:none;
-
     }
 
     .nav-links{
-
         justify-content:center;
-
         gap:10px;
-
     }
 
-    .news-grid{
-
-        grid-template-columns:
-            1fr;
-
+    .team-grid{
+        grid-template-columns:1fr;
     }
 
-}
-
-
-@media(max-width:600px){
-
-    .squad-grid{
-
-        grid-template-columns:
-            1fr;
-
+    .slots{
+        grid-template-columns:1fr;
     }
 
-    .squad-owner{
-
-        padding:15px;
-
+    .rule{
+        grid-template-columns:55px 1fr;
     }
 
-    .squad-owner-title span{
-
-        font-size:21px;
-
+    .news{
+        grid-template-columns:1fr;
     }
 
-    .rule-card{
-
-        grid-template-columns:
-            60px 1fr;
-
+    .modal{
+        padding:8px;
     }
 
-    .rule-number{
-
-        font-size:21px;
-
-    }
-
-    .rule-content{
-
-        padding:22px 18px;
-
-    }
-
-}
-
-
-@media(max-width:550px){
-
-    .hero{
-
-        min-height:500px;
-
-    }
-
-    .hero h1{
-
-        font-size:55px;
-
-    }
-
-    .hero h2{
-
-        font-size:25px;
-
-        letter-spacing:3px;
-
-    }
-
-    .hero-subtitle{
-
-        font-size:9px;
-
-        letter-spacing:2px;
-
-    }
-
-    .section{
-
-        padding:55px 0;
-
-    }
-
-    .section-header h2{
-
-        font-size:29px;
-
-    }
-
-    .download-area{
-
-        padding:35px 20px;
-
-    }
-
-    .season-return{
-
-        padding:30px 15px;
-
-    }
-
-    .return-date{
-
-        font-size:15px;
-
-        line-height:1.7;
-
+    .modal-top h2{
+        font-size:18px;
     }
 
 }
 
 </style>
-
 </head>
 
 
@@ -1916,48 +969,30 @@ footer{
 
 
 <!-- =====================================================
-     MENU
+MENU
 ===================================================== -->
 
 <nav class="navbar">
 
     <div class="logo">
-
-        🔥 BOMBA
-        <span>PETCH</span>
-
+        🔥 BOMBA <span>PETCH</span>
     </div>
-
 
     <div class="nav-links">
 
-        <a href="#lendas">
-            LENDAS
-        </a>
+        <a href="#lendas">LENDAS</a>
 
-        <a href="#elencos">
-            ⚽ ELENCOS
-        </a>
+        <a href="#elencos">⚽ ELENCOS</a>
 
-        <a href="#regras">
-            🔥 REGRAS
-        </a>
+        <a href="#regras">REGRAS</a>
 
-        <a href="#ranking">
-            🏆 RANK
-        </a>
+        <a href="#ranking">RANK</a>
 
-        <a href="#jornal">
-            JORNAL
-        </a>
+        <a href="#jornal">JORNAL</a>
 
-        <a href="#temporadas">
-            TEMPORADAS
-        </a>
+        <a href="#temporadas">TEMPORADAS</a>
 
-        <a href="#download">
-            DOWNLOAD
-        </a>
+        <a href="#download">DOWNLOAD</a>
 
     </div>
 
@@ -1965,90 +1000,61 @@ footer{
 
 
 <!-- =====================================================
-     HERO
+HERO
 ===================================================== -->
 
-<header class="hero">
+<section class="hero">
 
     <div class="hero-content">
 
         <div class="edition">
-
             EDIÇÃO ESPECIAL • 2026
-
         </div>
 
-
         <h1>
-
             BOMBA PETCH
-
         </h1>
 
-
         <h2>
-
             RAFAGAMER 2026
-
         </h2>
 
-
         <p class="hero-subtitle">
-
             A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
-
         </p>
 
-
-        <a
-            href="#lendas"
-            class="hero-button">
-
-            🏆 ENTRAR NO HALL DA FAMA
-
+        <a class="hero-button" href="#elencos">
+            ⚽ MONTAR ELENCOS
         </a>
 
     </div>
 
-</header>
+</section>
 
 
 <!-- =====================================================
-     RETORNO
+RETORNO
 ===================================================== -->
 
 <section class="season-return">
 
     <div class="return-label">
-
         🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
-
     </div>
 
-
     <h2>
-
         RETORNO DA NOVA TEMPORADA 2026
-
     </h2>
-
 
     <div class="return-date">
 
-        📅
-        <span>
-            17/08/2026
-        </span>
+        📅 <span>17/08/2026</span>
 
         &nbsp; • &nbsp;
 
-        🕖
-        <span>
-            19:00
-        </span>
+        🕖 <span>19:00</span>
 
     </div>
-
 
     <div class="return-place">
 
@@ -2064,53 +1070,18 @@ footer{
 
 
 <!-- =====================================================
-     TICKER
+LENDAS
 ===================================================== -->
 
-<div class="ticker">
-
-    🔥
-
-    <strong>
-        BOMBA PETCH
-    </strong>
-
-    •
-
-    TEMPORADA 2026
-
-    •
-
-    <strong>
-        17/08/2026 — 19:00
-    </strong>
-
-    •
-
-    Rua Professor Raul Duarte, 245
-
-</div>
-
-
-<!-- =====================================================
-     LENDAS
-===================================================== -->
-
-<section
-    class="section"
-    id="lendas">
+<section class="section" id="lendas">
 
 <div class="container">
 
     <div class="section-header">
 
-        <small>
-            HALL DA FAMA
-        </small>
+        <small>HALL DA FAMA</small>
 
-        <h2>
-            🏆 AS LENDAS
-        </h2>
+        <h2>🏆 AS LENDAS</h2>
 
         <p>
             Os jogadores que marcaram a história
@@ -2122,8 +1093,6 @@ footer{
 
     <div class="legend-grid">
 
-
-        <!-- RAFAGAMER -->
 
         <details class="legend">
 
@@ -2137,73 +1106,27 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
-                    🔥 RAFAGAMER — O ESTILO QUE MARCA
+                    🔥 RAFAGAMER
                 </h3>
 
-
                 <p>
-
-                    RAFAGAMER é conhecido por ter
-                    um estilo de jogo bonito,
-                    elegante e cheio de personalidade.
-
-                    Cada movimento parece pensado
-                    para deixar sua marca,
-                    misturando habilidade,
-                    criatividade e muita confiança.
-
+                    Conhecido por seu estilo bonito,
+                    técnico e cheio de personalidade.
                 </p>
 
-
                 <p>
-
-                    Seu jeito de jogar chama atenção
-                    não apenas pelos resultados,
-                    mas pela forma como ele transforma
-                    cada partida em um verdadeiro
-                    espetáculo.
-
-                </p>
-
-
-                <p>
-
                     <span class="highlight">
-
-                        RAFAGAMER já conta com
-                        2 temporadas de história.
-
+                        2 temporadas e 2 troféus.
                     </span>
-
                 </p>
-
-
-                <div class="achievements">
-
-                    <span class="achievement">
-                        🏆 2 TEMPORADAS
-                    </span>
-
-                    <span class="achievement">
-                        🔥 ESTILO
-                    </span>
-
-                    <span class="achievement">
-                        ⚡ TÉCNICA
-                    </span>
-
-                </div>
 
             </div>
 
         </details>
 
-
-        <!-- BERNA -->
 
         <details class="legend">
 
@@ -2217,74 +1140,27 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
-                    👑 BERNA — O MESTRE DA VERSATILIDADE
+                    👑 BERNA
                 </h3>
 
-
                 <p>
-
-                    Berna é conhecido por seu
-
-                    <span class="highlight">
-                        estilo de jogo versátil
-                    </span>,
-
-                    sendo capaz de se adaptar
-                    a diferentes situações
-                    durante a partida.
-
+                    Jogador versátil, conhecido
+                    principalmente pelas jogadas aéreas.
                 </p>
 
-
                 <p>
-
-                    Uma das suas principais
-                    características é o uso
-                    frequente da
-
                     <span class="highlight">
-                        jogada aérea
-                    </span>.
-
+                        Campeão da última temporada.
+                    </span>
                 </p>
-
-
-                <p>
-
-                    <span class="highlight">
-                        Berna é o campeão
-                        da última temporada.
-                    </span>
-
-                </p>
-
-
-                <div class="achievements">
-
-                    <span class="achievement">
-                        🏆 CAMPEÃO
-                    </span>
-
-                    <span class="achievement">
-                        🛫 JOGO AÉREO
-                    </span>
-
-                    <span class="achievement">
-                        ⚡ VERSATILIDADE
-                    </span>
-
-                </div>
 
             </div>
 
         </details>
 
-
-        <!-- CRISTIAN -->
 
         <details class="legend">
 
@@ -2298,73 +1174,27 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
-                    ⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE
+                    ⚡ CRISTIAN
                 </h3>
 
-
                 <p>
-
-                    Cristian é uma das maiores
-                    lendas do BOMBA PETCH
-                    e conta com
-
-                    <span class="highlight">
-                        3 temporadas de história.
-                    </span>
-
+                    Estilo defensivo e estratégico,
+                    utilizando bastante o contra-ataque.
                 </p>
 
-
                 <p>
-
-                    Seu estilo de jogo é marcado
-                    por uma postura
-
                     <span class="highlight">
-                        defensiva e estratégica.
+                        3 temporadas e 3 troféus.
                     </span>
-
                 </p>
-
-
-                <p>
-
-                    Quando surge uma oportunidade,
-                    ele parte para um
-
-                    <span class="highlight">
-                        contra-ataque mortal.
-                    </span>
-
-                </p>
-
-
-                <div class="achievements">
-
-                    <span class="achievement">
-                        🏆 3 TEMPORADAS
-                    </span>
-
-                    <span class="achievement">
-                        🛡️ DEFESA
-                    </span>
-
-                    <span class="achievement">
-                        ⚡ CONTRA-ATAQUE
-                    </span>
-
-                </div>
 
             </div>
 
         </details>
 
-
-        <!-- LEANDRO -->
 
         <details class="legend">
 
@@ -2378,72 +1208,28 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
-                    🎯 LEANDRO — O ESPECIALISTA DA LONGA DISTÂNCIA
+                    🎯 LEANDRO
                 </h3>
 
-
                 <p>
-
-                    Leandro conta com
-
-                    <span class="highlight">
-                        1 temporada de história.
-                    </span>
-
+                    Jogador versátil, costuma jogar
+                    recuado e também avançar.
                 </p>
 
-
                 <p>
-
-                    Seu estilo é versátil,
-                    alternando entre uma postura
-                    mais recuada e momentos
-                    de maior pressão.
-
-                </p>
-
-
-                <p>
-
-                    Sua principal característica
-                    são os
-
+                    Destaque para os
                     <span class="highlight">
                         chutes de longa distância.
                     </span>
-
                 </p>
-
-
-                <div class="achievements">
-
-                    <span class="achievement">
-                        🏆 1 TEMPORADA
-                    </span>
-
-                    <span class="achievement">
-                        🎯 LONGA DISTÂNCIA
-                    </span>
-
-                    <span class="achievement">
-                        🍀 SORTE
-                    </span>
-
-                    <span class="achievement">
-                        ⚡ VERSATILIDADE
-                    </span>
-
-                </div>
 
             </div>
 
         </details>
 
-
     </div>
 
 </div>
@@ -2452,509 +1238,110 @@ footer{
 
 
 <!-- =====================================================
-     ELENCOS
+ELENCOS
 ===================================================== -->
 
-<section
-    class="section"
-    id="elencos">
+<section class="section" id="elencos">
 
 <div class="container">
-
 
     <div class="section-header">
 
         <small>
-            ELENCOS OFICIAIS
+            SISTEMA DE ELENCOS
         </small>
 
         <h2>
-            ⚽ ELENCOS BOMBA PETCH
+            ⚽ ELENCOS
         </h2>
 
         <p>
-            4 jogadores • 12 times • 264 jogadores
+            4 jogadores • 12 times • 22 jogadores por time
         </p>
 
     </div>
 
 
-    <!-- =================================================
-         RAFAGAMER
-    ================================================== -->
+    <!-- RAFAGAMER -->
 
-    <div class="squad-owner">
+    <div class="owner">
 
-        <div class="squad-owner-title">
+        <div class="owner-title">
 
-            <span>
+            <h3>
                 🔥 RAFAGAMER
+            </h3>
+
+            <span>
+                3 TIMES
             </span>
 
-            <small>
-                3 ELENCOS
-            </small>
-
         </div>
 
-
-        <div class="squad-grid">
-
-
-            <!-- TIME 01 -->
-
-            <details class="squad-card">
-
-                <summary>
-
-                    ⚽ TIME 01
-
-                    <span>
-                        22 JOGADORES ＋
-                    </span>
-
-                </summary>
-
-
-                <div class="squad-content">
-
-
-                    <h3>
-                        🧤 GOLEIROS — 2
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-
-                    </div>
-
-
-                    <h3>
-                        🛡️ ZAGUEIROS — 5
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-                        <div>03 — A DEFINIR</div>
-                        <div>04 — A DEFINIR</div>
-                        <div>05 — A DEFINIR</div>
-
-                    </div>
-
-
-                    <h3>
-                        🏃 LATERAIS — 3
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-                        <div>03 — A DEFINIR</div>
-
-                    </div>
-
-
-                    <h3>
-                        ⚙️ VOLANTES — 3
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-                        <div>03 — A DEFINIR</div>
-
-                    </div>
-
-
-                    <h3>
-                        🎯 MEIAS — 4
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-                        <div>03 — A DEFINIR</div>
-                        <div>04 — A DEFINIR</div>
-
-                    </div>
-
-
-                    <h3>
-                        ⚡ ATACANTES — 5
-                    </h3>
-
-                    <div class="players">
-
-                        <div>01 — A DEFINIR</div>
-                        <div>02 — A DEFINIR</div>
-                        <div>03 — A DEFINIR</div>
-                        <div>04 — A DEFINIR</div>
-                        <div>05 — A DEFINIR</div>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <!-- TIME 02 -->
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 02
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <!-- TIME 03 -->
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 03
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-        </div>
+        <div class="team-grid" id="teams-rafagamer"></div>
 
     </div>
 
 
-    <!-- =================================================
-         BERNA
-    ================================================== -->
+    <!-- BERNA -->
 
-    <div class="squad-owner">
+    <div class="owner">
 
-        <div class="squad-owner-title">
+        <div class="owner-title">
 
-            <span>
+            <h3>
                 👑 BERNA
+            </h3>
+
+            <span>
+                3 TIMES
             </span>
 
-            <small>
-                3 ELENCOS
-            </small>
-
         </div>
 
-
-        <div class="squad-grid">
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 01
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 02
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 03
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-        </div>
+        <div class="team-grid" id="teams-berna"></div>
 
     </div>
 
 
-    <!-- =================================================
-         CRISTIAN
-    ================================================== -->
+    <!-- CRISTIAN -->
 
-    <div class="squad-owner">
+    <div class="owner">
 
-        <div class="squad-owner-title">
+        <div class="owner-title">
 
-            <span>
+            <h3>
                 ⚡ CRISTIAN
+            </h3>
+
+            <span>
+                3 TIMES
             </span>
 
-            <small>
-                3 ELENCOS
-            </small>
-
         </div>
 
-
-        <div class="squad-grid">
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 01
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 02
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 03
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-        </div>
+        <div class="team-grid" id="teams-cristian"></div>
 
     </div>
 
 
-    <!-- =================================================
-         LEANDRO
-    ================================================== -->
+    <!-- LEANDRO -->
 
-    <div class="squad-owner">
+    <div class="owner">
 
-        <div class="squad-owner-title">
+        <div class="owner-title">
+
+            <h3>
+                🎯 LEANDRO
+            </h3>
 
             <span>
-                🎯 LEANDRO
+                3 TIMES
             </span>
 
-            <small>
-                3 ELENCOS
-            </small>
-
         </div>
 
-
-        <div class="squad-grid">
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 01
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 02
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-            <details class="squad-card">
-
-                <summary>
-                    ⚽ TIME 03
-                    <span>22 JOGADORES ＋</span>
-                </summary>
-
-                <div class="squad-content">
-
-                    <div class="empty-squad">
-
-                        ELENCO A DEFINIR
-
-                        <small>
-                            22 jogadores
-                        </small>
-
-                    </div>
-
-                </div>
-
-            </details>
-
-
-        </div>
+        <div class="team-grid" id="teams-leandro"></div>
 
     </div>
 
@@ -2964,84 +1351,211 @@ footer{
 
 
 <!-- =====================================================
-     REGRAS
+MODAL
 ===================================================== -->
 
-<section
-    class="section"
-    id="regras">
+<div class="modal" id="squadModal">
+
+    <div class="modal-box">
+
+
+        <div class="modal-top">
+
+            <h2 id="modalTitle">
+                Montar elenco
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="modal-content">
+
+
+            <!-- LISTA -->
+
+            <aside class="player-list">
+
+                <h3>
+                    👥 JOGADORES DISPONÍVEIS
+                </h3>
+
+                <input
+                    class="search"
+                    id="searchPlayer"
+                    type="text"
+                    placeholder="🔎 Procurar jogador..."
+                    oninput="renderPlayers()"
+                >
+
+
+                <div class="position-filter">
+
+                    <button
+                        class="active"
+                        onclick="setFilter('TODOS',this)">
+                        TODOS
+                    </button>
+
+                    <button
+                        onclick="setFilter('GOL',this)">
+                        GOL
+                    </button>
+
+                    <button
+                        onclick="setFilter('ZAG',this)">
+                        ZAG
+                    </button>
+
+                    <button
+                        onclick="setFilter('LAT',this)">
+                        LAT
+                    </button>
+
+                    <button
+                        onclick="setFilter('VOL',this)">
+                        VOL
+                    </button>
+
+                    <button
+                        onclick="setFilter('MEI',this)">
+                        MEI
+                    </button>
+
+                    <button
+                        onclick="setFilter('ATA',this)">
+                        ATA
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="available"
+                    id="availablePlayers">
+
+                </div>
+
+            </aside>
+
+
+            <!-- ELENCO -->
+
+            <main class="current-squad">
+
+                <div class="current-squad-header">
+
+                    <h3>
+                        ⚽ ELENCO ATUAL
+                    </h3>
+
+                    <span
+                        class="progress"
+                        id="progress">
+                        0 / 22
+                    </span>
+
+                </div>
+
+
+                <div id="positions"></div>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        class="action clear"
+                        onclick="clearSquad()">
+
+                        LIMPAR
+
+                    </button>
+
+                    <button
+                        class="action cancel"
+                        onclick="closeModal()">
+
+                        FECHAR
+
+                    </button>
+
+                    <button
+                        class="action save"
+                        onclick="saveSquad()">
+
+                        💾 SALVAR ELENCO
+
+                    </button>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+REGRAS
+===================================================== -->
+
+<section class="section" id="regras">
 
 <div class="container">
-
 
     <div class="section-header">
 
         <small>
-            REGULAMENTO OFICIAL
+            REGULAMENTO
         </small>
 
         <h2>
             🔥 REGRAS BOMBA PETCH
         </h2>
 
-        <p>
-            Regras oficiais da competição.
-        </p>
-
     </div>
 
 
-    <div class="rules-container">
+    <div class="rules">
 
 
-        <div class="rule-card">
+        <div class="rule">
 
             <div class="rule-number">
                 01
             </div>
 
-
-            <div class="rule-content">
+            <div class="rule-text">
 
                 <h3>
                     🏆 DESISTÊNCIA
                 </h3>
 
-
                 <p>
-
-                    Não pode desistir no meio
-                    do campeonato.
-
+                    Não pode desistir no meio do campeonato.
                 </p>
 
-
                 <p>
-
-                    O competidor só poderá desistir
-                    se os jogos que ainda faltam
-
-                    <span class="rule-highlight">
-
-                        não tiverem mais nenhuma
-                        interferência no campeonato.
-
-                    </span>
-
+                    Só poderá desistir quando os jogos
+                    restantes não tiverem mais interferência
+                    no campeonato.
                 </p>
 
-
                 <p>
-
-                    A desistência forçada levará à
-
-                    <span class="penalty">
-
-                        perda de 3 pontos no Rank
-                        do Bomba Petch.
-
-                    </span>
-
+                    Desistência forçada:
+                    <strong>
+                        perda de 3 pontos no Rank.
+                    </strong>
                 </p>
 
             </div>
@@ -3049,38 +1563,22 @@ footer{
         </div>
 
 
-        <div class="rule-card">
+        <div class="rule">
 
             <div class="rule-number">
                 02
             </div>
 
-
-            <div class="rule-content">
+            <div class="rule-text">
 
                 <h3>
                     🚫 OFENSAS E BRIGAS
                 </h3>
 
-
                 <p>
-
-                    É proibido ofensas, xingamentos
-                    e brigas constantes.
-
-                </p>
-
-
-                <p>
-
-                    A zoeira é permitida,
-                    mas não pode ser contínua
-                    a ponto de fazer alguém
-
-                    <span class="rule-highlight">
-                        desistir de jogar.
-                    </span>
-
+                    Proibido ofensas, xingamentos,
+                    brigas constantes e zoeira contínua
+                    de forma que faça alguém desistir.
                 </p>
 
             </div>
@@ -3088,29 +1586,21 @@ footer{
         </div>
 
 
-        <div class="rule-card">
+        <div class="rule">
 
             <div class="rule-number">
                 03
             </div>
 
-
-            <div class="rule-content">
+            <div class="rule-text">
 
                 <h3>
                     🎯 CHUTE DE PRIMEIRINHA
                 </h3>
 
-
                 <p>
-
-                    O chute de primeirinha
-                    valerá apenas
-
-                    <span class="rule-highlight">
-                        1 vez por jogo.
-                    </span>
-
+                    O chute de primeirinha valerá
+                    apenas <strong>1 vez por jogo.</strong>
                 </p>
 
             </div>
@@ -3118,27 +1608,22 @@ footer{
         </div>
 
 
-        <div class="rule-card">
+        <div class="rule">
 
             <div class="rule-number">
                 04
             </div>
 
-
-            <div class="rule-content">
+            <div class="rule-text">
 
                 <h3>
-                    🎮 TÁTICAS E FORMAÇÕES
+                    🎮 TÁTICAS
                 </h3>
 
-
                 <p>
-
-                    Só poderão ser utilizadas
-                    as táticas que o jogo oferece.
-
+                    Só poderão ser usadas as formações
+                    oferecidas pelo próprio jogo.
                 </p>
-
 
                 <div class="formations">
 
@@ -3149,15 +1634,11 @@ footer{
 
                 </div>
 
-
                 <p>
-
-                    É proibido mexer nas formações,
-                    mover jogadores, usar atalhos
-                    para jogadores atacarem ou
-                    defenderem e sobrepor jogadores
-                    na área.
-
+                    Proibido mexer nas formações,
+                    mover jogadores, utilizar atalhos
+                    para atacar/defender ou sobrepor
+                    jogadores na área.
                 </p>
 
             </div>
@@ -3165,53 +1646,29 @@ footer{
         </div>
 
 
-        <div class="rule-card extreme">
+        <div class="rule">
 
             <div class="rule-number">
                 05
             </div>
 
-
-            <div class="rule-content">
+            <div class="rule-text">
 
                 <h3>
                     🚨 ALTERAÇÃO DE JOGADORES
                 </h3>
 
-
                 <p>
-
-                    <span class="extreme-text">
-                        EXTREMAMENTE PROIBIDO
-                    </span>
-
-                    alterar jogadores ou criar
-                    jogadores.
-
+                    EXTREMAMENTE PROIBIDO alterar
+                    jogadores ou criar jogadores.
                 </p>
 
-
                 <p>
-
-                    Caso essa regra seja quebrada
-                    e o player seja pego,
-
-                    <span class="penalty">
-                        perderá estrelas.
-                    </span>
-
-                </p>
-
-
-                <div class="extreme-warning">
-
-                    🚨 PUNIÇÃO
-
+                    Caso seja pego:
                     <strong>
-                        PERDA DE ESTRELAS
+                        perderá estrelas.
                     </strong>
-
-                </div>
+                </p>
 
             </div>
 
@@ -3226,15 +1683,12 @@ footer{
 
 
 <!-- =====================================================
-     RANK
+RANK
 ===================================================== -->
 
-<section
-    class="section"
-    id="ranking">
+<section class="section" id="ranking">
 
 <div class="container">
-
 
     <div class="section-header">
 
@@ -3253,109 +1707,60 @@ footer{
     </div>
 
 
-    <div class="ranking-table-wrapper">
+    <div class="rank-wrap">
 
-        <table class="ranking-table">
+        <table>
 
             <thead>
 
                 <tr>
-
-                    <th>POSIÇÃO</th>
-
-                    <th>JOGADOR</th>
-
+                    <th>POS.</th>
+                    <th>PLAYER</th>
                     <th>VITÓRIAS</th>
-
                     <th>EMPATES</th>
-
                     <th>DERROTAS</th>
-
                     <th>PONTOS</th>
-
                 </tr>
 
             </thead>
 
-
             <tbody>
 
-
                 <tr>
-
-                    <td class="position">—</td>
-
-                    <td class="player player-berna">
-                        👑 BERNA
-                    </td>
-
-                    <td class="victory">0</td>
-
-                    <td class="draw">0</td>
-
-                    <td class="defeat">0</td>
-
+                    <td>—</td>
+                    <td class="player">👑 BERNA</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <td class="points">0</td>
-
                 </tr>
 
-
                 <tr>
-
-                    <td class="position">—</td>
-
-                    <td class="player">
-                        ⚡ CRISTIAN
-                    </td>
-
-                    <td class="victory">0</td>
-
-                    <td class="draw">0</td>
-
-                    <td class="defeat">0</td>
-
+                    <td>—</td>
+                    <td class="player">⚡ CRISTIAN</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <td class="points">0</td>
-
                 </tr>
 
-
                 <tr>
-
-                    <td class="position">—</td>
-
-                    <td class="player">
-                        🔥 RAFAGAMER
-                    </td>
-
-                    <td class="victory">0</td>
-
-                    <td class="draw">0</td>
-
-                    <td class="defeat">0</td>
-
+                    <td>—</td>
+                    <td class="player">🔥 RAFAGAMER</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <td class="points">0</td>
-
                 </tr>
 
-
                 <tr>
-
-                    <td class="position">—</td>
-
-                    <td class="player">
-                        🎯 LEANDRO
-                    </td>
-
-                    <td class="victory">0</td>
-
-                    <td class="draw">0</td>
-
-                    <td class="defeat">0</td>
-
+                    <td>—</td>
+                    <td class="player">🎯 LEANDRO</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
                     <td class="points">0</td>
-
                 </tr>
-
 
             </tbody>
 
@@ -3364,27 +1769,12 @@ footer{
     </div>
 
 
-    <div class="ranking-info">
+    <div class="rank-info">
 
-        <div class="score-box">
-            <strong>VITÓRIA</strong>
-            +2 pontos
-        </div>
-
-        <div class="score-box">
-            <strong>EMPATE</strong>
-            +1 ponto
-        </div>
-
-        <div class="score-box">
-            <strong>DERROTA</strong>
-            −1 ponto
-        </div>
-
-        <div class="score-box">
-            <strong>DESISTÊNCIA</strong>
-            −3 pontos
-        </div>
+        Vitória = +2 &nbsp; • &nbsp;
+        Empate = +1 &nbsp; • &nbsp;
+        Derrota = -1 &nbsp; • &nbsp;
+        Desistência = -3
 
     </div>
 
@@ -3394,30 +1784,27 @@ footer{
 
 
 <!-- =====================================================
-     ATUALIZAÇÕES / JORNAL
+JORNAL
 ===================================================== -->
 
-<section
-    class="section"
-    id="jornal">
+<section class="section" id="jornal">
 
 <div class="container">
-
 
     <div class="section-header">
 
         <small>
-            CENTRAL DE INFORMAÇÕES
+            NOTÍCIAS
         </small>
 
         <h2>
-            📰 NOTÍCIAS
+            📰 CENTRAL DE NOTÍCIAS
         </h2>
 
     </div>
 
 
-    <div class="news-grid">
+    <div class="news">
 
 
         <details class="news-box">
@@ -3426,21 +1813,10 @@ footer{
                 🔔 ATUALIZAÇÕES
             </summary>
 
-
             <div class="news-content">
 
-                <div>
-
-                    <strong>
-                        ÁREA RESERVADA
-                    </strong>
-
-                    <br><br>
-
-                    Espaço reservado para
-                    futuras atualizações.
-
-                </div>
+                Área reservada para
+                futuras atualizações.
 
             </div>
 
@@ -3453,38 +1829,15 @@ footer{
                 📰 JORNAL BOMBA PETCH
             </summary>
 
-
             <div class="news-content">
 
-                <div>
-
-                    <strong>
-                        EDIÇÃO EM BREVE
-                    </strong>
-
-                    <br><br>
-
-                    Espaço reservado para
-                    o Jornal Bomba Petch.
-
-                </div>
+                Área reservada para
+                futuras notícias.
 
             </div>
 
         </details>
 
-
-    </div>
-
-
-    <div class="future">
-
-        <strong>
-            📢 ESPAÇO PARA FUTURAS PUBLICAÇÕES
-        </strong>
-
-        Novidades e acontecimentos poderão
-        ser adicionados aqui futuramente.
 
     </div>
 
@@ -3494,15 +1847,12 @@ footer{
 
 
 <!-- =====================================================
-     TEMPORADAS
+TEMPORADAS
 ===================================================== -->
 
-<section
-    class="section"
-    id="temporadas">
+<section class="section" id="temporadas">
 
 <div class="container">
-
 
     <div class="section-header">
 
@@ -3517,24 +1867,22 @@ footer{
     </div>
 
 
-    <div class="timeline">
+    <div class="seasons">
 
 
         <div class="season">
 
-            <div class="season-year">
+            <div class="year">
                 2024
             </div>
 
             <h3>
-                OS PRIMEIROS CAPÍTULOS
+                PRIMEIROS CAPÍTULOS
             </h3>
 
             <p>
-
                 O início da história
                 do BOMBA PETCH.
-
             </p>
 
         </div>
@@ -3542,27 +1890,25 @@ footer{
 
         <div class="season">
 
-            <div class="season-year">
+            <div class="year">
                 2025
             </div>
 
             <h3>
-                A ERA DAS LENDAS
+                ERA DAS LENDAS
             </h3>
 
             <p>
-
                 Os jogadores começaram
                 a construir seus legados.
-
             </p>
 
         </div>
 
 
-        <div class="season current">
+        <div class="season">
 
-            <div class="season-year">
+            <div class="year">
                 2026
             </div>
 
@@ -3571,24 +1917,10 @@ footer{
             </h3>
 
             <p>
-
-                Retorno:
-
-                <span class="highlight">
-                    17/08/2026 — 19:00
-                </span>
-
-            </p>
-
-
-            <p style="margin-top:12px;">
-
-                📍
-
-                <span class="highlight">
-                    Rua Professor Raul Duarte, 245
-                </span>
-
+                Retorno em
+                <strong>
+                    17/08/2026 às 19:00
+                </strong>.
             </p>
 
         </div>
@@ -3602,15 +1934,12 @@ footer{
 
 
 <!-- =====================================================
-     DOWNLOAD
+DOWNLOAD
 ===================================================== -->
 
-<section
-    class="section"
-    id="download">
+<section class="section" id="download">
 
 <div class="container">
-
 
     <div class="section-header">
 
@@ -3625,32 +1954,19 @@ footer{
     </div>
 
 
-    <div class="download-area">
-
-        <div class="download-icon">
-            💿
-        </div>
-
+    <div class="download">
 
         <h3>
-            BOMBA PETCH — RAFAGAMER 2025
+            💿 BOMBA PETCH — RAFAGAMER 2025
         </h3>
-
 
         <p>
             Arquivo disponível para download.
         </p>
 
-
         <a
-
-            class="download-button"
-
-            href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
-
-            target="_blank"
-
-            rel="noopener noreferrer">
+        href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
+        target="_blank">
 
             📥 BAIXAR ARQUIVO
 
@@ -3663,36 +1979,734 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     RODAPÉ
-===================================================== -->
-
 <footer>
 
     <div class="footer-logo">
-
         🔥 BOMBA PETCH
-
     </div>
 
-
     <p>
-
         RAFAGAMER • BERNA • CRISTIAN • LEANDRO
-
     </p>
 
-
-    <p style="margin-top:15px;font-size:11px;">
-
-        © 2026 —
-        Lendas do Bomba Petch
-
+    <p style="margin-top:12px;font-size:11px;">
+        © 2026 — Lendas do Bomba Petch
     </p>
 
 </footer>
 
 
-</body>
+<script>
 
+/* =====================================================
+   SISTEMA DE ELENCOS
+===================================================== */
+
+
+/*
+    POSIÇÕES E LIMITES
+*/
+
+const positions = {
+
+    GOL:{
+        nome:"🧤 GOLEIROS",
+        limite:2
+    },
+
+    ZAG:{
+        nome:"🛡️ ZAGUEIROS",
+        limite:5
+    },
+
+    LAT:{
+        nome:"🏃 LATERAIS",
+        limite:3
+    },
+
+    VOL:{
+        nome:"⚙️ VOLANTES",
+        limite:3
+    },
+
+    MEI:{
+        nome:"🎯 MEIAS",
+        limite:4
+    },
+
+    ATA:{
+        nome:"⚡ ATACANTES",
+        limite:5
+    }
+
+};
+
+
+/*
+    LISTA DE JOGADORES
+
+    Depois podemos substituir pelos
+    jogadores reais do jogo.
+*/
+
+const players = [
+
+    {id:1,nome:"Jogador 01",pos:"GOL"},
+    {id:2,nome:"Jogador 02",pos:"GOL"},
+    {id:3,nome:"Jogador 03",pos:"GOL"},
+    {id:4,nome:"Jogador 04",pos:"GOL"},
+
+    {id:5,nome:"Jogador 05",pos:"ZAG"},
+    {id:6,nome:"Jogador 06",pos:"ZAG"},
+    {id:7,nome:"Jogador 07",pos:"ZAG"},
+    {id:8,nome:"Jogador 08",pos:"ZAG"},
+    {id:9,nome:"Jogador 09",pos:"ZAG"},
+    {id:10,nome:"Jogador 10",pos:"ZAG"},
+    {id:11,nome:"Jogador 11",pos:"ZAG"},
+
+    {id:12,nome:"Jogador 12",pos:"LAT"},
+    {id:13,nome:"Jogador 13",pos:"LAT"},
+    {id:14,nome:"Jogador 14",pos:"LAT"},
+    {id:15,nome:"Jogador 15",pos:"LAT"},
+    {id:16,nome:"Jogador 16",pos:"LAT"},
+
+    {id:17,nome:"Jogador 17",pos:"VOL"},
+    {id:18,nome:"Jogador 18",pos:"VOL"},
+    {id:19,nome:"Jogador 19",pos:"VOL"},
+    {id:20,nome:"Jogador 20",pos:"VOL"},
+    {id:21,nome:"Jogador 21",pos:"VOL"},
+
+    {id:22,nome:"Jogador 22",pos:"MEI"},
+    {id:23,nome:"Jogador 23",pos:"MEI"},
+    {id:24,nome:"Jogador 24",pos:"MEI"},
+    {id:25,nome:"Jogador 25",pos:"MEI"},
+    {id:26,nome:"Jogador 26",pos:"MEI"},
+    {id:27,nome:"Jogador 27",pos:"MEI"},
+
+    {id:28,nome:"Jogador 28",pos:"ATA"},
+    {id:29,nome:"Jogador 29",pos:"ATA"},
+    {id:30,nome:"Jogador 30",pos:"ATA"},
+    {id:31,nome:"Jogador 31",pos:"ATA"},
+    {id:32,nome:"Jogador 32",pos:"ATA"},
+    {id:33,nome:"Jogador 33",pos:"ATA"},
+    {id:34,nome:"Jogador 34",pos:"ATA"},
+    {id:35,nome:"Jogador 35",pos:"ATA"},
+    {id:36,nome:"Jogador 36",pos:"ATA"},
+    {id:37,nome:"Jogador 37",pos:"ATA"}
+
+];
+
+
+/*
+    TIMES
+*/
+
+const owners = [
+    "rafagamer",
+    "berna",
+    "cristian",
+    "leandro"
+];
+
+
+let currentTeam = null;
+
+let currentSquad = {};
+
+let currentFilter = "TODOS";
+
+
+/*
+    CRIA OS 12 TIMES
+*/
+
+function createTeams(){
+
+    owners.forEach(owner=>{
+
+        const container =
+            document.getElementById(
+                "teams-"+owner
+            );
+
+        for(let i=1;i<=3;i++){
+
+            const teamId =
+                owner+"-time-"+i;
+
+            const card =
+                document.createElement("div");
+
+            card.className="team-card";
+
+            card.innerHTML=`
+
+                <div class="team-head">
+
+                    <h4>
+                        ⚽ TIME ${i}
+                    </h4>
+
+                    <p>
+                        22 jogadores
+                    </p>
+
+                </div>
+
+                <div class="team-body">
+
+                    <button
+                    onclick="openSquad('${teamId}','${owner.toUpperCase()} — TIME ${i}')">
+
+                        ⚽ MONTAR ELENCO
+
+                    </button>
+
+                    <div
+                    class="saved-count"
+                    id="count-${teamId}">
+
+                        0 / 22 jogadores
+
+                    </div>
+
+                </div>
+            `;
+
+            container.appendChild(card);
+
+            updateTeamCount(teamId);
+
+        }
+
+    });
+
+}
+
+
+/*
+    ABRE O EDITOR
+*/
+
+function openSquad(id,title){
+
+    currentTeam=id;
+
+    currentSquad =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-"+id
+            ) || "{}"
+        );
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "⚽ "+title;
+
+    document.getElementById(
+        "squadModal"
+    ).classList.add("active");
+
+    currentFilter="TODOS";
+
+    document.getElementById(
+        "searchPlayer"
+    ).value="";
+
+    renderPositions();
+
+    renderPlayers();
+
+    updateProgress();
+
+}
+
+
+/*
+    FECHA
+*/
+
+function closeModal(){
+
+    document.getElementById(
+        "squadModal"
+    ).classList.remove("active");
+
+}
+
+
+/*
+    FILTRO
+*/
+
+function setFilter(filter,button){
+
+    currentFilter=filter;
+
+    document
+        .querySelectorAll(".position-filter button")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    renderPlayers();
+
+}
+
+
+/*
+    MOSTRA JOGADORES
+*/
+
+function renderPlayers(){
+
+    const container =
+        document.getElementById(
+            "availablePlayers"
+        );
+
+    const search =
+        document.getElementById(
+            "searchPlayer"
+        ).value
+        .toLowerCase();
+
+    const selectedIds =
+        Object.values(currentSquad)
+        .flat()
+        .map(Number);
+
+
+    const filtered =
+        players.filter(player=>{
+
+            const matchesSearch =
+                player.nome
+                .toLowerCase()
+                .includes(search);
+
+            const matchesPosition =
+                currentFilter==="TODOS"
+                ||
+                player.pos===currentFilter;
+
+            const notSelected =
+                !selectedIds.includes(
+                    player.id
+                );
+
+            return (
+                matchesSearch &&
+                matchesPosition &&
+                notSelected
+            );
+
+        });
+
+
+    container.innerHTML="";
+
+
+    if(filtered.length===0){
+
+        container.innerHTML=`
+            <div style="
+                color:#555;
+                text-align:center;
+                padding:30px;
+                font-size:12px;
+            ">
+                Nenhum jogador disponível.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    filtered.forEach(player=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className="available-player";
+
+        div.innerHTML=`
+
+            <strong>
+                ${player.nome}
+            </strong>
+
+            <small>
+                ${positions[player.pos].nome}
+            </small>
+
+        `;
+
+        div.onclick=()=>{
+
+            addPlayer(player);
+
+        };
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/*
+    ADICIONA JOGADOR
+*/
+
+function addPlayer(player){
+
+    const pos=player.pos;
+
+    if(!currentSquad[pos]){
+        currentSquad[pos]=[];
+    }
+
+
+    if(
+        currentSquad[pos].length
+        >=
+        positions[pos].limite
+    ){
+
+        alert(
+            "Essa posição já está completa."
+        );
+
+        return;
+
+    }
+
+
+    currentSquad[pos].push(
+        player.id
+    );
+
+
+    renderPositions();
+
+    renderPlayers();
+
+    updateProgress();
+
+}
+
+
+/*
+    MOSTRA POSIÇÕES
+*/
+
+function renderPositions(){
+
+    const container =
+        document.getElementById(
+            "positions"
+        );
+
+    container.innerHTML="";
+
+
+    Object.keys(positions).forEach(pos=>{
+
+        const info=positions[pos];
+
+        const section =
+            document.createElement("div");
+
+        section.className=
+            "position-section";
+
+
+        const selected =
+            currentSquad[pos] || [];
+
+
+        let slots="";
+
+
+        for(
+            let i=0;
+            i<info.limite;
+            i++
+        ){
+
+            const id=selected[i];
+
+
+            if(id){
+
+                const player =
+                    players.find(
+                        p=>p.id==id
+                    );
+
+
+                slots+=`
+
+                    <div class="slot">
+
+                        <span class="slot-name">
+
+                            ${player.nome}
+
+                        </span>
+
+                        <button
+                        class="slot-remove"
+                        onclick="removePlayer('${pos}',${id})">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+                `;
+
+            }else{
+
+                slots+=`
+
+                    <div class="slot empty">
+
+                        Vaga disponível
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        section.innerHTML=`
+
+            <div class="position-title">
+
+                <h4>
+                    ${info.nome}
+                </h4>
+
+                <span>
+                    ${selected.length}/${info.limite}
+                </span>
+
+            </div>
+
+            <div class="slots">
+
+                ${slots}
+
+            </div>
+
+        `;
+
+
+        container.appendChild(section);
+
+    });
+
+}
+
+
+/*
+    REMOVE JOGADOR
+*/
+
+function removePlayer(pos,id){
+
+    if(!currentSquad[pos])
+        return;
+
+
+    currentSquad[pos] =
+        currentSquad[pos]
+        .filter(
+            playerId =>
+            Number(playerId)!==Number(id)
+        );
+
+
+    renderPositions();
+
+    renderPlayers();
+
+    updateProgress();
+
+}
+
+
+/*
+    PROGRESSO
+*/
+
+function updateProgress(){
+
+    const total =
+        Object.values(currentSquad)
+        .reduce(
+            (total,list)=>
+            total+list.length,
+            0
+        );
+
+
+    document.getElementById(
+        "progress"
+    ).textContent =
+        total+" / 22 jogadores";
+
+}
+
+
+/*
+    SALVA
+*/
+
+function saveSquad(){
+
+    const total =
+        Object.values(currentSquad)
+        .reduce(
+            (total,list)=>
+            total+list.length,
+            0
+        );
+
+
+    if(total!==22){
+
+        alert(
+            "O elenco precisa ter exatamente 22 jogadores."
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "bomba-"+currentTeam,
+        JSON.stringify(currentSquad)
+    );
+
+
+    updateTeamCount(currentTeam);
+
+
+    alert(
+        "✅ Elenco salvo com sucesso!"
+    );
+
+
+    closeModal();
+
+}
+
+
+/*
+    LIMPAR
+*/
+
+function clearSquad(){
+
+    if(
+        !confirm(
+            "Tem certeza que deseja limpar este elenco?"
+        )
+    ){
+        return;
+    }
+
+
+    currentSquad={};
+
+    renderPositions();
+
+    renderPlayers();
+
+    updateProgress();
+
+}
+
+
+/*
+    ATUALIZA CONTADOR DO TIME
+*/
+
+function updateTeamCount(id){
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "bomba-"+id
+            ) || "{}"
+        );
+
+
+    const total =
+        Object.values(saved)
+        .reduce(
+            (total,list)=>
+            total+list.length,
+            0
+        );
+
+
+    const element =
+        document.getElementById(
+            "count-"+id
+        );
+
+
+    if(element){
+
+        element.textContent =
+            total+" / 22 jogadores";
+
+    }
+
+}
+
+
+/*
+    INICIALIZA
+*/
+
+createTeams();
+
+
+/*
+    FECHAR CLICANDO FORA
+*/
+
+document
+.getElementById("squadModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target===this){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
 </html>
