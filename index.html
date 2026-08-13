@@ -2,12 +2,21 @@
 <html lang="pt-br">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BOMBA PETCH — RAFAGAMER 2026</title>
 
+<meta name="theme-color" content="#ff7300">
+
+
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -31,31 +40,60 @@ a{
     color:inherit;
 }
 
-/* =========================
+
+/* =====================================================
    FUNDO
-========================= */
+===================================================== */
 
 body::before{
+
     content:"";
+
     position:fixed;
+
     inset:0;
+
     z-index:-2;
 
     background:
-        radial-gradient(circle at 15% 20%, #ff350018, transparent 30%),
-        radial-gradient(circle at 85% 70%, #ff8c0012, transparent 30%),
-        linear-gradient(135deg,#030303,#101010,#050505);
+
+        radial-gradient(
+            circle at 15% 20%,
+            #ff350018,
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 70%,
+            #ff8c0012,
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #030303,
+            #101010,
+            #050505
+        );
 }
 
+
 body::after{
+
     content:"";
+
     position:fixed;
+
     inset:0;
+
     z-index:-1;
+
     pointer-events:none;
+
     opacity:.25;
 
     background:
+
         repeating-linear-gradient(
             115deg,
             transparent 0,
@@ -65,77 +103,115 @@ body::after{
         );
 }
 
-/* =========================
+
+/* =====================================================
    MENU
-========================= */
+===================================================== */
 
 .navbar{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     min-height:65px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     padding:0 5%;
 
     background:#050505ee;
-    border-bottom:1px solid #ff730055;
+
+    border-bottom:
+        1px solid #ff730055;
 
     backdrop-filter:blur(15px);
 }
 
+
 .logo{
+
     font-size:20px;
+
     font-weight:900;
+
     letter-spacing:2px;
+
     color:#ff7300;
 }
+
 
 .logo span{
     color:#ffd000;
 }
 
+
 .nav-links{
+
     display:flex;
-    gap:20px;
+
+    gap:18px;
+
     flex-wrap:wrap;
+
     justify-content:flex-end;
 }
 
+
 .nav-links a{
+
     color:#888;
+
     font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:1px;
+
     transition:.25s;
 }
 
+
 .nav-links a:hover{
+
     color:#ff9800;
 }
 
-/* =========================
-   CAPA
-========================= */
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero{
+
     min-height:650px;
 
     position:relative;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
+
     overflow:hidden;
 
     background:
-        radial-gradient(circle at 50% 50%,#ff3c0025,transparent 35%),
+
+        radial-gradient(
+            circle at 50% 50%,
+            #ff3c0025,
+            transparent 35%
+        ),
+
         linear-gradient(
             115deg,
             #030303,
@@ -145,19 +221,25 @@ body::after{
             #030303
         );
 
-    border-bottom:3px solid #ff7300;
+    border-bottom:
+        3px solid #ff7300;
 }
 
+
 .hero::before{
+
     content:"";
+
     position:absolute;
 
     width:900px;
+
     height:900px;
 
     border-radius:50%;
 
     background:
+
         radial-gradient(
             circle,
             #ff730055,
@@ -165,15 +247,21 @@ body::after{
         );
 
     top:-450px;
+
     right:-300px;
 }
 
+
 .hero::after{
+
     content:"";
+
     position:absolute;
+
     inset:0;
 
     background:
+
         repeating-linear-gradient(
             120deg,
             transparent 0,
@@ -183,45 +271,71 @@ body::after{
         );
 }
 
+
 .hero-content{
+
     position:relative;
+
     z-index:5;
+
     width:90%;
+
     max-width:1200px;
 }
 
+
 .edition{
+
     color:#ffd000;
+
     font-size:11px;
+
     font-weight:bold;
+
     letter-spacing:8px;
+
     margin-bottom:25px;
 }
 
+
 .hero h1{
-    font-size:clamp(60px,12vw,145px);
+
+    font-size:
+        clamp(60px,12vw,145px);
+
     line-height:.8;
+
     font-weight:1000;
+
     letter-spacing:4px;
+
     text-transform:uppercase;
 
     text-shadow:
+
         5px 5px 0 #620000,
+
         0 0 20px #ff3c00,
+
         0 0 70px #ff730055;
 }
 
+
 .hero h2{
+
     margin-top:35px;
 
     color:#ffd000;
 
-    font-size:clamp(25px,5vw,60px);
+    font-size:
+        clamp(25px,5vw,60px);
 
     letter-spacing:10px;
 }
 
+
 .hero-subtitle{
+
     margin-top:25px;
 
     color:#ddd;
@@ -231,7 +345,9 @@ body::after{
     letter-spacing:5px;
 }
 
+
 .hero-button{
+
     display:inline-block;
 
     margin-top:40px;
@@ -240,7 +356,8 @@ body::after{
 
     border-radius:50px;
 
-    border:1px solid #ffd000;
+    border:
+        1px solid #ffd000;
 
     color:#ffd000;
 
@@ -255,20 +372,26 @@ body::after{
     transition:.25s;
 }
 
+
 .hero-button:hover{
+
     background:#ff7300;
+
     color:white;
 
     transform:translateY(-4px);
 
-    box-shadow:0 10px 30px #000;
+    box-shadow:
+        0 10px 30px #000;
 }
 
-/* =========================
-   RETORNO
-========================= */
+
+/* =====================================================
+   RETORNO DA TEMPORADA
+===================================================== */
 
 .season-return{
+
     position:relative;
 
     padding:38px 20px;
@@ -276,6 +399,7 @@ body::after{
     text-align:center;
 
     background:
+
         linear-gradient(
             90deg,
             #580000,
@@ -285,39 +409,20 @@ body::after{
             #580000
         );
 
-    border-bottom:3px solid #ffd000;
+    border-bottom:
+        3px solid #ffd000;
 
     box-shadow:
         0 0 35px #ff3c0033;
 }
 
-.season-return::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        repeating-linear-gradient(
-            120deg,
-            transparent 0,
-            transparent 45px,
-            #ffffff0a 46px,
-            transparent 48px
-        );
-
-    pointer-events:none;
-}
-
-.season-return-content{
-    position:relative;
-    z-index:2;
-}
 
 .return-label{
+
     color:#ffd000;
 
     font-size:11px;
+
     font-weight:bold;
 
     letter-spacing:5px;
@@ -325,17 +430,20 @@ body::after{
     margin-bottom:12px;
 }
 
+
 .season-return h2{
-    font-size:clamp(28px,5vw,48px);
+
+    font-size:
+        clamp(28px,5vw,48px);
 
     font-weight:1000;
 
     text-transform:uppercase;
-
-    text-shadow:0 3px 10px #000;
 }
 
+
 .return-date{
+
     margin-top:15px;
 
     font-size:20px;
@@ -343,37 +451,39 @@ body::after{
     font-weight:bold;
 
     letter-spacing:2px;
-
-    color:white;
 }
+
 
 .return-date span{
     color:#ffd000;
 }
 
+
 .return-place{
+
     margin-top:12px;
 
     font-size:15px;
-
-    color:#fff;
-
-    letter-spacing:1px;
 }
+
 
 .return-place strong{
     color:#ffd000;
 }
 
-/* =========================
+
+/* =====================================================
    TICKER
-========================= */
+===================================================== */
 
 .ticker{
+
     min-height:45px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     gap:14px;
@@ -382,7 +492,8 @@ body::after{
 
     background:#090909;
 
-    border-bottom:1px solid #ffffff0b;
+    border-bottom:
+        1px solid #ffffff0b;
 
     color:#777;
 
@@ -393,30 +504,42 @@ body::after{
     text-align:center;
 }
 
+
 .ticker strong{
     color:#ff7300;
 }
 
-/* =========================
-   CONTAINER
-========================= */
+
+/* =====================================================
+   SEÇÕES
+===================================================== */
 
 .container{
+
     width:92%;
+
     max-width:1250px;
+
     margin:auto;
 }
 
+
 .section{
+
     padding:80px 0;
 }
 
+
 .section-header{
+
     text-align:center;
+
     margin-bottom:45px;
 }
 
+
 .section-header small{
+
     display:block;
 
     color:#ff7300;
@@ -430,11 +553,15 @@ body::after{
     margin-bottom:12px;
 }
 
+
 .section-header h2{
+
     font-size:38px;
 }
 
+
 .section-header p{
+
     margin-top:12px;
 
     color:#777;
@@ -442,9 +569,10 @@ body::after{
     font-size:14px;
 }
 
-/* =========================
+
+/* =====================================================
    LENDAS
-========================= */
+===================================================== */
 
 .legend-grid{
 
@@ -459,11 +587,13 @@ body::after{
     margin:auto;
 }
 
+
 .legend{
 
     background:#121212;
 
-    border:1px solid #ff730033;
+    border:
+        1px solid #ff730033;
 
     border-radius:15px;
 
@@ -475,11 +605,14 @@ body::after{
     transition:.3s;
 }
 
+
 .legend:hover{
+
     transform:translateY(-5px);
 
     border-color:#ff7300;
 }
+
 
 .legend summary{
 
@@ -496,6 +629,7 @@ body::after{
     gap:12px;
 
     background:
+
         linear-gradient(
             90deg,
             #700000,
@@ -508,11 +642,14 @@ body::after{
     font-weight:bold;
 }
 
+
 .legend summary::-webkit-details-marker{
     display:none;
 }
 
+
 .legend summary::after{
+
     content:"+";
 
     margin-left:auto;
@@ -520,9 +657,11 @@ body::after{
     font-size:25px;
 }
 
+
 .legend[open] summary::after{
     content:"−";
 }
+
 
 .trophies{
 
@@ -533,17 +672,20 @@ body::after{
     margin-left:auto;
 }
 
+
 .legend-body{
 
     padding:30px;
 
     background:
+
         linear-gradient(
             145deg,
             #242424,
             #0e0e0e
         );
 }
+
 
 .legend-body h3{
 
@@ -553,6 +695,7 @@ body::after{
 
     margin-bottom:18px;
 }
+
 
 .legend-body p{
 
@@ -565,12 +708,14 @@ body::after{
     margin-bottom:16px;
 }
 
+
 .highlight{
 
     color:#ffd000;
 
     font-weight:bold;
 }
+
 
 .achievements{
 
@@ -583,6 +728,7 @@ body::after{
     margin-top:25px;
 }
 
+
 .achievement{
 
     padding:9px 13px;
@@ -591,7 +737,8 @@ body::after{
 
     background:#00000055;
 
-    border:1px solid #ff730033;
+    border:
+        1px solid #ff730033;
 
     color:#aaa;
 
@@ -600,9 +747,274 @@ body::after{
     letter-spacing:1px;
 }
 
-/* =========================
+
+/* =====================================================
+   ELENCOS
+===================================================== */
+
+.squad-owner{
+
+    margin-bottom:45px;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #171717,
+            #090909
+        );
+
+    border:
+        1px solid #ff730033;
+
+    box-shadow:
+        0 15px 40px #00000080;
+}
+
+
+.squad-owner-title{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:22px;
+
+    padding-bottom:18px;
+
+    border-bottom:
+        1px solid #ffffff0d;
+}
+
+
+.squad-owner-title span{
+
+    color:#ff9800;
+
+    font-size:26px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+
+.squad-owner-title small{
+
+    color:#777;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+
+.squad-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:15px;
+}
+
+
+.squad-card{
+
+    overflow:hidden;
+
+    border:
+        1px solid #ff730033;
+
+    border-radius:12px;
+
+    background:#0d0d0d;
+
+    transition:.3s;
+}
+
+
+.squad-card:hover{
+
+    border-color:#ff7300;
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 25px #000;
+}
+
+
+.squad-card summary{
+
+    list-style:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:20px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #650000,
+            #a91d00
+        );
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+}
+
+
+.squad-card summary::-webkit-details-marker{
+    display:none;
+}
+
+
+.squad-card summary span{
+
+    color:#ffd000;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+
+.squad-content{
+
+    padding:25px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #191919,
+            #0b0b0b
+        );
+}
+
+
+.squad-content h3{
+
+    margin-top:22px;
+
+    margin-bottom:12px;
+
+    padding-bottom:8px;
+
+    color:#ff9800;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    border-bottom:
+        1px solid #ff730022;
+}
+
+
+.squad-content h3:first-child{
+    margin-top:0;
+}
+
+
+.players{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+
+.players div{
+
+    padding:9px 12px;
+
+    border-radius:6px;
+
+    background:#101010;
+
+    border:
+        1px solid #ffffff08;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    transition:.2s;
+}
+
+
+.players div:hover{
+
+    color:#ffd000;
+
+    border-color:#ff730044;
+
+    background:#ff730008;
+}
+
+
+.empty-squad{
+
+    min-height:180px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    text-align:center;
+
+    color:#ff9800;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+
+.empty-squad small{
+
+    margin-top:10px;
+
+    color:#555;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+
+/* =====================================================
    REGRAS
-========================= */
+===================================================== */
 
 .rules-container{
 
@@ -617,6 +1029,7 @@ body::after{
     gap:20px;
 }
 
+
 .rule-card{
 
     position:relative;
@@ -628,13 +1041,15 @@ body::after{
     overflow:hidden;
 
     background:
+
         linear-gradient(
             145deg,
             #191919,
             #0c0c0c
         );
 
-    border:1px solid #ff730033;
+    border:
+        1px solid #ff730033;
 
     border-radius:16px;
 
@@ -643,6 +1058,7 @@ body::after{
 
     transition:.3s;
 }
+
 
 .rule-card:hover{
 
@@ -654,6 +1070,7 @@ body::after{
         0 18px 40px #000000;
 }
 
+
 .rule-number{
 
     display:flex;
@@ -663,6 +1080,7 @@ body::after{
     justify-content:center;
 
     background:
+
         linear-gradient(
             180deg,
             #b90000,
@@ -675,13 +1093,16 @@ body::after{
 
     font-weight:900;
 
-    border-right:2px solid #ff730055;
+    border-right:
+        2px solid #ff730055;
 }
+
 
 .rule-content{
 
     padding:30px;
 }
+
 
 .rule-content h3{
 
@@ -691,6 +1112,7 @@ body::after{
 
     margin-bottom:18px;
 }
+
 
 .rule-content p{
 
@@ -703,12 +1125,14 @@ body::after{
     margin-bottom:13px;
 }
 
+
 .rule-highlight{
 
     color:#ffd000;
 
     font-weight:bold;
 }
+
 
 .penalty{
 
@@ -717,28 +1141,6 @@ body::after{
     font-weight:bold;
 }
 
-.rule-limit{
-
-    display:inline-block;
-
-    margin-top:8px;
-
-    padding:12px 18px;
-
-    border-radius:8px;
-
-    background:#ff730018;
-
-    border:1px solid #ff730055;
-
-    color:#ffd000;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
-}
 
 .formations{
 
@@ -751,6 +1153,7 @@ body::after{
     margin:18px 0 20px;
 }
 
+
 .formations span{
 
     padding:10px 16px;
@@ -759,7 +1162,8 @@ body::after{
 
     background:#111;
 
-    border:1px solid #ff730055;
+    border:
+        1px solid #ff730055;
 
     color:#ff9800;
 
@@ -768,22 +1172,20 @@ body::after{
     font-weight:bold;
 }
 
+
 .rule-card.extreme{
 
-    border:2px solid #ff000066;
+    border:
+        2px solid #ff000066;
 
-    background:
-        radial-gradient(
-            circle at right,
-            #ff000018,
-            transparent 50%
-        ),
-        #120808;
+    background:#120808;
 }
+
 
 .rule-card.extreme .rule-number{
 
     background:
+
         linear-gradient(
             180deg,
             #ff0000,
@@ -793,12 +1195,14 @@ body::after{
     color:white;
 }
 
+
 .extreme-text{
 
     color:#ff2929;
 
     font-weight:900;
 }
+
 
 .extreme-warning{
 
@@ -816,7 +1220,8 @@ body::after{
 
     text-align:center;
 
-    border:1px solid #ff000066;
+    border:
+        1px solid #ff000066;
 
     border-radius:10px;
 
@@ -829,6 +1234,7 @@ body::after{
     letter-spacing:3px;
 }
 
+
 .extreme-warning strong{
 
     color:#ff0000;
@@ -836,9 +1242,10 @@ body::after{
     font-size:18px;
 }
 
-/* =========================
+
+/* =====================================================
    RANK
-========================= */
+===================================================== */
 
 .ranking-table-wrapper{
 
@@ -847,19 +1254,22 @@ body::after{
     overflow-x:auto;
 
     background:
+
         linear-gradient(
             145deg,
             #181818,
             #090909
         );
 
-    border:1px solid #ff730044;
+    border:
+        1px solid #ff730044;
 
     border-radius:18px;
 
     box-shadow:
         0 20px 50px #00000099;
 }
+
 
 .ranking-table{
 
@@ -870,6 +1280,7 @@ body::after{
     border-collapse:collapse;
 }
 
+
 .ranking-table th{
 
     padding:20px 18px;
@@ -877,6 +1288,7 @@ body::after{
     text-align:center;
 
     background:
+
         linear-gradient(
             90deg,
             #700000,
@@ -892,8 +1304,10 @@ body::after{
 
     text-transform:uppercase;
 
-    border-bottom:2px solid #ff7300;
+    border-bottom:
+        2px solid #ff7300;
 }
+
 
 .ranking-table td{
 
@@ -901,27 +1315,14 @@ body::after{
 
     text-align:center;
 
-    border-bottom:1px solid #ffffff08;
+    border-bottom:
+        1px solid #ffffff08;
 
     color:#ccc;
 
     font-size:14px;
 }
 
-.ranking-table tbody tr{
-
-    transition:.25s;
-}
-
-.ranking-table tbody tr:hover{
-
-    background:#ff73000d;
-}
-
-.ranking-table tbody tr:last-child td{
-
-    border-bottom:none;
-}
 
 .position{
 
@@ -931,6 +1332,7 @@ body::after{
 
     color:#ff9800;
 }
+
 
 .player{
 
@@ -943,10 +1345,12 @@ body::after{
     color:white !important;
 }
 
+
 .player-berna{
 
     color:#ffd000 !important;
 }
+
 
 .points{
 
@@ -957,12 +1361,14 @@ body::after{
     color:#ffd000 !important;
 }
 
+
 .victory{
 
     color:#4cff76 !important;
 
     font-weight:bold;
 }
+
 
 .draw{
 
@@ -971,12 +1377,14 @@ body::after{
     font-weight:bold;
 }
 
+
 .defeat{
 
     color:#ff4545 !important;
 
     font-weight:bold;
 }
+
 
 .ranking-info{
 
@@ -991,6 +1399,7 @@ body::after{
     margin-top:25px;
 }
 
+
 .score-box{
 
     padding:12px 18px;
@@ -999,36 +1408,18 @@ body::after{
 
     background:#111;
 
-    border:1px solid #ffffff0d;
+    border:
+        1px solid #ffffff0d;
 
     font-size:11px;
 
     color:#aaa;
 }
 
-.score-box strong{
-    margin-right:5px;
-}
 
-.score-win strong{
-    color:#4cff76;
-}
-
-.score-draw strong{
-    color:#ffd000;
-}
-
-.score-loss strong{
-    color:#ff4545;
-}
-
-.score-forfeit strong{
-    color:#ff7300;
-}
-
-/* =========================
+/* =====================================================
    JORNAL
-========================= */
+===================================================== */
 
 .news-grid{
 
@@ -1040,16 +1431,19 @@ body::after{
     gap:20px;
 }
 
+
 .news-box{
 
     background:#151515;
 
-    border:1px solid #ff730044;
+    border:
+        1px solid #ff730044;
 
     border-radius:14px;
 
     overflow:hidden;
 }
+
 
 .news-box summary{
 
@@ -1064,6 +1458,7 @@ body::after{
     font-weight:bold;
 
     background:
+
         linear-gradient(
             90deg,
             #720000,
@@ -1072,9 +1467,11 @@ body::after{
         );
 }
 
+
 .news-box summary::-webkit-details-marker{
     display:none;
 }
+
 
 .news-content{
 
@@ -1095,9 +1492,11 @@ body::after{
     line-height:1.7;
 }
 
+
 .news-content strong{
     color:#ff9800;
 }
+
 
 .future{
 
@@ -1107,12 +1506,14 @@ body::after{
 
     text-align:center;
 
-    border:1px dashed #ff730044;
+    border:
+        1px dashed #ff730044;
 
     border-radius:12px;
 
     color:#666;
 }
+
 
 .future strong{
 
@@ -1123,9 +1524,10 @@ body::after{
     margin-bottom:8px;
 }
 
-/* =========================
+
+/* =====================================================
    TEMPORADAS
-========================= */
+===================================================== */
 
 .timeline{
 
@@ -1137,6 +1539,7 @@ body::after{
     gap:20px;
 }
 
+
 .season{
 
     position:relative;
@@ -1147,10 +1550,12 @@ body::after{
 
     border-radius:14px;
 
-    border:1px solid #ffffff09;
+    border:
+        1px solid #ffffff09;
 
     overflow:hidden;
 }
+
 
 .season::before{
 
@@ -1159,12 +1564,15 @@ body::after{
     position:absolute;
 
     top:0;
+
     left:0;
 
     width:100%;
+
     height:3px;
 
     background:
+
         linear-gradient(
             90deg,
             #8b0000,
@@ -1172,12 +1580,13 @@ body::after{
         );
 }
 
+
 .season.current{
 
-    border:1px solid #ff730055;
-
-    background:#141414;
+    border:
+        1px solid #ff730055;
 }
+
 
 .season-year{
 
@@ -1190,9 +1599,11 @@ body::after{
     margin-bottom:12px;
 }
 
+
 .season h3{
     margin-bottom:10px;
 }
+
 
 .season p{
 
@@ -1203,9 +1614,10 @@ body::after{
     line-height:1.6;
 }
 
-/* =========================
+
+/* =====================================================
    DOWNLOAD
-========================= */
+===================================================== */
 
 .download-area{
 
@@ -1229,11 +1641,13 @@ body::after{
 
         #121212;
 
-    border:1px solid #ff730066;
+    border:
+        1px solid #ff730066;
 
     box-shadow:
         0 20px 50px #000;
 }
+
 
 .download-icon{
 
@@ -1241,6 +1655,7 @@ body::after{
 
     margin-bottom:15px;
 }
+
 
 .download-area h3{
 
@@ -1251,12 +1666,14 @@ body::after{
     margin-bottom:12px;
 }
 
+
 .download-area p{
 
     color:#888;
 
     margin-bottom:28px;
 }
+
 
 .download-button{
 
@@ -1267,6 +1684,7 @@ body::after{
     border-radius:8px;
 
     background:
+
         linear-gradient(
             90deg,
             #b90000,
@@ -1284,6 +1702,7 @@ body::after{
     transition:.25s;
 }
 
+
 .download-button:hover{
 
     transform:translateY(-4px);
@@ -1292,9 +1711,10 @@ body::after{
         0 12px 30px #000;
 }
 
-/* =========================
+
+/* =====================================================
    RODAPÉ
-========================= */
+===================================================== */
 
 footer{
 
@@ -1306,10 +1726,12 @@ footer{
 
     background:#030303;
 
-    border-top:1px solid #ff730044;
+    border-top:
+        1px solid #ff730044;
 
     color:#555;
 }
+
 
 .footer-logo{
 
@@ -1322,112 +1744,173 @@ footer{
     margin-bottom:12px;
 }
 
-/* =========================
+
+/* =====================================================
    RESPONSIVO
-========================= */
+===================================================== */
 
-@media(max-width:1000px){
+@media(max-width:850px){
 
-    .nav-links{
-        gap:10px;
+    .squad-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
     }
+
+    .timeline{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
 }
+
 
 @media(max-width:750px){
 
     .navbar{
+
         justify-content:center;
+
     }
 
     .logo{
+
         display:none;
+
     }
 
     .nav-links{
+
         justify-content:center;
+
+        gap:10px;
+
     }
 
     .news-grid{
-        grid-template-columns:1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
 
-    .timeline{
-        grid-template-columns:1fr;
-    }
 }
+
 
 @media(max-width:600px){
 
+    .squad-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .squad-owner{
+
+        padding:15px;
+
+    }
+
+    .squad-owner-title span{
+
+        font-size:21px;
+
+    }
+
     .rule-card{
-        grid-template-columns:60px 1fr;
+
+        grid-template-columns:
+            60px 1fr;
+
     }
 
     .rule-number{
+
         font-size:21px;
+
     }
 
     .rule-content{
+
         padding:22px 18px;
+
     }
 
-    .rule-content h3{
-        font-size:17px;
-    }
-
-    .rule-content p{
-        font-size:14px;
-    }
 }
+
 
 @media(max-width:550px){
 
     .hero{
+
         min-height:500px;
+
     }
 
     .hero h1{
+
         font-size:55px;
+
     }
 
     .hero h2{
+
         font-size:25px;
+
         letter-spacing:3px;
+
     }
 
     .hero-subtitle{
+
         font-size:9px;
+
         letter-spacing:2px;
+
     }
 
     .section{
+
         padding:55px 0;
+
     }
 
     .section-header h2{
+
         font-size:29px;
+
     }
 
     .download-area{
+
         padding:35px 20px;
+
     }
 
     .season-return{
+
         padding:30px 15px;
+
     }
 
     .return-date{
+
         font-size:15px;
+
         line-height:1.7;
+
     }
 
-    .return-place{
-        font-size:13px;
-    }
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -1439,22 +1922,42 @@ footer{
 <nav class="navbar">
 
     <div class="logo">
-        🔥 BOMBA <span>PETCH</span>
+
+        🔥 BOMBA
+        <span>PETCH</span>
+
     </div>
+
 
     <div class="nav-links">
 
-        <a href="#lendas">LENDAS</a>
+        <a href="#lendas">
+            LENDAS
+        </a>
 
-        <a href="#regras">🔥 REGRAS</a>
+        <a href="#elencos">
+            ⚽ ELENCOS
+        </a>
 
-        <a href="#ranking">🏆 RANK</a>
+        <a href="#regras">
+            🔥 REGRAS
+        </a>
 
-        <a href="#jornal">JORNAL</a>
+        <a href="#ranking">
+            🏆 RANK
+        </a>
 
-        <a href="#temporadas">TEMPORADAS</a>
+        <a href="#jornal">
+            JORNAL
+        </a>
 
-        <a href="#download">DOWNLOAD</a>
+        <a href="#temporadas">
+            TEMPORADAS
+        </a>
+
+        <a href="#download">
+            DOWNLOAD
+        </a>
 
     </div>
 
@@ -1462,7 +1965,7 @@ footer{
 
 
 <!-- =====================================================
-     CAPA
+     HERO
 ===================================================== -->
 
 <header class="hero">
@@ -1470,23 +1973,39 @@ footer{
     <div class="hero-content">
 
         <div class="edition">
+
             EDIÇÃO ESPECIAL • 2026
+
         </div>
 
+
         <h1>
+
             BOMBA PETCH
+
         </h1>
 
+
         <h2>
+
             RAFAGAMER 2026
+
         </h2>
 
+
         <p class="hero-subtitle">
+
             A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
+
         </p>
 
-        <a href="#lendas" class="hero-button">
+
+        <a
+            href="#lendas"
+            class="hero-button">
+
             🏆 ENTRAR NO HALL DA FAMA
+
         </a>
 
     </div>
@@ -1495,40 +2014,49 @@ footer{
 
 
 <!-- =====================================================
-     RETORNO DA TEMPORADA
+     RETORNO
 ===================================================== -->
 
 <section class="season-return">
 
-    <div class="season-return-content">
+    <div class="return-label">
 
-        <div class="return-label">
-            🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
-        </div>
+        🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
 
-        <h2>
-            RETORNO DA NOVA TEMPORADA 2026
-        </h2>
+    </div>
 
-        <div class="return-date">
 
-            📅 <span>17/08/2026</span>
+    <h2>
 
-            &nbsp; • &nbsp;
+        RETORNO DA NOVA TEMPORADA 2026
 
-            🕖 <span>19:00</span>
+    </h2>
 
-        </div>
 
-        <div class="return-place">
+    <div class="return-date">
 
-            📍 Local:
+        📅
+        <span>
+            17/08/2026
+        </span>
 
-            <strong>
-                Rua Professor Raul Duarte, 245
-            </strong>
+        &nbsp; • &nbsp;
 
-        </div>
+        🕖
+        <span>
+            19:00
+        </span>
+
+    </div>
+
+
+    <div class="return-place">
+
+        📍 Local:
+
+        <strong>
+            Rua Professor Raul Duarte, 245
+        </strong>
 
     </div>
 
@@ -1543,17 +2071,21 @@ footer{
 
     🔥
 
-    <strong>BOMBA PETCH</strong>
+    <strong>
+        BOMBA PETCH
+    </strong>
 
-    <span>•</span>
+    •
 
     TEMPORADA 2026
 
-    <span>•</span>
+    •
 
-    <strong>17/08/2026 — 19:00</strong>
+    <strong>
+        17/08/2026 — 19:00
+    </strong>
 
-    <span>•</span>
+    •
 
     Rua Professor Raul Duarte, 245
 
@@ -1564,7 +2096,9 @@ footer{
      LENDAS
 ===================================================== -->
 
-<section class="section" id="lendas">
+<section
+    class="section"
+    id="lendas">
 
 <div class="container">
 
@@ -1579,7 +2113,8 @@ footer{
         </h2>
 
         <p>
-            Os jogadores que marcaram a história do BOMBA PETCH.
+            Os jogadores que marcaram a história
+            do BOMBA PETCH.
         </p>
 
     </div>
@@ -1602,37 +2137,50 @@ footer{
 
             </summary>
 
+
             <div class="legend-body">
 
                 <h3>
                     🔥 RAFAGAMER — O ESTILO QUE MARCA
                 </h3>
 
-                <p>
-                    RAFAGAMER é conhecido por ter um estilo de jogo
-                    bonito, elegante e cheio de personalidade.
-                    Cada movimento parece pensado para deixar sua marca,
-                    misturando habilidade, criatividade e muita confiança.
-                </p>
 
                 <p>
-                    Seu jeito de jogar chama atenção não apenas pelos
-                    resultados, mas pela forma como ele transforma cada
-                    partida em um verdadeiro espetáculo. 🎮🔥
+
+                    RAFAGAMER é conhecido por ter
+                    um estilo de jogo bonito,
+                    elegante e cheio de personalidade.
+
+                    Cada movimento parece pensado
+                    para deixar sua marca,
+                    misturando habilidade,
+                    criatividade e muita confiança.
+
                 </p>
 
+
                 <p>
+
+                    Seu jeito de jogar chama atenção
+                    não apenas pelos resultados,
+                    mas pela forma como ele transforma
+                    cada partida em um verdadeiro
+                    espetáculo.
+
+                </p>
+
+
+                <p>
+
                     <span class="highlight">
-                        RAFAGAMER já conta com 2 temporadas de história.
+
+                        RAFAGAMER já conta com
+                        2 temporadas de história.
+
                     </span>
+
                 </p>
 
-                <p>
-                    <span class="highlight">
-                        Estilo, técnica e presença —
-                        essa é a marca do RAFAGAMER.
-                    </span>
-                </p>
 
                 <div class="achievements">
 
@@ -1669,48 +2217,56 @@ footer{
 
             </summary>
 
+
             <div class="legend-body">
 
                 <h3>
                     👑 BERNA — O MESTRE DA VERSATILIDADE
                 </h3>
 
+
                 <p>
+
                     Berna é conhecido por seu
+
                     <span class="highlight">
                         estilo de jogo versátil
                     </span>,
-                    sendo capaz de se adaptar a diferentes situações
+
+                    sendo capaz de se adaptar
+                    a diferentes situações
                     durante a partida.
+
                 </p>
 
+
                 <p>
-                    Uma das suas principais características é o uso
+
+                    Uma das suas principais
+                    características é o uso
                     frequente da
+
                     <span class="highlight">
                         jogada aérea
                     </span>.
+
                 </p>
 
-                <p>
-                    Sua capacidade de variar as jogadas torna seu estilo
-                    difícil de prever.
-                </p>
 
                 <p>
+
                     <span class="highlight">
-                        Berna é o campeão da última temporada.
+                        Berna é o campeão
+                        da última temporada.
                     </span>
+
                 </p>
+
 
                 <div class="achievements">
 
                     <span class="achievement">
-                        🏆 1 TEMPORADA
-                    </span>
-
-                    <span class="achievement">
-                        👑 CAMPEÃO
+                        🏆 CAMPEÃO
                     </span>
 
                     <span class="achievement">
@@ -1742,40 +2298,50 @@ footer{
 
             </summary>
 
+
             <div class="legend-body">
 
                 <h3>
                     ⚡ CRISTIAN — O MESTRE DO CONTRA-ATAQUE
                 </h3>
 
+
                 <p>
-                    Cristian é uma das maiores lendas do BOMBA PETCH
+
+                    Cristian é uma das maiores
+                    lendas do BOMBA PETCH
                     e conta com
+
                     <span class="highlight">
                         3 temporadas de história.
                     </span>
+
                 </p>
 
+
                 <p>
-                    Seu estilo de jogo é marcado por uma postura
+
+                    Seu estilo de jogo é marcado
+                    por uma postura
+
                     <span class="highlight">
                         defensiva e estratégica.
                     </span>
+
                 </p>
 
+
                 <p>
-                    Quando surge uma oportunidade, ele parte para um
+
+                    Quando surge uma oportunidade,
+                    ele parte para um
+
                     <span class="highlight">
                         contra-ataque mortal.
                     </span>
+
                 </p>
 
-                <p>
-                    <span class="highlight">
-                        Defesa, estratégia e contra-ataque —
-                        essa é a marca do Cristian.
-                    </span>
-                </p>
 
                 <div class="achievements">
 
@@ -1812,44 +2378,46 @@ footer{
 
             </summary>
 
+
             <div class="legend-body">
 
                 <h3>
                     🎯 LEANDRO — O ESPECIALISTA DA LONGA DISTÂNCIA
                 </h3>
 
+
                 <p>
-                    Leandro é uma das novas lendas do BOMBA PETCH,
-                    contando com
+
+                    Leandro conta com
+
                     <span class="highlight">
                         1 temporada de história.
                     </span>
+
                 </p>
 
-                <p>
-                    Seu estilo de jogo é marcado pela versatilidade
-                    e pela capacidade de jogar em diferentes posições.
-                </p>
 
                 <p>
-                    Uma de suas principais características são os
+
+                    Seu estilo é versátil,
+                    alternando entre uma postura
+                    mais recuada e momentos
+                    de maior pressão.
+
+                </p>
+
+
+                <p>
+
+                    Sua principal característica
+                    são os
+
                     <span class="highlight">
                         chutes de longa distância.
                     </span>
+
                 </p>
 
-                <p>
-                    Leandro costuma arriscar de longe e possui bons
-                    chutes capazes de surpreender os adversários.
-                </p>
-
-                <p>
-                    <span class="highlight">
-                        Versatilidade, chutes de longa distância,
-                        posicionamento e sorte —
-                        essa é a marca do Leandro.
-                    </span>
-                </p>
 
                 <div class="achievements">
 
@@ -1884,12 +2452,527 @@ footer{
 
 
 <!-- =====================================================
+     ELENCOS
+===================================================== -->
+
+<section
+    class="section"
+    id="elencos">
+
+<div class="container">
+
+
+    <div class="section-header">
+
+        <small>
+            ELENCOS OFICIAIS
+        </small>
+
+        <h2>
+            ⚽ ELENCOS BOMBA PETCH
+        </h2>
+
+        <p>
+            4 jogadores • 12 times • 264 jogadores
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         RAFAGAMER
+    ================================================== -->
+
+    <div class="squad-owner">
+
+        <div class="squad-owner-title">
+
+            <span>
+                🔥 RAFAGAMER
+            </span>
+
+            <small>
+                3 ELENCOS
+            </small>
+
+        </div>
+
+
+        <div class="squad-grid">
+
+
+            <!-- TIME 01 -->
+
+            <details class="squad-card">
+
+                <summary>
+
+                    ⚽ TIME 01
+
+                    <span>
+                        22 JOGADORES ＋
+                    </span>
+
+                </summary>
+
+
+                <div class="squad-content">
+
+
+                    <h3>
+                        🧤 GOLEIROS — 2
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+
+                    </div>
+
+
+                    <h3>
+                        🛡️ ZAGUEIROS — 5
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+                        <div>03 — A DEFINIR</div>
+                        <div>04 — A DEFINIR</div>
+                        <div>05 — A DEFINIR</div>
+
+                    </div>
+
+
+                    <h3>
+                        🏃 LATERAIS — 3
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+                        <div>03 — A DEFINIR</div>
+
+                    </div>
+
+
+                    <h3>
+                        ⚙️ VOLANTES — 3
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+                        <div>03 — A DEFINIR</div>
+
+                    </div>
+
+
+                    <h3>
+                        🎯 MEIAS — 4
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+                        <div>03 — A DEFINIR</div>
+                        <div>04 — A DEFINIR</div>
+
+                    </div>
+
+
+                    <h3>
+                        ⚡ ATACANTES — 5
+                    </h3>
+
+                    <div class="players">
+
+                        <div>01 — A DEFINIR</div>
+                        <div>02 — A DEFINIR</div>
+                        <div>03 — A DEFINIR</div>
+                        <div>04 — A DEFINIR</div>
+                        <div>05 — A DEFINIR</div>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- TIME 02 -->
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 02
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <!-- TIME 03 -->
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 03
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         BERNA
+    ================================================== -->
+
+    <div class="squad-owner">
+
+        <div class="squad-owner-title">
+
+            <span>
+                👑 BERNA
+            </span>
+
+            <small>
+                3 ELENCOS
+            </small>
+
+        </div>
+
+
+        <div class="squad-grid">
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 01
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 02
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 03
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         CRISTIAN
+    ================================================== -->
+
+    <div class="squad-owner">
+
+        <div class="squad-owner-title">
+
+            <span>
+                ⚡ CRISTIAN
+            </span>
+
+            <small>
+                3 ELENCOS
+            </small>
+
+        </div>
+
+
+        <div class="squad-grid">
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 01
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 02
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 03
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         LEANDRO
+    ================================================== -->
+
+    <div class="squad-owner">
+
+        <div class="squad-owner-title">
+
+            <span>
+                🎯 LEANDRO
+            </span>
+
+            <small>
+                3 ELENCOS
+            </small>
+
+        </div>
+
+
+        <div class="squad-grid">
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 01
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 02
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+            <details class="squad-card">
+
+                <summary>
+                    ⚽ TIME 03
+                    <span>22 JOGADORES ＋</span>
+                </summary>
+
+                <div class="squad-content">
+
+                    <div class="empty-squad">
+
+                        ELENCO A DEFINIR
+
+                        <small>
+                            22 jogadores
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </details>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
      REGRAS
 ===================================================== -->
 
-<section class="section" id="regras">
+<section
+    class="section"
+    id="regras">
 
 <div class="container">
+
 
     <div class="section-header">
 
@@ -1902,8 +2985,7 @@ footer{
         </h2>
 
         <p>
-            Regras oficiais para garantir uma competição
-            justa, divertida e competitiva.
+            Regras oficiais da competição.
         </p>
 
     </div>
@@ -1918,30 +3000,48 @@ footer{
                 01
             </div>
 
+
             <div class="rule-content">
 
                 <h3>
-                    🏆 DESISTÊNCIA DURANTE O CAMPEONATO
+                    🏆 DESISTÊNCIA
                 </h3>
 
-                <p>
-                    Não é permitido desistir no meio do campeonato.
-                </p>
 
                 <p>
-                    O competidor somente poderá desistir caso os
-                    jogos que ainda faltam disputar
+
+                    Não pode desistir no meio
+                    do campeonato.
+
+                </p>
+
+
+                <p>
+
+                    O competidor só poderá desistir
+                    se os jogos que ainda faltam
+
                     <span class="rule-highlight">
-                        não tenham mais nenhuma interferência
-                        no resultado do campeonato.
+
+                        não tiverem mais nenhuma
+                        interferência no campeonato.
+
                     </span>
+
                 </p>
 
+
                 <p>
+
                     A desistência forçada levará à
+
                     <span class="penalty">
-                        perda de 3 pontos no Ranking do BOMBA PETCH.
+
+                        perda de 3 pontos no Rank
+                        do Bomba Petch.
+
                     </span>
+
                 </p>
 
             </div>
@@ -1955,31 +3055,32 @@ footer{
                 02
             </div>
 
+
             <div class="rule-content">
 
                 <h3>
-                    🚫 OFENSAS, BRIGAS E AZOEIRA EXCESSIVA
+                    🚫 OFENSAS E BRIGAS
                 </h3>
 
-                <p>
-                    É proibido utilizar
-                    <span class="penalty">
-                        ofensas, xingamentos e provocar
-                        brigas constantes.
-                    </span>
-                </p>
 
                 <p>
-                    A zoeira faz parte da competição, porém deve
-                    existir respeito entre os jogadores.
+
+                    É proibido ofensas, xingamentos
+                    e brigas constantes.
+
                 </p>
 
+
                 <p>
-                    A provocação não poderá chegar ao ponto de
-                    fazer outro competidor
+
+                    A zoeira é permitida,
+                    mas não pode ser contínua
+                    a ponto de fazer alguém
+
                     <span class="rule-highlight">
                         desistir de jogar.
                     </span>
+
                 </p>
 
             </div>
@@ -1993,26 +3094,24 @@ footer{
                 03
             </div>
 
+
             <div class="rule-content">
 
                 <h3>
                     🎯 CHUTE DE PRIMEIRINHA
                 </h3>
 
-                <p>
-                    O
-                    <span class="rule-highlight">
-                        chute de primeirinha
-                    </span>
-                    poderá ser utilizado
-                    <span class="penalty">
-                        apenas 1 vez por jogo.
-                    </span>
-                </p>
 
-                <div class="rule-limit">
-                    ⚽ LIMITE: 1 POR JOGO
-                </div>
+                <p>
+
+                    O chute de primeirinha
+                    valerá apenas
+
+                    <span class="rule-highlight">
+                        1 vez por jogo.
+                    </span>
+
+                </p>
 
             </div>
 
@@ -2025,16 +3124,21 @@ footer{
                 04
             </div>
 
+
             <div class="rule-content">
 
                 <h3>
-                    🎮 FORMAÇÕES E TÁTICAS
+                    🎮 TÁTICAS E FORMAÇÕES
                 </h3>
 
+
                 <p>
-                    Somente poderão ser utilizadas as formações
-                    e táticas oferecidas originalmente pelo jogo.
+
+                    Só poderão ser utilizadas
+                    as táticas que o jogo oferece.
+
                 </p>
+
 
                 <div class="formations">
 
@@ -2045,10 +3149,15 @@ footer{
 
                 </div>
 
+
                 <p>
-                    Será proibido mexer nas formações, mover jogadores,
-                    utilizar atalhos para fazer jogadores atacarem
-                    ou defenderem e sobrepor jogadores na área.
+
+                    É proibido mexer nas formações,
+                    mover jogadores, usar atalhos
+                    para jogadores atacarem ou
+                    defenderem e sobrepor jogadores
+                    na área.
+
                 </p>
 
             </div>
@@ -2062,27 +3171,37 @@ footer{
                 05
             </div>
 
+
             <div class="rule-content">
 
                 <h3>
-                    🚨 ALTERAÇÃO OU CRIAÇÃO DE JOGADORES
+                    🚨 ALTERAÇÃO DE JOGADORES
                 </h3>
 
+
                 <p>
-                    É
+
                     <span class="extreme-text">
                         EXTREMAMENTE PROIBIDO
                     </span>
-                    alterar jogadores ou criar novos jogadores.
+
+                    alterar jogadores ou criar
+                    jogadores.
+
                 </p>
 
+
                 <p>
-                    Caso essa regra seja quebrada e o player
-                    seja pego,
+
+                    Caso essa regra seja quebrada
+                    e o player seja pego,
+
                     <span class="penalty">
                         perderá estrelas.
                     </span>
+
                 </p>
+
 
                 <div class="extreme-warning">
 
@@ -2107,12 +3226,15 @@ footer{
 
 
 <!-- =====================================================
-     RANK DO MELHOR DO ANO
+     RANK
 ===================================================== -->
 
-<section class="section" id="ranking">
+<section
+    class="section"
+    id="ranking">
 
 <div class="container">
+
 
     <div class="section-header">
 
@@ -2125,7 +3247,7 @@ footer{
         </h2>
 
         <p>
-            Todos os jogadores começam a temporada com 0 pontos.
+            Todos começam com 0 pontos.
         </p>
 
     </div>
@@ -2140,10 +3262,15 @@ footer{
                 <tr>
 
                     <th>POSIÇÃO</th>
+
                     <th>JOGADOR</th>
+
                     <th>VITÓRIAS</th>
+
                     <th>EMPATES</th>
+
                     <th>DERROTAS</th>
+
                     <th>PONTOS</th>
 
                 </tr>
@@ -2152,6 +3279,7 @@ footer{
 
 
             <tbody>
+
 
                 <tr>
 
@@ -2228,6 +3356,7 @@ footer{
 
                 </tr>
 
+
             </tbody>
 
         </table>
@@ -2237,20 +3366,24 @@ footer{
 
     <div class="ranking-info">
 
-        <div class="score-box score-win">
-            <strong>VITÓRIA</strong> +2 pontos
+        <div class="score-box">
+            <strong>VITÓRIA</strong>
+            +2 pontos
         </div>
 
-        <div class="score-box score-draw">
-            <strong>EMPATE</strong> +1 ponto
+        <div class="score-box">
+            <strong>EMPATE</strong>
+            +1 ponto
         </div>
 
-        <div class="score-box score-loss">
-            <strong>DERROTA</strong> −1 ponto
+        <div class="score-box">
+            <strong>DERROTA</strong>
+            −1 ponto
         </div>
 
-        <div class="score-box score-forfeit">
-            <strong>DESISTÊNCIA</strong> −3 pontos
+        <div class="score-box">
+            <strong>DESISTÊNCIA</strong>
+            −3 pontos
         </div>
 
     </div>
@@ -2261,12 +3394,15 @@ footer{
 
 
 <!-- =====================================================
-     JORNAL E ATUALIZAÇÕES
+     ATUALIZAÇÕES / JORNAL
 ===================================================== -->
 
-<section class="section" id="jornal">
+<section
+    class="section"
+    id="jornal">
 
 <div class="container">
+
 
     <div class="section-header">
 
@@ -2278,23 +3414,18 @@ footer{
             📰 NOTÍCIAS
         </h2>
 
-        <p>
-            Os próximos capítulos serão escritos aqui.
-        </p>
-
     </div>
 
 
     <div class="news-grid">
 
 
-        <!-- ATUALIZAÇÕES -->
-
         <details class="news-box">
 
             <summary>
                 🔔 ATUALIZAÇÕES
             </summary>
+
 
             <div class="news-content">
 
@@ -2306,8 +3437,8 @@ footer{
 
                     <br><br>
 
-                    Espaço reservado para futuras
-                    atualizações do BOMBA PETCH.
+                    Espaço reservado para
+                    futuras atualizações.
 
                 </div>
 
@@ -2316,13 +3447,12 @@ footer{
         </details>
 
 
-        <!-- JORNAL -->
-
         <details class="news-box">
 
             <summary>
                 📰 JORNAL BOMBA PETCH
             </summary>
+
 
             <div class="news-content">
 
@@ -2334,8 +3464,8 @@ footer{
 
                     <br><br>
 
-                    Espaço reservado para o
-                    Jornal Bomba Petch.
+                    Espaço reservado para
+                    o Jornal Bomba Petch.
 
                 </div>
 
@@ -2353,8 +3483,8 @@ footer{
             📢 ESPAÇO PARA FUTURAS PUBLICAÇÕES
         </strong>
 
-        Novidades, notícias e acontecimentos
-        poderão ser adicionados aqui futuramente.
+        Novidades e acontecimentos poderão
+        ser adicionados aqui futuramente.
 
     </div>
 
@@ -2367,9 +3497,12 @@ footer{
      TEMPORADAS
 ===================================================== -->
 
-<section class="section" id="temporadas">
+<section
+    class="section"
+    id="temporadas">
 
 <div class="container">
+
 
     <div class="section-header">
 
@@ -2378,7 +3511,7 @@ footer{
         </small>
 
         <h2>
-            📅 LINHA DO TEMPO
+            📅 TEMPORADAS
         </h2>
 
     </div>
@@ -2398,8 +3531,10 @@ footer{
             </h3>
 
             <p>
-                O início da história e o surgimento
-                das primeiras grandes rivalidades.
+
+                O início da história
+                do BOMBA PETCH.
+
             </p>
 
         </div>
@@ -2416,8 +3551,10 @@ footer{
             </h3>
 
             <p>
-                As disputas ficam maiores e os
-                jogadores começam a construir seu legado.
+
+                Os jogadores começaram
+                a construir seus legados.
+
             </p>
 
         </div>
@@ -2434,11 +3571,15 @@ footer{
             </h3>
 
             <p>
-                Retorno marcado para
+
+                Retorno:
+
                 <span class="highlight">
-                    17/08/2026 — 19:00.
+                    17/08/2026 — 19:00
                 </span>
+
             </p>
+
 
             <p style="margin-top:12px;">
 
@@ -2464,9 +3605,12 @@ footer{
      DOWNLOAD
 ===================================================== -->
 
-<section class="section" id="download">
+<section
+    class="section"
+    id="download">
 
 <div class="container">
+
 
     <div class="section-header">
 
@@ -2478,10 +3622,6 @@ footer{
             📥 DOWNLOAD
         </h2>
 
-        <p>
-            Arquivos relacionados ao BOMBA PETCH.
-        </p>
-
     </div>
 
 
@@ -2491,18 +3631,25 @@ footer{
             💿
         </div>
 
+
         <h3>
             BOMBA PETCH — RAFAGAMER 2025
         </h3>
 
+
         <p>
-            Acesse o arquivo através do MediaFire.
+            Arquivo disponível para download.
         </p>
 
+
         <a
+
             class="download-button"
+
             href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
+
             target="_blank"
+
             rel="noopener noreferrer">
 
             📥 BAIXAR ARQUIVO
@@ -2523,15 +3670,24 @@ footer{
 <footer>
 
     <div class="footer-logo">
+
         🔥 BOMBA PETCH
+
     </div>
 
+
     <p>
+
         RAFAGAMER • BERNA • CRISTIAN • LEANDRO
+
     </p>
 
+
     <p style="margin-top:15px;font-size:11px;">
-        © 2026 — Lendas do Bomba Petch
+
+        © 2026 —
+        Lendas do Bomba Petch
+
     </p>
 
 </footer>
