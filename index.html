@@ -31,7 +31,6 @@ a{
     color:inherit;
 }
 
-
 /* =========================
    FUNDO
 ========================= */
@@ -65,7 +64,6 @@ body::after{
             transparent 93px
         );
 }
-
 
 /* =========================
    MENU
@@ -119,7 +117,6 @@ body::after{
 .nav-links a:hover{
     color:#ff9800;
 }
-
 
 /* =========================
    CAPA
@@ -267,7 +264,6 @@ body::after{
     box-shadow:0 10px 30px #000;
 }
 
-
 /* =========================
    RETORNO
 ========================= */
@@ -369,7 +365,6 @@ body::after{
     color:#ffd000;
 }
 
-
 /* =========================
    TICKER
 ========================= */
@@ -401,7 +396,6 @@ body::after{
 .ticker strong{
     color:#ff7300;
 }
-
 
 /* =========================
    CONTAINER
@@ -447,7 +441,6 @@ body::after{
 
     font-size:14px;
 }
-
 
 /* =========================
    LENDAS
@@ -606,7 +599,6 @@ body::after{
 
     letter-spacing:1px;
 }
-
 
 /* =========================
    REGRAS
@@ -844,10 +836,9 @@ body::after{
     font-size:18px;
 }
 
-
-/* =====================================================
+/* =========================
    RANK DO MELHOR DO ANO
-===================================================== */
+========================= */
 
 .ranking-table-wrapper{
 
@@ -1035,7 +1026,6 @@ body::after{
     color:#ff7300;
 }
 
-
 /* =========================
    RIVALIDADES
 ========================= */
@@ -1102,72 +1092,6 @@ body::after{
 
     line-height:1.6;
 }
-
-
-/* =========================
-   CENTRAL
-========================= */
-
-.central-grid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:16px;
-}
-
-.central-card{
-
-    min-height:210px;
-
-    padding:27px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #1b1b1b,
-            #0c0c0c
-        );
-
-    border:1px solid #ffffff0a;
-
-    border-radius:14px;
-
-    transition:.3s;
-}
-
-.central-card:hover{
-
-    transform:translateY(-6px);
-
-    border-color:#ff730055;
-}
-
-.central-icon{
-
-    font-size:37px;
-
-    margin-bottom:20px;
-}
-
-.central-card h3{
-
-    color:#ff9800;
-
-    margin-bottom:10px;
-}
-
-.central-card p{
-
-    color:#888;
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
 
 /* =========================
    JORNAL
@@ -1266,7 +1190,6 @@ body::after{
     margin-bottom:8px;
 }
 
-
 /* =========================
    TEMPORADAS
 ========================= */
@@ -1346,7 +1269,6 @@ body::after{
 
     line-height:1.6;
 }
-
 
 /* =========================
    DOWNLOAD
@@ -1437,7 +1359,6 @@ body::after{
         0 12px 30px #000;
 }
 
-
 /* =========================
    RODAPÉ
 ========================= */
@@ -1468,23 +1389,16 @@ footer{
     margin-bottom:12px;
 }
 
-
 /* =========================
    RESPONSIVO
 ========================= */
 
 @media(max-width:1000px){
 
-    .central-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
     .nav-links{
         gap:10px;
     }
 }
-
 
 @media(max-width:750px){
 
@@ -1508,13 +1422,7 @@ footer{
     .news-grid{
         grid-template-columns:1fr;
     }
-
-    .central-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
 }
-
 
 @media(max-width:600px){
 
@@ -1539,7 +1447,6 @@ footer{
     }
 }
 
-
 @media(max-width:550px){
 
     .hero{
@@ -1558,10 +1465,6 @@ footer{
     .hero-subtitle{
         font-size:9px;
         letter-spacing:2px;
-    }
-
-    .central-grid{
-        grid-template-columns:1fr;
     }
 
     .section{
@@ -1588,7 +1491,6 @@ footer{
     .return-place{
         font-size:13px;
     }
-
 }
 
 </style>
@@ -2307,29 +2209,12 @@ footer{
 
                 <tr>
 
-                    <th>
-                        POSIÇÃO
-                    </th>
-
-                    <th>
-                        JOGADOR
-                    </th>
-
-                    <th>
-                        VITÓRIAS
-                    </th>
-
-                    <th>
-                        EMPATES
-                    </th>
-
-                    <th>
-                        DERROTAS
-                    </th>
-
-                    <th>
-                        PONTOS
-                    </th>
+                    <th>POSIÇÃO</th>
+                    <th>JOGADOR</th>
+                    <th>VITÓRIAS</th>
+                    <th>EMPATES</th>
+                    <th>DERROTAS</th>
+                    <th>PONTOS</th>
 
                 </tr>
 
@@ -2341,116 +2226,76 @@ footer{
 
                 <tr>
 
-                    <td class="position">
-                        —
-                    </td>
+                    <td class="position">—</td>
 
                     <td class="player player-berna">
                         👑 BERNA
                     </td>
 
-                    <td class="victory">
-                        0
-                    </td>
+                    <td class="victory">0</td>
 
-                    <td class="draw">
-                        0
-                    </td>
+                    <td class="draw">0</td>
 
-                    <td class="defeat">
-                        0
-                    </td>
+                    <td class="defeat">0</td>
 
-                    <td class="points">
-                        0
-                    </td>
+                    <td class="points">0</td>
 
                 </tr>
 
 
                 <tr>
 
-                    <td class="position">
-                        —
-                    </td>
+                    <td class="position">—</td>
 
                     <td class="player">
                         ⚡ CRISTIAN
                     </td>
 
-                    <td class="victory">
-                        0
-                    </td>
+                    <td class="victory">0</td>
 
-                    <td class="draw">
-                        0
-                    </td>
+                    <td class="draw">0</td>
 
-                    <td class="defeat">
-                        0
-                    </td>
+                    <td class="defeat">0</td>
 
-                    <td class="points">
-                        0
-                    </td>
+                    <td class="points">0</td>
 
                 </tr>
 
 
                 <tr>
 
-                    <td class="position">
-                        —
-                    </td>
+                    <td class="position">—</td>
 
                     <td class="player">
                         🔥 RAFAGAMER
                     </td>
 
-                    <td class="victory">
-                        0
-                    </td>
+                    <td class="victory">0</td>
 
-                    <td class="draw">
-                        0
-                    </td>
+                    <td class="draw">0</td>
 
-                    <td class="defeat">
-                        0
-                    </td>
+                    <td class="defeat">0</td>
 
-                    <td class="points">
-                        0
-                    </td>
+                    <td class="points">0</td>
 
                 </tr>
 
 
                 <tr>
 
-                    <td class="position">
-                        —
-                    </td>
+                    <td class="position">—</td>
 
                     <td class="player">
                         🎯 LEANDRO
                     </td>
 
-                    <td class="victory">
-                        0
-                    </td>
+                    <td class="victory">0</td>
 
-                    <td class="draw">
-                        0
-                    </td>
+                    <td class="draw">0</td>
 
-                    <td class="defeat">
-                        0
-                    </td>
+                    <td class="defeat">0</td>
 
-                    <td class="points">
-                        0
-                    </td>
+                    <td class="points">0</td>
 
                 </tr>
 
@@ -2603,110 +2448,7 @@ footer{
 
 
 <!-- =====================================================
-     CENTRAL
-===================================================== -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>
-            UNIVERSO
-        </small>
-
-        <h2>
-            🎮 CENTRAL BOMBA PETCH
-        </h2>
-
-    </div>
-
-
-    <div class="central-grid">
-
-
-        <div class="central-card">
-
-            <div class="central-icon">
-                👑
-            </div>
-
-            <h3>
-                Campeões
-            </h3>
-
-            <p>
-                A história dos jogadores que chegaram
-                ao topo do BOMBA PETCH.
-            </p>
-
-        </div>
-
-
-        <div class="central-card">
-
-            <div class="central-icon">
-                🏆
-            </div>
-
-            <h3>
-                Hall da Fama
-            </h3>
-
-            <p>
-                As maiores lendas e os jogadores
-                que fizeram história.
-            </p>
-
-        </div>
-
-
-        <div class="central-card">
-
-            <div class="central-icon">
-                📰
-            </div>
-
-            <h3>
-                Jornal
-            </h3>
-
-            <p>
-                Notícias, acontecimentos e
-                histórias das temporadas.
-            </p>
-
-        </div>
-
-
-        <div class="central-card">
-
-            <div class="central-icon">
-                🔥
-            </div>
-
-            <h3>
-                Atualizações
-            </h3>
-
-            <p>
-                Espaço preparado para as
-                próximas novidades.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     JORNAL
+     JORNAL E ATUALIZAÇÕES
 ===================================================== -->
 
 <section class="section" id="jornal">
@@ -2733,6 +2475,8 @@ footer{
     <div class="news-grid">
 
 
+        <!-- ATUALIZAÇÕES -->
+
         <details class="news-box">
 
             <summary>
@@ -2758,6 +2502,8 @@ footer{
 
         </details>
 
+
+        <!-- JORNAL -->
 
         <details class="news-box">
 
@@ -2791,7 +2537,7 @@ footer{
     <div class="future">
 
         <strong>
-            📢 CENTRAL BOMBA PETCH
+            📢 ESPAÇO PARA FUTURAS PUBLICAÇÕES
         </strong>
 
         Novidades, notícias e acontecimentos
@@ -2976,6 +2722,7 @@ footer{
     </p>
 
 </footer>
+
 
 </body>
 
