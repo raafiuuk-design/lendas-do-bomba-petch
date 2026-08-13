@@ -24,14 +24,11 @@ body{
     color:#fff;
 }
 
-/* FUNDO */
-
 body::before{
     content:"";
     position:fixed;
     inset:0;
     z-index:-2;
-
     background:
     radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
     radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
@@ -45,7 +42,6 @@ body::after{
     z-index:-1;
     pointer-events:none;
     opacity:.18;
-
     background:
     repeating-linear-gradient(
         120deg,
@@ -62,19 +58,13 @@ body::after{
     position:sticky;
     top:0;
     z-index:999;
-
     min-height:65px;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     padding:0 5%;
-
     background:#050505ed;
-
     border-bottom:1px solid #ff730055;
-
     backdrop-filter:blur(15px);
 }
 
@@ -112,13 +102,10 @@ body::after{
 
 .hero{
     min-height:620px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
-
     position:relative;
     overflow:hidden;
 
@@ -178,21 +165,14 @@ body::after{
 .hero-button{
     display:inline-block;
     margin-top:40px;
-
     padding:16px 32px;
-
     border-radius:50px;
-
     border:1px solid #ffd000;
-
     color:#ffd000;
-
     background:#00000055;
-
     font-size:11px;
     font-weight:bold;
     letter-spacing:3px;
-
     text-decoration:none;
 }
 
@@ -205,7 +185,6 @@ body::after{
 
 .season-return{
     padding:38px 20px;
-
     text-align:center;
 
     background:
@@ -270,13 +249,10 @@ body::after{
 
 .section-header small{
     display:block;
-
     color:#ff7300;
-
     font-size:10px;
     font-weight:bold;
     letter-spacing:6px;
-
     margin-bottom:12px;
 }
 
@@ -295,26 +271,20 @@ body::after{
     display:flex;
     flex-direction:column;
     gap:20px;
-
     max-width:900px;
     margin:auto;
 }
 
 .legend{
     background:#121212;
-
     border:1px solid #ff730033;
-
     border-radius:15px;
-
     overflow:hidden;
 }
 
 .legend summary{
     cursor:pointer;
-
     list-style:none;
-
     padding:23px;
 
     display:flex;
@@ -343,7 +313,6 @@ body::after{
 
 .legend-body{
     padding:30px;
-
     background:
     linear-gradient(
         145deg,
@@ -372,9 +341,7 @@ body::after{
 
 .owner{
     margin-bottom:55px;
-
     padding:25px;
-
     border-radius:18px;
 
     background:
@@ -391,11 +358,8 @@ body::after{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     margin-bottom:22px;
-
     padding-bottom:18px;
-
     border-bottom:1px solid #ffffff0d;
 }
 
@@ -412,22 +376,15 @@ body::after{
 
 .team-grid{
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:16px;
 }
 
 .team-card{
     background:#101010;
-
     border:1px solid #ff730033;
-
     border-radius:12px;
-
     overflow:hidden;
-
     transition:.25s;
 }
 
@@ -463,12 +420,9 @@ body::after{
 
 .team-body button{
     width:100%;
-
     padding:14px;
-
     border:0;
     border-radius:8px;
-
     cursor:pointer;
 
     background:
@@ -479,7 +433,6 @@ body::after{
     );
 
     color:white;
-
     font-weight:bold;
 }
 
@@ -489,15 +442,39 @@ body::after{
 
 .saved-count{
     text-align:center;
-
     color:#777;
-
     font-size:11px;
-
     margin-top:12px;
 }
 
-/* MODAL DOS ELENCOS */
+/* CADEADO */
+
+.lock-status{
+    margin-top:14px;
+    padding:10px;
+
+    text-align:center;
+
+    border-radius:7px;
+
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.locked{
+    background:#260000;
+    color:#ff7777;
+    border:1px solid #750000;
+}
+
+.unlocked{
+    background:#152600;
+    color:#9dff50;
+    border:1px solid #477500;
+}
+
+/* MODAL */
 
 .modal{
     display:none;
@@ -537,7 +514,6 @@ body::after{
 
 .modal-top{
     display:flex;
-
     align-items:center;
     justify-content:space-between;
 
@@ -582,9 +558,7 @@ body::after{
 
 .squad-intro{
     text-align:center;
-
     margin-bottom:25px;
-
     color:#777;
 }
 
@@ -608,7 +582,6 @@ body::after{
 
 .position-title{
     display:flex;
-
     justify-content:space-between;
     align-items:center;
 
@@ -631,14 +604,9 @@ body::after{
 
 .name-grid{
     display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
 }
-
-/* CAMPO PARA DIGITAR JOGADOR */
 
 .player-input{
     width:100%;
@@ -666,24 +634,18 @@ body::after{
 
 .player-input:focus{
     border-color:#ff7300;
-
     background:#1c120d;
-
-    box-shadow:
-    0 0 0 2px #ff730015;
+    box-shadow:0 0 0 2px #ff730015;
 }
 
-/* BOTÕES */
+/* AÇÕES */
 
 .modal-actions{
     display:flex;
-
     justify-content:flex-end;
-
     gap:10px;
 
     padding-top:20px;
-
     margin-top:10px;
 
     border-top:1px solid #ffffff0d;
@@ -691,12 +653,9 @@ body::after{
 
 .action{
     padding:13px 20px;
-
     border:0;
     border-radius:7px;
-
     cursor:pointer;
-
     font-weight:bold;
 }
 
@@ -715,8 +674,89 @@ body::after{
     color:#aaa;
 }
 
-.save:hover{
-    background:#ff9000;
+.lock{
+    background:#550000;
+    color:#fff;
+}
+
+.action:hover{
+    opacity:.85;
+}
+
+/* MODAL SENHA */
+
+.password-box{
+    max-width:500px;
+    margin:100px auto;
+    padding:35px;
+
+    background:#111;
+
+    border:1px solid #ff730066;
+
+    border-radius:18px;
+
+    text-align:center;
+}
+
+.password-box h2{
+    color:#ff9800;
+    margin-bottom:15px;
+}
+
+.password-box p{
+    color:#777;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.password-input{
+    width:100%;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    border:1px solid #ffffff20;
+
+    background:#1b1b1b;
+
+    color:white;
+
+    outline:none;
+
+    font-size:16px;
+
+    text-align:center;
+}
+
+.password-input:focus{
+    border-color:#ff7300;
+}
+
+.password-actions{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.password-actions button{
+    flex:1;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn-orange{
+    background:#ff7300;
+    color:#fff;
+}
+
+.btn-dark{
+    background:#292929;
+    color:#aaa;
 }
 
 /* REGRAS */
@@ -728,7 +768,6 @@ body::after{
 
 .rule{
     display:grid;
-
     grid-template-columns:80px 1fr;
 
     margin-bottom:18px;
@@ -744,7 +783,6 @@ body::after{
 
 .rule-number{
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -777,11 +815,8 @@ body::after{
 
 .formations{
     display:flex;
-
     flex-wrap:wrap;
-
     gap:8px;
-
     margin:15px 0;
 }
 
@@ -801,86 +836,58 @@ body::after{
 
 .rank-wrap{
     overflow-x:auto;
-
     border:1px solid #ff730044;
-
     border-radius:15px;
 }
 
 table{
     width:100%;
-
     min-width:700px;
-
     border-collapse:collapse;
 }
 
 th{
     padding:18px;
-
     background:#720000;
-
     color:#ffd000;
-
     font-size:11px;
 }
 
 td{
     padding:18px;
-
     text-align:center;
-
     border-bottom:1px solid #ffffff08;
 }
 
 .player{
     text-align:left;
-
     font-weight:bold;
 }
 
 .points{
     color:#ffd000;
-
     font-size:20px;
-
     font-weight:bold;
-}
-
-.rank-info{
-    margin-top:20px;
-
-    text-align:center;
-
-    color:#777;
 }
 
 /* JORNAL */
 
 .news{
     display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
+    grid-template-columns:1fr 1fr;
     gap:20px;
 }
 
 .news-box{
     background:#141414;
-
     border:1px solid #ff730044;
-
     border-radius:14px;
-
     overflow:hidden;
 }
 
 .news-box summary{
     cursor:pointer;
-
     list-style:none;
-
     padding:22px;
 
     background:
@@ -895,16 +902,13 @@ td{
 
 .news-content{
     min-height:180px;
-
     padding:30px;
 
     display:flex;
-
     justify-content:center;
     align-items:center;
 
     text-align:center;
-
     color:#777;
 }
 
@@ -912,10 +916,7 @@ td{
 
 .seasons{
     display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:20px;
 }
 
@@ -931,15 +932,12 @@ td{
 
 .season h3{
     color:#ff9800;
-
     margin-bottom:10px;
 }
 
 .year{
     color:#ff7300;
-
     font-size:42px;
-
     font-weight:900;
 }
 
@@ -947,7 +945,6 @@ td{
 
 .download{
     max-width:750px;
-
     margin:auto;
 
     padding:50px;
@@ -963,13 +960,11 @@ td{
 
 .download h3{
     color:#ff9800;
-
     margin-bottom:15px;
 }
 
 .download p{
     color:#777;
-
     margin-bottom:25px;
 }
 
@@ -988,7 +983,6 @@ td{
     border-radius:8px;
 
     font-weight:bold;
-
     text-decoration:none;
 }
 
@@ -996,21 +990,15 @@ td{
 
 footer{
     padding:50px 20px;
-
     text-align:center;
-
     border-top:1px solid #ff730044;
-
     color:#555;
 }
 
 .footer-logo{
     color:#ff7300;
-
     font-size:24px;
-
     font-weight:bold;
-
     margin-bottom:12px;
 }
 
@@ -1019,8 +1007,7 @@ footer{
 @media(max-width:900px){
 
     .team-grid{
-        grid-template-columns:
-        1fr 1fr;
+        grid-template-columns:1fr 1fr;
     }
 
     .seasons{
@@ -1076,6 +1063,10 @@ footer{
         width:100%;
     }
 
+    .password-box{
+        margin:60px auto;
+    }
+
 }
 
 </style>
@@ -1083,8 +1074,7 @@ footer{
 
 <body>
 
-
-<!-- ================= MENU ================= -->
+<!-- MENU -->
 
 <nav class="navbar">
 
@@ -1095,17 +1085,11 @@ footer{
     <div class="nav-links">
 
         <a href="#lendas">LENDAS</a>
-
         <a href="#elencos">⚽ ELENCOS</a>
-
         <a href="#regras">REGRAS</a>
-
         <a href="#ranking">RANK</a>
-
         <a href="#jornal">JORNAL</a>
-
         <a href="#temporadas">TEMPORADAS</a>
-
         <a href="#download">DOWNLOAD</a>
 
     </div>
@@ -1113,7 +1097,7 @@ footer{
 </nav>
 
 
-<!-- ================= CAPA ================= -->
+<!-- CAPA -->
 
 <section class="hero">
 
@@ -1135,12 +1119,8 @@ footer{
             A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
         </p>
 
-        <a
-            class="hero-button"
-            href="#elencos">
-
+        <a class="hero-button" href="#elencos">
             ⚽ MONTAR ELENCOS
-
         </a>
 
     </div>
@@ -1148,7 +1128,7 @@ footer{
 </section>
 
 
-<!-- ================= RETORNO ================= -->
+<!-- RETORNO -->
 
 <section class="season-return">
 
@@ -1183,36 +1163,26 @@ footer{
 </section>
 
 
-<!-- ================= LENDAS ================= -->
+<!-- LENDAS -->
 
-<section
-    class="section"
-    id="lendas">
+<section class="section" id="lendas">
 
 <div class="container">
 
     <div class="section-header">
 
-        <small>
-            HALL DA FAMA
-        </small>
+        <small>HALL DA FAMA</small>
 
-        <h2>
-            🏆 AS LENDAS
-        </h2>
+        <h2>🏆 AS LENDAS</h2>
 
         <p>
-            Os jogadores que marcaram a história
-            do BOMBA PETCH.
+            Os jogadores que marcaram a história do BOMBA PETCH.
         </p>
 
     </div>
 
-
     <div class="legend-grid">
 
-
-        <!-- RAFA -->
 
         <details class="legend">
 
@@ -1228,9 +1198,7 @@ footer{
 
             <div class="legend-body">
 
-                <h3>
-                    🔥 RAFAGAMER
-                </h3>
+                <h3>🔥 RAFAGAMER</h3>
 
                 <p>
                     Conhecido por seu estilo bonito,
@@ -1238,19 +1206,15 @@ footer{
                 </p>
 
                 <p>
-
                     <span class="highlight">
                         2 temporadas e 2 troféus.
                     </span>
-
                 </p>
 
             </div>
 
         </details>
 
-
-        <!-- BERNA -->
 
         <details class="legend">
 
@@ -1266,29 +1230,23 @@ footer{
 
             <div class="legend-body">
 
-                <h3>
-                    👑 BERNA
-                </h3>
+                <h3>👑 BERNA</h3>
 
                 <p>
-                    Jogador versátil, conhecido
-                    principalmente pelas jogadas aéreas.
+                    Jogador versátil, conhecido principalmente
+                    pelas jogadas aéreas.
                 </p>
 
                 <p>
-
                     <span class="highlight">
                         Campeão da última temporada.
                     </span>
-
                 </p>
 
             </div>
 
         </details>
 
-
-        <!-- CRISTIAN -->
 
         <details class="legend">
 
@@ -1304,9 +1262,7 @@ footer{
 
             <div class="legend-body">
 
-                <h3>
-                    ⚡ CRISTIAN
-                </h3>
+                <h3>⚡ CRISTIAN</h3>
 
                 <p>
                     Estilo defensivo e estratégico,
@@ -1314,19 +1270,15 @@ footer{
                 </p>
 
                 <p>
-
                     <span class="highlight">
                         3 temporadas e 3 troféus.
                     </span>
-
                 </p>
 
             </div>
 
         </details>
 
-
-        <!-- LEANDRO -->
 
         <details class="legend">
 
@@ -1336,9 +1288,7 @@ footer{
 
             <div class="legend-body">
 
-                <h3>
-                    🎯 LEANDRO
-                </h3>
+                <h3>🎯 LEANDRO</h3>
 
                 <p>
                     Jogador versátil, costuma jogar
@@ -1346,13 +1296,10 @@ footer{
                 </p>
 
                 <p>
-
                     Destaque para os
-
                     <span class="highlight">
                         chutes de longa distância.
                     </span>
-
                 </p>
 
             </div>
@@ -1366,52 +1313,38 @@ footer{
 </section>
 
 
-<!-- ================= ELENCOS ================= -->
+<!-- ELENCOS -->
 
-<section
-    class="section"
-    id="elencos">
+<section class="section" id="elencos">
 
 <div class="container">
 
-
     <div class="section-header">
 
-        <small>
-            SISTEMA DE ELENCOS
-        </small>
+        <small>SISTEMA DE ELENCOS</small>
 
-        <h2>
-            ⚽ ELENCOS
-        </h2>
+        <h2>⚽ ELENCOS</h2>
 
         <p>
-            4 jogadores • 12 times • 22 jogadores por time
+            4 players • 3 times cada • 22 jogadores por time
         </p>
 
     </div>
 
 
-    <!-- RAFA -->
+    <!-- RAFAGAMER -->
 
     <div class="owner">
 
         <div class="owner-title">
 
-            <h3>
-                🔥 RAFAGAMER
-            </h3>
+            <h3>🔥 RAFAGAMER</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div
-            class="team-grid"
-            id="teams-rafagamer">
-        </div>
+        <div class="team-grid" id="teams-rafagamer"></div>
 
     </div>
 
@@ -1422,20 +1355,13 @@ footer{
 
         <div class="owner-title">
 
-            <h3>
-                👑 BERNA
-            </h3>
+            <h3>👑 BERNA</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div
-            class="team-grid"
-            id="teams-berna">
-        </div>
+        <div class="team-grid" id="teams-berna"></div>
 
     </div>
 
@@ -1446,20 +1372,13 @@ footer{
 
         <div class="owner-title">
 
-            <h3>
-                ⚡ CRISTIAN
-            </h3>
+            <h3>⚡ CRISTIAN</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div
-            class="team-grid"
-            id="teams-cristian">
-        </div>
+        <div class="team-grid" id="teams-cristian"></div>
 
     </div>
 
@@ -1470,47 +1389,83 @@ footer{
 
         <div class="owner-title">
 
-            <h3>
-                🎯 LEANDRO
-            </h3>
+            <h3>🎯 LEANDRO</h3>
 
-            <span>
-                3 TIMES
-            </span>
+            <span>3 TIMES</span>
 
         </div>
 
-        <div
-            class="team-grid"
-            id="teams-leandro">
-        </div>
+        <div class="team-grid" id="teams-leandro"></div>
 
     </div>
-
 
 </div>
 
 </section>
 
 
-<!-- ================= MODAL ELENCO ================= -->
+<!-- MODAL DE SENHA -->
 
-<div
-    class="modal"
-    id="squadModal">
+<div class="modal" id="passwordModal">
+
+    <div class="password-box">
+
+        <h2 id="passwordTitle">
+            🔒 ELENCO BLOQUEADO
+        </h2>
+
+        <p id="passwordMessage">
+            Digite a senha para acessar este elenco.
+        </p>
+
+        <input
+            type="password"
+            id="passwordInput"
+            class="password-input"
+            placeholder="Digite a senha"
+            autocomplete="off"
+        >
+
+        <div class="password-actions">
+
+            <button
+                class="btn-dark"
+                onclick="closePasswordModal()">
+
+                CANCELAR
+
+            </button>
+
+            <button
+                class="btn-orange"
+                onclick="submitPassword()">
+
+                🔓 CONTINUAR
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DO ELENCO -->
+
+<div class="modal" id="squadModal">
 
     <div class="modal-box">
-
 
         <div class="modal-top">
 
             <h2 id="modalTitle">
-                Montar elenco
+                ⚽ Montar elenco
             </h2>
 
             <button
                 class="close"
-                onclick="closeModal()">
+                onclick="closeSquad()">
 
                 ×
 
@@ -1521,21 +1476,18 @@ footer{
 
         <div class="modal-content">
 
-
             <div class="squad-intro">
 
-                Aqui você pode
-
+                Você pode
                 <strong>
                     DIGITAR O NOME QUE QUISER
                 </strong>
-
-                para cada jogador.
+                nos 22 espaços.
 
                 <br><br>
 
-                O elenco possui
-                <strong>22 jogadores</strong>.
+                🔒 Quando terminar, bloqueie o elenco
+                para esconder os jogadores.
 
             </div>
 
@@ -1549,15 +1501,23 @@ footer{
                     class="action clear"
                     onclick="clearSquad()">
 
-                    LIMPAR
+                    🗑 LIMPAR
 
                 </button>
 
                 <button
                     class="action cancel"
-                    onclick="closeModal()">
+                    onclick="closeSquad()">
 
                     FECHAR
+
+                </button>
+
+                <button
+                    class="action lock"
+                    onclick="lockCurrentTeam()">
+
+                    🔒 BLOQUEAR ELENCO
 
                 </button>
 
@@ -1565,12 +1525,11 @@ footer{
                     class="action save"
                     onclick="saveSquad()">
 
-                    💾 SALVAR ELENCO
+                    💾 SALVAR
 
                 </button>
 
             </div>
-
 
         </div>
 
@@ -1579,23 +1538,17 @@ footer{
 </div>
 
 
-<!-- ================= REGRAS ================= -->
+<!-- REGRAS -->
 
-<section
-    class="section"
-    id="regras">
+<section class="section" id="regras">
 
 <div class="container">
 
     <div class="section-header">
 
-        <small>
-            REGULAMENTO
-        </small>
+        <small>REGULAMENTO</small>
 
-        <h2>
-            🔥 REGRAS BOMBA PETCH
-        </h2>
+        <h2>🔥 REGRAS BOMBA PETCH</h2>
 
     </div>
 
@@ -1605,29 +1558,23 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">
-                01
-            </div>
+            <div class="rule-number">01</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🏆 DESISTÊNCIA
-                </h3>
+                <h3>🏆 DESISTÊNCIA</h3>
 
                 <p>
                     Não pode desistir no meio do campeonato.
                 </p>
 
                 <p>
-                    Só poderá desistir quando os jogos
-                    restantes não tiverem mais interferência
-                    no campeonato.
+                    Só poderá desistir quando os jogos restantes
+                    não tiverem mais interferência no campeonato.
                 </p>
 
                 <p>
                     Desistência forçada:
-
                     <strong>
                         perda de 3 pontos no Rank.
                     </strong>
@@ -1640,20 +1587,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">
-                02
-            </div>
+            <div class="rule-number">02</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🚫 OFENSAS E BRIGAS
-                </h3>
+                <h3>🚫 OFENSAS E BRIGAS</h3>
 
                 <p>
-                    Proibido ofensas, xingamentos,
-                    brigas constantes e zoeira contínua
-                    de forma que faça alguém desistir.
+                    Proibido ofensas, xingamentos, brigas constantes
+                    e zoeira contínua de forma que faça alguém desistir.
                 </p>
 
             </div>
@@ -1663,19 +1605,15 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">
-                03
-            </div>
+            <div class="rule-number">03</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🎯 CHUTE DE PRIMEIRINHA
-                </h3>
+                <h3>🎯 CHUTE DE PRIMEIRINHA</h3>
 
                 <p>
-                    O chute de primeirinha valerá
-                    apenas <strong>1 vez por jogo.</strong>
+                    O chute de primeirinha valerá apenas
+                    <strong>1 vez por jogo.</strong>
                 </p>
 
             </div>
@@ -1685,15 +1623,11 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">
-                04
-            </div>
+            <div class="rule-number">04</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🎮 TÁTICAS
-                </h3>
+                <h3>🎮 TÁTICAS</h3>
 
                 <p>
                     Só poderão ser usadas as formações
@@ -1711,9 +1645,8 @@ footer{
 
                 <p>
                     Proibido mexer nas formações,
-                    mover jogadores, utilizar atalhos
-                    para atacar/defender ou sobrepor
-                    jogadores na área.
+                    mover jogadores, utilizar atalhos para
+                    atacar/defender ou sobrepor jogadores na área.
                 </p>
 
             </div>
@@ -1723,24 +1656,19 @@ footer{
 
         <div class="rule">
 
-            <div class="rule-number">
-                05
-            </div>
+            <div class="rule-number">05</div>
 
             <div class="rule-text">
 
-                <h3>
-                    🚨 ALTERAÇÃO DE JOGADORES
-                </h3>
+                <h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
 
                 <p>
-                    EXTREMAMENTE PROIBIDO alterar
-                    jogadores ou criar jogadores.
+                    EXTREMAMENTE PROIBIDO alterar jogadores
+                    ou criar jogadores.
                 </p>
 
                 <p>
                     Caso seja pego:
-
                     <strong>
                         perderá estrelas.
                     </strong>
@@ -1758,24 +1686,17 @@ footer{
 </section>
 
 
-<!-- ================= RANK ================= -->
+<!-- RANK -->
 
-<section
-    class="section"
-    id="ranking">
+<section class="section" id="ranking">
 
 <div class="container">
 
-
     <div class="section-header">
 
-        <small>
-            TEMPORADA 2026
-        </small>
+        <small>TEMPORADA 2026</small>
 
-        <h2>
-            🏆 RANK DO MELHOR DO ANO
-        </h2>
+        <h2>🏆 RANK DO MELHOR DO ANO</h2>
 
         <p>
             Todos começam com 0 pontos.
@@ -1792,113 +1713,54 @@ footer{
 
                 <tr>
 
-                    <th>
-                        POS.
-                    </th>
-
-                    <th>
-                        PLAYER
-                    </th>
-
-                    <th>
-                        VITÓRIAS
-                    </th>
-
-                    <th>
-                        EMPATES
-                    </th>
-
-                    <th>
-                        DERROTAS
-                    </th>
-
-                    <th>
-                        PONTOS
-                    </th>
+                    <th>POS.</th>
+                    <th>PLAYER</th>
+                    <th>VITÓRIAS</th>
+                    <th>EMPATES</th>
+                    <th>DERROTAS</th>
+                    <th>PONTOS</th>
 
                 </tr>
 
             </thead>
 
-
             <tbody>
 
-
                 <tr>
-
                     <td>—</td>
-
-                    <td class="player">
-                        👑 BERNA
-                    </td>
-
+                    <td class="player">👑 BERNA</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-
-                    <td class="points">
-                        0
-                    </td>
-
+                    <td class="points">0</td>
                 </tr>
 
-
                 <tr>
-
                     <td>—</td>
-
-                    <td class="player">
-                        ⚡ CRISTIAN
-                    </td>
-
+                    <td class="player">⚡ CRISTIAN</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-
-                    <td class="points">
-                        0
-                    </td>
-
+                    <td class="points">0</td>
                 </tr>
 
-
                 <tr>
-
                     <td>—</td>
-
-                    <td class="player">
-                        🔥 RAFAGAMER
-                    </td>
-
+                    <td class="player">🔥 RAFAGAMER</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-
-                    <td class="points">
-                        0
-                    </td>
-
+                    <td class="points">0</td>
                 </tr>
 
-
                 <tr>
-
                     <td>—</td>
-
-                    <td class="player">
-                        🎯 LEANDRO
-                    </td>
-
+                    <td class="player">🎯 LEANDRO</td>
                     <td>0</td>
                     <td>0</td>
                     <td>0</td>
-
-                    <td class="points">
-                        0
-                    </td>
-
+                    <td class="points">0</td>
                 </tr>
-
 
             </tbody>
 
@@ -1924,30 +1786,22 @@ footer{
 </section>
 
 
-<!-- ================= JORNAL ================= -->
+<!-- JORNAL -->
 
-<section
-    class="section"
-    id="jornal">
+<section class="section" id="jornal">
 
 <div class="container">
 
-
     <div class="section-header">
 
-        <small>
-            NOTÍCIAS
-        </small>
+        <small>NOTÍCIAS</small>
 
-        <h2>
-            📰 JORNAL BOMBA PETCH
-        </h2>
+        <h2>📰 JORNAL BOMBA PETCH</h2>
 
     </div>
 
 
     <div class="news">
-
 
         <details class="news-box">
 
@@ -1956,10 +1810,7 @@ footer{
             </summary>
 
             <div class="news-content">
-
-                Área reservada para
-                futuras atualizações.
-
+                Área reservada para futuras atualizações.
             </div>
 
         </details>
@@ -1972,14 +1823,10 @@ footer{
             </summary>
 
             <div class="news-content">
-
-                Área reservada para
-                futuras notícias.
-
+                Área reservada para futuras notícias.
             </div>
 
         </details>
-
 
     </div>
 
@@ -1988,44 +1835,31 @@ footer{
 </section>
 
 
-<!-- ================= TEMPORADAS ================= -->
+<!-- TEMPORADAS -->
 
-<section
-    class="section"
-    id="temporadas">
+<section class="section" id="temporadas">
 
 <div class="container">
 
-
     <div class="section-header">
 
-        <small>
-            HISTÓRIA
-        </small>
+        <small>HISTÓRIA</small>
 
-        <h2>
-            📅 TEMPORADAS
-        </h2>
+        <h2>📅 TEMPORADAS</h2>
 
     </div>
 
 
     <div class="seasons">
 
-
         <div class="season">
 
-            <div class="year">
-                2024
-            </div>
+            <div class="year">2024</div>
 
-            <h3>
-                PRIMEIROS CAPÍTULOS
-            </h3>
+            <h3>PRIMEIROS CAPÍTULOS</h3>
 
             <p>
-                O início da história
-                do BOMBA PETCH.
+                O início da história do BOMBA PETCH.
             </p>
 
         </div>
@@ -2033,17 +1867,12 @@ footer{
 
         <div class="season">
 
-            <div class="year">
-                2025
-            </div>
+            <div class="year">2025</div>
 
-            <h3>
-                ERA DAS LENDAS
-            </h3>
+            <h3>ERA DAS LENDAS</h3>
 
             <p>
-                Os jogadores começaram
-                a construir seus legados.
+                Os jogadores começaram a construir seus legados.
             </p>
 
         </div>
@@ -2051,17 +1880,12 @@ footer{
 
         <div class="season">
 
-            <div class="year">
-                2026
-            </div>
+            <div class="year">2026</div>
 
-            <h3>
-                NOVA TEMPORADA
-            </h3>
+            <h3>NOVA TEMPORADA</h3>
 
             <p>
                 Retorno em
-
                 <strong>
                     17/08/2026 às 19:00
                 </strong>.
@@ -2069,7 +1893,6 @@ footer{
 
         </div>
 
-
     </div>
 
 </div>
@@ -2077,24 +1900,17 @@ footer{
 </section>
 
 
-<!-- ================= DOWNLOAD ================= -->
+<!-- DOWNLOAD -->
 
-<section
-    class="section"
-    id="download">
+<section class="section" id="download">
 
 <div class="container">
 
-
     <div class="section-header">
 
-        <small>
-            ARQUIVOS
-        </small>
+        <small>ARQUIVOS</small>
 
-        <h2>
-            📥 DOWNLOAD
-        </h2>
+        <h2>📥 DOWNLOAD</h2>
 
     </div>
 
@@ -2124,7 +1940,7 @@ footer{
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <footer>
 
@@ -2145,9 +1961,9 @@ footer{
 
 <script>
 
-/* ==========================================================
-   POSIÇÕES DOS 22 JOGADORES
-========================================================== */
+/* =========================================================
+   POSIÇÕES
+========================================================= */
 
 const positions = [
 
@@ -2190,18 +2006,32 @@ const positions = [
 ];
 
 
-/* ==========================================================
-   CRIA OS 12 TIMES
-========================================================== */
+/* =========================================================
+   PLAYERS
+========================================================= */
 
 const owners = [
-
     "rafagamer",
     "berna",
     "cristian",
     "leandro"
-
 ];
+
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
+let currentTeam = null;
+
+let pendingTeam = null;
+
+let passwordMode = null;
+
+
+/* =========================================================
+   CRIAR 12 TIMES
+========================================================= */
 
 owners.forEach(owner => {
 
@@ -2210,16 +2040,19 @@ owners.forEach(owner => {
             "teams-" + owner
         );
 
+
     for(let i = 1; i <= 3; i++){
 
         const id =
             owner + "-time-" + i;
+
 
         const card =
             document.createElement("div");
 
         card.className =
             "team-card";
+
 
         card.innerHTML = `
 
@@ -2238,12 +2071,9 @@ owners.forEach(owner => {
             <div class="team-body">
 
                 <button
-                    onclick="openSquad(
-                        '${id}',
-                        '${owner.toUpperCase()} — TIME ${i}'
-                    )">
+                    onclick="accessTeam('${id}')">
 
-                    ⚽ MONTAR ELENCO
+                    🔒 ACESSAR ELENCO
 
                 </button>
 
@@ -2255,27 +2085,288 @@ owners.forEach(owner => {
 
                 </div>
 
+                <div
+                    class="lock-status locked"
+                    id="status-${id}">
+
+                    🔒 BLOQUEADO
+
+                </div>
+
             </div>
 
         `;
 
+
         container.appendChild(card);
+
+        updateTeamStatus(id);
 
     }
 
 });
 
 
-/* ==========================================================
-   VARIÁVEIS
-========================================================== */
+/* =========================================================
+   ACESSAR TIME
+========================================================= */
 
-let currentTeam = null;
+function accessTeam(id){
+
+    pendingTeam = id;
 
 
-/* ==========================================================
+    /*
+       Se ainda não existe senha,
+       o player precisa criar uma.
+    */
+
+    if(!getPassword(id)){
+
+        passwordMode = "create";
+
+        openPasswordModal(
+            "🔐 CRIAR SENHA",
+            "Crie uma senha para proteger este elenco."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Se já existe senha,
+       pede a senha.
+    */
+
+    passwordMode = "unlock";
+
+    openPasswordModal(
+        "🔒 ELENCO BLOQUEADO",
+        "Digite a senha para abrir este elenco."
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR MODAL SENHA
+========================================================= */
+
+function openPasswordModal(title,message){
+
+    document.getElementById(
+        "passwordTitle"
+    ).textContent = title;
+
+
+    document.getElementById(
+        "passwordMessage"
+    ).textContent = message;
+
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+
+    input.value = "";
+
+
+    document.getElementById(
+        "passwordModal"
+    ).classList.add("active");
+
+
+    setTimeout(() => {
+
+        input.focus();
+
+    },100);
+
+}
+
+
+/* =========================================================
+   FECHAR SENHA
+========================================================= */
+
+function closePasswordModal(){
+
+    document.getElementById(
+        "passwordModal"
+    ).classList.remove("active");
+
+    pendingTeam = null;
+
+    passwordMode = null;
+
+}
+
+
+/* =========================================================
+   SENHA
+========================================================= */
+
+function submitPassword(){
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+
+    const password =
+        input.value;
+
+
+    if(!password){
+
+        alert(
+            "⚠️ Digite uma senha."
+        );
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    /* CRIAR */
+
+    if(passwordMode === "create"){
+
+        if(password.length < 4){
+
+            alert(
+                "⚠️ A senha precisa ter pelo menos 4 caracteres."
+            );
+
+            return;
+
+        }
+
+
+        savePassword(
+            pendingTeam,
+            password
+        );
+
+
+        alert(
+            "🔐 Senha criada com sucesso!\n\n" +
+            "Guarde essa senha. Ela será necessária para acessar este elenco."
+        );
+
+
+        const team =
+            pendingTeam;
+
+
+        closePasswordModal();
+
+
+        openSquad(
+            team,
+            getTeamTitle(team)
+        );
+
+
+        return;
+
+    }
+
+
+    /* DESBLOQUEAR */
+
+    if(passwordMode === "unlock"){
+
+        const saved =
+            getPassword(pendingTeam);
+
+
+        if(password === saved){
+
+            const team =
+                pendingTeam;
+
+
+            closePasswordModal();
+
+
+            openSquad(
+                team,
+                getTeamTitle(team)
+            );
+
+        }else{
+
+            alert(
+                "❌ Senha incorreta."
+            );
+
+            input.value = "";
+
+            input.focus();
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   SENHA LOCAL
+========================================================= */
+
+function getPassword(id){
+
+    return localStorage.getItem(
+        "bomba-password-" + id
+    );
+
+}
+
+
+function savePassword(id,password){
+
+    localStorage.setItem(
+        "bomba-password-" + id,
+        password
+    );
+
+}
+
+
+/* =========================================================
+   NOME DO TIME
+========================================================= */
+
+function getTeamTitle(id){
+
+    const parts =
+        id.split("-");
+
+    const owner =
+        parts[0].toUpperCase();
+
+    const number =
+        parts[2];
+
+    return owner +
+        " — TIME " +
+        number;
+
+}
+
+
+/* =========================================================
    ABRIR ELENCO
-========================================================== */
+========================================================= */
 
 function openSquad(id,title){
 
@@ -2286,31 +2377,35 @@ function openSquad(id,title){
     ).textContent =
         "⚽ " + title;
 
+
     document.getElementById(
         "squadModal"
     ).classList.add("active");
+
 
     createPlayerFields();
 
 }
 
 
-/* ==========================================================
-   FECHAR
-========================================================== */
+/* =========================================================
+   FECHAR ELENCO
+========================================================= */
 
-function closeModal(){
+function closeSquad(){
 
     document.getElementById(
         "squadModal"
     ).classList.remove("active");
 
+    currentTeam = null;
+
 }
 
 
-/* ==========================================================
-   CRIA OS 22 CAMPOS
-========================================================== */
+/* =========================================================
+   CRIAR CAMPOS
+========================================================= */
 
 function createPlayerFields(){
 
@@ -2318,6 +2413,7 @@ function createPlayerFields(){
         document.getElementById(
             "positions"
         );
+
 
     container.innerHTML = "";
 
@@ -2334,6 +2430,7 @@ function createPlayerFields(){
 
         const section =
             document.createElement("div");
+
 
         section.className =
             "position-section";
@@ -2363,7 +2460,7 @@ function createPlayerFields(){
                     class="player-input"
                     id="player-${key}"
                     value="${escapeHTML(value)}"
-                    placeholder="${position.nome.replace(/[^\wÀ-ÿ ]/g,"").trim()} ${i+1} — digite o nome"
+                    placeholder="Digite o nome do jogador"
                     maxlength="60"
                 >
 
@@ -2402,9 +2499,9 @@ function createPlayerFields(){
 }
 
 
-/* ==========================================================
-   SALVAR OS NOMES
-========================================================== */
+/* =========================================================
+   SALVAR ELENCO
+========================================================= */
 
 function saveSquad(){
 
@@ -2447,11 +2544,6 @@ function saveSquad(){
     });
 
 
-    /*
-       Salva mesmo que ainda não estejam
-       preenchidos os 22 jogadores.
-    */
-
     localStorage.setItem(
         "bomba-" + currentTeam,
         JSON.stringify(data)
@@ -2467,21 +2559,18 @@ function saveSquad(){
         " de 22 jogadores preenchidos."
     );
 
-
-    closeModal();
-
 }
 
 
-/* ==========================================================
+/* =========================================================
    LIMPAR
-========================================================== */
+========================================================= */
 
 function clearSquad(){
 
     if(
         !confirm(
-            "Deseja apagar os jogadores deste elenco?"
+            "Deseja apagar todos os jogadores deste elenco?"
         )
     ){
 
@@ -2502,9 +2591,41 @@ function clearSquad(){
 }
 
 
-/* ==========================================================
+/* =========================================================
+   BLOQUEAR ELENCO
+========================================================= */
+
+function lockCurrentTeam(){
+
+    /*
+       Primeiro salva os nomes.
+    */
+
+    saveSquad();
+
+
+    /*
+       Fecha a janela.
+    */
+
+    setTimeout(() => {
+
+        closeSquad();
+
+        updateTeamStatus(
+            currentTeam
+        );
+
+        currentTeam = null;
+
+    },100);
+
+}
+
+
+/* =========================================================
    CONTADOR
-========================================================== */
+========================================================= */
 
 function getCount(id){
 
@@ -2538,11 +2659,16 @@ function getCount(id){
 }
 
 
-/* ==========================================================
-   ATUALIZA CONTADOR
-========================================================== */
+/* =========================================================
+   ATUALIZAR CONTADOR
+========================================================= */
 
 function updateCount(){
+
+    if(!currentTeam){
+        return;
+    }
+
 
     const element =
         document.getElementById(
@@ -2561,9 +2687,47 @@ function updateCount(){
 }
 
 
-/* ==========================================================
-   SEGURANÇA DO TEXTO
-========================================================== */
+/* =========================================================
+   STATUS DO CADEADO
+========================================================= */
+
+function updateTeamStatus(id){
+
+    const status =
+        document.getElementById(
+            "status-" + id
+        );
+
+
+    if(!status){
+        return;
+    }
+
+
+    if(getPassword(id)){
+
+        status.className =
+            "lock-status locked";
+
+        status.textContent =
+            "🔒 PROTEGIDO POR SENHA";
+
+    }else{
+
+        status.className =
+            "lock-status unlocked";
+
+        status.textContent =
+            "🔐 SENHA AINDA NÃO DEFINIDA";
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPAR HTML
+========================================================= */
 
 function escapeHTML(text){
 
@@ -2582,9 +2746,25 @@ function escapeHTML(text){
 }
 
 
-/* ==========================================================
-   CLICAR FORA DO MODAL
-========================================================== */
+/* =========================================================
+   CLICAR FORA DOS MODAIS
+========================================================= */
+
+document
+.getElementById("passwordModal")
+.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === this){
+
+            closePasswordModal();
+
+        }
+
+    }
+);
+
 
 document
 .getElementById("squadModal")
@@ -2594,7 +2774,7 @@ document
 
         if(event.target === this){
 
-            closeModal();
+            closeSquad();
 
         }
 
@@ -2602,19 +2782,36 @@ document
 );
 
 
-/* ==========================================================
-   ESC FECHA
-========================================================== */
+/* =========================================================
+   ESC
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event){
 
+        if(event.key === "Escape"){
+
+            closePasswordModal();
+
+            closeSquad();
+
+        }
+
+
+        /*
+           Enter no campo de senha
+        */
+
         if(
-            event.key === "Escape"
+            event.key === "Enter" &&
+            document
+            .getElementById("passwordModal")
+            .classList
+            .contains("active")
         ){
 
-            closeModal();
+            submitPassword();
 
         }
 
