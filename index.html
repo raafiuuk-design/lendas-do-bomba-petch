@@ -9,10 +9,6 @@
 
 <style>
 
-/* =====================================================
-   CONFIGURAÇÕES GERAIS
-===================================================== */
-
 *{
     margin:0;
     padding:0;
@@ -36,9 +32,9 @@ a{
 }
 
 
-/* =====================================================
+/* =========================
    FUNDO
-===================================================== */
+========================= */
 
 body::before{
     content:"";
@@ -71,9 +67,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    MENU
-===================================================== */
+========================= */
 
 .navbar{
     position:sticky;
@@ -125,9 +121,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    CAPA
-===================================================== */
+========================= */
 
 .hero{
     min-height:650px;
@@ -272,9 +268,9 @@ body::after{
 }
 
 
-/* =====================================================
-   RETORNO DA TEMPORADA
-===================================================== */
+/* =========================
+   RETORNO
+========================= */
 
 .season-return{
     position:relative;
@@ -374,9 +370,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    TICKER
-===================================================== */
+========================= */
 
 .ticker{
     min-height:45px;
@@ -407,9 +403,9 @@ body::after{
 }
 
 
-/* =====================================================
-   CONTAINER / SEÇÕES
-===================================================== */
+/* =========================
+   CONTAINER
+========================= */
 
 .container{
     width:92%;
@@ -453,9 +449,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    CAMPEÃO
-===================================================== */
+========================= */
 
 .champion-banner{
 
@@ -569,9 +565,9 @@ body::after{
 }
 
 
-/* =====================================================
-   PAINEL DA TEMPORADA
-===================================================== */
+/* =========================
+   PAINEL
+========================= */
 
 .stats{
     display:grid;
@@ -634,9 +630,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    LENDAS
-===================================================== */
+========================= */
 
 .legend-grid{
 
@@ -793,9 +789,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    REGRAS
-===================================================== */
+========================= */
 
 .rules-container{
 
@@ -883,8 +879,6 @@ body::after{
     font-size:20px;
 
     margin-bottom:18px;
-
-    letter-spacing:.5px;
 }
 
 .rule-content p{
@@ -980,11 +974,6 @@ body::after{
     font-weight:bold;
 }
 
-
-/* =====================================================
-   REGRA 5 - EXTREMA
-===================================================== */
-
 .rule-card.extreme{
 
     border:2px solid #ff000066;
@@ -1015,9 +1004,6 @@ body::after{
     color:#ff2929;
 
     font-weight:900;
-
-    text-shadow:
-        0 0 10px #ff000055;
 }
 
 .extreme-warning{
@@ -1054,162 +1040,203 @@ body::after{
     color:#ff0000;
 
     font-size:18px;
-
-    letter-spacing:2px;
 }
 
 
 /* =====================================================
-   RANKING
+   RANKING OFICIAL
 ===================================================== */
 
-.ranking-wrapper{
+.ranking-table-wrapper{
 
-    display:grid;
+    width:100%;
 
-    grid-template-columns:
-        1fr 360px;
-
-    gap:25px;
-}
-
-.ranking{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-}
-
-.rank{
-
-    display:grid;
-
-    grid-template-columns:
-        65px 1fr 160px;
-
-    align-items:center;
-
-    padding:22px;
-
-    background:#141414;
-
-    border:1px solid #ffffff08;
-
-    border-radius:11px;
-
-    transition:.25s;
-}
-
-.rank:hover{
-
-    border-color:#ff730055;
-
-    transform:translateX(5px);
-}
-
-.rank:first-child{
-
-    border:1px solid #ffd000;
+    overflow-x:auto;
 
     background:
         linear-gradient(
-            90deg,
-            #211b09,
-            #141414
+            145deg,
+            #181818,
+            #090909
         );
+
+    border:1px solid #ff730044;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 20px 50px #00000099;
 }
 
-.rank-position{
+.ranking-table{
 
-    color:#ff9800;
+    width:100%;
 
-    font-size:26px;
+    min-width:650px;
 
-    font-weight:bold;
+    border-collapse:collapse;
 }
 
-.rank:first-child .rank-position{
-    color:#ffd000;
-}
+.ranking-table th{
 
-.rank-name{
-
-    font-size:17px;
-
-    font-weight:bold;
-}
-
-.rank-season{
-
-    color:#777;
-
-    text-align:right;
-
-    font-size:10px;
-}
-
-.champion{
-
-    min-height:260px;
-
-    padding:35px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
+    padding:20px 18px;
 
     text-align:center;
 
     background:
-
-        radial-gradient(
-            circle,
-            #ffd00020,
-            transparent 65%
-        ),
-
-        #151515;
-
-    border:1px solid #ffd00066;
-
-    border-radius:15px;
-}
-
-.champion-icon{
-
-    font-size:60px;
-
-    margin-bottom:15px;
-}
-
-.champion h3{
+        linear-gradient(
+            90deg,
+            #700000,
+            #a91500,
+            #d95200
+        );
 
     color:#ffd000;
 
-    font-size:25px;
+    font-size:11px;
 
-    margin-bottom:10px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    border-bottom:2px solid #ff7300;
 }
 
-.champion p{
+.ranking-table td{
 
-    color:#888;
+    padding:22px 18px;
 
-    line-height:1.6;
+    text-align:center;
 
-    font-size:13px;
+    border-bottom:1px solid #ffffff08;
+
+    color:#ccc;
+
+    font-size:14px;
+}
+
+.ranking-table tbody tr{
+
+    transition:.25s;
+}
+
+.ranking-table tbody tr:hover{
+
+    background:#ff73000d;
+}
+
+.ranking-table tbody tr:last-child td{
+
+    border-bottom:none;
+}
+
+.position{
+
+    font-size:20px;
+
+    font-weight:900;
+
+    color:#ff9800;
+}
+
+.player{
+
+    text-align:left !important;
+
+    font-weight:bold;
+
+    font-size:16px !important;
+
+    color:white !important;
+}
+
+.player-berna{
+
+    color:#ffd000 !important;
+}
+
+.points{
+
+    font-size:22px !important;
+
+    font-weight:900;
+
+    color:#ffd000 !important;
+}
+
+.victory{
+
+    color:#4cff76 !important;
+
+    font-weight:bold;
+}
+
+.draw{
+
+    color:#ffd000 !important;
+
+    font-weight:bold;
+}
+
+.defeat{
+
+    color:#ff4545 !important;
+
+    font-weight:bold;
+}
+
+.ranking-info{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+    margin-top:25px;
+}
+
+.score-box{
+
+    padding:12px 18px;
+
+    border-radius:8px;
+
+    background:#111;
+
+    border:1px solid #ffffff0d;
+
+    font-size:11px;
+
+    color:#aaa;
+}
+
+.score-box strong{
+    margin-right:5px;
+}
+
+.score-win strong{
+    color:#4cff76;
+}
+
+.score-draw strong{
+    color:#ffd000;
+}
+
+.score-loss strong{
+    color:#ff4545;
+}
+
+.score-forfeit strong{
+    color:#ff7300;
 }
 
 
-/* =====================================================
+/* =========================
    RIVALIDADES
-===================================================== */
+========================= */
 
 .rivalries{
 
@@ -1275,9 +1302,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    CENTRAL
-===================================================== */
+========================= */
 
 .central-grid{
 
@@ -1340,9 +1367,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    JORNAL
-===================================================== */
+========================= */
 
 .news-grid{
 
@@ -1438,9 +1465,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    TEMPORADAS
-===================================================== */
+========================= */
 
 .timeline{
 
@@ -1519,9 +1546,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    DOWNLOAD
-===================================================== */
+========================= */
 
 .download-area{
 
@@ -1609,9 +1636,9 @@ body::after{
 }
 
 
-/* =====================================================
+/* =========================
    RODAPÉ
-===================================================== */
+========================= */
 
 footer{
 
@@ -1640,9 +1667,9 @@ footer{
 }
 
 
-/* =====================================================
+/* =========================
    RESPONSIVO
-===================================================== */
+========================= */
 
 @media(max-width:1000px){
 
@@ -1654,10 +1681,6 @@ footer{
     .central-grid{
         grid-template-columns:
             repeat(2,1fr);
-    }
-
-    .ranking-wrapper{
-        grid-template-columns:1fr;
     }
 
     .nav-links{
@@ -1753,19 +1776,6 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .rank{
-        grid-template-columns:
-            45px 1fr 90px;
-    }
-
-    .rank-name{
-        font-size:14px;
-    }
-
-    .rank-season{
-        font-size:8px;
-    }
-
     .section{
         padding:55px 0;
     }
@@ -1801,7 +1811,6 @@ footer{
 
 </head>
 
-
 <body>
 
 
@@ -1821,7 +1830,7 @@ footer{
 
         <a href="#regras">🔥 REGRAS</a>
 
-        <a href="#ranking">RANKING</a>
+        <a href="#ranking">🏆 RANKING</a>
 
         <a href="#rivalidades">RIVALIDADES</a>
 
@@ -2002,54 +2011,23 @@ footer{
     <div class="stats">
 
         <div class="stat">
-
-            <div class="stat-number">
-                3
-            </div>
-
-            <div class="stat-label">
-                Temporadas Cristian
-            </div>
-
+            <div class="stat-number">3</div>
+            <div class="stat-label">Temporadas Cristian</div>
         </div>
 
-
         <div class="stat">
-
-            <div class="stat-number">
-                2
-            </div>
-
-            <div class="stat-label">
-                Temporadas Rafagamer
-            </div>
-
+            <div class="stat-number">2</div>
+            <div class="stat-label">Temporadas Rafagamer</div>
         </div>
 
-
         <div class="stat">
-
-            <div class="stat-number">
-                1
-            </div>
-
-            <div class="stat-label">
-                Temporada Berna
-            </div>
-
+            <div class="stat-number">1</div>
+            <div class="stat-label">Temporada Berna</div>
         </div>
 
-
         <div class="stat">
-
-            <div class="stat-number">
-                1
-            </div>
-
-            <div class="stat-label">
-                Temporada Leandro
-            </div>
-
+            <div class="stat-number">1</div>
+            <div class="stat-label">Temporada Leandro</div>
         </div>
 
     </div>
@@ -2101,7 +2079,6 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
@@ -2122,12 +2099,9 @@ footer{
                 </p>
 
                 <p>
-                    Além de todo esse estilo,
                     <span class="highlight">
-                        RAFAGAMER já conta com 2 temporadas de história
-                    </span>,
-                    mostrando sua experiência e sua presença entre
-                    as grandes lendas. 🏆🏆
+                        RAFAGAMER já conta com 2 temporadas de história.
+                    </span>
                 </p>
 
                 <p>
@@ -2136,7 +2110,6 @@ footer{
                         essa é a marca do RAFAGAMER.
                     </span>
                 </p>
-
 
                 <div class="achievements">
 
@@ -2173,7 +2146,6 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
@@ -2186,7 +2158,7 @@ footer{
                         estilo de jogo versátil
                     </span>,
                     sendo capaz de se adaptar a diferentes situações
-                    durante a partida. 🎮🔥
+                    durante a partida.
                 </p>
 
                 <p>
@@ -2194,25 +2166,19 @@ footer{
                     frequente da
                     <span class="highlight">
                         jogada aérea
-                    </span>,
-                    aproveitando muito bem as oportunidades pelo alto
-                    para surpreender seus adversários e criar jogadas
-                    perigosas.
+                    </span>.
                 </p>
 
                 <p>
                     Sua capacidade de variar as jogadas torna seu estilo
-                    difícil de prever, mantendo o adversário sempre
-                    atento ao que pode acontecer.
+                    difícil de prever.
                 </p>
 
                 <p>
                     <span class="highlight">
-                        Versatilidade, criatividade e domínio do jogo
-                        aéreo — essa é a marca do Berna.
+                        Berna é o campeão da última temporada.
                     </span>
                 </p>
-
 
                 <div class="achievements">
 
@@ -2253,7 +2219,6 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
@@ -2266,7 +2231,6 @@ footer{
                     <span class="highlight">
                         3 temporadas de história.
                     </span>
-                    🏆🏆🏆
                 </p>
 
                 <p>
@@ -2274,27 +2238,21 @@ footer{
                     <span class="highlight">
                         defensiva e estratégica.
                     </span>
-                    Cristian sabe esperar o momento certo, fechar
-                    os espaços e deixar o adversário avançar.
                 </p>
 
                 <p>
-                    Mas é aí que mora o perigo: quando surge uma
-                    oportunidade, ele parte para um
+                    Quando surge uma oportunidade, ele parte para um
                     <span class="highlight">
-                        contra-ataque mortal
-                    </span>,
-                    transformando uma defesa sólida em uma jogada
-                    decisiva em poucos segundos. ⚡🔥
-                </p>
-
-                <p>
-                    <span class="highlight">
-                        Defesa, estratégia e um contra-ataque mortal —
-                        essa é a marca do Cristian.
+                        contra-ataque mortal.
                     </span>
                 </p>
 
+                <p>
+                    <span class="highlight">
+                        Defesa, estratégia e contra-ataque —
+                        essa é a marca do Cristian.
+                    </span>
+                </p>
 
                 <div class="achievements">
 
@@ -2331,7 +2289,6 @@ footer{
 
             </summary>
 
-
             <div class="legend-body">
 
                 <h3>
@@ -2344,45 +2301,32 @@ footer{
                     <span class="highlight">
                         1 temporada de história.
                     </span>
+                </p>
+
+                <p>
                     Seu estilo de jogo é marcado pela versatilidade
                     e pela capacidade de jogar em diferentes posições.
                 </p>
 
                 <p>
-                    Uma das suas principais características são os
+                    Uma de suas principais características são os
                     <span class="highlight">
                         chutes de longa distância.
                     </span>
+                </p>
+
+                <p>
                     Leandro costuma arriscar de longe e possui bons
-                    chutes capazes de surpreender os adversários. 🎯⚽
-                </p>
-
-                <p>
-                    Além da qualidade nos chutes, muitas vezes aparece
-                    aquela dose de
-                    <span class="highlight">
-                        sorte para fazer gols
-                    </span>,
-                    transformando jogadas inesperadas em gols decisivos.
-                    🍀🔥
-                </p>
-
-                <p>
-                    Além disso, Leandro consegue jogar
-                    <span class="highlight">
-                        mais recuado e, ao mesmo tempo, avançar
-                    </span>
-                    quando encontra espaço para atacar.
+                    chutes capazes de surpreender os adversários.
                 </p>
 
                 <p>
                     <span class="highlight">
                         Versatilidade, chutes de longa distância,
-                        posicionamento e uma boa dose de sorte —
+                        posicionamento e sorte —
                         essa é a marca do Leandro.
                     </span>
                 </p>
-
 
                 <div class="achievements">
 
@@ -2445,8 +2389,6 @@ footer{
     <div class="rules-container">
 
 
-        <!-- REGRA 1 -->
-
         <div class="rule-card">
 
             <div class="rule-number">
@@ -2473,25 +2415,16 @@ footer{
                 </p>
 
                 <p>
-                    Caso aconteça uma desistência forçada ou
-                    injustificada, o jogador sofrerá uma
+                    A desistência forçada levará à
                     <span class="penalty">
-                        punição de -3 pontos no Ranking do
-                        BOMBA PETCH.
+                        perda de 3 pontos no Ranking do BOMBA PETCH.
                     </span>
                 </p>
-
-                <div class="rule-warning">
-                    ⚠️ O Ranking do BOMBA PETCH será utilizado
-                    para definir quem será o melhor jogador do ano.
-                </div>
 
             </div>
 
         </div>
 
-
-        <!-- REGRA 2 -->
 
         <div class="rule-card">
 
@@ -2514,29 +2447,22 @@ footer{
                 </p>
 
                 <p>
-                    A zoeira faz parte da competição e da diversão,
-                    porém deve existir respeito entre os jogadores.
+                    A zoeira faz parte da competição, porém deve
+                    existir respeito entre os jogadores.
                 </p>
 
                 <p>
-                    A provocação não poderá chegar a um ponto que
-                    faça outro competidor
+                    A provocação não poderá chegar ao ponto de
+                    fazer outro competidor
                     <span class="rule-highlight">
-                        desistir de jogar ou abandonar o campeonato.
+                        desistir de jogar.
                     </span>
                 </p>
-
-                <div class="rule-warning">
-                    🤝 Competição forte, zoeira liberada,
-                    mas sempre com respeito.
-                </div>
 
             </div>
 
         </div>
 
-
-        <!-- REGRA 3 -->
 
         <div class="rule-card">
 
@@ -2570,8 +2496,6 @@ footer{
         </div>
 
 
-        <!-- REGRA 4 -->
-
         <div class="rule-card">
 
             <div class="rule-number">
@@ -2585,48 +2509,29 @@ footer{
                 </h3>
 
                 <p>
-                    Somente poderão ser utilizadas as
-                    <span class="rule-highlight">
-                        formações e táticas oferecidas
-                        originalmente pelo jogo.
-                    </span>
-                </p>
-
-                <p>
-                    Exemplos de formações permitidas:
+                    Somente poderão ser utilizadas as formações
+                    e táticas oferecidas originalmente pelo jogo.
                 </p>
 
                 <div class="formations">
 
                     <span>4-5-1</span>
-
                     <span>3-5-2</span>
-
                     <span>4-3-3</span>
-
                     <span>4-4-2</span>
 
                 </div>
 
                 <p>
-                    Será proibido alterar manualmente as formações,
-                    mover jogadores de suas posições ou utilizar
-                    atalhos/configurações para fazer com que os
-                    jogadores ataquem ou defendam de maneira
-                    diferente da formação escolhida.
+                    Será proibido mexer nas formações, mover jogadores,
+                    utilizar atalhos para fazer jogadores atacarem
+                    ou defenderem e sobrepor jogadores na área.
                 </p>
-
-                <div class="rule-warning">
-                    🚫 PROIBIDO: modificar posições dos jogadores
-                    ou criar formações personalizadas.
-                </div>
 
             </div>
 
         </div>
 
-
-        <!-- REGRA 5 -->
 
         <div class="rule-card extreme">
 
@@ -2649,11 +2554,10 @@ footer{
                 </p>
 
                 <p>
-                    Caso essa regra seja quebrada e o jogador
-                    seja identificado utilizando jogadores
-                    alterados ou criados,
+                    Caso essa regra seja quebrada e o player
+                    seja pego,
                     <span class="penalty">
-                        haverá punição com perda de estrelas.
+                        perderá estrelas.
                     </span>
                 </p>
 
@@ -2680,7 +2584,7 @@ footer{
 
 
 <!-- =====================================================
-     RANKING
+     RANKING OFICIAL
 ===================================================== -->
 
 <section class="section" id="ranking">
@@ -2690,112 +2594,209 @@ footer{
     <div class="section-header">
 
         <small>
-            CLASSIFICAÇÃO
+            TEMPORADA 2026
         </small>
 
         <h2>
-            🏆 RANKING DAS LENDAS
+            🏆 RANKING OFICIAL
         </h2>
 
         <p>
-            As lendas do BOMBA PETCH.
+            Todos os jogadores começam a temporada com 0 pontos.
         </p>
 
     </div>
 
 
-    <div class="ranking-wrapper">
+    <div class="ranking-table-wrapper">
 
-        <div class="ranking">
+        <table class="ranking-table">
 
+            <thead>
 
-            <div class="rank">
+                <tr>
 
-                <div class="rank-position">
-                    01
-                </div>
+                    <th>
+                        POSIÇÃO
+                    </th>
 
-                <div class="rank-name">
-                    BERNA 👑
-                </div>
+                    <th>
+                        JOGADOR
+                    </th>
 
-                <div class="rank-season">
-                    CAMPEÃO
-                </div>
+                    <th>
+                        VITÓRIAS
+                    </th>
 
-            </div>
+                    <th>
+                        EMPATES
+                    </th>
 
+                    <th>
+                        DERROTAS
+                    </th>
 
-            <div class="rank">
+                    <th>
+                        PONTOS
+                    </th>
 
-                <div class="rank-position">
-                    02
-                </div>
+                </tr>
 
-                <div class="rank-name">
-                    CRISTIAN
-                </div>
-
-                <div class="rank-season">
-                    3 TEMPORADAS
-                </div>
-
-            </div>
+            </thead>
 
 
-            <div class="rank">
-
-                <div class="rank-position">
-                    03
-                </div>
-
-                <div class="rank-name">
-                    RAFAGAMER
-                </div>
-
-                <div class="rank-season">
-                    2 TEMPORADAS
-                </div>
-
-            </div>
+            <tbody>
 
 
-            <div class="rank">
+                <!-- BERNA -->
 
-                <div class="rank-position">
-                    04
-                </div>
+                <tr>
 
-                <div class="rank-name">
-                    LEANDRO
-                </div>
+                    <td class="position">
+                        —
+                    </td>
 
-                <div class="rank-season">
-                    1 TEMPORADA
-                </div>
+                    <td class="player player-berna">
+                        👑 BERNA
+                    </td>
 
-            </div>
+                    <td class="victory">
+                        0
+                    </td>
+
+                    <td class="draw">
+                        0
+                    </td>
+
+                    <td class="defeat">
+                        0
+                    </td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
 
 
+                <!-- CRISTIAN -->
+
+                <tr>
+
+                    <td class="position">
+                        —
+                    </td>
+
+                    <td class="player">
+                        ⚡ CRISTIAN
+                    </td>
+
+                    <td class="victory">
+                        0
+                    </td>
+
+                    <td class="draw">
+                        0
+                    </td>
+
+                    <td class="defeat">
+                        0
+                    </td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
+
+
+                <!-- RAFAGAMER -->
+
+                <tr>
+
+                    <td class="position">
+                        —
+                    </td>
+
+                    <td class="player">
+                        🔥 RAFAGAMER
+                    </td>
+
+                    <td class="victory">
+                        0
+                    </td>
+
+                    <td class="draw">
+                        0
+                    </td>
+
+                    <td class="defeat">
+                        0
+                    </td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
+
+
+                <!-- LEANDRO -->
+
+                <tr>
+
+                    <td class="position">
+                        —
+                    </td>
+
+                    <td class="player">
+                        🎯 LEANDRO
+                    </td>
+
+                    <td class="victory">
+                        0
+                    </td>
+
+                    <td class="draw">
+                        0
+                    </td>
+
+                    <td class="defeat">
+                        0
+                    </td>
+
+                    <td class="points">
+                        0
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- SISTEMA DE PONTOS -->
+
+    <div class="ranking-info">
+
+        <div class="score-box score-win">
+            <strong>VITÓRIA</strong> +2 pontos
         </div>
 
+        <div class="score-box score-draw">
+            <strong>EMPATE</strong> +1 ponto
+        </div>
 
-        <div class="champion">
+        <div class="score-box score-loss">
+            <strong>DERROTA</strong> −1 ponto
+        </div>
 
-            <div class="champion-icon">
-                🏆
-            </div>
-
-            <h3>
-                ÚLTIMA TEMPORADA
-            </h3>
-
-            <p>
-                Berna conquistou a última temporada
-                e atualmente é o campeão do
-                BOMBA PETCH.
-            </p>
-
+        <div class="score-box score-forfeit">
+            <strong>DESISTÊNCIA</strong> −3 pontos
         </div>
 
     </div>
@@ -3257,7 +3258,6 @@ footer{
             Acesse o arquivo através do MediaFire.
         </p>
 
-
         <a
             class="download-button"
             href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
@@ -3294,7 +3294,6 @@ footer{
     </p>
 
 </footer>
-
 
 </body>
 
