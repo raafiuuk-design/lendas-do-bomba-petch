@@ -5845,25 +5845,25 @@ function abrirRegistroJogos(){
         );
 
         console.log("Supabase conectado!");
-        <script>
-async function testarSupabase() {
-    const { data, error } = await supabaseClient
-        .from("bomba_petch")
-        .select("*");
 
-    if (error) {
-        console.error("Erro no Supabase:", error);
-    } else {
-        console.log("Supabase funcionando!", data);
-    }
-}
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-testarSupabase();
+<script>
+    const SUPABASE_URL = "https://vgurvbdbpxcgkhmunlxr.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
+
+    const supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+    console.log("Supabase conectado!");
 </script>
 
-</body>
-</html>
-</body>
+<!-- =====================================================
+     REGISTRO DE JOGOS - BOMBA PETCH
+===================================================== -->
+     
 <!-- =====================================================
      REGISTRO DE JOGOS - BOMBA PETCH
 ===================================================== -->
