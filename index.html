@@ -1,10 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Bomba Petch — Rafagamer 2026</title>
@@ -32,6 +32,7 @@ body::before{
     position:fixed;
     inset:0;
     z-index:-2;
+
     background:
     radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
     radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
@@ -45,6 +46,7 @@ body::after{
     z-index:-1;
     pointer-events:none;
     opacity:.18;
+
     background:
     repeating-linear-gradient(
         120deg,
@@ -64,13 +66,19 @@ body::after{
     position:sticky;
     top:0;
     z-index:999;
+
     min-height:65px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 5%;
+
     background:#050505ed;
+
     border-bottom:1px solid #ff730055;
+
     backdrop-filter:blur(15px);
 }
 
@@ -111,10 +119,13 @@ body::after{
 
 .hero{
     min-height:620px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     position:relative;
     overflow:hidden;
 
@@ -159,29 +170,44 @@ body::after{
 
 .hero h2{
     margin-top:35px;
+
     color:#ffd000;
+
     font-size:clamp(25px,5vw,60px);
+
     letter-spacing:10px;
 }
 
 .hero-subtitle{
     margin-top:25px;
+
     color:#ddd;
+
     font-size:13px;
+
     letter-spacing:5px;
 }
 
 .hero-button{
     display:inline-block;
+
     margin-top:40px;
+
     padding:16px 32px;
+
     border-radius:50px;
+
     border:1px solid #ffd000;
+
     color:#ffd000;
+
     background:#00000055;
+
     font-size:11px;
     font-weight:bold;
+
     letter-spacing:3px;
+
     text-decoration:none;
 }
 
@@ -197,6 +223,7 @@ body::after{
 
 .season-return{
     padding:38px 20px;
+
     text-align:center;
 
     background:
@@ -214,9 +241,12 @@ body::after{
 
 .return-label{
     color:#ffd000;
+
     font-size:11px;
     font-weight:bold;
+
     letter-spacing:5px;
+
     margin-bottom:12px;
 }
 
@@ -226,6 +256,7 @@ body::after{
 
 .return-date{
     margin-top:15px;
+
     font-size:20px;
     font-weight:bold;
 }
@@ -250,6 +281,7 @@ body::after{
 .container{
     width:92%;
     max-width:1250px;
+
     margin:auto;
 }
 
@@ -259,15 +291,20 @@ body::after{
 
 .section-header{
     text-align:center;
+
     margin-bottom:45px;
 }
 
 .section-header small{
     display:block;
+
     color:#ff7300;
+
     font-size:10px;
     font-weight:bold;
+
     letter-spacing:6px;
+
     margin-bottom:12px;
 }
 
@@ -277,6 +314,7 @@ body::after{
 
 .section-header p{
     margin-top:12px;
+
     color:#777;
 }
 
@@ -287,22 +325,31 @@ body::after{
 
 .legend-grid{
     display:flex;
+
     flex-direction:column;
+
     gap:20px;
+
     max-width:900px;
+
     margin:auto;
 }
 
 .legend{
     background:#121212;
+
     border:1px solid #ff730033;
+
     border-radius:15px;
+
     overflow:hidden;
 }
 
 .legend summary{
     cursor:pointer;
+
     list-style:none;
+
     padding:23px;
 
     display:flex;
@@ -317,6 +364,7 @@ body::after{
     );
 
     font-size:20px;
+
     font-weight:bold;
 }
 
@@ -326,11 +374,13 @@ body::after{
 
 .trophies{
     margin-left:auto;
+
     color:#ffd700;
 }
 
 .legend-body{
     padding:30px;
+
     background:
     linear-gradient(
         145deg,
@@ -341,17 +391,21 @@ body::after{
 
 .legend-body h3{
     color:#ff9800;
+
     margin-bottom:18px;
 }
 
 .legend-body p{
     color:#ddd;
+
     line-height:1.75;
+
     margin-bottom:15px;
 }
 
 .highlight{
     color:#ffd000;
+
     font-weight:bold;
 }
 
@@ -365,6 +419,7 @@ body::after{
     linear-gradient(145deg,#181818,#090909);
 
     border:1px solid #ff730044;
+
     border-radius:18px;
 
     padding:28px;
@@ -376,13 +431,16 @@ body::after{
 
 .player-list-card:hover{
     border-color:#ff7300;
+
     transform:translateY(-2px);
 }
 
 .player-list-head{
     display:flex;
+
     justify-content:space-between;
     align-items:center;
+
     gap:15px;
 
     margin-bottom:20px;
@@ -390,13 +448,17 @@ body::after{
 
 .player-list-name{
     font-size:24px;
+
     font-weight:900;
 }
 
 .player-list-sub{
     color:#777;
+
     font-size:10px;
+
     letter-spacing:2px;
+
     margin-top:6px;
 }
 
@@ -406,11 +468,13 @@ body::after{
     padding:13px 18px;
 
     border:0;
+
     border-radius:8px;
 
     cursor:pointer;
 
     color:#fff;
+
     font-weight:bold;
 
     background:
@@ -427,11 +491,13 @@ body::after{
 
 .list-status{
     padding:9px 12px;
+
     border-radius:7px;
 
     text-align:center;
 
     font-size:10px;
+
     font-weight:bold;
 
     margin-bottom:20px;
@@ -439,13 +505,17 @@ body::after{
 
 .list-locked{
     background:#260000;
+
     border:1px solid #750000;
+
     color:#ff7777;
 }
 
 .list-unlocked{
     background:#152600;
+
     border:1px solid #477500;
+
     color:#9dff50;
 }
 
@@ -467,7 +537,9 @@ body::after{
 
 .list-category-title{
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     margin-bottom:14px;
@@ -479,16 +551,19 @@ body::after{
 
 .list-category-title h4{
     color:#ff9800;
+
     font-size:18px;
 }
 
 .list-category-title span{
     color:#666;
+
     font-size:10px;
 }
 
 .player-notes{
     width:100%;
+
     min-height:130px;
 
     resize:vertical;
@@ -514,6 +589,7 @@ body::after{
 
 .player-notes:focus{
     border-color:#ff7300;
+
     background:#1c120d;
 }
 
@@ -523,12 +599,156 @@ body::after{
 
 
 /* =====================================================
+   ELENCOS — ABAS DOS JOGADORES
+===================================================== */
+
+.player-tabs{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:10px;
+
+    max-width:1000px;
+
+    margin:0 auto 35px;
+}
+
+.player-tab{
+    padding:18px 12px;
+
+    border:1px solid #ff730044;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #181818,
+        #0b0b0b
+    );
+
+    color:#888;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    transition:.25s;
+}
+
+.player-tab:hover{
+    border-color:#ff7300;
+
+    color:#fff;
+
+    transform:translateY(-2px);
+}
+
+.player-tab.active{
+    background:
+    linear-gradient(
+        90deg,
+        #790000,
+        #ff7300
+    );
+
+    border-color:#ffd000;
+
+    color:#fff;
+
+    box-shadow:
+    0 0 20px #ff730033;
+}
+
+.player-tab small{
+    display:block;
+
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+.player-tab.active small{
+    color:#ffd000;
+}
+
+.squad-player-panel{
+    display:none;
+}
+
+.squad-player-panel.active{
+    display:block;
+
+    animation:fadeSquad .25s ease;
+}
+
+@keyframes fadeSquad{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+.squad-player-header{
+    padding:25px;
+
+    margin-bottom:20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        90deg,
+        #550000,
+        #a91d00,
+        #550000
+    );
+
+    border:1px solid #ff730055;
+
+    border-radius:15px;
+}
+
+.squad-player-header h3{
+    color:#ffd000;
+
+    font-size:26px;
+}
+
+.squad-player-header p{
+    margin-top:8px;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+}
+
+
+/* =====================================================
    ELENCOS
 ===================================================== */
 
 .owner{
     margin-bottom:55px;
+
     padding:25px;
+
     border-radius:18px;
 
     background:
@@ -543,40 +763,55 @@ body::after{
 
 .owner-title{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     margin-bottom:22px;
+
     padding-bottom:18px;
+
     border-bottom:1px solid #ffffff0d;
 }
 
 .owner-title h3{
     font-size:27px;
+
     color:#ff9800;
 }
 
 .owner-title span{
     color:#777;
+
     font-size:10px;
+
     letter-spacing:2px;
 }
 
 .team-grid{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:16px;
 }
 
 .team-card{
     background:#101010;
+
     border:1px solid #ff730033;
+
     border-radius:12px;
+
     overflow:hidden;
+
     transition:.25s;
 }
 
 .team-card:hover{
     border-color:#ff7300;
+
     transform:translateY(-3px);
 }
 
@@ -597,7 +832,9 @@ body::after{
 
 .team-head p{
     color:#ffd000;
+
     font-size:10px;
+
     margin-top:6px;
 }
 
@@ -607,9 +844,13 @@ body::after{
 
 .team-body button{
     width:100%;
+
     padding:14px;
+
     border:0;
+
     border-radius:8px;
+
     cursor:pointer;
 
     background:
@@ -620,6 +861,7 @@ body::after{
     );
 
     color:white;
+
     font-weight:bold;
 }
 
@@ -629,13 +871,17 @@ body::after{
 
 .saved-count{
     text-align:center;
+
     color:#777;
+
     font-size:11px;
+
     margin-top:12px;
 }
 
 .lock-status{
     margin-top:14px;
+
     padding:10px;
 
     text-align:center;
@@ -643,19 +889,25 @@ body::after{
     border-radius:7px;
 
     font-size:10px;
+
     font-weight:bold;
+
     letter-spacing:1px;
 }
 
 .locked{
     background:#260000;
+
     color:#ff7777;
+
     border:1px solid #750000;
 }
 
 .unlocked{
     background:#152600;
+
     color:#9dff50;
+
     border:1px solid #477500;
 }
 
@@ -668,6 +920,7 @@ body::after{
     display:none;
 
     position:fixed;
+
     inset:0;
 
     z-index:10000;
@@ -685,6 +938,7 @@ body::after{
 
 .modal-box{
     width:100%;
+
     max-width:1200px;
 
     margin:20px auto;
@@ -702,7 +956,9 @@ body::after{
 
 .modal-top{
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     padding:22px 25px;
@@ -722,9 +978,11 @@ body::after{
 
 .close{
     width:42px;
+
     height:42px;
 
     border:0;
+
     border-radius:50%;
 
     background:#00000055;
@@ -746,7 +1004,9 @@ body::after{
 
 .password-box{
     max-width:500px;
+
     margin:100px auto;
+
     padding:35px;
 
     background:#111;
@@ -760,12 +1020,15 @@ body::after{
 
 .password-box h2{
     color:#ff9800;
+
     margin-bottom:15px;
 }
 
 .password-box p{
     color:#777;
+
     line-height:1.6;
+
     margin-bottom:25px;
 }
 
@@ -795,26 +1058,35 @@ body::after{
 
 .password-actions{
     display:flex;
+
     gap:10px;
+
     margin-top:15px;
 }
 
 .password-actions button{
     flex:1;
+
     padding:14px;
+
     border:0;
+
     border-radius:8px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
 .btn-orange{
     background:#ff7300;
+
     color:#fff;
 }
 
 .btn-dark{
     background:#292929;
+
     color:#aaa;
 }
 
@@ -837,7 +1109,9 @@ body::after{
 
 .position-title{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     margin-bottom:15px;
@@ -849,17 +1123,21 @@ body::after{
 
 .position-title h4{
     color:#ff9800;
+
     font-size:18px;
 }
 
 .position-title span{
     color:#777;
+
     font-size:11px;
 }
 
 .name-grid{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:10px;
 }
 
@@ -889,12 +1167,15 @@ body::after{
 
 .player-input:focus{
     border-color:#ff7300;
+
     background:#1c120d;
 }
 
 .squad-intro{
     text-align:center;
+
     margin-bottom:25px;
+
     color:#777;
 }
 
@@ -904,10 +1185,13 @@ body::after{
 
 .modal-actions{
     display:flex;
+
     justify-content:flex-end;
+
     gap:10px;
 
     padding-top:20px;
+
     margin-top:10px;
 
     border-top:1px solid #ffffff0d;
@@ -915,29 +1199,37 @@ body::after{
 
 .action{
     padding:13px 20px;
+
     border:0;
+
     border-radius:7px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
 .save{
     background:#ff7300;
+
     color:white;
 }
 
 .clear{
     background:#450000;
+
     color:#ff7777;
 }
 
 .cancel{
     background:#252525;
+
     color:#aaa;
 }
 
 .lock{
     background:#550000;
+
     color:#fff;
 }
 
@@ -952,11 +1244,13 @@ body::after{
 
 .rules{
     max-width:1000px;
+
     margin:auto;
 }
 
 .rule{
     display:grid;
+
     grid-template-columns:80px 1fr;
 
     margin-bottom:18px;
@@ -972,7 +1266,9 @@ body::after{
 
 .rule-number{
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     background:
@@ -984,6 +1280,7 @@ body::after{
     color:#ffd000;
 
     font-size:24px;
+
     font-weight:bold;
 }
 
@@ -993,19 +1290,25 @@ body::after{
 
 .rule-text h3{
     color:#ff9800;
+
     margin-bottom:13px;
 }
 
 .rule-text p{
     color:#bbb;
+
     line-height:1.7;
+
     margin-bottom:10px;
 }
 
 .formations{
     display:flex;
+
     flex-wrap:wrap;
+
     gap:8px;
+
     margin:15px 0;
 }
 
@@ -1028,63 +1331,85 @@ body::after{
 
 .rank-wrap{
     overflow-x:auto;
+
     border:1px solid #ff730044;
+
     border-radius:15px;
 }
 
 .rank-table{
     width:100%;
+
     min-width:850px;
+
     border-collapse:collapse;
 }
 
 .rank-table th{
     padding:18px;
+
     background:#720000;
+
     color:#ffd000;
+
     font-size:11px;
 }
 
 .rank-table td{
     padding:16px;
+
     text-align:center;
+
     border-bottom:1px solid #ffffff08;
 }
 
 .rank-table .player{
     text-align:left;
+
     font-weight:bold;
 }
 
 .points{
     color:#ffd000;
+
     font-size:20px;
+
     font-weight:bold;
 }
 
 .rank-actions{
     display:flex;
+
     justify-content:center;
+
     gap:7px;
+
     flex-wrap:wrap;
 }
 
 .table-btn{
     border:0;
+
     border-radius:6px;
+
     padding:8px 11px;
+
     cursor:pointer;
+
     font-size:10px;
+
     font-weight:bold;
 }
 
 .edit-btn{
     background:#ff7300;
+
     color:#fff;
 }
 
 .history-btn{
     background:#252525;
+
     color:#aaa;
 }
 
@@ -1094,14 +1419,19 @@ body::after{
 
 .last-change{
     margin-top:7px;
+
     color:#666;
+
     font-size:9px;
 }
 
 .rank-info{
     text-align:center;
+
     margin-top:20px;
+
     color:#777;
+
     font-size:12px;
 }
 
@@ -1116,6 +1446,7 @@ body::after{
 
 .table-panel-header{
     padding:25px;
+
     margin-bottom:15px;
 
     background:
@@ -1127,6 +1458,7 @@ body::after{
     );
 
     border:1px solid #ff730055;
+
     border-radius:15px;
 
     text-align:center;
@@ -1134,12 +1466,15 @@ body::after{
 
 .table-panel-header h3{
     color:#ffd000;
+
     font-size:25px;
 }
 
 .table-panel-header p{
     color:#ddd;
+
     margin-top:8px;
+
     font-size:12px;
 }
 
@@ -1150,7 +1485,9 @@ body::after{
 
 .edit-box{
     max-width:560px;
+
     margin:80px auto;
+
     padding:30px;
 
     background:#111;
@@ -1164,32 +1501,44 @@ body::after{
 
 .edit-box h2{
     color:#ff9800;
+
     margin-bottom:10px;
+
     text-align:center;
 }
 
 .edit-box-description{
     color:#777;
+
     text-align:center;
+
     line-height:1.6;
+
     margin-bottom:25px;
 }
 
 .form-label{
     display:block;
+
     color:#ff9800;
+
     font-size:11px;
+
     font-weight:bold;
+
     letter-spacing:1px;
+
     margin-bottom:8px;
 }
 
 .form-select,
 .form-input{
     width:100%;
+
     padding:14px;
 
     background:#191919;
+
     color:#fff;
 
     border:1px solid #ffffff18;
@@ -1210,6 +1559,7 @@ body::after{
 
 .editor-info{
     padding:12px;
+
     margin-bottom:20px;
 
     background:#190d08;
@@ -1227,34 +1577,47 @@ body::after{
 
 .stats-grid{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:10px;
+
     margin-bottom:20px;
 }
 
 .stat-field{
     background:#0b0b0b;
+
     padding:15px;
+
     border:1px solid #ff730033;
+
     border-radius:8px;
 }
 
 .stat-field label{
     display:block;
+
     color:#ff9800;
+
     font-size:10px;
+
     font-weight:bold;
+
     margin-bottom:8px;
 }
 
 .stat-field input{
     width:100%;
+
     padding:11px;
 
     background:#171717;
+
     color:#fff;
 
     border:1px solid #ffffff15;
+
     border-radius:6px;
 
     outline:none;
@@ -1266,25 +1629,33 @@ body::after{
 
 .edit-actions{
     display:flex;
+
     gap:10px;
 }
 
 .edit-actions button{
     flex:1;
+
     padding:14px;
+
     border:0;
+
     border-radius:8px;
+
     cursor:pointer;
+
     font-weight:bold;
 }
 
 .confirm-edit{
     background:#ff7300;
+
     color:#fff;
 }
 
 .cancel-edit{
     background:#292929;
+
     color:#aaa;
 }
 
@@ -1295,7 +1666,9 @@ body::after{
 
 .history-box{
     max-width:850px;
+
     margin:50px auto;
+
     padding:25px;
 
     background:#111;
@@ -1307,18 +1680,23 @@ body::after{
 
 .history-box h2{
     color:#ff9800;
+
     text-align:center;
+
     margin-bottom:20px;
 }
 
 .history-empty{
     padding:30px;
+
     text-align:center;
+
     color:#666;
 }
 
 .history-item{
     padding:18px;
+
     margin-bottom:10px;
 
     background:#0b0b0b;
@@ -1334,29 +1712,37 @@ body::after{
 
 .history-top{
     display:flex;
+
     justify-content:space-between;
+
     gap:10px;
+
     margin-bottom:10px;
 }
 
 .history-editor{
     color:#ffd000;
+
     font-weight:bold;
 }
 
 .history-date{
     color:#666;
+
     font-size:10px;
 }
 
 .history-target{
     color:#aaa;
+
     font-size:12px;
 }
 
 .history-change{
     margin-top:8px;
+
     color:#ddd;
+
     font-size:12px;
 }
 
@@ -1371,20 +1757,27 @@ body::after{
 
 .news{
     display:grid;
+
     grid-template-columns:1fr 1fr;
+
     gap:20px;
 }
 
 .news-box{
     background:#141414;
+
     border:1px solid #ff730044;
+
     border-radius:14px;
+
     overflow:hidden;
 }
 
 .news-box summary{
     cursor:pointer;
+
     list-style:none;
+
     padding:22px;
 
     background:
@@ -1399,13 +1792,17 @@ body::after{
 
 .news-content{
     min-height:180px;
+
     padding:30px;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
+
     color:#777;
 }
 
@@ -1416,7 +1813,9 @@ body::after{
 
 .seasons{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:20px;
 }
 
@@ -1432,12 +1831,15 @@ body::after{
 
 .season h3{
     color:#ff9800;
+
     margin-bottom:10px;
 }
 
 .year{
     color:#ff7300;
+
     font-size:42px;
+
     font-weight:900;
 }
 
@@ -1448,6 +1850,7 @@ body::after{
 
 .download{
     max-width:750px;
+
     margin:auto;
 
     padding:50px;
@@ -1463,11 +1866,13 @@ body::after{
 
 .download h3{
     color:#ff9800;
+
     margin-bottom:15px;
 }
 
 .download p{
     color:#777;
+
     margin-bottom:25px;
 }
 
@@ -1486,6 +1891,7 @@ body::after{
     border-radius:8px;
 
     font-weight:bold;
+
     text-decoration:none;
 
     color:#fff;
@@ -1498,15 +1904,21 @@ body::after{
 
 footer{
     padding:50px 20px;
+
     text-align:center;
+
     border-top:1px solid #ff730044;
+
     color:#555;
 }
 
 .footer-logo{
     color:#ff7300;
+
     font-size:24px;
+
     font-weight:bold;
+
     margin-bottom:12px;
 }
 
@@ -1527,6 +1939,14 @@ footer{
 
 }
 
+@media(max-width:700px){
+
+    .player-tabs{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
 @media(max-width:650px){
 
     .navbar{
@@ -1539,6 +1959,7 @@ footer{
 
     .nav-links{
         justify-content:center;
+
         gap:10px;
     }
 
@@ -1580,6 +2001,7 @@ footer{
 
     .player-list-head{
         flex-direction:column;
+
         align-items:stretch;
     }
 
@@ -1597,6 +2019,14 @@ footer{
 
     .history-top{
         flex-direction:column;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .player-tabs{
+        grid-template-columns:1fr;
     }
 
 }
@@ -1860,8 +2290,6 @@ footer{
     </div>
 
 
-    <!-- RAFAGAMER -->
-
     <div class="player-list-card">
 
         <div class="player-list-head">
@@ -1898,8 +2326,6 @@ footer{
 
     </div>
 
-
-    <!-- BERNA -->
 
     <div class="player-list-card">
 
@@ -1938,8 +2364,6 @@ footer{
     </div>
 
 
-    <!-- CRISTIAN -->
-
     <div class="player-list-card">
 
         <div class="player-list-head">
@@ -1976,8 +2400,6 @@ footer{
 
     </div>
 
-
-    <!-- LEANDRO -->
 
     <div class="player-list-card">
 
@@ -2021,7 +2443,7 @@ footer{
 
 
 <!-- =====================================================
-     ELENCOS
+     ELENCOS COM ABAS
 ===================================================== -->
 
 <section class="section" id="elencos">
@@ -2035,56 +2457,170 @@ footer{
         <h2>⚽ ELENCOS</h2>
 
         <p>
-            4 players • 3 times cada • 22 jogadores por time
+            Selecione um jogador para visualizar seus 3 times.
         </p>
 
     </div>
 
 
-    <div class="owner">
+    <!-- ABAS -->
 
-        <div class="owner-title">
-            <h3>🔥 RAFAGAMER</h3>
-            <span>3 TIMES</span>
-        </div>
+    <div class="player-tabs">
 
-        <div class="team-grid" id="teams-rafagamer"></div>
+        <button
+            class="player-tab active"
+            onclick="showPlayerSquads('rafagamer', this)">
+
+            🔥 RAFAGAMER
+
+            <small>
+                3 TIMES
+            </small>
+
+        </button>
+
+
+        <button
+            class="player-tab"
+            onclick="showPlayerSquads('berna', this)">
+
+            👑 BERNA
+
+            <small>
+                3 TIMES
+            </small>
+
+        </button>
+
+
+        <button
+            class="player-tab"
+            onclick="showPlayerSquads('cristian', this)">
+
+            ⚡ CRISTIAN
+
+            <small>
+                3 TIMES
+            </small>
+
+        </button>
+
+
+        <button
+            class="player-tab"
+            onclick="showPlayerSquads('leandro', this)">
+
+            🎯 LEANDRO
+
+            <small>
+                3 TIMES
+            </small>
+
+        </button>
 
     </div>
 
 
-    <div class="owner">
+    <!-- RAFAGAMER -->
 
-        <div class="owner-title">
-            <h3>👑 BERNA</h3>
-            <span>3 TIMES</span>
+    <div
+        id="squad-panel-rafagamer"
+        class="squad-player-panel active">
+
+        <div class="squad-player-header">
+
+            <h3>
+                🔥 RAFAGAMER
+            </h3>
+
+            <p>
+                SELECIONE UM DOS 3 TIMES
+            </p>
+
         </div>
 
-        <div class="team-grid" id="teams-berna"></div>
+        <div
+            class="team-grid"
+            id="teams-rafagamer">
+        </div>
 
     </div>
 
 
-    <div class="owner">
+    <!-- BERNA -->
 
-        <div class="owner-title">
-            <h3>⚡ CRISTIAN</h3>
-            <span>3 TIMES</span>
+    <div
+        id="squad-panel-berna"
+        class="squad-player-panel">
+
+        <div class="squad-player-header">
+
+            <h3>
+                👑 BERNA
+            </h3>
+
+            <p>
+                SELECIONE UM DOS 3 TIMES
+            </p>
+
         </div>
 
-        <div class="team-grid" id="teams-cristian"></div>
+        <div
+            class="team-grid"
+            id="teams-berna">
+        </div>
 
     </div>
 
 
-    <div class="owner">
+    <!-- CRISTIAN -->
 
-        <div class="owner-title">
-            <h3>🎯 LEANDRO</h3>
-            <span>3 TIMES</span>
+    <div
+        id="squad-panel-cristian"
+        class="squad-player-panel">
+
+        <div class="squad-player-header">
+
+            <h3>
+                ⚡ CRISTIAN
+            </h3>
+
+            <p>
+                SELECIONE UM DOS 3 TIMES
+            </p>
+
         </div>
 
-        <div class="team-grid" id="teams-leandro"></div>
+        <div
+            class="team-grid"
+            id="teams-cristian">
+        </div>
+
+    </div>
+
+
+    <!-- LEANDRO -->
+
+    <div
+        id="squad-panel-leandro"
+        class="squad-player-panel">
+
+        <div class="squad-player-header">
+
+            <h3>
+                🎯 LEANDRO
+            </h3>
+
+            <p>
+                SELECIONE UM DOS 3 TIMES
+            </p>
+
+        </div>
+
+        <div
+            class="team-grid"
+            id="teams-leandro">
+        </div>
 
     </div>
 
@@ -2094,7 +2630,7 @@ footer{
 
 
 <!-- =====================================================
-     MODAL SENHA ELENCOS / LISTAS
+     MODAL SENHA
 ===================================================== -->
 
 <div class="modal" id="passwordModal">
@@ -2437,7 +2973,7 @@ footer{
 
 
 <!-- =====================================================
-     RANK DO MELHOR DO ANO
+     RANK
 ===================================================== -->
 
 <section class="section" id="ranking">
@@ -2456,7 +2992,6 @@ footer{
 
     </div>
 
-
     <div class="table-panel">
 
         <div class="table-panel-header">
@@ -2468,7 +3003,6 @@ footer{
             </p>
 
         </div>
-
 
         <div class="rank-wrap">
 
@@ -2523,7 +3057,6 @@ footer{
 
     </div>
 
-
     <div class="table-panel">
 
         <div class="table-panel-header">
@@ -2535,7 +3068,6 @@ footer{
             </p>
 
         </div>
-
 
         <div class="rank-wrap">
 
@@ -2571,7 +3103,7 @@ footer{
 
 
 <!-- =====================================================
-     MODAL ALTERAÇÃO DE TABELA
+     MODAL ALTERAÇÃO
 ===================================================== -->
 
 <div class="modal" id="editTableModal">
@@ -2589,7 +3121,6 @@ footer{
             e confirme a senha desse jogador.
 
         </p>
-
 
         <label class="form-label">
             QUEM ESTÁ ALTERANDO?
@@ -2762,7 +3293,7 @@ footer{
 
 
 <!-- =====================================================
-     MODAL HISTÓRICO
+     HISTÓRICO
 ===================================================== -->
 
 <div class="modal" id="historyModal">
@@ -2971,7 +3502,6 @@ footer{
 
 <script>
 
-
 /* =====================================================
    POSIÇÕES DOS ELENCOS
 ===================================================== */
@@ -3081,20 +3611,6 @@ let listPasswordMode = null;
    SISTEMA DAS TABELAS
 ===================================================== */
 
-/*
-   As duas tabelas são independentes.
-
-   RANK:
-   Vitória +2
-   Empate +1
-   Derrota -1
-
-   CAMPEONATO:
-   Vitória +3
-   Empate +1
-   Derrota -1
-*/
-
 const tablePlayers = [
 
     {
@@ -3122,6 +3638,51 @@ const tablePlayers = [
 
 let editingTable = null;
 let editingTarget = null;
+
+
+/* =====================================================
+   ABAS DOS JOGADORES
+===================================================== */
+
+function showPlayerSquads(player,button){
+
+    document
+        .querySelectorAll(".squad-player-panel")
+        .forEach(panel => {
+
+            panel.classList.remove("active");
+
+        });
+
+
+    document
+        .querySelectorAll(".player-tab")
+        .forEach(tab => {
+
+            tab.classList.remove("active");
+
+        });
+
+
+    const panel =
+        document.getElementById(
+            "squad-panel-" + player
+        );
+
+    if(panel){
+
+        panel.classList.add("active");
+
+    }
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+}
 
 
 /* =====================================================
@@ -3192,9 +3753,9 @@ function calculatePoints(table,player){
         return (
             data.wins * 3
             +
-            data.draws * 1
+            data.draws
             -
-            data.losses * 1
+            data.losses
         );
 
     }
@@ -3202,16 +3763,16 @@ function calculatePoints(table,player){
     return (
         data.wins * 2
         +
-        data.draws * 1
+        data.draws
         -
-        data.losses * 1
+        data.losses
     );
 
 }
 
 
 /* =====================================================
-   SENHA INDIVIDUAL DOS PLAYERS
+   SENHAS DOS PLAYERS
 ===================================================== */
 
 function getPlayerPassword(player){
@@ -3277,13 +3838,7 @@ function renderTable(table){
                     b.id
                 );
 
-            if(pointsB !== pointsA){
-
-                return pointsB - pointsA;
-
-            }
-
-            return 0;
+            return pointsB - pointsA;
 
         });
 
@@ -3373,8 +3928,10 @@ function renderTable(table){
                     last
                     ?
                     `<div class="last-change">
-                        Última alteração: ${escapeHTML(last.editorName)}
-                        • ${escapeHTML(last.date)}
+                        Última alteração:
+                        ${escapeHTML(last.editorName)}
+                        •
+                        ${escapeHTML(last.date)}
                     </div>`
                     :
                     `<div class="last-change">
@@ -3449,19 +4006,6 @@ function openTableEditor(table,target){
     ).value = target;
 
 
-    document.getElementById(
-        "editWins"
-    ).value = 0;
-
-    document.getElementById(
-        "editDraws"
-    ).value = 0;
-
-    document.getElementById(
-        "editLosses"
-    ).value = 0;
-
-
     const data =
         getTableData(table)[target];
 
@@ -3482,7 +4026,7 @@ function openTableEditor(table,target){
 
 
 /* =====================================================
-   QUANDO ESCOLHER QUEM ESTÁ ALTERANDO
+   ESCOLHER EDITOR
 ===================================================== */
 
 document
@@ -3530,8 +4074,7 @@ document
 
         if(password){
 
-            notice.style.display =
-                "none";
+            notice.style.display = "none";
 
             document.getElementById(
                 "editorPassword"
@@ -3540,8 +4083,7 @@ document
 
         }else{
 
-            notice.style.display =
-                "block";
+            notice.style.display = "block";
 
             document.getElementById(
                 "editorPassword"
@@ -3608,12 +4150,6 @@ function confirmTableEdit(){
     const existingPassword =
         getPlayerPassword(editor);
 
-
-    /*
-       PRIMEIRA VEZ:
-       o jogador ainda não possui senha.
-       A senha digitada será cadastrada.
-    */
 
     if(!existingPassword){
 
@@ -3710,10 +4246,6 @@ function confirmTableEdit(){
         data
     );
 
-
-    /*
-       REGISTRA O HISTÓRICO
-    */
 
     addHistory(
         editingTable,
@@ -3821,43 +4353,32 @@ function addHistory(
 
     history.unshift({
 
-        id:
-            Date.now(),
+        id:Date.now(),
 
-        target:
-            target,
+        target:target,
 
         targetName:
             targetPlayer
-                ? targetPlayer.name
-                : target,
+            ? targetPlayer.name
+            : target,
 
-        editor:
-            editor,
+        editor:editor,
 
         editorName:
             editorPlayer
-                ? editorPlayer.name
-                : editor,
+            ? editorPlayer.name
+            : editor,
 
-        old:
-            oldData,
+        old:oldData,
 
-        new:
-            newData,
+        new:newData,
 
-        date:
-            date,
+        date:date,
 
-        time:
-            time
+        time:time
 
     });
 
-
-    /*
-       Mantém até 200 alterações.
-    */
 
     if(history.length > 200){
 
@@ -4069,7 +4590,7 @@ function showHistory(table,target){
 
 
 /* =====================================================
-   FECHAR HISTÓRICO
+   FECHAR MODAIS DAS TABELAS
 ===================================================== */
 
 function closeHistoryModal(){
@@ -4081,10 +4602,6 @@ function closeHistoryModal(){
 }
 
 
-/* =====================================================
-   FECHAR EDITOR
-===================================================== */
-
 function closeEditTableModal(){
 
     document.getElementById(
@@ -4092,6 +4609,7 @@ function closeEditTableModal(){
     ).classList.remove("active");
 
     editingTable = null;
+
     editingTarget = null;
 
 }
@@ -4123,9 +4641,13 @@ owners.forEach(owner => {
 
             <div class="team-head">
 
-                <h4>⚽ TIME ${i}</h4>
+                <h4>
+                    ⚽ TIME ${i}
+                </h4>
 
-                <p>22 jogadores</p>
+                <p>
+                    22 jogadores
+                </p>
 
             </div>
 
@@ -4155,6 +4677,7 @@ owners.forEach(owner => {
                 </div>
 
             </div>
+
         `;
 
         container.appendChild(card);
@@ -4235,9 +4758,11 @@ function closePasswordModal(){
     ).classList.remove("active");
 
     pendingTeam = null;
+
     passwordMode = null;
 
     pendingList = null;
+
     listPasswordMode = null;
 
 }
@@ -4259,11 +4784,14 @@ function submitPassword(){
 
     if(!password){
 
-        alert("⚠️ Digite uma senha.");
+        alert(
+            "⚠️ Digite uma senha."
+        );
 
         return;
 
     }
+
 
     if(passwordMode === "create"){
 
@@ -4274,17 +4802,22 @@ function submitPassword(){
             );
 
             return;
+
         }
+
 
         savePassword(
             pendingTeam,
             password
         );
 
+
         const team =
             pendingTeam;
 
+
         closePasswordModal();
+
 
         openSquad(
             team,
@@ -4292,6 +4825,7 @@ function submitPassword(){
         );
 
         return;
+
     }
 
 
@@ -4300,12 +4834,15 @@ function submitPassword(){
         const saved =
             getPassword(pendingTeam);
 
+
         if(password === saved){
 
             const team =
                 pendingTeam;
 
+
             closePasswordModal();
+
 
             openSquad(
                 team,
@@ -4314,7 +4851,9 @@ function submitPassword(){
 
         }else{
 
-            alert("❌ Senha incorreta.");
+            alert(
+                "❌ Senha incorreta."
+            );
 
             input.value = "";
 
@@ -4400,6 +4939,7 @@ function createPlayerFields(){
 
     container.innerHTML = "";
 
+
     const saved =
         JSON.parse(
             localStorage.getItem(
@@ -4407,23 +4947,34 @@ function createPlayerFields(){
             ) || "{}"
         );
 
+
     positions.forEach(position=>{
 
         const section =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         section.className =
             "position-section";
 
+
         let inputs = "";
 
-        for(let i=0;i<position.quantidade;i++){
+
+        for(
+            let i=0;
+            i<position.quantidade;
+            i++
+        ){
 
             const key =
                 position.id + "-" + i;
 
+
             const value =
                 saved[key] || "";
+
 
             inputs += `
 
@@ -4437,7 +4988,9 @@ function createPlayerFields(){
                 >
 
             `;
+
         }
+
 
         section.innerHTML = `
 
@@ -4454,10 +5007,13 @@ function createPlayerFields(){
             </div>
 
             <div class="name-grid">
+
                 ${inputs}
+
             </div>
 
         `;
+
 
         container.appendChild(section);
 
@@ -4468,19 +5024,28 @@ function createPlayerFields(){
 
 function saveSquad(){
 
+    if(!currentTeam) return;
+
     const data = {};
+
 
     positions.forEach(position=>{
 
-        for(let i=0;i<position.quantidade;i++){
+        for(
+            let i=0;
+            i<position.quantidade;
+            i++
+        ){
 
             const key =
                 position.id + "-" + i;
+
 
             const input =
                 document.getElementById(
                     "player-" + key
                 );
+
 
             data[key] =
                 input.value.trim();
@@ -4489,27 +5054,37 @@ function saveSquad(){
 
     });
 
+
     localStorage.setItem(
         "bomba-" + currentTeam,
         JSON.stringify(data)
     );
 
+
     updateCount();
 
-    alert("✅ Elenco salvo!");
+
+    alert(
+        "✅ Elenco salvo!"
+    );
 
 }
 
 
 function clearSquad(){
 
+    if(!currentTeam) return;
+
+
     if(!confirm(
         "Deseja apagar todos os jogadores deste elenco?"
     )) return;
 
+
     localStorage.removeItem(
         "bomba-" + currentTeam
     );
+
 
     createPlayerFields();
 
@@ -4522,8 +5097,10 @@ function lockCurrentTeam(){
 
     saveSquad();
 
+
     const team =
         currentTeam;
+
 
     setTimeout(()=>{
 
@@ -4545,11 +5122,14 @@ function getCount(id){
             ) || "{}"
         );
 
+
     return Object.values(saved)
-        .filter(v =>
-            typeof v === "string" &&
-            v.trim() !== ""
-        ).length;
+        .filter(
+            v =>
+                typeof v === "string" &&
+                v.trim() !== ""
+        )
+        .length;
 
 }
 
@@ -4558,16 +5138,19 @@ function updateCount(){
 
     if(!currentTeam) return;
 
+
     const element =
         document.getElementById(
             "count-" + currentTeam
         );
 
+
     if(element){
 
         element.textContent =
             getCount(currentTeam)
-            + " / 22 jogadores";
+            +
+            " / 22 jogadores";
 
     }
 
@@ -4581,7 +5164,9 @@ function updateTeamStatus(id){
             "status-" + id
         );
 
+
     if(!status) return;
+
 
     if(getPassword(id)){
 
@@ -4612,12 +5197,15 @@ function accessList(player){
 
     pendingList = player;
 
+
     const password =
         getListPassword(player);
+
 
     if(!password){
 
         listPasswordMode = "create";
+
 
         openListPasswordModal(
             "🔐 CRIAR SENHA DA LISTA",
@@ -4627,6 +5215,7 @@ function accessList(player){
     }else{
 
         listPasswordMode = "unlock";
+
 
         openListPasswordModal(
             "🔒 LISTA BLOQUEADA",
@@ -4644,22 +5233,28 @@ function openListPasswordModal(title,message){
         "passwordTitle"
     ).textContent = title;
 
+
     document.getElementById(
         "passwordMessage"
     ).textContent = message;
+
 
     document.getElementById(
         "passwordInput"
     ).value = "";
 
+
     document.getElementById(
         "passwordModal"
     ).classList.add("active");
 
+
     setTimeout(()=>{
+
         document.getElementById(
             "passwordInput"
         ).focus();
+
     },100);
 
 }
@@ -4672,16 +5267,21 @@ function submitListPassword(){
             "passwordInput"
         );
 
+
     const password =
         input.value;
 
+
     if(!password){
 
-        alert("⚠️ Digite uma senha.");
+        alert(
+            "⚠️ Digite uma senha."
+        );
 
         return;
 
     }
+
 
     if(listPasswordMode === "create"){
 
@@ -4692,17 +5292,22 @@ function submitListPassword(){
             );
 
             return;
+
         }
+
 
         saveListPassword(
             pendingList,
             password
         );
 
+
         const player =
             pendingList;
 
+
         closePasswordModal();
+
 
         openList(player);
 
@@ -4721,13 +5326,17 @@ function submitListPassword(){
             const player =
                 pendingList;
 
+
             closePasswordModal();
+
 
             openList(player);
 
         }else{
 
-            alert("❌ Senha incorreta.");
+            alert(
+                "❌ Senha incorreta."
+            );
 
             input.value = "";
 
@@ -4763,15 +5372,19 @@ function openList(player){
 
     currentList = player;
 
+
     document.getElementById(
         "listModalTitle"
     ).textContent =
         "📝 LISTA — "
-        + player.toUpperCase();
+        +
+        player.toUpperCase();
+
 
     document.getElementById(
         "listModal"
     ).classList.add("active");
+
 
     createListFields();
 
@@ -4783,6 +5396,7 @@ function closeList(){
     document.getElementById(
         "listModal"
     ).classList.remove("active");
+
 
     currentList = null;
 
@@ -4796,7 +5410,9 @@ function createListFields(){
             "listCategories"
         );
 
+
     container.innerHTML = "";
+
 
     const saved =
         JSON.parse(
@@ -4809,13 +5425,18 @@ function createListFields(){
     listCategories.forEach(category=>{
 
         const box =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         box.className =
             "list-category";
 
+
         const value =
             saved[category.id] || "";
+
 
         box.innerHTML = `
 
@@ -4839,6 +5460,7 @@ function createListFields(){
 
         `;
 
+
         container.appendChild(box);
 
     });
@@ -4850,7 +5472,9 @@ function saveList(){
 
     if(!currentList) return;
 
+
     const data = {};
+
 
     listCategories.forEach(category=>{
 
@@ -4859,15 +5483,18 @@ function saveList(){
                 "list-" + category.id
             );
 
+
         data[category.id] =
             field.value;
 
     });
 
+
     localStorage.setItem(
         "bomba-list-" + currentList,
         JSON.stringify(data)
     );
+
 
     alert(
         "✅ Lista de jogadores salva!"
@@ -4880,13 +5507,16 @@ function clearList(){
 
     if(!currentList) return;
 
+
     if(!confirm(
         "Deseja apagar toda a lista deste jogador?"
     )) return;
 
+
     localStorage.removeItem(
         "bomba-list-" + currentList
     );
+
 
     createListFields();
 
@@ -4897,8 +5527,10 @@ function lockCurrentList(){
 
     saveList();
 
+
     const player =
         currentList;
+
 
     setTimeout(()=>{
 
@@ -4918,12 +5550,15 @@ function updateListStatus(player){
             "list-status-" + player
         );
 
+
     if(!element) return;
+
 
     if(getListPassword(player)){
 
         element.className =
             "list-status list-locked";
+
 
         element.textContent =
             "🔒 LISTA PROTEGIDA";
@@ -4940,17 +5575,37 @@ function updateListStatus(player){
 function escapeHTML(text){
 
     return String(text)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
 /* =====================================================
-   BOTÃO CONTINUAR — ELENCOS / LISTAS
+   BOTÃO CONTINUAR
 ===================================================== */
 
 document
@@ -5096,9 +5751,13 @@ document.addEventListener(
         if(event.key === "Escape"){
 
             closePasswordModal();
+
             closeSquad();
+
             closeList();
+
             closeEditTableModal();
+
             closeHistoryModal();
 
         }
@@ -5119,14 +5778,14 @@ owners.forEach(player=>{
 
 
 /* =====================================================
-   INICIALIZAR AS DUAS TABELAS
+   INICIALIZAR TABELAS
 ===================================================== */
 
 renderAllTables();
-
 
 </script>
 
 </body>
 
 </html>
+```
