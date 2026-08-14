@@ -6019,104 +6019,177 @@ renderAllTables();
 <!-- REGISTRO DE JOGOS -->
 
 <style>
-.jogos-menu-btn{
-    display:block;
-    width:100%;
-    max-width:900px;
-    margin:30px auto;
-    padding:18px 25px;
-    border:1px solid #ff7300;
-    border-radius:12px;
-    background:linear-gradient(90deg,#790000,#ff7300);
-    color:#fff;
-    font-size:18px;
-    font-weight:900;
-    cursor:pointer;
-    text-align:center;
+/* ================================
+   REGISTRO DE JOGOS
+================================ */
+
+.registro-jogos {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-.jogos-menu-btn:hover{
-    transform:translateY(-2px);
-    opacity:.9;
+.registro-jogos h2 {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-#registroJogos{
-    display:none;
-    width:92%;
-    max-width:900px;
-    margin:30px auto 80px;
+.jogo-form {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-#registroJogos.aberto{
-    display:block;
+.jogador,
+.placar {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
-.jogos-titulo{
-    text-align:center;
-    color:#ffd000;
-    font-size:30px;
-    font-weight:900;
-    margin-bottom:30px;
+.jogador {
+    flex: 1;
+    min-width: 180px;
 }
 
-.jogo-registro{
-    background:#121212;
-    border:1px solid #ff730044;
-    border-radius:15px;
-    padding:20px;
-    margin-bottom:18px;
+.placar {
+    width: 100px;
 }
 
-.jogo-linhas{
-    display:grid;
-    grid-template-columns:1fr 70px 1fr;
-    gap:12px;
-    align-items:center;
+.jogador label,
+.placar label,
+.alteracao label {
+    font-size: 12px;
+    font-weight: bold;
 }
 
-.jogo-linhas input{
-    width:100%;
-    box-sizing:border-box;
-    padding:14px;
-    background:#171717;
-    color:#fff;
-    border:1px solid #ffffff20;
-    border-radius:8px;
-    outline:none;
-    text-align:center;
-    font-size:15px;
+.jogador input,
+.placar input,
+.alteracao input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
-.jogo-linhas input:focus{
-    border-color:#ff7300;
+.placar input {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.jogo-x{
-    text-align:center;
-    color:#ffd000;
-    font-size:22px;
-    font-weight:900;
+.vs {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 
-.jogo-info{
-    margin-top:14px;
-    padding-top:12px;
-    border-top:1px solid #ffffff0d;
-    color:#777;
-    font-size:10px;
-    line-height:1.7;
+.alteracao {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
 
-@media(max-width:600px){
-    .jogo-linhas{
-        grid-template-columns:1fr 35px 1fr;
-        gap:6px;
+.btn-salvar-jogo {
+    display: block;
+    margin: 20px auto;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-salvar-jogo:hover {
+    transform: scale(1.03);
+}
+
+#mensagemJogo {
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.lista-jogos {
+    margin-top: 30px;
+}
+
+.lista-jogos h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.jogo-salvo {
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.jogo-resultado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.placar-final {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.info-jogo {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.btn-apagar-jogo {
+    display: block;
+    margin: 12px auto 0;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+
+    .jogo-form {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .jogo-linhas input{
-        font-size:12px;
-        padding:11px 5px;
+    .jogador,
+    .placar {
+        width: 100%;
     }
+
+    .vs {
+        text-align: center;
+        padding: 5px;
+    }
+
+    .placar input {
+        font-size: 20px;
+    }
+
 }
 </style>
 
@@ -6129,244 +6202,65 @@ renderAllTables();
 
 <section id="registroJogos">
 
-    <div class="jogos-titulo">
-        ⚽ REGISTRO DE JOGOS
+   <div class="registro-jogos">
+
+    <h2>⚽ REGISTRO DE JOGOS</h2>
+
+    <div class="jogo-form">
+
+        <div class="jogador">
+            <label>JOGADOR / TIME 1</label>
+            <input type="text" id="jogador1" placeholder="Ex: Rafagamer">
+        </div>
+
+        <div class="placar">
+            <label>PLACAR</label>
+            <input type="number" id="placar1" min="0" value="0">
+        </div>
+
+        <div class="vs">
+            ×
+        </div>
+
+        <div class="placar">
+            <label>PLACAR</label>
+            <input type="number" id="placar2" min="0" value="0">
+        </div>
+
+        <div class="jogador">
+            <label>JOGADOR / TIME 2</label>
+            <input type="text" id="jogador2" placeholder="Ex: Cristian">
+        </div>
+
     </div>
 
-    <!-- JOGO 01 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
+    <div class="alteracao">
+
+        <label>ALTERADO POR</label>
+
+        <input 
+            type="text" 
+            id="alteradoPor" 
+            placeholder="Quem registrou o jogo?"
+        >
+
     </div>
 
-    <!-- JOGO 02 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
+    <button class="btn-salvar-jogo" onclick="salvarJogo()">
+        💾 SALVAR JOGO
+    </button>
+
+    <div id="mensagemJogo"></div>
+
+    <div class="lista-jogos">
+
+        <h3>📋 JOGOS REGISTRADOS</h3>
+
+        <div id="jogosSalvos"></div>
+
     </div>
 
-    <!-- JOGO 03 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 04 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 05 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 06 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 07 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 08 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 09 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 10 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 11 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 12 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 13 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 14 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 15 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 16 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 17 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
-    <!-- JOGO 18 -->
-    <div class="jogo-registro">
-        <div class="jogo-linhas">
-            <input type="text" placeholder="Jogador/Time 1">
-            <div class="jogo-x">X</div>
-            <input type="text" placeholder="Jogador/Time 2">
-        </div>
-        <div class="jogo-info">
-            Alterado por: ____________________<br>
-            Última alteração: ____/____/________ ____:____
-        </div>
-    </div>
-
+</div>
 </section>
 
 <script>
