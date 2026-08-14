@@ -5811,7 +5811,534 @@ owners.forEach(player=>{
 renderAllTables();
 
 </script>
+<!-- =====================================================
+     REGISTRO DE JOGOS
+===================================================== -->
 
+<style>
+#registro-jogos {
+    padding: 80px 0;
+}
+
+#registro-jogos .jogos-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#registro-jogos .jogos-header small {
+    display: block;
+    color: #ff7300;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    margin-bottom: 12px;
+}
+
+#registro-jogos .jogos-header h2 {
+    font-size: 38px;
+}
+
+#registro-jogos .jogos-header p {
+    margin-top: 12px;
+    color: #777;
+}
+
+.registro-jogos-lista {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jogo-registro {
+    background:
+        linear-gradient(145deg, #181818, #080808);
+    border: 1px solid #ff730044;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.jogo-registro:hover {
+    border-color: #ff7300;
+}
+
+.jogo-numero {
+    color: #ff9800;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 18px;
+}
+
+.jogo-times {
+    display: grid;
+    grid-template-columns: 1fr 70px 1fr;
+    align-items: center;
+    gap: 15px;
+}
+
+.jogo-time {
+    width: 100%;
+    padding: 14px;
+    background: #171717;
+    color: #fff;
+    border: 1px solid #ffffff15;
+    border-radius: 8px;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+.jogo-placar {
+    width: 65px;
+    padding: 14px 5px;
+    background: #171717;
+    color: #ffd000;
+    border: 1px solid #ff730055;
+    border-radius: 8px;
+    outline: none;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.jogo-x {
+    color: #ff7300;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.jogo-informacoes {
+    margin-top: 18px;
+    padding-top: 15px;
+    border-top: 1px solid #ffffff0d;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.jogo-informacoes strong {
+    color: #aaa;
+}
+
+.jogo-salvar {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #790000, #ff7300);
+    color: #fff;
+    font-weight: bold;
+}
+
+.jogo-salvar:hover {
+    opacity: .85;
+}
+
+.adicionar-jogo-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.adicionar-jogo {
+    padding: 15px 30px;
+    border: 1px solid #ffd000;
+    border-radius: 8px;
+    background: #000;
+    color: #ffd000;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.adicionar-jogo:hover {
+    background: #ff7300;
+    color: #fff;
+}
+
+@media(max-width:650px){
+
+    .jogo-times {
+        grid-template-columns: 1fr;
+    }
+
+    .jogo-x {
+        display: none;
+    }
+
+    .jogo-placar {
+        width: 100%;
+    }
+
+    #registro-jogos .jogos-header h2 {
+        font-size: 28px;
+    }
+}
+</style>
+
+<section class="section" id="registro-jogos">
+
+    <div class="container">
+
+        <div class="jogos-header">
+
+            <small>PARTIDAS</small>
+
+            <h2>⚽ REGISTRO DE JOGOS</h2>
+
+            <p>
+                Registre os jogos e seus resultados.
+            </p>
+
+        </div>
+
+        <div
+            class="registro-jogos-lista"
+            id="listaRegistrosJogos">
+        </div>
+
+        <div class="adicionar-jogo-container">
+
+            <button
+                class="adicionar-jogo"
+                onclick="adicionarRegistroJogo()">
+
+                + ADICIONAR JOGO
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+/* =====================================================
+   REGISTRO DE JOGOS
+===================================================== */
+
+const REGISTRO_JOGOS_KEY =
+    "bomba-petch-registro-jogos";
+
+let registrosJogos = [];
+
+function carregarRegistrosJogos(){
+
+    const salvo =
+        localStorage.getItem(
+            REGISTRO_JOGOS_KEY
+        );
+
+    if(salvo){
+
+        try{
+
+            registrosJogos =
+                JSON.parse(salvo);
+
+        }catch(e){
+
+            registrosJogos = [];
+
+        }
+
+    }
+
+    if(registrosJogos.length === 0){
+
+        for(let i = 0; i < 12; i++){
+
+            registrosJogos.push({
+
+                jogador1:"",
+                jogador2:"",
+
+                placar1:0,
+                placar2:0,
+
+                alteradoPor:"—",
+                ultimaAlteracao:"—"
+
+            });
+
+        }
+
+        salvarRegistrosJogos();
+
+    }
+
+    renderizarRegistrosJogos();
+
+}
+
+function salvarRegistrosJogos(){
+
+    localStorage.setItem(
+        REGISTRO_JOGOS_KEY,
+        JSON.stringify(registrosJogos)
+    );
+
+}
+
+function renderizarRegistrosJogos(){
+
+    const container =
+        document.getElementById(
+            "listaRegistrosJogos"
+        );
+
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    registrosJogos.forEach(
+        (jogo,index)=>{
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "jogo-registro";
+
+            card.innerHTML = `
+
+                <div class="jogo-numero">
+
+                    JOGO ${index + 1}
+
+                </div>
+
+                <div class="jogo-times">
+
+                    <input
+                        class="jogo-time"
+                        id="jogo-${index}-jogador1"
+                        type="text"
+                        placeholder="Jogador/Time 1"
+                        value="${escapeRegistro(
+                            jogo.jogador1
+                        )}"
+                    >
+
+                    <input
+                        class="jogo-placar"
+                        id="jogo-${index}-placar1"
+                        type="number"
+                        min="0"
+                        value="${Number(
+                            jogo.placar1 || 0
+                        )}"
+                    >
+
+                    <div class="jogo-x">
+                        X
+                    </div>
+
+                    <input
+                        class="jogo-placar"
+                        id="jogo-${index}-placar2"
+                        type="number"
+                        min="0"
+                        value="${Number(
+                            jogo.placar2 || 0
+                        )}"
+                    >
+
+                    <input
+                        class="jogo-time"
+                        id="jogo-${index}-jogador2"
+                        type="text"
+                        placeholder="Jogador/Time 2"
+                        value="${escapeRegistro(
+                            jogo.jogador2
+                        )}"
+                    >
+
+                </div>
+
+                <div class="jogo-informacoes">
+
+                    <div>
+                        <strong>Alterado por:</strong>
+                        <span id="jogo-${index}-alterado">
+                            ${escapeRegistro(
+                                jogo.alteradoPor || "—"
+                            )}
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Última alteração:</strong>
+                        <span id="jogo-${index}-data">
+                            ${escapeRegistro(
+                                jogo.ultimaAlteracao || "—"
+                            )}
+                        </span>
+                    </div>
+
+                </div>
+
+                <button
+                    class="jogo-salvar"
+                    onclick="salvarRegistroJogo(${index})">
+
+                    💾 SALVAR JOGO
+
+                </button>
+
+            `;
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+function salvarRegistroJogo(index){
+
+    const jogador1 =
+        document.getElementById(
+            `jogo-${index}-jogador1`
+        ).value.trim();
+
+    const jogador2 =
+        document.getElementById(
+            `jogo-${index}-jogador2`
+        ).value.trim();
+
+    const placar1 =
+        Number(
+            document.getElementById(
+                `jogo-${index}-placar1`
+            ).value || 0
+        );
+
+    const placar2 =
+        Number(
+            document.getElementById(
+                `jogo-${index}-placar2`
+            ).value || 0
+        );
+
+    const nome =
+        prompt(
+            "Digite seu nome para registrar a alteração:"
+        );
+
+    if(!nome){
+
+        alert(
+            "⚠️ É necessário informar quem fez a alteração."
+        );
+
+        return;
+
+    }
+
+    const agora =
+        new Date();
+
+    const data =
+        agora.toLocaleString(
+            "pt-BR"
+        );
+
+    registrosJogos[index] = {
+
+        jogador1:
+            jogador1,
+
+        jogador2:
+            jogador2,
+
+        placar1:
+            placar1,
+
+        placar2:
+            placar2,
+
+        alteradoPor:
+            nome.trim(),
+
+        ultimaAlteracao:
+            data
+
+    };
+
+    salvarRegistrosJogos();
+
+    renderizarRegistrosJogos();
+
+    alert(
+        "✅ Jogo registrado com sucesso!"
+    );
+
+}
+
+function adicionarRegistroJogo(){
+
+    registrosJogos.push({
+
+        jogador1:"",
+        jogador2:"",
+
+        placar1:0,
+        placar2:0,
+
+        alteradoPor:"—",
+        ultimaAlteracao:"—"
+
+    });
+
+    salvarRegistrosJogos();
+
+    renderizarRegistrosJogos();
+
+}
+
+function escapeRegistro(texto){
+
+    return String(texto ?? "")
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+carregarRegistrosJogos();
+
+</script>
 </body>
 
 </html>
