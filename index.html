@@ -5845,6 +5845,21 @@ function abrirRegistroJogos(){
         );
 
         console.log("Supabase conectado!");
+        <script>
+async function testarSupabase() {
+    const { data, error } = await supabaseClient
+        .from("bomba_petch")
+        .select("*");
+
+    if (error) {
+        console.error("Erro no Supabase:", error);
+    } else {
+        console.log("Supabase funcionando!", data);
+    }
+}
+
+testarSupabase();
+</script>
     </script>
 
 </body>
