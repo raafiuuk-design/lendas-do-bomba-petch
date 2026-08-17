@@ -5830,19 +5830,6 @@ function abrirRegistroJogos(){
     }
 }
 </script>
-        <!-- todo o seu código atual do site -->
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script>
-        const SUPABASE_URL = "https://vgurvbdbpxcgkhmunlxr.supabase.co";
-        const SUPABASE_KEY = "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
-
-        const supabaseClient = window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -6392,7 +6379,7 @@ function abrirRegistroJogos(){
    SALVAR JOGOS
 ===================================================== */
 
-function salvarJogos() {
+async function salvarJogos() {
 
     const jogos = [];
 
@@ -6401,43 +6388,75 @@ function salvarJogos() {
         const campos = jogo.querySelectorAll("input");
 
         jogos.push({
-            time1: campos[0].value,
-            placar: campos[1].value,
-            time2: campos[2].value
+            time1: campos[0].value.trim(),
+            placar: campos[1].value.trim(),
+            time2: campos[2].value.trim()
         });
 
     });
 
-    localStorage.setItem(
-        "bombaPetchJogos",
-        JSON.stringify(jogos)
-    );
+    const { error } = await supabaseClient
+        .from("bomba_petch")
+        .upsert(
+            {
+                tipo: "jogos",
+                identificador: "registro-principal",
+                dados: jogos,
+                atualizado_em: new Date().toISOString()
+            },
+            {
+                onConflict: "tipo,identificador"
+            }
+        );
 
-    const mensagem = document.getElementById("mensagem-salvo");
+    if (error) {
 
-    mensagem.innerText = "✓ REGISTRO SALVO COM SUCESSO!";
+        console.error("Erro ao salvar jogos:", error);
+
+        alert("❌ Erro ao salvar no banco:\n\n" + error.message);
+
+        return;
+    }
+
+    const mensagem =
+        document.getElementById("mensagem-salvo");
+
+    mensagem.innerText =
+        "✓ REGISTRO SALVO NO BANCO DE DADOS!";
 
     setTimeout(function() {
         mensagem.innerText = "";
     }, 3000);
 }
 
-
 /* =====================================================
    CARREGAR JOGOS
 ===================================================== */
 
-function carregarJogos() {
+async function carregarJogos() {
 
-    const dados = localStorage.getItem("bombaPetchJogos");
+    const { data, error } = await supabaseClient
+        .from("bomba_petch")
+        .select("dados")
+        .eq("tipo", "jogos")
+        .eq("identificador", "registro-principal")
+        .maybeSingle();
 
-    if (!dados) {
+    if (error) {
+
+        console.error("Erro ao carregar jogos:", error);
+
         return;
     }
 
-    const jogos = JSON.parse(dados);
+    if (!data || !data.dados) {
+        return;
+    }
 
-    const cards = document.querySelectorAll(".jogo-card");
+    const jogos = data.dados;
+
+    const cards =
+        document.querySelectorAll(".jogo-card");
 
     jogos.forEach(function(jogo, index) {
 
@@ -6445,7 +6464,8 @@ function carregarJogos() {
             return;
         }
 
-        const campos = cards[index].querySelectorAll("input");
+        const campos =
+            cards[index].querySelectorAll("input");
 
         campos[0].value = jogo.time1 || "";
         campos[1].value = jogo.placar || "";
@@ -6459,7 +6479,7 @@ function carregarJogos() {
    LIMPAR JOGOS
 ===================================================== */
 
-function limparJogos() {
+async function limparJogos() {
 
     const confirmar = confirm(
         "Tem certeza que deseja apagar todos os 18 jogos?"
@@ -6469,21 +6489,40 @@ function limparJogos() {
         return;
     }
 
-    document.querySelectorAll(".jogo-card input").forEach(function(input) {
-        input.value = "";
-    });
+    const { error } = await supabaseClient
+        .from("bomba_petch")
+        .delete()
+        .eq("tipo", "jogos")
+        .eq("identificador", "registro-principal");
 
-    localStorage.removeItem("bombaPetchJogos");
+    if (error) {
 
-    const mensagem = document.getElementById("mensagem-salvo");
+        console.error("Erro ao limpar jogos:", error);
 
-    mensagem.innerText = "✓ REGISTRO LIMPO!";
+        alert(
+            "❌ Erro ao apagar do banco:\n\n" +
+            error.message
+        );
+
+        return;
+    }
+
+    document
+        .querySelectorAll(".jogo-card input")
+        .forEach(function(input) {
+            input.value = "";
+        });
+
+    const mensagem =
+        document.getElementById("mensagem-salvo");
+
+    mensagem.innerText =
+        "✓ REGISTRO APAGADO DO BANCO!";
 
     setTimeout(function() {
         mensagem.innerText = "";
     }, 3000);
 }
-
 
 /* =====================================================
    CARREGAR AUTOMATICAMENTE
