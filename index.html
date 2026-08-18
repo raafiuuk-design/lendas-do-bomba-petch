@@ -1,3631 +1,33 @@
-```html
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Bomba Petch — Rafagamer 2026</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#050505;
-    color:#fff;
-}
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-
-    background:
-    radial-gradient(circle at 20% 20%,#ff3b0018,transparent 30%),
-    radial-gradient(circle at 80% 70%,#ff880018,transparent 30%),
-    linear-gradient(135deg,#030303,#171717,#050505);
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    pointer-events:none;
-    opacity:.18;
-
-    background:
-    repeating-linear-gradient(
-        120deg,
-        transparent 0,
-        transparent 90px,
-        #ffffff08 91px,
-        transparent 93px
-    );
-}
+/* =========================================================
+   BOMBA PETCH
+   SISTEMA COMPLETO
+   SUPABASE + TABELAS + ELENCOS + HISTÓRICO
+========================================================= */
 
 
-/* =====================================================
-   MENU
-===================================================== */
+/* =========================================================
+   CONFIGURAÇÃO SUPABASE
+========================================================= */
 
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:999;
+const SUPABASE_URL =
+    "https://vgurvbdbpxcgkhmunlxr.supabase.co";
 
-    min-height:65px;
+const SUPABASE_KEY =
+    "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 5%;
-
-    background:#050505ed;
-
-    border-bottom:1px solid #ff730055;
-
-    backdrop-filter:blur(15px);
-}
-
-.logo{
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:2px;
-    color:#ff7300;
-}
-
-.logo span{
-    color:#ffd000;
-}
-
-.nav-links{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-    gap:18px;
-}
-
-.nav-links a{
-    color:#888;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-    text-decoration:none;
-}
-
-.nav-links a:hover{
-    color:#ff9800;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-    min-height:620px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    position:relative;
-    overflow:hidden;
-
-    background:
-    radial-gradient(circle at 50% 50%,#ff3c0030,transparent 35%),
-    linear-gradient(
-        115deg,
-        #030303,
-        #300000,
-        #8a0d00,
-        #1a0000,
-        #030303
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
 
-    border-bottom:3px solid #ff7300;
-}
+console.log("✅ Supabase conectado");
 
-.hero-content{
-    width:90%;
-    max-width:1200px;
-}
 
-.edition{
-    color:#ffd000;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:8px;
-    margin-bottom:25px;
-}
+/* =========================================================
+   VARIÁVEIS GLOBAIS
+========================================================= */
 
-.hero h1{
-    font-size:clamp(55px,12vw,145px);
-    line-height:.8;
-    font-weight:1000;
-    letter-spacing:4px;
-
-    text-shadow:
-    5px 5px 0 #620000,
-    0 0 20px #ff3c00,
-    0 0 70px #ff730055;
-}
-
-.hero h2{
-    margin-top:35px;
-
-    color:#ffd000;
-
-    font-size:clamp(25px,5vw,60px);
-
-    letter-spacing:10px;
-}
-
-.hero-subtitle{
-    margin-top:25px;
-
-    color:#ddd;
-
-    font-size:13px;
-
-    letter-spacing:5px;
-}
-
-.hero-button{
-    display:inline-block;
-
-    margin-top:40px;
-
-    padding:16px 32px;
-
-    border-radius:50px;
-
-    border:1px solid #ffd000;
-
-    color:#ffd000;
-
-    background:#00000055;
-
-    font-size:11px;
-    font-weight:bold;
-
-    letter-spacing:3px;
-
-    text-decoration:none;
-}
-
-.hero-button:hover{
-    background:#ff7300;
-    color:#fff;
-}
-
-
-/* =====================================================
-   RETORNO
-===================================================== */
-
-.season-return{
-    padding:38px 20px;
-
-    text-align:center;
-
-    background:
-    linear-gradient(
-        90deg,
-        #580000,
-        #b51d00,
-        #ff7300,
-        #b51d00,
-        #580000
-    );
-
-    border-bottom:3px solid #ffd000;
-}
-
-.return-label{
-    color:#ffd000;
-
-    font-size:11px;
-    font-weight:bold;
-
-    letter-spacing:5px;
-
-    margin-bottom:12px;
-}
-
-.season-return h2{
-    font-size:clamp(28px,5vw,48px);
-}
-
-.return-date{
-    margin-top:15px;
-
-    font-size:20px;
-    font-weight:bold;
-}
-
-.return-date span{
-    color:#ffd000;
-}
-
-.return-place{
-    margin-top:12px;
-}
-
-.return-place strong{
-    color:#ffd000;
-}
-
-
-/* =====================================================
-   GERAL
-===================================================== */
-
-.container{
-    width:92%;
-    max-width:1250px;
-
-    margin:auto;
-}
-
-.section{
-    padding:80px 0;
-}
-
-.section-header{
-    text-align:center;
-
-    margin-bottom:45px;
-}
-
-.section-header small{
-    display:block;
-
-    color:#ff7300;
-
-    font-size:10px;
-    font-weight:bold;
-
-    letter-spacing:6px;
-
-    margin-bottom:12px;
-}
-
-.section-header h2{
-    font-size:38px;
-}
-
-.section-header p{
-    margin-top:12px;
-
-    color:#777;
-}
-
-
-/* =====================================================
-   LENDAS
-===================================================== */
-
-.legend-grid{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
-    max-width:900px;
-
-    margin:auto;
-}
-
-.legend{
-    background:#121212;
-
-    border:1px solid #ff730033;
-
-    border-radius:15px;
-
-    overflow:hidden;
-}
-
-.legend summary{
-    cursor:pointer;
-
-    list-style:none;
-
-    padding:23px;
-
-    display:flex;
-    align-items:center;
-
-    background:
-    linear-gradient(
-        90deg,
-        #700000,
-        #bf2900,
-        #ed6900
-    );
-
-    font-size:20px;
-
-    font-weight:bold;
-}
-
-.legend summary::-webkit-details-marker{
-    display:none;
-}
-
-.trophies{
-    margin-left:auto;
-
-    color:#ffd700;
-}
-
-.legend-body{
-    padding:30px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #242424,
-        #0e0e0e
-    );
-}
-
-.legend-body h3{
-    color:#ff9800;
-
-    margin-bottom:18px;
-}
-
-.legend-body p{
-    color:#ddd;
-
-    line-height:1.75;
-
-    margin-bottom:15px;
-}
-
-.highlight{
-    color:#ffd000;
-
-    font-weight:bold;
-}
-
-
-/* =====================================================
-   LISTA DE JOGADORES
-===================================================== */
-
-.player-list-card{
-    background:
-    linear-gradient(145deg,#181818,#090909);
-
-    border:1px solid #ff730044;
-
-    border-radius:18px;
-
-    padding:28px;
-
-    margin-bottom:25px;
-
-    transition:.25s;
-}
-
-.player-list-card:hover{
-    border-color:#ff7300;
-
-    transform:translateY(-2px);
-}
-
-.player-list-head{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:20px;
-}
-
-.player-list-name{
-    font-size:24px;
-
-    font-weight:900;
-}
-
-.player-list-sub{
-    color:#777;
-
-    font-size:10px;
-
-    letter-spacing:2px;
-
-    margin-top:6px;
-}
-
-.list-access{
-    min-width:170px;
-
-    padding:13px 18px;
-
-    border:0;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    color:#fff;
-
-    font-weight:bold;
-
-    background:
-    linear-gradient(
-        90deg,
-        #790000,
-        #ff7300
-    );
-}
-
-.list-access:hover{
-    opacity:.85;
-}
-
-.list-status{
-    padding:9px 12px;
-
-    border-radius:7px;
-
-    text-align:center;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    margin-bottom:20px;
-}
-
-.list-locked{
-    background:#260000;
-
-    border:1px solid #750000;
-
-    color:#ff7777;
-}
-
-.list-unlocked{
-    background:#152600;
-
-    border:1px solid #477500;
-
-    color:#9dff50;
-}
-
-.list-modal-content{
-    padding:25px;
-}
-
-.list-category{
-    margin-bottom:22px;
-
-    background:#0b0b0b;
-
-    border:1px solid #ff730033;
-
-    border-radius:12px;
-
-    padding:20px;
-}
-
-.list-category-title{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:14px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid #ffffff0d;
-}
-
-.list-category-title h4{
-    color:#ff9800;
-
-    font-size:18px;
-}
-
-.list-category-title span{
-    color:#666;
-
-    font-size:10px;
-}
-
-.player-notes{
-    width:100%;
-
-    min-height:130px;
-
-    resize:vertical;
-
-    padding:15px;
-
-    background:#171717;
-
-    color:#fff;
-
-    border:1px solid #ffffff15;
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-family:Arial,sans-serif;
-
-    font-size:14px;
-
-    line-height:1.6;
-}
-
-.player-notes:focus{
-    border-color:#ff7300;
-
-    background:#1c120d;
-}
-
-.player-notes::placeholder{
-    color:#555;
-}
-
-
-/* =====================================================
-   ELENCOS — ABAS DOS JOGADORES
-===================================================== */
-
-.player-tabs{
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:10px;
-
-    max-width:1000px;
-
-    margin:0 auto 35px;
-}
-
-.player-tab{
-    padding:18px 12px;
-
-    border:1px solid #ff730044;
-
-    border-radius:12px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #181818,
-        #0b0b0b
-    );
-
-    color:#888;
-
-    cursor:pointer;
-
-    font-size:14px;
-
-    font-weight:900;
-
-    transition:.25s;
-}
-
-.player-tab:hover{
-    border-color:#ff7300;
-
-    color:#fff;
-
-    transform:translateY(-2px);
-}
-
-.player-tab.active{
-    background:
-    linear-gradient(
-        90deg,
-        #790000,
-        #ff7300
-    );
-
-    border-color:#ffd000;
-
-    color:#fff;
-
-    box-shadow:
-    0 0 20px #ff730033;
-}
-
-.player-tab small{
-    display:block;
-
-    margin-top:6px;
-
-    color:#777;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-}
-
-.player-tab.active small{
-    color:#ffd000;
-}
-
-.squad-player-panel{
-    display:none;
-}
-
-.squad-player-panel.active{
-    display:block;
-
-    animation:fadeSquad .25s ease;
-}
-
-@keyframes fadeSquad{
-
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-}
-
-.squad-player-header{
-    padding:25px;
-
-    margin-bottom:20px;
-
-    text-align:center;
-
-    background:
-    linear-gradient(
-        90deg,
-        #550000,
-        #a91d00,
-        #550000
-    );
-
-    border:1px solid #ff730055;
-
-    border-radius:15px;
-}
-
-.squad-player-header h3{
-    color:#ffd000;
-
-    font-size:26px;
-}
-
-.squad-player-header p{
-    margin-top:8px;
-
-    color:#aaa;
-
-    font-size:11px;
-
-    letter-spacing:2px;
-}
-
-
-/* =====================================================
-   ELENCOS
-===================================================== */
-
-.owner{
-    margin-bottom:55px;
-
-    padding:25px;
-
-    border-radius:18px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #181818,
-        #080808
-    );
-
-    border:1px solid #ff730033;
-}
-
-.owner-title{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:22px;
-
-    padding-bottom:18px;
-
-    border-bottom:1px solid #ffffff0d;
-}
-
-.owner-title h3{
-    font-size:27px;
-
-    color:#ff9800;
-}
-
-.owner-title span{
-    color:#777;
-
-    font-size:10px;
-
-    letter-spacing:2px;
-}
-
-.team-grid{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:16px;
-}
-
-.team-card{
-    background:#101010;
-
-    border:1px solid #ff730033;
-
-    border-radius:12px;
-
-    overflow:hidden;
-
-    transition:.25s;
-}
-
-.team-card:hover{
-    border-color:#ff7300;
-
-    transform:translateY(-3px);
-}
-
-.team-head{
-    padding:22px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #650000,
-        #a91d00
-    );
-}
-
-.team-head h4{
-    font-size:18px;
-}
-
-.team-head p{
-    color:#ffd000;
-
-    font-size:10px;
-
-    margin-top:6px;
-}
-
-.team-body{
-    padding:20px;
-}
-
-.team-body button{
-    width:100%;
-
-    padding:14px;
-
-    border:0;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    background:
-    linear-gradient(
-        90deg,
-        #b90000,
-        #ff7300
-    );
-
-    color:white;
-
-    font-weight:bold;
-}
-
-.team-body button:hover{
-    transform:translateY(-2px);
-}
-
-.saved-count{
-    text-align:center;
-
-    color:#777;
-
-    font-size:11px;
-
-    margin-top:12px;
-}
-
-.lock-status{
-    margin-top:14px;
-
-    padding:10px;
-
-    text-align:center;
-
-    border-radius:7px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    letter-spacing:1px;
-}
-
-.locked{
-    background:#260000;
-
-    color:#ff7777;
-
-    border:1px solid #750000;
-}
-
-.unlocked{
-    background:#152600;
-
-    color:#9dff50;
-
-    border:1px solid #477500;
-}
-
-
-/* =====================================================
-   MODAIS
-===================================================== */
-
-.modal{
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:10000;
-
-    background:#000000e8;
-
-    padding:25px;
-
-    overflow-y:auto;
-}
-
-.modal.active{
-    display:block;
-}
-
-.modal-box{
-    width:100%;
-
-    max-width:1200px;
-
-    margin:20px auto;
-
-    background:#111;
-
-    border:1px solid #ff730066;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 30px 80px #000;
-}
-
-.modal-top{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:22px 25px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #720000,
-        #c52c00,
-        #ed7000
-    );
-}
-
-.modal-top h2{
-    font-size:24px;
-}
-
-.close{
-    width:42px;
-
-    height:42px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:#00000055;
-
-    color:white;
-
-    font-size:22px;
-
-    cursor:pointer;
-}
-
-.close:hover{
-    background:#000;
-}
-
-.modal-content{
-    padding:25px;
-}
-
-.password-box{
-    max-width:500px;
-
-    margin:100px auto;
-
-    padding:35px;
-
-    background:#111;
-
-    border:1px solid #ff730066;
-
-    border-radius:18px;
-
-    text-align:center;
-}
-
-.password-box h2{
-    color:#ff9800;
-
-    margin-bottom:15px;
-}
-
-.password-box p{
-    color:#777;
-
-    line-height:1.6;
-
-    margin-bottom:25px;
-}
-
-.password-input{
-    width:100%;
-
-    padding:15px;
-
-    border-radius:8px;
-
-    border:1px solid #ffffff20;
-
-    background:#1b1b1b;
-
-    color:white;
-
-    outline:none;
-
-    font-size:16px;
-
-    text-align:center;
-}
-
-.password-input:focus{
-    border-color:#ff7300;
-}
-
-.password-actions{
-    display:flex;
-
-    gap:10px;
-
-    margin-top:15px;
-}
-
-.password-actions button{
-    flex:1;
-
-    padding:14px;
-
-    border:0;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-.btn-orange{
-    background:#ff7300;
-
-    color:#fff;
-}
-
-.btn-dark{
-    background:#292929;
-
-    color:#aaa;
-}
-
-
-/* =====================================================
-   POSIÇÕES
-===================================================== */
-
-.position-section{
-    margin-bottom:25px;
-
-    background:#0b0b0b;
-
-    border:1px solid #ff730033;
-
-    border-radius:12px;
-
-    padding:20px;
-}
-
-.position-title{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:15px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid #ffffff0d;
-}
-
-.position-title h4{
-    color:#ff9800;
-
-    font-size:18px;
-}
-
-.position-title span{
-    color:#777;
-
-    font-size:11px;
-}
-
-.name-grid{
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:10px;
-}
-
-.player-input{
-    width:100%;
-
-    padding:14px 15px;
-
-    background:#171717;
-
-    color:#fff;
-
-    border:1px solid #ffffff15;
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-size:14px;
-
-    transition:.2s;
-}
-
-.player-input::placeholder{
-    color:#555;
-}
-
-.player-input:focus{
-    border-color:#ff7300;
-
-    background:#1c120d;
-}
-
-.squad-intro{
-    text-align:center;
-
-    margin-bottom:25px;
-
-    color:#777;
-}
-
-.squad-intro strong{
-    color:#ffd000;
-}
-
-.modal-actions{
-    display:flex;
-
-    justify-content:flex-end;
-
-    gap:10px;
-
-    padding-top:20px;
-
-    margin-top:10px;
-
-    border-top:1px solid #ffffff0d;
-}
-
-.action{
-    padding:13px 20px;
-
-    border:0;
-
-    border-radius:7px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-.save{
-    background:#ff7300;
-
-    color:white;
-}
-
-.clear{
-    background:#450000;
-
-    color:#ff7777;
-}
-
-.cancel{
-    background:#252525;
-
-    color:#aaa;
-}
-
-.lock{
-    background:#550000;
-
-    color:#fff;
-}
-
-.action:hover{
-    opacity:.85;
-}
-
-
-/* =====================================================
-   REGRAS
-===================================================== */
-
-.rules{
-    max-width:1000px;
-
-    margin:auto;
-}
-
-.rule{
-    display:grid;
-
-    grid-template-columns:80px 1fr;
-
-    margin-bottom:18px;
-
-    background:#131313;
-
-    border:1px solid #ff730033;
-
-    border-radius:15px;
-
-    overflow:hidden;
-}
-
-.rule-number{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:
-    linear-gradient(
-        #a90000,
-        #570000
-    );
-
-    color:#ffd000;
-
-    font-size:24px;
-
-    font-weight:bold;
-}
-
-.rule-text{
-    padding:25px;
-}
-
-.rule-text h3{
-    color:#ff9800;
-
-    margin-bottom:13px;
-}
-
-.rule-text p{
-    color:#bbb;
-
-    line-height:1.7;
-
-    margin-bottom:10px;
-}
-
-.formations{
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:8px;
-
-    margin:15px 0;
-}
-
-.formations span{
-    padding:8px 13px;
-
-    background:#191919;
-
-    color:#ff9800;
-
-    border:1px solid #ff730033;
-
-    border-radius:6px;
-}
-
-
-/* =====================================================
-   RANKING / TABELAS
-===================================================== */
-
-.rank-wrap{
-    overflow-x:auto;
-
-    border:1px solid #ff730044;
-
-    border-radius:15px;
-}
-
-.rank-table{
-    width:100%;
-
-    min-width:850px;
-
-    border-collapse:collapse;
-}
-
-.rank-table th{
-    padding:18px;
-
-    background:#720000;
-
-    color:#ffd000;
-
-    font-size:11px;
-}
-
-.rank-table td{
-    padding:16px;
-
-    text-align:center;
-
-    border-bottom:1px solid #ffffff08;
-}
-
-.rank-table .player{
-    text-align:left;
-
-    font-weight:bold;
-}
-
-.points{
-    color:#ffd000;
-
-    font-size:20px;
-
-    font-weight:bold;
-}
-
-.rank-actions{
-    display:flex;
-
-    justify-content:center;
-
-    gap:7px;
-
-    flex-wrap:wrap;
-}
-
-.table-btn{
-    border:0;
-
-    border-radius:6px;
-
-    padding:8px 11px;
-
-    cursor:pointer;
-
-    font-size:10px;
-
-    font-weight:bold;
-}
-
-.edit-btn{
-    background:#ff7300;
-
-    color:#fff;
-}
-
-.history-btn{
-    background:#252525;
-
-    color:#aaa;
-}
-
-.table-btn:hover{
-    opacity:.8;
-}
-
-.last-change{
-    margin-top:7px;
-
-    color:#666;
-
-    font-size:9px;
-}
-
-.rank-info{
-    text-align:center;
-
-    margin-top:20px;
-
-    color:#777;
-
-    font-size:12px;
-}
-
-
-/* =====================================================
-   PAINEL DE TABELA
-===================================================== */
-
-.table-panel{
-    margin-bottom:45px;
-}
-
-.table-panel-header{
-    padding:25px;
-
-    margin-bottom:15px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #550000,
-        #a91d00,
-        #550000
-    );
-
-    border:1px solid #ff730055;
-
-    border-radius:15px;
-
-    text-align:center;
-}
-
-.table-panel-header h3{
-    color:#ffd000;
-
-    font-size:25px;
-}
-
-.table-panel-header p{
-    color:#ddd;
-
-    margin-top:8px;
-
-    font-size:12px;
-}
-
-
-/* =====================================================
-   MODAL DE ALTERAÇÃO
-===================================================== */
-
-.edit-box{
-    max-width:560px;
-
-    margin:80px auto;
-
-    padding:30px;
-
-    background:#111;
-
-    border:1px solid #ff730066;
-
-    border-radius:18px;
-
-    box-shadow:0 30px 80px #000;
-}
-
-.edit-box h2{
-    color:#ff9800;
-
-    margin-bottom:10px;
-
-    text-align:center;
-}
-
-.edit-box-description{
-    color:#777;
-
-    text-align:center;
-
-    line-height:1.6;
-
-    margin-bottom:25px;
-}
-
-.form-label{
-    display:block;
-
-    color:#ff9800;
-
-    font-size:11px;
-
-    font-weight:bold;
-
-    letter-spacing:1px;
-
-    margin-bottom:8px;
-}
-
-.form-select,
-.form-input{
-    width:100%;
-
-    padding:14px;
-
-    background:#191919;
-
-    color:#fff;
-
-    border:1px solid #ffffff18;
-
-    border-radius:8px;
-
-    outline:none;
-
-    font-size:14px;
-
-    margin-bottom:18px;
-}
-
-.form-select:focus,
-.form-input:focus{
-    border-color:#ff7300;
-}
-
-.editor-info{
-    padding:12px;
-
-    margin-bottom:20px;
-
-    background:#190d08;
-
-    border:1px solid #ff730033;
-
-    border-radius:8px;
-
-    color:#aaa;
-
-    font-size:11px;
-
-    text-align:center;
-}
-
-.stats-grid{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:10px;
-
-    margin-bottom:20px;
-}
-
-.stat-field{
-    background:#0b0b0b;
-
-    padding:15px;
-
-    border:1px solid #ff730033;
-
-    border-radius:8px;
-}
-
-.stat-field label{
-    display:block;
-
-    color:#ff9800;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    margin-bottom:8px;
-}
-
-.stat-field input{
-    width:100%;
-
-    padding:11px;
-
-    background:#171717;
-
-    color:#fff;
-
-    border:1px solid #ffffff15;
-
-    border-radius:6px;
-
-    outline:none;
-}
-
-.stat-field input:focus{
-    border-color:#ff7300;
-}
-
-.edit-actions{
-    display:flex;
-
-    gap:10px;
-}
-
-.edit-actions button{
-    flex:1;
-
-    padding:14px;
-
-    border:0;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-}
-
-.confirm-edit{
-    background:#ff7300;
-
-    color:#fff;
-}
-
-.cancel-edit{
-    background:#292929;
-
-    color:#aaa;
-}
-
-
-/* =====================================================
-   HISTÓRICO
-===================================================== */
-
-.history-box{
-    max-width:850px;
-
-    margin:50px auto;
-
-    padding:25px;
-
-    background:#111;
-
-    border:1px solid #ff730066;
-
-    border-radius:18px;
-}
-
-.history-box h2{
-    color:#ff9800;
-
-    text-align:center;
-
-    margin-bottom:20px;
-}
-
-.history-empty{
-    padding:30px;
-
-    text-align:center;
-
-    color:#666;
-}
-
-.history-item{
-    padding:18px;
-
-    margin-bottom:10px;
-
-    background:#0b0b0b;
-
-    border:1px solid #ffffff0d;
-
-    border-radius:10px;
-}
-
-.history-item:last-child{
-    margin-bottom:0;
-}
-
-.history-top{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    margin-bottom:10px;
-}
-
-.history-editor{
-    color:#ffd000;
-
-    font-weight:bold;
-}
-
-.history-date{
-    color:#666;
-
-    font-size:10px;
-}
-
-.history-target{
-    color:#aaa;
-
-    font-size:12px;
-}
-
-.history-change{
-    margin-top:8px;
-
-    color:#ddd;
-
-    font-size:12px;
-}
-
-.history-change strong{
-    color:#ff9800;
-}
-
-
-/* =====================================================
-   JORNAL
-===================================================== */
-
-.news{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:20px;
-}
-
-.news-box{
-    background:#141414;
-
-    border:1px solid #ff730044;
-
-    border-radius:14px;
-
-    overflow:hidden;
-}
-
-.news-box summary{
-    cursor:pointer;
-
-    list-style:none;
-
-    padding:22px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #720000,
-        #c52c00
-    );
-
-    font-weight:bold;
-}
-
-.news-content{
-    min-height:180px;
-
-    padding:30px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    color:#777;
-}
-
-
-/* =====================================================
-   TEMPORADAS
-===================================================== */
-
-.seasons{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-}
-
-.season{
-    padding:30px;
-
-    background:#141414;
-
-    border:1px solid #ffffff09;
-
-    border-radius:14px;
-}
-
-.season h3{
-    color:#ff9800;
-
-    margin-bottom:10px;
-}
-
-.year{
-    color:#ff7300;
-
-    font-size:42px;
-
-    font-weight:900;
-}
-
-
-/* =====================================================
-   DOWNLOAD
-===================================================== */
-
-.download{
-    max-width:750px;
-
-    margin:auto;
-
-    padding:50px;
-
-    text-align:center;
-
-    background:#121212;
-
-    border:1px solid #ff730055;
-
-    border-radius:18px;
-}
-
-.download h3{
-    color:#ff9800;
-
-    margin-bottom:15px;
-}
-
-.download p{
-    color:#777;
-
-    margin-bottom:25px;
-}
-
-.download a{
-    display:inline-block;
-
-    padding:16px 35px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #b90000,
-        #ff7300
-    );
-
-    border-radius:8px;
-
-    font-weight:bold;
-
-    text-decoration:none;
-
-    color:#fff;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-    padding:50px 20px;
-
-    text-align:center;
-
-    border-top:1px solid #ff730044;
-
-    color:#555;
-}
-
-.footer-logo{
-    color:#ff7300;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    margin-bottom:12px;
-}
-
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-@media(max-width:900px){
-
-    .team-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .seasons{
-        grid-template-columns:1fr;
-    }
-
-}
-
-@media(max-width:700px){
-
-    .player-tabs{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:650px){
-
-    .navbar{
-        justify-content:center;
-    }
-
-    .logo{
-        display:none;
-    }
-
-    .nav-links{
-        justify-content:center;
-
-        gap:10px;
-    }
-
-    .team-grid{
-        grid-template-columns:1fr;
-    }
-
-    .name-grid{
-        grid-template-columns:1fr;
-    }
-
-    .rule{
-        grid-template-columns:55px 1fr;
-    }
-
-    .news{
-        grid-template-columns:1fr;
-    }
-
-    .modal{
-        padding:8px;
-    }
-
-    .modal-top h2{
-        font-size:18px;
-    }
-
-    .modal-actions{
-        flex-direction:column;
-    }
-
-    .action{
-        width:100%;
-    }
-
-    .password-box{
-        margin:60px auto;
-    }
-
-    .player-list-head{
-        flex-direction:column;
-
-        align-items:stretch;
-    }
-
-    .list-access{
-        width:100%;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .edit-actions{
-        flex-direction:column;
-    }
-
-    .history-top{
-        flex-direction:column;
-    }
-
-}
-
-@media(max-width:450px){
-
-    .player-tabs{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-
-<!-- =====================================================
-     MENU
-===================================================== -->
-
-<nav class="navbar">
-
-    <div class="logo">
-        🔥 BOMBA <span>PETCH</span>
-    </div>
-
-    <div class="nav-links">
-
-        <a href="#lendas">LENDAS</a>
-        <a href="#listas">📝 LISTAS</a>
-        <a href="#elencos">⚽ ELENCOS</a>
-        <a href="#regras">REGRAS</a>
-        <a href="#ranking">RANK</a>
-        <a href="#campeonato">🏆 CAMPEONATO</a>
-        <a href="#jornal">JORNAL</a>
-        <a href="#temporadas">TEMPORADAS</a>
-        <a href="#download">DOWNLOAD</a>
-
-    </div>
-
-</nav>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-    <div class="hero-content">
-
-        <div class="edition">
-            EDIÇÃO ESPECIAL • 2026
-        </div>
-
-        <h1>
-            BOMBA PETCH
-        </h1>
-
-        <h2>
-            RAFAGAMER 2026
-        </h2>
-
-        <p class="hero-subtitle">
-            A HISTÓRIA • AS LENDAS • A COMPETIÇÃO
-        </p>
-
-        <a class="hero-button" href="#elencos">
-            ⚽ MONTAR ELENCOS
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     RETORNO
-===================================================== -->
-
-<section class="season-return">
-
-    <div class="return-label">
-        🔥 ATENÇÃO, LENDAS DO BOMBA PETCH 🔥
-    </div>
-
-    <h2>
-        RETORNO DA NOVA TEMPORADA 2026
-    </h2>
-
-    <div class="return-date">
-
-        📅 <span>17/08/2026</span>
-        &nbsp; • &nbsp;
-        🕖 <span>19:00</span>
-
-    </div>
-
-    <div class="return-place">
-
-        📍 Local:
-        <strong>
-            Rua Professor Raul Duarte, 245
-        </strong>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     LENDAS
-===================================================== -->
-
-<section class="section" id="lendas">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>HALL DA FAMA</small>
-
-        <h2>🏆 AS LENDAS</h2>
-
-        <p>
-            Os jogadores que marcaram a história do BOMBA PETCH.
-        </p>
-
-    </div>
-
-    <div class="legend-grid">
-
-        <details class="legend">
-
-    <summary>
-        👑 RAFA GAMER
-        <span class="trophies">🏆🏆</span>
-    </summary>
-
-    <div class="legend-body">
-
-        <h3>👑 RAFA GAMER</h3>
-
-        <p>
-            RafaGamer é conhecido pelo seu
-            <span class="highlight">jogo estiloso, bonito e cheio de magia</span>,
-            fazendo gols de todas as formas.
-        </p>
-
-        <p>
-            Sua principal arma é a
-            <span class="highlight">primeirinha</span>,
-            por isso é conhecido como o
-            <span class="highlight">Rei da Primeirinha</span>.
-        </p>
-
-        <p>
-            Também possui dois times históricos:
-            <span class="highlight">Fênix</span>, quase impossível de ser batida,
-            e o <span class="highlight">Lobo</span>, conhecido como o
-            <span class="highlight">Rei de Copas</span>. 🏆🏆✨
-        </p>
-
-    </div>
-
-</details>
-
-        <details class="legend">
-
-    <summary>
-        ♜ BERNA
-        <span class="trophies">🏆</span>
-    </summary>
-
-    <div class="legend-body">
-
-        <h3>♜ BERNA</h3>
-
-        <p>
-            Berna é conhecido por seu estilo de jogo aéreo,
-            sendo um dos jogadores que mais domina as jogadas pelo alto.
-        </p>
-
-        <p>
-            Sua principal característica é a habilidade de
-            <span class="highlight">criar e aproveitar oportunidades no jogo aéreo</span>,
-            surpreendendo os adversários com jogadas rápidas e precisas.
-        </p>
-
-        <p>
-            Quando a bola está no alto, Berna se torna ainda mais perigoso.
-            <span class="highlight">Seu domínio no jogo aéreo é sua maior arma</span>,
-            e qualquer espaço dado pelo adversário pode ser suficiente para ele
-            decidir a partida.
-        </p>
-
-    </div>
-
-</details>
-
-       <details class="legend">
-
-    <summary>
-        🛡️ CRISTIAN
-        <span class="trophies">🏆🏆🏆</span>
-    </summary>
-
-    <div class="legend-body">
-
-        <h3>🛡️ CRISTIAN</h3>
-
-        <p>
-            Cristian é conhecido por seu estilo defensivo e estratégico,
-            sempre esperando o momento certo para atacar.
-        </p>
-
-        <p>
-            Seu principal destaque é o
-            <span class="highlight">contra-ataque</span>.
-            Costuma ser mortal quando o adversário comete um erro,
-            aproveitando cada oportunidade para decidir a partida.
-        </p>
-
-        <p>
-            <span class="highlight">Cristian não perdoa os erros dos adversários.</span>
-            Quando encontra uma brecha, parte para cima e transforma qualquer
-            descuido em uma grande oportunidade de gol.
-        </p>
-
-    </div>
-
-</details>
-
-
-       <details class="legend">
-
-    <summary>
-        🎯 LEANDRO
-        <span class="trophies">🏆</span>
-    </summary>
-
-    <div class="legend-body">
-
-        <h3>🎯 LEANDRO</h3>
-
-        <p>
-            Leandro é um jogador versátil e habilidoso, conhecido por sua
-            capacidade de se adaptar durante as partidas.
-        </p>
-
-        <p>
-            Costuma jogar mais recuado, mas também sabe avançar no momento certo.
-            Seu grande destaque são os
-            <span class="highlight">chutes de longa distância</span>,
-            capazes de surpreender qualquer adversário.
-        </p>
-
-        <p>
-            Com muita técnica e determinação, conquistou seu espaço entre as
-            <span class="highlight">lendas do Bomba Petch.</span> 🏆
-        </p>
-
-    </div>
-
-</details>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     LISTAS
-===================================================== -->
-
-<section class="section" id="listas">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>LISTA PRIVADA</small>
-
-        <h2>📝 LISTA DE JOGADORES</h2>
-
-        <p>
-            Anote os jogadores que você quer lembrar
-            durante o “tirar times”.
-        </p>
-
-    </div>
-
-
-    <div class="player-list-card">
-
-        <div class="player-list-head">
-
-            <div>
-
-                <div class="player-list-name">
-                    🔥 RAFAGAMER
-                </div>
-
-                <div class="player-list-sub">
-                    LISTA PARTICULAR
-                </div>
-
-            </div>
-
-            <button
-                class="list-access"
-                onclick="accessList('rafagamer')">
-
-                🔒 ACESSAR LISTA
-
-            </button>
-
-        </div>
-
-        <div
-            id="list-status-rafagamer"
-            class="list-status list-locked">
-
-            🔒 LISTA PROTEGIDA
-
-        </div>
-
-    </div>
-
-
-    <div class="player-list-card">
-
-        <div class="player-list-head">
-
-            <div>
-
-                <div class="player-list-name">
-                    👑 BERNA
-                </div>
-
-                <div class="player-list-sub">
-                    LISTA PARTICULAR
-                </div>
-
-            </div>
-
-            <button
-                class="list-access"
-                onclick="accessList('berna')">
-
-                🔒 ACESSAR LISTA
-
-            </button>
-
-        </div>
-
-        <div
-            id="list-status-berna"
-            class="list-status list-locked">
-
-            🔒 LISTA PROTEGIDA
-
-        </div>
-
-    </div>
-
-
-    <div class="player-list-card">
-
-        <div class="player-list-head">
-
-            <div>
-
-                <div class="player-list-name">
-                    ⚡ CRISTIAN
-                </div>
-
-                <div class="player-list-sub">
-                    LISTA PARTICULAR
-                </div>
-
-            </div>
-
-            <button
-                class="list-access"
-                onclick="accessList('cristian')">
-
-                🔒 ACESSAR LISTA
-
-            </button>
-
-        </div>
-
-        <div
-            id="list-status-cristian"
-            class="list-status list-locked">
-
-            🔒 LISTA PROTEGIDA
-
-        </div>
-
-    </div>
-
-
-    <div class="player-list-card">
-
-        <div class="player-list-head">
-
-            <div>
-
-                <div class="player-list-name">
-                    🎯 LEANDRO
-                </div>
-
-                <div class="player-list-sub">
-                    LISTA PARTICULAR
-                </div>
-
-            </div>
-
-            <button
-                class="list-access"
-                onclick="accessList('leandro')">
-
-                🔒 ACESSAR LISTA
-
-            </button>
-
-        </div>
-
-        <div
-            id="list-status-leandro"
-            class="list-status list-locked">
-
-            🔒 LISTA PROTEGIDA
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     ELENCOS COM ABAS
-===================================================== -->
-
-<section class="section" id="elencos">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>SISTEMA DE ELENCOS</small>
-
-        <h2>⚽ ELENCOS</h2>
-
-        <p>
-            Selecione um jogador para visualizar seus 3 times.
-        </p>
-
-    </div>
-
-
-    <!-- ABAS -->
-
-    <div class="player-tabs">
-
-        <button
-            class="player-tab active"
-            onclick="showPlayerSquads('rafagamer', this)">
-
-            🔥 RAFAGAMER
-
-            <small>
-                3 TIMES
-            </small>
-
-        </button>
-
-
-        <button
-            class="player-tab"
-            onclick="showPlayerSquads('berna', this)">
-
-            👑 BERNA
-
-            <small>
-                3 TIMES
-            </small>
-
-        </button>
-
-
-        <button
-            class="player-tab"
-            onclick="showPlayerSquads('cristian', this)">
-
-            ⚡ CRISTIAN
-
-            <small>
-                3 TIMES
-            </small>
-
-        </button>
-
-
-        <button
-            class="player-tab"
-            onclick="showPlayerSquads('leandro', this)">
-
-            🎯 LEANDRO
-
-            <small>
-                3 TIMES
-            </small>
-
-        </button>
-
-    </div>
-
-
-    <!-- RAFAGAMER -->
-
-    <div
-        id="squad-panel-rafagamer"
-        class="squad-player-panel active">
-
-        <div class="squad-player-header">
-
-            <h3>
-                🔥 RAFAGAMER
-            </h3>
-
-            <p>
-                SELECIONE UM DOS 3 TIMES
-            </p>
-
-        </div>
-
-        <div
-            class="team-grid"
-            id="teams-rafagamer">
-        </div>
-
-    </div>
-
-
-    <!-- BERNA -->
-
-    <div
-        id="squad-panel-berna"
-        class="squad-player-panel">
-
-        <div class="squad-player-header">
-
-            <h3>
-                👑 BERNA
-            </h3>
-
-            <p>
-                SELECIONE UM DOS 3 TIMES
-            </p>
-
-        </div>
-
-        <div
-            class="team-grid"
-            id="teams-berna">
-        </div>
-
-    </div>
-
-
-    <!-- CRISTIAN -->
-
-    <div
-        id="squad-panel-cristian"
-        class="squad-player-panel">
-
-        <div class="squad-player-header">
-
-            <h3>
-                ⚡ CRISTIAN
-            </h3>
-
-            <p>
-                SELECIONE UM DOS 3 TIMES
-            </p>
-
-        </div>
-
-        <div
-            class="team-grid"
-            id="teams-cristian">
-        </div>
-
-    </div>
-
-
-    <!-- LEANDRO -->
-
-    <div
-        id="squad-panel-leandro"
-        class="squad-player-panel">
-
-        <div class="squad-player-header">
-
-            <h3>
-                🎯 LEANDRO
-            </h3>
-
-            <p>
-                SELECIONE UM DOS 3 TIMES
-            </p>
-
-        </div>
-
-        <div
-            class="team-grid"
-            id="teams-leandro">
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL SENHA
-===================================================== -->
-
-<div class="modal" id="passwordModal">
-
-    <div class="password-box">
-
-        <h2 id="passwordTitle">
-            🔒 ELENCO BLOQUEADO
-        </h2>
-
-        <p id="passwordMessage">
-            Digite a senha para acessar.
-        </p>
-
-        <input
-            type="password"
-            id="passwordInput"
-            class="password-input"
-            placeholder="Digite a senha"
-            autocomplete="off"
-        >
-
-        <div class="password-actions">
-
-            <button
-                class="btn-dark"
-                onclick="closePasswordModal()">
-
-                CANCELAR
-
-            </button>
-
-            <button
-                class="btn-orange"
-                id="passwordContinue">
-
-                🔓 CONTINUAR
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODAL ELENCO
-===================================================== -->
-
-<div class="modal" id="squadModal">
-
-    <div class="modal-box">
-
-        <div class="modal-top">
-
-            <h2 id="modalTitle">
-                ⚽ Montar elenco
-            </h2>
-
-            <button
-                class="close"
-                onclick="closeSquad()">
-
-                ×
-
-            </button>
-
-        </div>
-
-        <div class="modal-content">
-
-            <div class="squad-intro">
-
-                Você pode
-                <strong>DIGITAR O NOME QUE QUISER</strong>
-                nos 22 espaços.
-
-            </div>
-
-            <div id="positions"></div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="action clear"
-                    onclick="clearSquad()">
-
-                    🗑 LIMPAR
-
-                </button>
-
-                <button
-                    class="action cancel"
-                    onclick="closeSquad()">
-
-                    FECHAR
-
-                </button>
-
-                <button
-                    class="action lock"
-                    onclick="lockCurrentTeam()">
-
-                    🔒 BLOQUEAR ELENCO
-
-                </button>
-
-                <button
-                    class="action save"
-                    onclick="saveSquad()">
-
-                    💾 SALVAR
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODAL LISTA
-===================================================== -->
-
-<div class="modal" id="listModal">
-
-    <div class="modal-box">
-
-        <div class="modal-top">
-
-            <h2 id="listModalTitle">
-                📝 Lista de jogadores
-            </h2>
-
-            <button
-                class="close"
-                onclick="closeList()">
-
-                ×
-
-            </button>
-
-        </div>
-
-        <div class="list-modal-content">
-
-            <div id="listCategories"></div>
-
-            <div class="modal-actions">
-
-                <button
-                    class="action clear"
-                    onclick="clearList()">
-
-                    🗑 LIMPAR LISTA
-
-                </button>
-
-                <button
-                    class="action cancel"
-                    onclick="closeList()">
-
-                    FECHAR
-
-                </button>
-
-                <button
-                    class="action lock"
-                    onclick="lockCurrentList()">
-
-                    🔒 BLOQUEAR LISTA
-
-                </button>
-
-                <button
-                    class="action save"
-                    onclick="saveList()">
-
-                    💾 SALVAR LISTA
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     REGRAS
-===================================================== -->
-
-<section class="section" id="regras">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>REGULAMENTO</small>
-
-        <h2>🔥 REGRAS BOMBA PETCH</h2>
-
-    </div>
-
-    <div class="rules">
-
-        <div class="rule">
-
-            <div class="rule-number">01</div>
-
-            <div class="rule-text">
-
-                <h3>🏆 DESISTÊNCIA</h3>
-
-                <p>
-                    Não pode desistir no meio do campeonato.
-                </p>
-
-                <p>
-                    Só poderá desistir quando os jogos restantes
-                    não tiverem mais interferência no campeonato.
-                </p>
-
-                <p>
-                    Desistência forçada:
-                    <strong>perda de 3 pontos no Rank.</strong>
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div class="rule-number">02</div>
-
-            <div class="rule-text">
-
-                <h3>🚫 OFENSAS E BRIGAS</h3>
-
-                <p>
-                    Proibido ofensas, xingamentos,
-                    brigas constantes e zoeira contínua
-                    de forma que faça alguém desistir.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div class="rule-number">03</div>
-
-            <div class="rule-text">
-
-                <h3>🎯 CHUTE DE PRIMEIRINHA</h3>
-
-                <p>
-                    O chute de primeirinha valerá apenas
-                    <strong>1 vez por jogo.</strong>
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div class="rule-number">04</div>
-
-            <div class="rule-text">
-
-                <h3>🎮 TÁTICAS</h3>
-
-                <p>
-                    Só poderão ser usadas as formações
-                    oferecidas pelo próprio jogo.
-                </p>
-
-                <div class="formations">
-
-                    <span>4-5-1</span>
-                    <span>3-5-2</span>
-                    <span>4-3-3</span>
-                    <span>4-4-2</span>
-
-                </div>
-
-                <p>
-                    Proibido mexer nas formações,
-                    mover jogadores, utilizar atalhos para
-                    atacar/defender ou sobrepor jogadores na área.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="rule">
-
-            <div class="rule-number">05</div>
-
-            <div class="rule-text">
-
-                <h3>🚨 ALTERAÇÃO DE JOGADORES</h3>
-
-                <p>
-                    EXTREMAMENTE PROIBIDO alterar jogadores
-                    ou criar jogadores.
-                </p>
-
-                <p>
-                    Caso seja pego:
-                    <strong>perderá estrelas.</strong>
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     RANK
-===================================================== -->
-
-<section class="section" id="ranking">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>TEMPORADA 2026</small>
-
-        <h2>🏆 RANK DO MELHOR DO ANO</h2>
-
-        <p>
-            Tabela independente do campeonato.
-        </p>
-
-    </div>
-
-    <div class="table-panel">
-
-        <div class="table-panel-header">
-
-            <h3>🥇 RANK GERAL</h3>
-
-            <p>
-                Vitória = +2 • Empate = +1 • Derrota = -1
-            </p>
-
-        </div>
-
-        <div class="rank-wrap">
-
-            <table class="rank-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>POS.</th>
-                        <th>PLAYER</th>
-                        <th>VITÓRIAS</th>
-                        <th>EMPATES</th>
-                        <th>DERROTAS</th>
-                        <th>PONTOS</th>
-                        <th>AÇÕES</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="rankTableBody"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     CAMPEONATO
-===================================================== -->
-
-<section class="section" id="campeonato">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>CAMPEONATO 2026</small>
-
-        <h2>🏆 CLASSIFICAÇÃO DO CAMPEONATO</h2>
-
-        <p>
-            Tabela independente do Rank do Melhor do Ano.
-        </p>
-
-    </div>
-
-    <div class="table-panel">
-
-        <div class="table-panel-header">
-
-            <h3>🔥 TABELA DO CAMPEONATO</h3>
-
-            <p>
-                Vitória = +3 • Empate = +1 • Derrota = -1
-            </p>
-
-        </div>
-
-        <div class="rank-wrap">
-
-            <table class="rank-table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>POS.</th>
-                        <th>PLAYER</th>
-                        <th>VITÓRIAS</th>
-                        <th>EMPATES</th>
-                        <th>DERROTAS</th>
-                        <th>PONTOS</th>
-                        <th>AÇÕES</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="championshipTableBody"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL ALTERAÇÃO
-===================================================== -->
-
-<div class="modal" id="editTableModal">
-
-    <div class="edit-box">
-
-        <h2>
-            🔐 ALTERAR TABELA
-        </h2>
-
-        <p class="edit-box-description">
-
-            Você pode alterar qualquer jogador.
-            Primeiro informe <strong>quem está fazendo a alteração</strong>
-            e confirme a senha desse jogador.
-
-        </p>
-
-        <label class="form-label">
-            QUEM ESTÁ ALTERANDO?
-        </label>
-
-        <select
-            id="editorSelect"
-            class="form-select">
-
-            <option value="">
-                Selecione seu nome
-            </option>
-
-            <option value="rafagamer">
-                🔥 RAFAGAMER
-            </option>
-
-            <option value="berna">
-                👑 BERNA
-            </option>
-
-            <option value="cristian">
-                ⚡ CRISTIAN
-            </option>
-
-            <option value="leandro">
-                🎯 LEANDRO
-            </option>
-
-        </select>
-
-
-        <div
-            id="editorPasswordArea"
-            style="display:none;">
-
-            <label class="form-label">
-                SENHA DO JOGADOR
-            </label>
-
-            <input
-                type="password"
-                id="editorPassword"
-                class="form-input"
-                placeholder="Digite sua senha"
-                autocomplete="off"
-            >
-
-            <div
-                id="newPasswordNotice"
-                class="editor-info"
-                style="display:none;">
-
-                🔐 Este é seu primeiro acesso.
-                Crie uma senha para proteger suas alterações.
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="targetArea"
-            style="display:none;">
-
-            <label class="form-label">
-                JOGADOR QUE SERÁ ALTERADO
-            </label>
-
-            <select
-                id="targetSelect"
-                class="form-select">
-
-                <option value="rafagamer">
-                    🔥 RAFAGAMER
-                </option>
-
-                <option value="berna">
-                    👑 BERNA
-                </option>
-
-                <option value="cristian">
-                    ⚡ CRISTIAN
-                </option>
-
-                <option value="leandro">
-                    🎯 LEANDRO
-                </option>
-
-            </select>
-
-
-            <div class="stats-grid">
-
-                <div class="stat-field">
-
-                    <label>
-                        VITÓRIAS
-                    </label>
-
-                    <input
-                        type="number"
-                        id="editWins"
-                        min="0"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <div class="stat-field">
-
-                    <label>
-                        EMPATES
-                    </label>
-
-                    <input
-                        type="number"
-                        id="editDraws"
-                        min="0"
-                        value="0"
-                    >
-
-                </div>
-
-
-                <div class="stat-field">
-
-                    <label>
-                        DERROTAS
-                    </label>
-
-                    <input
-                        type="number"
-                        id="editLosses"
-                        min="0"
-                        value="0"
-                    >
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="edit-actions">
-
-            <button
-                class="cancel-edit"
-                onclick="closeEditTableModal()">
-
-                CANCELAR
-
-            </button>
-
-            <button
-                class="confirm-edit"
-                onclick="confirmTableEdit()">
-
-                🔐 CONFIRMAR ALTERAÇÃO
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     HISTÓRICO
-===================================================== -->
-
-<div class="modal" id="historyModal">
-
-    <div class="history-box">
-
-        <h2 id="historyTitle">
-            📜 HISTÓRICO
-        </h2>
-
-        <div id="historyContent"></div>
-
-        <div
-            class="edit-actions"
-            style="margin-top:20px;">
-
-            <button
-                class="cancel-edit"
-                onclick="closeHistoryModal()">
-
-                FECHAR
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     JORNAL
-===================================================== -->
-
-<section class="section" id="jornal">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>NOTÍCIAS</small>
-
-        <h2>📰 JORNAL BOMBA PETCH</h2>
-
-    </div>
-
-    <div class="news">
-
-        <details class="news-box">
-
-            <summary>
-                🔔 ATUALIZAÇÕES
-            </summary>
-
-            <div class="news-content">
-                Área reservada para futuras atualizações.
-            </div>
-
-        </details>
-
-        <details class="news-box">
-
-            <summary>
-                📰 JORNAL BOMBA PETCH
-            </summary>
-
-            <div class="news-content">
-                Área reservada para futuras notícias.
-            </div>
-
-        </details>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     TEMPORADAS
-===================================================== -->
-
-<section class="section" id="temporadas">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>HISTÓRIA</small>
-
-        <h2>📅 TEMPORADAS</h2>
-
-    </div>
-
-    <div class="seasons">
-
-        <div class="season">
-
-            <div class="year">2024</div>
-
-            <h3>PRIMEIROS CAPÍTULOS</h3>
-
-            <p>
-                O início da história do BOMBA PETCH.
-            </p>
-
-        </div>
-
-
-        <div class="season">
-
-            <div class="year">2025</div>
-
-            <h3>ERA DAS LENDAS</h3>
-
-            <p>
-                Os jogadores começaram a construir seus legados.
-            </p>
-
-        </div>
-
-
-        <div class="season">
-
-            <div class="year">2026</div>
-
-            <h3>NOVA TEMPORADA</h3>
-
-            <p>
-                Retorno em
-                <strong>17/08/2026 às 19:00</strong>.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     DOWNLOAD
-===================================================== -->
-
-<section class="section" id="download">
-
-<div class="container">
-
-    <div class="section-header">
-
-        <small>ARQUIVOS</small>
-
-        <h2>📥 DOWNLOAD</h2>
-
-    </div>
-
-    <div class="download">
-
-        <h3>
-            💿 BOMBA PETCH — RAFAGAMER 2025
-        </h3>
-
-        <p>
-            Arquivo disponível para download.
-        </p>
-
-        <a
-            href="https://www.mediafire.com/file/zll93ozzb25akvh/Bomba_Rafagamer_2025.iso/file"
-            target="_blank">
-
-            📥 BAIXAR ARQUIVO
-
-        </a>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <div class="footer-logo">
-        🔥 BOMBA PETCH
-    </div>
-
-    <p>
-        RAFAGAMER • BERNA • CRISTIAN • LEANDRO
-    </p>
-
-    <p style="margin-top:12px;font-size:11px;">
-        © 2026 — Lendas do Bomba Petch
-    </p>
-
-</footer>
-
-
-<script>
-
-/* =====================================================
-   POSIÇÕES DOS ELENCOS
-===================================================== */
-
-const positions = [
-
-    {
-        id:"goleiros",
-        nome:"🧤 GOLEIROS",
-        quantidade:2
-    },
-
-    {
-        id:"zagueiros",
-        nome:"🛡️ ZAGUEIROS",
-        quantidade:5
-    },
-
-    {
-        id:"laterais",
-        nome:"🏃 LATERAIS",
-        quantidade:3
-    },
-
-    {
-        id:"volantes",
-        nome:"⚙️ VOLANTES",
-        quantidade:3
-    },
-
-    {
-        id:"meias",
-        nome:"🎯 MEIAS",
-        quantidade:4
-    },
-
-    {
-        id:"atacantes",
-        nome:"⚡ ATACANTES",
-        quantidade:5
-    }
-
-];
-
-
-/* =====================================================
-   CATEGORIAS DAS LISTAS
-===================================================== */
-
-const listCategories = [
-
-    {
-        id:"goleiros",
-        nome:"🧤 GOLEIROS"
-    },
-
-    {
-        id:"zagueiros",
-        nome:"🛡️ ZAGUEIROS"
-    },
-
-    {
-        id:"laterais",
-        nome:"🏃 LATERAIS"
-    },
-
-    {
-        id:"volantes",
-        nome:"⚙️ VOLANTES"
-    },
-
-    {
-        id:"meias",
-        nome:"🎯 MEIAS"
-    },
-
-    {
-        id:"atacantes",
-        nome:"⚡ ATACANTES"
-    }
-
-];
-
-
-/* =====================================================
-   PLAYERS
-===================================================== */
-
-const owners = [
-    "rafagamer",
-    "berna",
-    "cristian",
-    "leandro"
-];
-
-
-let currentTeam = null;
 let pendingTeam = null;
 let passwordMode = null;
 
@@ -3633,45 +35,172 @@ let currentList = null;
 let pendingList = null;
 let listPasswordMode = null;
 
-
-/* =====================================================
-   SISTEMA DAS TABELAS
-===================================================== */
-
-const tablePlayers = [
-
-    {
-        id:"rafagamer",
-        name:"🔥 RAFAGAMER"
-    },
-
-    {
-        id:"berna",
-        name:"👑 BERNA"
-    },
-
-    {
-        id:"cristian",
-        name:"⚡ CRISTIAN"
-    },
-
-    {
-        id:"leandro",
-        name:"🎯 LEANDRO"
-    }
-
-];
-
+let currentTeam = null;
 
 let editingTable = null;
 let editingTarget = null;
 
 
-/* =====================================================
-   ABAS DOS JOGADORES
-===================================================== */
+/* =========================================================
+   JOGADORES
+========================================================= */
 
-function showPlayerSquads(player,button){
+const tablePlayers = [
+
+    {
+        id: "rafagamer",
+        name: "🔥 RAFAGAMER"
+    },
+
+    {
+        id: "berna",
+        name: "👑 BERNA"
+    },
+
+    {
+        id: "cristian",
+        name: "⚡ CRISTIAN"
+    },
+
+    {
+        id: "leandro",
+        name: "🎯 LEANDRO"
+    }
+
+];
+
+
+/* =========================================================
+   DONOS DOS TIMES
+========================================================= */
+
+const defaultOwners = [
+    "rafagamer",
+    "berna",
+    "cristian",
+    "leandro"
+];
+
+if (typeof owners === "undefined") {
+    window.owners = defaultOwners;
+}
+
+
+/* =========================================================
+   POSIÇÕES DOS ELENCOS
+========================================================= */
+
+if (typeof positions === "undefined") {
+
+    window.positions = [
+
+        {
+            id: "goleiros",
+            nome: "🧤 GOLEIROS",
+            quantidade: 2
+        },
+
+        {
+            id: "zagueiros",
+            nome: "🛡️ ZAGUEIROS",
+            quantidade: 4
+        },
+
+        {
+            id: "laterais",
+            nome: "🏃 LATERAIS",
+            quantidade: 4
+        },
+
+        {
+            id: "meias",
+            nome: "⚡ MEIAS",
+            quantidade: 5
+        },
+
+        {
+            id: "atacantes",
+            nome: "🔥 ATACANTES",
+            quantidade: 7
+        }
+
+    ];
+
+}
+
+
+/* =========================================================
+   CACHE DAS TABELAS
+========================================================= */
+
+const tableDataCache = {
+
+    rank: {},
+
+    championship: {}
+
+};
+
+
+/* =========================================================
+   CACHE DOS ELENCOS
+========================================================= */
+
+const squadDataCache = {};
+
+
+/* =========================================================
+   CRIAR TABELA VAZIA
+========================================================= */
+
+function createEmptyTableData() {
+
+    const data = {};
+
+    tablePlayers.forEach(player => {
+
+        data[player.id] = {
+
+            wins: 0,
+
+            draws: 0,
+
+            losses: 0
+
+        };
+
+    });
+
+    return data;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   ABAS DOS JOGADORES
+========================================================= */
+
+function showPlayerSquads(player, button) {
 
     document
         .querySelectorAll(".squad-player-panel")
@@ -3696,14 +225,15 @@ function showPlayerSquads(player,button){
             "squad-panel-" + player
         );
 
-    if(panel){
+
+    if (panel) {
 
         panel.classList.add("active");
 
     }
 
 
-    if(button){
+    if (button) {
 
         button.classList.add("active");
 
@@ -3711,66 +241,14 @@ function showPlayerSquads(player,button){
 
 }
 
-/* =====================================================
-   STORAGE DAS TABELAS
-===================================================== */
 
-/* =====================================================
-   DADOS DAS TABELAS - SUPABASE
-===================================================== */
+/* =========================================================
+   OBTER DADOS DA TABELA
+========================================================= */
 
-const tableDataCache = {
-    rank: {},
-    championship: {}
-};
+function getTableData(table) {
 
-
-/* =====================================================
-   CRIAR DADOS VAZIOS
-===================================================== */
-
-function createEmptyTableData(){
-
-    const data = {};
-
-    tablePlayers.forEach(player => {
-
-        data[player.id] = {
-
-            wins: 0,
-
-            draws: 0,
-
-            losses: 0
-
-        };
-
-    });
-
-    return data;
-
-}
-
-const SUPABASE_URL =
-    "https://vgurvbdbpxcgkhmunlxr.supabase.co";
-
-const SUPABASE_KEY =
-    "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-console.log("Supabase conectado!");
-/* =====================================================
-   LER TABELA
-===================================================== */
-
-function getTableData(table){
-
-    if(!tableDataCache[table]){
+    if (!tableDataCache[table]) {
 
         tableDataCache[table] =
             createEmptyTableData();
@@ -3782,16 +260,15 @@ function getTableData(table){
 }
 
 
-
-/* =====================================================
+/* =========================================================
    CARREGAR TABELA DO SUPABASE
-===================================================== */
+========================================================= */
 
-async function loadTableData(table){
+async function loadTableData(table) {
 
-    try{
+    try {
 
-        const { data, error } =
+        const result =
             await supabaseClient
                 .from("bomba_petch")
                 .select("dados")
@@ -3799,11 +276,13 @@ async function loadTableData(table){
                 .eq("identificador", table)
                 .limit(1);
 
-        if(error){
+
+        if (result.error) {
 
             console.error(
-                "Erro ao carregar tabela " + table,
-                error
+                "Erro ao carregar tabela:",
+                table,
+                result.error
             );
 
             return;
@@ -3811,14 +290,14 @@ async function loadTableData(table){
         }
 
 
-        if(
-            data &&
-            data.length > 0 &&
-            data[0].dados
-        ){
+        if (
+            result.data &&
+            result.data.length > 0 &&
+            result.data[0].dados
+        ) {
 
             const saved =
-                data[0].dados;
+                result.data[0].dados;
 
             const tableData =
                 createEmptyTableData();
@@ -3826,7 +305,7 @@ async function loadTableData(table){
 
             tablePlayers.forEach(player => {
 
-                if(saved[player.id]){
+                if (saved[player.id]) {
 
                     tableData[player.id] = {
 
@@ -3855,7 +334,9 @@ async function loadTableData(table){
             tableDataCache[table] =
                 tableData;
 
-        }else{
+        }
+
+        else {
 
             tableDataCache[table] =
                 createEmptyTableData();
@@ -3867,15 +348,17 @@ async function loadTableData(table){
 
 
         console.log(
-            "Tabela carregada do Supabase:",
+            "✅ Tabela carregada:",
             table
         );
 
 
-    }catch(error){
+    }
+
+    catch (error) {
 
         console.error(
-            "Erro inesperado ao carregar " + table,
+            "Erro inesperado:",
             error
         );
 
@@ -3884,12 +367,11 @@ async function loadTableData(table){
 }
 
 
-
-/* =====================================================
+/* =========================================================
    CARREGAR AS DUAS TABELAS
-===================================================== */
+========================================================= */
 
-async function loadAllTables(){
+async function loadAllTables() {
 
     tableDataCache.rank =
         createEmptyTableData();
@@ -3909,23 +391,19 @@ async function loadAllTables(){
 }
 
 
-
-/* =====================================================
+/* =========================================================
    SALVAR TABELA NO SUPABASE
-===================================================== */
+========================================================= */
 
-async function saveTableData(table,data){
+async function saveTableData(table, data) {
 
     tableDataCache[table] =
         data;
 
 
-    try{
+    try {
 
-        const {
-            data: existing,
-            error: selectError
-        } =
+        const result =
             await supabaseClient
                 .from("bomba_petch")
                 .select("id")
@@ -3934,15 +412,15 @@ async function saveTableData(table,data){
                 .limit(1);
 
 
-        if(selectError){
+        if (result.error) {
 
             console.error(
                 "Erro ao verificar tabela:",
-                selectError
+                result.error
             );
 
             alert(
-                "❌ Não foi possível salvar no banco."
+                "❌ Não foi possível verificar o banco."
             );
 
             return false;
@@ -3950,28 +428,30 @@ async function saveTableData(table,data){
         }
 
 
-        if(
-            existing &&
-            existing.length > 0
-        ){
+        if (
+            result.data &&
+            result.data.length > 0
+        ) {
 
-            const { error } =
+            const update =
                 await supabaseClient
                     .from("bomba_petch")
                     .update({
-                        dados:data
+
+                        dados: data
+
                     })
                     .eq(
                         "id",
-                        existing[0].id
+                        result.data[0].id
                     );
 
 
-            if(error){
+            if (update.error) {
 
                 console.error(
-                    "Erro ao atualizar tabela:",
-                    error
+                    "Erro ao atualizar:",
+                    update.error
                 );
 
                 alert(
@@ -3982,27 +462,29 @@ async function saveTableData(table,data){
 
             }
 
-        }else{
+        }
 
-            const { error } =
+        else {
+
+            const insert =
                 await supabaseClient
                     .from("bomba_petch")
                     .insert({
 
-                        tipo:"tabela",
+                        tipo: "tabela",
 
-                        identificador:table,
+                        identificador: table,
 
-                        dados:data
+                        dados: data
 
                     });
 
 
-            if(error){
+            if (insert.error) {
 
                 console.error(
-                    "Erro ao inserir tabela:",
-                    error
+                    "Erro ao inserir:",
+                    insert.error
                 );
 
                 alert(
@@ -4017,17 +499,18 @@ async function saveTableData(table,data){
 
 
         console.log(
-            "Tabela salva no Supabase:",
+            "✅ Tabela salva:",
             table
         );
 
         return true;
 
+    }
 
-    }catch(error){
+    catch (error) {
 
         console.error(
-            "Erro inesperado ao salvar:",
+            "Erro:",
             error
         );
 
@@ -4041,16 +524,23 @@ async function saveTableData(table,data){
 
 }
 
-/* =====================================================
-   PONTUAÇÃO
-===================================================== */
 
-function calculatePoints(table,player){
+/* =========================================================
+   PONTUAÇÃO
+========================================================= */
+
+function calculatePoints(table, player) {
 
     const data =
         getTableData(table)[player];
 
-    if(table === "championship"){
+
+    if (!data) {
+        return 0;
+    }
+
+
+    if (table === "championship") {
 
         return (
             data.wins * 3
@@ -4061,6 +551,7 @@ function calculatePoints(table,player){
         );
 
     }
+
 
     return (
         data.wins * 2
@@ -4073,34 +564,11 @@ function calculatePoints(table,player){
 }
 
 
-/* =====================================================
-   SENHAS DOS PLAYERS
-===================================================== */
-
-function getPlayerPassword(player){
-
-    return localStorage.getItem(
-        "bomba-player-password-" + player
-    );
-
-}
-
-
-function savePlayerPassword(player,password){
-
-    localStorage.setItem(
-        "bomba-player-password-" + player,
-        password
-    );
-
-}
-
-
-/* =====================================================
+/* =========================================================
    RENDERIZAR TABELA
-===================================================== */
+========================================================= */
 
-function renderTable(table){
+function renderTable(table) {
 
     const body =
         document.getElementById(
@@ -4109,61 +577,57 @@ function renderTable(table){
                 : "championshipTableBody"
         );
 
-    if(!body) return;
+
+    if (!body) {
+        return;
+    }
+
 
     body.innerHTML = "";
 
+
     const data =
-        getTableData(
-            table === "rank"
-                ? "rank"
-                : "championship"
-        );
+        getTableData(table);
 
 
     const sorted =
-        [...tablePlayers].sort((a,b)=>{
+        [...tablePlayers].sort((a, b) => {
 
             const pointsA =
                 calculatePoints(
-                    table === "rank"
-                        ? "rank"
-                        : "championship",
+                    table,
                     a.id
                 );
 
+
             const pointsB =
                 calculatePoints(
-                    table === "rank"
-                        ? "rank"
-                        : "championship",
+                    table,
                     b.id
                 );
+
 
             return pointsB - pointsA;
 
         });
 
 
-    sorted.forEach((player,index)=>{
+    sorted.forEach((player, index) => {
 
         const playerData =
             data[player.id];
 
+
         const points =
             calculatePoints(
-                table === "rank"
-                    ? "rank"
-                    : "championship",
+                table,
                 player.id
             );
 
 
         const last =
             getLastChange(
-                table === "rank"
-                    ? "rank"
-                    : "championship",
+                table,
                 player.id
             );
 
@@ -4179,7 +643,7 @@ function renderTable(table){
             </td>
 
             <td class="player">
-                ${player.name}
+                ${escapeHTML(player.name)}
             </td>
 
             <td>
@@ -4205,7 +669,7 @@ function renderTable(table){
                     <button
                         class="table-btn edit-btn"
                         onclick="openTableEditor(
-                            '${table === "rank" ? "rank" : "championship"}',
+                            '${table}',
                             '${player.id}'
                         )">
 
@@ -4216,7 +680,7 @@ function renderTable(table){
                     <button
                         class="table-btn history-btn"
                         onclick="showHistory(
-                            '${table === "rank" ? "rank" : "championship"}',
+                            '${table}',
                             '${player.id}'
                         )">
 
@@ -4229,21 +693,33 @@ function renderTable(table){
                 ${
                     last
                     ?
-                    `<div class="last-change">
+                    `
+                    <div class="last-change">
+
                         Última alteração:
+
                         ${escapeHTML(last.editorName)}
+
                         •
+
                         ${escapeHTML(last.date)}
-                    </div>`
+
+                    </div>
+                    `
                     :
-                    `<div class="last-change">
+                    `
+                    <div class="last-change">
+
                         Nenhuma alteração registrada
-                    </div>`
+
+                    </div>
+                    `
                 }
 
             </td>
 
         `;
+
 
         body.appendChild(tr);
 
@@ -4252,11 +728,11 @@ function renderTable(table){
 }
 
 
-/* =====================================================
-   RENDERIZAR AS DUAS
-===================================================== */
+/* =========================================================
+   RENDERIZAR TUDO
+========================================================= */
 
-function renderAllTables(){
+function renderAllTables() {
 
     renderTable("rank");
 
@@ -4265,47 +741,124 @@ function renderAllTables(){
 }
 
 
-/* =====================================================
-   ABRIR EDITOR
-===================================================== */
+/* =========================================================
+   SENHAS DOS PLAYERS
+=========================================================
 
-function openTableEditor(table,target){
+   OBS:
+   A senha agora é mantida localmente para compatibilidade.
+   Os DADOS ficam no Supabase.
+
+========================================================= */
+
+function getPlayerPassword(player) {
+
+    return localStorage.getItem(
+        "bomba-player-password-" + player
+    );
+
+}
+
+
+function savePlayerPassword(player, password) {
+
+    localStorage.setItem(
+        "bomba-player-password-" + player,
+        password
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR EDITOR DA TABELA
+========================================================= */
+
+function openTableEditor(table, target) {
 
     editingTable = table;
+
     editingTarget = target;
 
-    document.getElementById(
-        "editTableModal"
-    ).classList.add("active");
+
+    const modal =
+        document.getElementById(
+            "editTableModal"
+        );
 
 
-    document.getElementById(
-        "editorSelect"
-    ).value = "";
-
-    document.getElementById(
-        "editorPassword"
-    ).value = "";
+    if (!modal) {
+        return;
+    }
 
 
-    document.getElementById(
-        "editorPasswordArea"
-    ).style.display = "none";
+    modal.classList.add("active");
 
 
-    document.getElementById(
-        "targetArea"
-    ).style.display = "none";
+    const editor =
+        document.getElementById(
+            "editorSelect"
+        );
 
 
-    document.getElementById(
-        "newPasswordNotice"
-    ).style.display = "none";
+    const password =
+        document.getElementById(
+            "editorPassword"
+        );
 
 
-    document.getElementById(
-        "targetSelect"
-    ).value = target;
+    const passwordArea =
+        document.getElementById(
+            "editorPasswordArea"
+        );
+
+
+    const targetArea =
+        document.getElementById(
+            "targetArea"
+        );
+
+
+    const notice =
+        document.getElementById(
+            "newPasswordNotice"
+        );
+
+
+    const targetSelect =
+        document.getElementById(
+            "targetSelect"
+        );
+
+
+    if (editor) {
+        editor.value = "";
+    }
+
+
+    if (password) {
+        password.value = "";
+    }
+
+
+    if (passwordArea) {
+        passwordArea.style.display = "none";
+    }
+
+
+    if (targetArea) {
+        targetArea.style.display = "none";
+    }
+
+
+    if (notice) {
+        notice.style.display = "none";
+    }
+
+
+    if (targetSelect) {
+        targetSelect.value = target;
+    }
 
 
     const data =
@@ -4316,9 +869,11 @@ function openTableEditor(table,target){
         "editWins"
     ).value = data.wins;
 
+
     document.getElementById(
         "editDraws"
     ).value = data.draws;
+
 
     document.getElementById(
         "editLosses"
@@ -4327,82 +882,113 @@ function openTableEditor(table,target){
 }
 
 
-/* =====================================================
-   ESCOLHER EDITOR
-===================================================== */
+/* =========================================================
+   SELEÇÃO DO EDITOR
+========================================================= */
 
-document
-.getElementById("editorSelect")
-.addEventListener(
-    "change",
-    function(){
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-        const editor =
-            this.value;
-
-        if(!editor){
-
+        const editorSelect =
             document.getElementById(
-                "editorPasswordArea"
-            ).style.display = "none";
-
-            document.getElementById(
-                "targetArea"
-            ).style.display = "none";
-
-            return;
-
-        }
-
-
-        document.getElementById(
-            "editorPasswordArea"
-        ).style.display = "block";
-
-        document.getElementById(
-            "targetArea"
-        ).style.display = "block";
-
-
-        const password =
-            getPlayerPassword(editor);
-
-
-        const notice =
-            document.getElementById(
-                "newPasswordNotice"
+                "editorSelect"
             );
 
 
-        if(password){
-
-            notice.style.display = "none";
-
-            document.getElementById(
-                "editorPassword"
-            ).placeholder =
-                "Digite sua senha";
-
-        }else{
-
-            notice.style.display = "block";
-
-            document.getElementById(
-                "editorPassword"
-            ).placeholder =
-                "Crie sua senha";
-
+        if (!editorSelect) {
+            return;
         }
+
+
+        editorSelect.addEventListener(
+            "change",
+            function () {
+
+                const editor =
+                    this.value;
+
+
+                const passwordArea =
+                    document.getElementById(
+                        "editorPasswordArea"
+                    );
+
+
+                const targetArea =
+                    document.getElementById(
+                        "targetArea"
+                    );
+
+
+                const notice =
+                    document.getElementById(
+                        "newPasswordNotice"
+                    );
+
+
+                const input =
+                    document.getElementById(
+                        "editorPassword"
+                    );
+
+
+                if (!editor) {
+
+                    passwordArea.style.display =
+                        "none";
+
+                    targetArea.style.display =
+                        "none";
+
+                    return;
+
+                }
+
+
+                passwordArea.style.display =
+                    "block";
+
+                targetArea.style.display =
+                    "block";
+
+
+                const savedPassword =
+                    getPlayerPassword(editor);
+
+
+                if (savedPassword) {
+
+                    notice.style.display =
+                        "none";
+
+                    input.placeholder =
+                        "Digite sua senha";
+
+                }
+
+                else {
+
+                    notice.style.display =
+                        "block";
+
+                    input.placeholder =
+                        "Crie sua senha";
+
+                }
+
+            }
+        );
 
     }
 );
 
 
-/* =====================================================
-   CONFIRMAR ALTERAÇÃO
-===================================================== */
+/* =========================================================
+   CONFIRMAR ALTERAÇÃO DA TABELA
+========================================================= */
 
-async function confirmTableEdit(){
+async function confirmTableEdit() {
 
     const editor =
         document.getElementById(
@@ -4410,7 +996,7 @@ async function confirmTableEdit(){
         ).value;
 
 
-    if(!editor){
+    if (!editor) {
 
         alert(
             "⚠️ Selecione quem está fazendo a alteração."
@@ -4427,7 +1013,7 @@ async function confirmTableEdit(){
         ).value;
 
 
-    if(!password){
+    if (!password) {
 
         alert(
             "⚠️ Digite sua senha."
@@ -4438,7 +1024,7 @@ async function confirmTableEdit(){
     }
 
 
-    if(password.length < 4){
+    if (password.length < 4) {
 
         alert(
             "⚠️ A senha precisa ter pelo menos 4 caracteres."
@@ -4453,34 +1039,26 @@ async function confirmTableEdit(){
         getPlayerPassword(editor);
 
 
-    if(!existingPassword){
+    if (!existingPassword) {
 
         savePlayerPassword(
             editor,
             password
         );
 
-    }else{
+    }
 
-        if(password !== existingPassword){
+    else if (
+        password !== existingPassword
+    ) {
 
-            alert(
-                "❌ Senha incorreta para " +
-                editor.toUpperCase() +
-                "."
-            );
+        alert(
+            "❌ Senha incorreta para " +
+            editor.toUpperCase() +
+            "."
+        );
 
-            document.getElementById(
-                "editorPassword"
-            ).value = "";
-
-            document.getElementById(
-                "editorPassword"
-            ).focus();
-
-            return;
-
-        }
+        return;
 
     }
 
@@ -4531,32 +1109,37 @@ async function confirmTableEdit(){
 
 
     const old =
-        data[target];
+        JSON.parse(
+            JSON.stringify(
+                data[target]
+            )
+        );
 
 
     data[target] = {
 
-        wins:wins,
-        draws:draws,
-        losses:losses
+        wins: wins,
+
+        draws: draws,
+
+        losses: losses
 
     };
 
 
-   const saved =
-    await saveTableData(
-        editingTable,
-        data
-    );
-
-if(!saved){
-
-    return;
-
-}
+    const saved =
+        await saveTableData(
+            editingTable,
+            data
+        );
 
 
-    addHistory(
+    if (!saved) {
+        return;
+    }
+
+
+    await addHistory(
         editingTable,
         target,
         editor,
@@ -4570,82 +1153,176 @@ if(!saved){
     renderAllTables();
 
 
-    if(!existingPassword){
+    alert(
+        existingPassword
+        ?
+        "✅ Alteração salva no site!\n\n" +
+        "Alterado por: " +
+        editor.toUpperCase()
+        :
+        "🔐 Senha criada!\n\n" +
+        "A alteração foi salva no site."
+    );
 
-        alert(
-            "🔐 Senha criada com sucesso!\n\n" +
-            "Sua senha será usada nas próximas alterações."
+}
+
+
+/* =========================================================
+   HISTÓRICO
+========================================================= */
+
+async function getHistory(table) {
+
+    try {
+
+        const result =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("dados")
+                .eq("tipo", "historico")
+                .eq("identificador", table)
+                .limit(1);
+
+
+        if (
+            result.error ||
+            !result.data ||
+            result.data.length === 0
+        ) {
+
+            return [];
+
+        }
+
+
+        return Array.isArray(
+            result.data[0].dados
+        )
+            ?
+            result.data[0].dados
+            :
+            [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Erro ao carregar histórico:",
+            error
         );
 
-    }else{
-
-        alert(
-            "✅ Alteração salva!\n\n" +
-            "Alterado por: " +
-            editor.toUpperCase()
-        );
+        return [];
 
     }
 
 }
 
 
-/* =====================================================
-   HISTÓRICO
-===================================================== */
+/* =========================================================
+   SALVAR HISTÓRICO
+========================================================= */
 
-function getHistory(table){
+async function saveHistory(
+    table,
+    history
+) {
 
-    return JSON.parse(
-        localStorage.getItem(
-            "bomba-history-" + table
-        ) || "[]"
-    );
+    try {
+
+        const existing =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("id")
+                .eq("tipo", "historico")
+                .eq("identificador", table)
+                .limit(1);
+
+
+        if (existing.error) {
+
+            console.error(
+                existing.error
+            );
+
+            return false;
+
+        }
+
+
+        if (
+            existing.data &&
+            existing.data.length > 0
+        ) {
+
+            const update =
+                await supabaseClient
+                    .from("bomba_petch")
+                    .update({
+
+                        dados: history
+
+                    })
+                    .eq(
+                        "id",
+                        existing.data[0].id
+                    );
+
+
+            return !update.error;
+
+        }
+
+
+        const insert =
+            await supabaseClient
+                .from("bomba_petch")
+                .insert({
+
+                    tipo: "historico",
+
+                    identificador: table,
+
+                    dados: history
+
+                });
+
+
+        return !insert.error;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        return false;
+
+    }
 
 }
 
 
-function saveHistory(table,history){
+/* =========================================================
+   ADICIONAR HISTÓRICO
+========================================================= */
 
-    localStorage.setItem(
-        "bomba-history-" + table,
-        JSON.stringify(history)
-    );
-
-}
-
-
-function addHistory(
+async function addHistory(
     table,
     target,
     editor,
     oldData,
     newData
-){
+) {
 
     const history =
-        getHistory(table);
+        await getHistory(table);
 
 
     const now =
         new Date();
-
-
-    const date =
-        now.toLocaleDateString(
-            "pt-BR"
-        );
-
-
-    const time =
-        now.toLocaleTimeString(
-            "pt-BR",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
 
 
     const targetPlayer =
@@ -4662,41 +1339,62 @@ function addHistory(
 
     history.unshift({
 
-        id:Date.now(),
+        id: Date.now(),
 
-        target:target,
+        target: target,
 
         targetName:
             targetPlayer
-            ? targetPlayer.name
-            : target,
+            ?
+            targetPlayer.name
+            :
+            target,
 
-        editor:editor,
+        editor: editor,
 
         editorName:
             editorPlayer
-            ? editorPlayer.name
-            : editor,
+            ?
+            editorPlayer.name
+            :
+            editor,
 
-        old:oldData,
+        old:
+            JSON.parse(
+                JSON.stringify(oldData)
+            ),
 
-        new:newData,
+        new:
+            JSON.parse(
+                JSON.stringify(newData)
+            ),
 
-        date:date,
+        date:
+            now.toLocaleDateString(
+                "pt-BR"
+            ),
 
-        time:time
+        time:
+            now.toLocaleTimeString(
+                "pt-BR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit"
+                }
+            )
 
     });
 
 
-    if(history.length > 200){
+    if (history.length > 200) {
 
         history.length = 200;
 
     }
 
 
-    saveHistory(
+    await saveHistory(
         table,
         history
     );
@@ -4704,33 +1402,83 @@ function addHistory(
 }
 
 
-/* =====================================================
+/* =========================================================
    ÚLTIMA ALTERAÇÃO
-===================================================== */
+========================================================= */
 
-function getLastChange(table,target){
+function getLastChange(table, target) {
+
+    /*
+       Como o histórico agora está no Supabase,
+       essa função usa o cache carregado na inicialização.
+    */
 
     const history =
-        getHistory(table);
+        window.bombaHistoryCache &&
+        window.bombaHistoryCache[table]
+        ?
+        window.bombaHistoryCache[table]
+        :
+        [];
 
 
-    return history.find(
-        item =>
-            item.target === target
-    ) || null;
+    return (
+        history.find(
+            item =>
+                item.target === target
+        )
+        ||
+        null
+    );
 
 }
 
 
-/* =====================================================
-   MOSTRAR HISTÓRICO
-===================================================== */
+/* =========================================================
+   CARREGAR HISTÓRICOS
+========================================================= */
 
-function showHistory(table,target){
+async function loadAllHistories() {
+
+    window.bombaHistoryCache = {
+
+        rank: [],
+
+        championship: []
+
+    };
+
+
+    for (
+        const table of [
+            "rank",
+            "championship"
+        ]
+    ) {
+
+        window.bombaHistoryCache[table] =
+            await getHistory(table);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOSTRAR HISTÓRICO
+========================================================= */
+
+async function showHistory(
+    table,
+    target
+) {
 
     const history =
-        getHistory(table)
-        .filter(
+        await getHistory(table);
+
+
+    const filtered =
+        history.filter(
             item =>
                 item.target === target
         );
@@ -4742,14 +1490,9 @@ function showHistory(table,target){
         );
 
 
-    document.getElementById(
-        "historyTitle"
-    ).textContent =
-        "📜 HISTÓRICO — " +
-        (
-            player
-            ? player.name
-            : target
+    const title =
+        document.getElementById(
+            "historyTitle"
         );
 
 
@@ -4759,10 +1502,30 @@ function showHistory(table,target){
         );
 
 
+    if (title) {
+
+        title.textContent =
+            "📜 HISTÓRICO — " +
+            (
+                player
+                ?
+                player.name
+                :
+                target
+            );
+
+    }
+
+
+    if (!container) {
+        return;
+    }
+
+
     container.innerHTML = "";
 
 
-    if(history.length === 0){
+    if (filtered.length === 0) {
 
         container.innerHTML = `
 
@@ -4775,9 +1538,11 @@ function showHistory(table,target){
 
         `;
 
-    }else{
+    }
 
-        history.forEach(item=>{
+    else {
+
+        filtered.forEach(item => {
 
             const oldPoints =
                 table === "championship"
@@ -4824,6 +1589,7 @@ function showHistory(table,target){
                     "div"
                 );
 
+
             div.className =
                 "history-item";
 
@@ -4834,15 +1600,23 @@ function showHistory(table,target){
 
                     <span class="history-editor">
 
-                        ${escapeHTML(item.editorName)}
+                        ${escapeHTML(
+                            item.editorName
+                        )}
 
                     </span>
 
                     <span class="history-date">
 
-                        ${escapeHTML(item.date)}
+                        ${escapeHTML(
+                            item.date
+                        )}
+
                         •
-                        ${escapeHTML(item.time)}
+
+                        ${escapeHTML(
+                            item.time
+                        )}
 
                     </span>
 
@@ -4852,8 +1626,13 @@ function showHistory(table,target){
                 <div class="history-target">
 
                     Alterou os dados de
+
                     <strong>
-                        ${escapeHTML(item.targetName)}
+
+                        ${escapeHTML(
+                            item.targetName
+                        )}
+
                     </strong>
 
                 </div>
@@ -4862,21 +1641,47 @@ function showHistory(table,target){
                 <div class="history-change">
 
                     Antes:
+
                     <strong>
+
                         ${item.old.wins} V
-                        • ${item.old.draws} E
-                        • ${item.old.losses} D
-                        • ${oldPoints} PT
+
+                        •
+
+                        ${item.old.draws} E
+
+                        •
+
+                        ${item.old.losses} D
+
+                        •
+
+                        ${oldPoints} PT
+
                     </strong>
+
 
                     <br><br>
 
+
                     Depois:
+
                     <strong>
+
                         ${item.new.wins} V
-                        • ${item.new.draws} E
-                        • ${item.new.losses} D
-                        • ${newPoints} PT
+
+                        •
+
+                        ${item.new.draws} E
+
+                        •
+
+                        ${item.new.losses} D
+
+                        •
+
+                        ${newPoints} PT
+
                     </strong>
 
                 </div>
@@ -4891,31 +1696,66 @@ function showHistory(table,target){
     }
 
 
-    document.getElementById(
-        "historyModal"
-    ).classList.add("active");
+    const modal =
+        document.getElementById(
+            "historyModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.add(
+            "active"
+        );
+
+    }
 
 }
 
 
-/* =====================================================
-   FECHAR MODAIS DAS TABELAS
-===================================================== */
+/* =========================================================
+   FECHAR HISTÓRICO
+========================================================= */
 
-function closeHistoryModal(){
+function closeHistoryModal() {
 
-    document.getElementById(
-        "historyModal"
-    ).classList.remove("active");
+    const modal =
+        document.getElementById(
+            "historyModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "active"
+        );
+
+    }
 
 }
 
 
-function closeEditTableModal(){
+/* =========================================================
+   FECHAR EDITOR
+========================================================= */
 
-    document.getElementById(
-        "editTableModal"
-    ).classList.remove("active");
+function closeEditTableModal() {
+
+    const modal =
+        document.getElementById(
+            "editTableModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "active"
+        );
+
+    }
+
 
     editingTable = null;
 
@@ -4924,101 +1764,497 @@ function closeEditTableModal(){
 }
 
 
-/* =====================================================
-   CRIAR TIMES
-===================================================== */
+/* =========================================================
+   ================================================
+   SISTEMA DOS ELENCOS
+   ================================================
+========================================================= */
 
-owners.forEach(owner => {
 
-    const container =
-        document.getElementById(
-            "teams-" + owner
-        );
+/* =========================================================
+   ID DO ELENCO
+========================================================= */
 
-    for(let i=1;i<=3;i++){
+function getTeamDatabaseId(id) {
 
-        const id =
-            owner + "-time-" + i;
+    return "squad-" + id;
 
-        const card =
-            document.createElement("div");
+}
 
-        card.className =
-            "team-card";
 
-        card.innerHTML = `
+/* =========================================================
+   CARREGAR ELENCO DO SUPABASE
+========================================================= */
 
-            <div class="team-head">
+async function loadSquad(id) {
 
-                <h4>
-                    ⚽ TIME ${i}
-                </h4>
+    try {
 
-                <p>
-                    22 jogadores
-                </p>
+        const result =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("dados")
+                .eq("tipo", "elenco")
+                .eq(
+                    "identificador",
+                    getTeamDatabaseId(id)
+                )
+                .limit(1);
 
-            </div>
 
-            <div class="team-body">
+        if (result.error) {
 
-                <button
-                    onclick="accessTeam('${id}')">
+            console.error(
+                "Erro ao carregar elenco:",
+                result.error
+            );
 
-                    🔒 ACESSAR ELENCO
+            return {};
 
-                </button>
+        }
 
-                <div
-                    class="saved-count"
-                    id="count-${id}">
 
-                    ${getCount(id)} / 22 jogadores
+        if (
+            result.data &&
+            result.data.length > 0 &&
+            result.data[0].dados
+        ) {
 
-                </div>
+            squadDataCache[id] =
+                result.data[0].dados;
 
-                <div
-                    class="lock-status locked"
-                    id="status-${id}">
+            return result.data[0].dados;
 
-                    🔒 BLOQUEADO
+        }
 
-                </div>
 
-            </div>
+        squadDataCache[id] = {};
 
-        `;
-
-        container.appendChild(card);
-
-        updateTeamStatus(id);
+        return {};
 
     }
 
-});
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        return {};
+
+    }
+
+}
 
 
-/* =====================================================
+/* =========================================================
+   SALVAR ELENCO NO SUPABASE
+========================================================= */
+
+async function saveSquadToDatabase(
+    id,
+    data
+) {
+
+    try {
+
+        const existing =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("id")
+                .eq("tipo", "elenco")
+                .eq(
+                    "identificador",
+                    getTeamDatabaseId(id)
+                )
+                .limit(1);
+
+
+        if (existing.error) {
+
+            console.error(
+                existing.error
+            );
+
+            alert(
+                "❌ Não foi possível verificar o elenco."
+            );
+
+            return false;
+
+        }
+
+
+        if (
+            existing.data &&
+            existing.data.length > 0
+        ) {
+
+            const update =
+                await supabaseClient
+                    .from("bomba_petch")
+                    .update({
+
+                        dados: data
+
+                    })
+                    .eq(
+                        "id",
+                        existing.data[0].id
+                    );
+
+
+            if (update.error) {
+
+                console.error(
+                    update.error
+                );
+
+                alert(
+                    "❌ Erro ao salvar elenco."
+                );
+
+                return false;
+
+            }
+
+        }
+
+        else {
+
+            const insert =
+                await supabaseClient
+                    .from("bomba_petch")
+                    .insert({
+
+                        tipo: "elenco",
+
+                        identificador:
+                            getTeamDatabaseId(id),
+
+                        dados: data
+
+                    });
+
+
+            if (insert.error) {
+
+                console.error(
+                    insert.error
+                );
+
+                alert(
+                    "❌ Erro ao criar elenco."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        squadDataCache[id] =
+            data;
+
+
+        console.log(
+            "✅ Elenco salvo no Supabase:",
+            id
+        );
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        alert(
+            "❌ Erro de conexão com o banco."
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTAR JOGADORES
+========================================================= */
+
+function countSquadPlayers(data) {
+
+    if (!data) {
+        return 0;
+    }
+
+
+    return Object.values(data)
+        .filter(
+            value =>
+                String(value || "").trim() !== ""
+        )
+        .length;
+
+}
+
+
+/* =========================================================
+   GET COUNT
+========================================================= */
+
+function getCount(id) {
+
+    if (squadDataCache[id]) {
+
+        return countSquadPlayers(
+            squadDataCache[id]
+        );
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================================================
+   CRIAR TIMES
+========================================================= */
+
+function createTeams() {
+
+    const ownerList =
+        Array.isArray(window.owners)
+        ?
+        window.owners
+        :
+        defaultOwners;
+
+
+    ownerList.forEach(owner => {
+
+        const container =
+            document.getElementById(
+                "teams-" + owner
+            );
+
+
+        if (!container) {
+            return;
+        }
+
+
+        /*
+           Evita duplicar os times
+        */
+
+        if (
+            container.dataset.created === "true"
+        ) {
+            return;
+        }
+
+
+        container.dataset.created = "true";
+
+
+        for (
+            let i = 1;
+            i <= 3;
+            i++
+        ) {
+
+            const id =
+                owner +
+                "-time-" +
+                i;
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "team-card";
+
+
+            card.innerHTML = `
+
+                <div class="team-head">
+
+                    <h4>
+                        ⚽ TIME ${i}
+                    </h4>
+
+                    <p>
+                        22 jogadores
+                    </p>
+
+                </div>
+
+
+                <div class="team-body">
+
+                    <button
+                        onclick="accessTeam('${id}')">
+
+                        🔒 ACESSAR ELENCO
+
+                    </button>
+
+
+                    <div
+                        class="saved-count"
+                        id="count-${id}">
+
+                        0 / 22 jogadores
+
+                    </div>
+
+
+                    <div
+                        class="lock-status locked"
+                        id="status-${id}">
+
+                        🔒 BLOQUEADO
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(
+                card
+            );
+
+
+            updateTeamStatus(
+                id
+            );
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   STATUS DO TIME
+========================================================= */
+
+async function updateTeamStatus(id) {
+
+    const count =
+        document.getElementById(
+            "count-" + id
+        );
+
+
+    const status =
+        document.getElementById(
+            "status-" + id
+        );
+
+
+    const data =
+        await loadSquad(id);
+
+
+    const total =
+        countSquadPlayers(data);
+
+
+    if (count) {
+
+        count.textContent =
+            total +
+            " / 22 jogadores";
+
+    }
+
+
+    if (status) {
+
+        status.className =
+            "lock-status locked";
+
+        status.textContent =
+            "🔒 BLOQUEADO";
+
+    }
+
+}
+
+
+/* =========================================================
+   SENHA DOS ELENCOS
+========================================================= */
+
+function getPassword(id) {
+
+    return localStorage.getItem(
+        "bomba-password-" + id
+    );
+
+}
+
+
+function savePassword(
+    id,
+    password
+) {
+
+    localStorage.setItem(
+        "bomba-password-" + id,
+        password
+    );
+
+}
+
+
+/* =========================================================
    ACESSAR ELENCO
-===================================================== */
+========================================================= */
 
-function accessTeam(id){
+function accessTeam(id) {
 
     pendingTeam = id;
 
-    if(!getPassword(id)){
 
-        passwordMode = "create";
+    if (!getPassword(id)) {
+
+        passwordMode =
+            "create";
+
 
         openPasswordModal(
             "🔐 CRIAR SENHA",
             "Crie uma senha para proteger este elenco."
         );
 
+
         return;
+
     }
 
-    passwordMode = "unlock";
+
+    passwordMode =
+        "unlock";
+
 
     openPasswordModal(
         "🔒 ELENCO BLOQUEADO",
@@ -5028,43 +2264,102 @@ function accessTeam(id){
 }
 
 
-/* =====================================================
-   MODAL SENHA
-===================================================== */
+/* =========================================================
+   MODAL DE SENHA
+========================================================= */
 
-function openPasswordModal(title,message){
+function openPasswordModal(
+    title,
+    message
+) {
 
-    document.getElementById(
-        "passwordTitle"
-    ).textContent = title;
+    const titleElement =
+        document.getElementById(
+            "passwordTitle"
+        );
 
-    document.getElementById(
-        "passwordMessage"
-    ).textContent = message;
+
+    const messageElement =
+        document.getElementById(
+            "passwordMessage"
+        );
+
 
     const input =
         document.getElementById(
             "passwordInput"
         );
 
-    input.value = "";
 
-    document.getElementById(
-        "passwordModal"
-    ).classList.add("active");
+    const modal =
+        document.getElementById(
+            "passwordModal"
+        );
 
-    setTimeout(()=>{
-        input.focus();
-    },100);
+
+    if (titleElement) {
+
+        titleElement.textContent =
+            title;
+
+    }
+
+
+    if (messageElement) {
+
+        messageElement.textContent =
+            message;
+
+    }
+
+
+    if (input) {
+
+        input.value = "";
+
+    }
+
+
+    if (modal) {
+
+        modal.classList.add(
+            "active"
+        );
+
+    }
+
+
+    setTimeout(() => {
+
+        if (input) {
+            input.focus();
+        }
+
+    }, 100);
 
 }
 
 
-function closePasswordModal(){
+/* =========================================================
+   FECHAR MODAL SENHA
+========================================================= */
 
-    document.getElementById(
-        "passwordModal"
-    ).classList.remove("active");
+function closePasswordModal() {
+
+    const modal =
+        document.getElementById(
+            "passwordModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "active"
+        );
+
+    }
+
 
     pendingTeam = null;
 
@@ -5077,21 +2372,28 @@ function closePasswordModal(){
 }
 
 
-/* =====================================================
-   SENHA ELENCO
-===================================================== */
+/* =========================================================
+   CONFIRMAR SENHA
+========================================================= */
 
-function submitPassword(){
+function submitPassword() {
 
     const input =
         document.getElementById(
             "passwordInput"
         );
 
+
+    if (!input) {
+        return;
+    }
+
+
     const password =
         input.value;
 
-    if(!password){
+
+    if (!password) {
 
         alert(
             "⚠️ Digite uma senha."
@@ -5102,9 +2404,9 @@ function submitPassword(){
     }
 
 
-    if(passwordMode === "create"){
+    if (passwordMode === "create") {
 
-        if(password.length < 4){
+        if (password.length < 4) {
 
             alert(
                 "⚠️ A senha precisa ter pelo menos 4 caracteres."
@@ -5133,18 +2435,21 @@ function submitPassword(){
             getTeamTitle(team)
         );
 
+
         return;
 
     }
 
 
-    if(passwordMode === "unlock"){
+    if (passwordMode === "unlock") {
 
         const saved =
-            getPassword(pendingTeam);
+            getPassword(
+                pendingTeam
+            );
 
 
-        if(password === saved){
+        if (password === saved) {
 
             const team =
                 pendingTeam;
@@ -5158,11 +2463,14 @@ function submitPassword(){
                 getTeamTitle(team)
             );
 
-        }else{
+        }
+
+        else {
 
             alert(
                 "❌ Senha incorreta."
             );
+
 
             input.value = "";
 
@@ -5175,94 +2483,132 @@ function submitPassword(){
 }
 
 
-function getPassword(id){
+/* =========================================================
+   TÍTULO DO TIME
+========================================================= */
 
-    return localStorage.getItem(
-        "bomba-password-" + id
-    );
-
-}
-
-
-function savePassword(id,password){
-
-    localStorage.setItem(
-        "bomba-password-" + id,
-        password
-    );
-
-}
-
-
-/* =====================================================
-   ELENCOS
-===================================================== */
-
-function getTeamTitle(id){
+function getTeamTitle(id) {
 
     const parts =
         id.split("-");
 
-    return parts[0].toUpperCase()
-        + " — TIME "
-        + parts[2];
+
+    return (
+        parts[0].toUpperCase()
+        +
+        " — TIME "
+        +
+        parts[2]
+    );
 
 }
 
 
-function openSquad(id,title){
+/* =========================================================
+   ABRIR ELENCO
+========================================================= */
+
+async function openSquad(
+    id,
+    title
+) {
 
     currentTeam = id;
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "⚽ " + title;
 
-    document.getElementById(
-        "squadModal"
-    ).classList.add("active");
+    const titleElement =
+        document.getElementById(
+            "modalTitle"
+        );
 
-    createPlayerFields();
+
+    if (titleElement) {
+
+        titleElement.textContent =
+            "⚽ " + title;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "squadModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.add(
+            "active"
+        );
+
+    }
+
+
+    await createPlayerFields();
 
 }
 
 
-function closeSquad(){
+/* =========================================================
+   FECHAR ELENCO
+========================================================= */
 
-    document.getElementById(
-        "squadModal"
-    ).classList.remove("active");
+function closeSquad() {
+
+    const modal =
+        document.getElementById(
+            "squadModal"
+        );
+
+
+    if (modal) {
+
+        modal.classList.remove(
+            "active"
+        );
+
+    }
+
 
     currentTeam = null;
 
 }
 
 
-function createPlayerFields(){
+/* =========================================================
+   CRIAR CAMPOS DOS JOGADORES
+========================================================= */
+
+async function createPlayerFields() {
 
     const container =
         document.getElementById(
             "positions"
         );
 
+
+    if (!container) {
+        return;
+    }
+
+
     container.innerHTML = "";
 
 
     const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "bomba-" + currentTeam
-            ) || "{}"
+        await loadSquad(
+            currentTeam
         );
 
 
-    positions.forEach(position=>{
+    positions.forEach(position => {
 
         const section =
             document.createElement(
                 "div"
             );
+
 
         section.className =
             "position-section";
@@ -5271,14 +2617,16 @@ function createPlayerFields(){
         let inputs = "";
 
 
-        for(
-            let i=0;
-            i<position.quantidade;
+        for (
+            let i = 0;
+            i < position.quantidade;
             i++
-        ){
+        ) {
 
             const key =
-                position.id + "-" + i;
+                position.id +
+                "-" +
+                i;
 
 
             const value =
@@ -5288,12 +2636,19 @@ function createPlayerFields(){
             inputs += `
 
                 <input
+
                     type="text"
+
                     class="player-input"
+
                     id="player-${key}"
+
                     value="${escapeHTML(value)}"
+
                     placeholder="Digite o nome do jogador"
+
                     maxlength="60"
+
                 >
 
             `;
@@ -5306,14 +2661,18 @@ function createPlayerFields(){
             <div class="position-title">
 
                 <h4>
-                    ${position.nome}
+                    ${escapeHTML(
+                        position.nome
+                    )}
                 </h4>
 
                 <span>
-                    ${position.quantidade} jogadores
+                    ${position.quantidade}
+                    jogadores
                 </span>
 
             </div>
+
 
             <div class="name-grid">
 
@@ -5324,30 +2683,47 @@ function createPlayerFields(){
         `;
 
 
-        container.appendChild(section);
+        container.appendChild(
+            section
+        );
 
     });
 
 }
 
 
-function saveSquad(){
+/* =========================================================
+   SALVAR ELENCO
+========================================================= */
 
-    if(!currentTeam) return;
+async function saveSquad() {
+
+    if (!currentTeam) {
+
+        alert(
+            "❌ Nenhum elenco aberto."
+        );
+
+        return;
+
+    }
+
 
     const data = {};
 
 
-    positions.forEach(position=>{
+    positions.forEach(position => {
 
-        for(
-            let i=0;
-            i<position.quantidade;
+        for (
+            let i = 0;
+            i < position.quantidade;
             i++
-        ){
+        ) {
 
             const key =
-                position.id + "-" + i;
+                position.id +
+                "-" +
+                i;
 
 
             const input =
@@ -5356,1451 +2732,155 @@ function saveSquad(){
                 );
 
 
-            data[key] =
-                input.value.trim();
+            if (input) {
+
+                data[key] =
+                    input.value.trim();
+
+            }
 
         }
 
     });
 
 
-    localStorage.setItem(
-        "bomba-" + currentTeam,
-        JSON.stringify(data)
-    );
-
-
-    updateCount();
-
-
-    alert(
-        "✅ Elenco salvo!"
-    );
-
-}
-
-
-function clearSquad(){
-
-    if(!currentTeam) return;
-
-
-    if(!confirm(
-        "Deseja apagar todos os jogadores deste elenco?"
-    )) return;
-
-
-    localStorage.removeItem(
-        "bomba-" + currentTeam
-    );
-
-
-    createPlayerFields();
-
-    updateCount();
-
-}
-
-
-function lockCurrentTeam(){
-
-    saveSquad();
-
-
-    const team =
-        currentTeam;
-
-
-    setTimeout(()=>{
-
-        closeSquad();
-
-        updateTeamStatus(team);
-
-    },100);
-
-}
-
-
-function getCount(id){
-
     const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "bomba-" + id
-            ) || "{}"
+        await saveSquadToDatabase(
+            currentTeam,
+            data
         );
 
 
-    return Object.values(saved)
-        .filter(
-            v =>
-                typeof v === "string" &&
-                v.trim() !== ""
-        )
-        .length;
-
-}
+    if (!saved) {
+        return;
+    }
 
 
-function updateCount(){
+    const total =
+        countSquadPlayers(
+            data
+        );
 
-    if(!currentTeam) return;
 
-
-    const element =
+    const count =
         document.getElementById(
-            "count-" + currentTeam
+            "count-" +
+            currentTeam
         );
 
 
-    if(element){
+    if (count) {
 
-        element.textContent =
-            getCount(currentTeam)
-            +
+        count.textContent =
+            total +
             " / 22 jogadores";
 
     }
 
-}
-
-
-function updateTeamStatus(id){
-
-    const status =
-        document.getElementById(
-            "status-" + id
-        );
-
-
-    if(!status) return;
-
-
-    if(getPassword(id)){
-
-        status.className =
-            "lock-status locked";
-
-        status.textContent =
-            "🔒 PROTEGIDO POR SENHA";
-
-    }else{
-
-        status.className =
-            "lock-status unlocked";
-
-        status.textContent =
-            "🔐 SENHA AINDA NÃO DEFINIDA";
-
-    }
-
-}
-
-
-/* =====================================================
-   LISTAS PRIVADAS
-===================================================== */
-
-function accessList(player){
-
-    pendingList = player;
-
-
-    const password =
-        getListPassword(player);
-
-
-    if(!password){
-
-        listPasswordMode = "create";
-
-
-        openListPasswordModal(
-            "🔐 CRIAR SENHA DA LISTA",
-            "Crie uma senha particular para sua lista de jogadores."
-        );
-
-    }else{
-
-        listPasswordMode = "unlock";
-
-
-        openListPasswordModal(
-            "🔒 LISTA BLOQUEADA",
-            "Digite sua senha para visualizar sua lista."
-        );
-
-    }
-
-}
-
-
-function openListPasswordModal(title,message){
-
-    document.getElementById(
-        "passwordTitle"
-    ).textContent = title;
-
-
-    document.getElementById(
-        "passwordMessage"
-    ).textContent = message;
-
-
-    document.getElementById(
-        "passwordInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "passwordModal"
-    ).classList.add("active");
-
-
-    setTimeout(()=>{
-
-        document.getElementById(
-            "passwordInput"
-        ).focus();
-
-    },100);
-
-}
-
-
-function submitListPassword(){
-
-    const input =
-        document.getElementById(
-            "passwordInput"
-        );
-
-
-    const password =
-        input.value;
-
-
-    if(!password){
-
-        alert(
-            "⚠️ Digite uma senha."
-        );
-
-        return;
-
-    }
-
-
-    if(listPasswordMode === "create"){
-
-        if(password.length < 4){
-
-            alert(
-                "⚠️ A senha precisa ter pelo menos 4 caracteres."
-            );
-
-            return;
-
-        }
-
-
-        saveListPassword(
-            pendingList,
-            password
-        );
-
-
-        const player =
-            pendingList;
-
-
-        closePasswordModal();
-
-
-        openList(player);
-
-        return;
-
-    }
-
-
-    if(listPasswordMode === "unlock"){
-
-        if(
-            password ===
-            getListPassword(pendingList)
-        ){
-
-            const player =
-                pendingList;
-
-
-            closePasswordModal();
-
-
-            openList(player);
-
-        }else{
-
-            alert(
-                "❌ Senha incorreta."
-            );
-
-            input.value = "";
-
-            input.focus();
-
-        }
-
-    }
-
-}
-
-
-function getListPassword(player){
-
-    return localStorage.getItem(
-        "bomba-list-password-" + player
-    );
-
-}
-
-
-function saveListPassword(player,password){
-
-    localStorage.setItem(
-        "bomba-list-password-" + player,
-        password
-    );
-
-}
-
-
-function openList(player){
-
-    currentList = player;
-
-
-    document.getElementById(
-        "listModalTitle"
-    ).textContent =
-        "📝 LISTA — "
-        +
-        player.toUpperCase();
-
-
-    document.getElementById(
-        "listModal"
-    ).classList.add("active");
-
-
-    createListFields();
-
-}
-
-
-function closeList(){
-
-    document.getElementById(
-        "listModal"
-    ).classList.remove("active");
-
-
-    currentList = null;
-
-}
-
-
-function createListFields(){
-
-    const container =
-        document.getElementById(
-            "listCategories"
-        );
-
-
-    container.innerHTML = "";
-
-
-    const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "bomba-list-" + currentList
-            ) || "{}"
-        );
-
-
-    listCategories.forEach(category=>{
-
-        const box =
-            document.createElement(
-                "div"
-            );
-
-
-        box.className =
-            "list-category";
-
-
-        const value =
-            saved[category.id] || "";
-
-
-        box.innerHTML = `
-
-            <div class="list-category-title">
-
-                <h4>
-                    ${category.nome}
-                </h4>
-
-                <span>
-                    LISTA PRIVADA
-                </span>
-
-            </div>
-
-            <textarea
-                class="player-notes"
-                id="list-${category.id}"
-                placeholder="Digite os jogadores que você quer lembrar..."
-            >${escapeHTML(value)}</textarea>
-
-        `;
-
-
-        container.appendChild(box);
-
-    });
-
-}
-
-
-function saveList(){
-
-    if(!currentList) return;
-
-
-    const data = {};
-
-
-    listCategories.forEach(category=>{
-
-        const field =
-            document.getElementById(
-                "list-" + category.id
-            );
-
-
-        data[category.id] =
-            field.value;
-
-    });
-
-
-    localStorage.setItem(
-        "bomba-list-" + currentList,
-        JSON.stringify(data)
-    );
-
 
     alert(
-        "✅ Lista de jogadores salva!"
+        "✅ ELENCO SALVO!\n\n" +
+        "Os jogadores agora estão salvos no banco de dados do site."
     );
 
 }
 
 
-function clearList(){
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
 
-    if(!currentList) return;
+async function initializeBombaPetch() {
 
-
-    if(!confirm(
-        "Deseja apagar toda a lista deste jogador?"
-    )) return;
-
-
-    localStorage.removeItem(
-        "bomba-list-" + currentList
+    console.log(
+        "🚀 Iniciando BOMBA PETCH..."
     );
 
 
-    createListFields();
+    /*
+       Primeiro carrega os dados do banco.
+    */
 
-}
-
-
-function lockCurrentList(){
-
-    saveList();
+    await loadAllTables();
 
 
-    const player =
-        currentList;
+    /*
+       Carrega histórico.
+    */
+
+    await loadAllHistories();
 
 
-    setTimeout(()=>{
+    /*
+       Cria os times.
+    */
 
-        closeList();
-
-        updateListStatus(player);
-
-    },100);
-
-}
+    createTeams();
 
 
-function updateListStatus(player){
+    /*
+       Atualiza os times.
+    */
 
-    const element =
-        document.getElementById(
-            "list-status-" + player
-        );
-
-
-    if(!element) return;
-
-
-    if(getListPassword(player)){
-
-        element.className =
-            "list-status list-locked";
+    const ownerList =
+        Array.isArray(window.owners)
+        ?
+        window.owners
+        :
+        defaultOwners;
 
 
-        element.textContent =
-            "🔒 LISTA PROTEGIDA";
+    for (const owner of ownerList) {
 
-    }
+        for (
+            let i = 1;
+            i <= 3;
+            i++
+        ) {
 
-}
-
-
-/* =====================================================
-   ESCAPAR HTML
-===================================================== */
-
-function escapeHTML(text){
-
-    return String(text)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
-   BOTÃO CONTINUAR
-===================================================== */
-
-document
-.getElementById("passwordContinue")
-.addEventListener(
-    "click",
-    function(){
-
-        if(listPasswordMode){
-
-            submitListPassword();
-
-        }else{
-
-            submitPassword();
+            await updateTeamStatus(
+                owner +
+                "-time-" +
+                i
+            );
 
         }
 
     }
-);
 
 
-/* =====================================================
-   ENTER NAS SENHAS
-===================================================== */
+    /*
+       Renderiza novamente.
+    */
 
-document
-.getElementById("passwordInput")
-.addEventListener(
-    "keydown",
-    function(event){
+    renderAllTables();
 
-        if(event.key === "Enter"){
 
-            if(listPasswordMode){
-
-                submitListPassword();
-
-            }else{
-
-                submitPassword();
-
-            }
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   FECHAR MODAIS CLICANDO FORA
-===================================================== */
-
-document
-.getElementById("passwordModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closePasswordModal();
-
-        }
-
-    }
-);
-
-
-document
-.getElementById("squadModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closeSquad();
-
-        }
-
-    }
-);
-
-
-document
-.getElementById("listModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closeList();
-
-        }
-
-    }
-);
-
-
-document
-.getElementById("editTableModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closeEditTableModal();
-
-        }
-
-    }
-);
-
-
-document
-.getElementById("historyModal")
-.addEventListener(
-    "click",
-    function(event){
-
-        if(event.target === this){
-
-            closeHistoryModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ESC FECHA MODAIS
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            closePasswordModal();
-
-            closeSquad();
-
-            closeList();
-
-            closeEditTableModal();
-
-            closeHistoryModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   STATUS DAS LISTAS
-===================================================== */
-
-owners.forEach(player=>{
-
-    updateListStatus(player);
-
-});
-
-
-/* =====================================================
-   INICIALIZAR TABELAS
-===================================================== */
-
-loadAllTables();
-
-</script>
-<script>
-function abrirRegistroJogos(){
-
-    const area = document.getElementById("registroJogos");
-
-    if(area.classList.contains("aberto")){
-        area.classList.remove("aberto");
-    }else{
-        area.classList.add("aberto");
-
-        setTimeout(function(){
-            area.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
-        },100);
-    }
-}
-
-<!-- =====================================================
-     REGISTRO DE JOGOS - BOMBA PETCH
-===================================================== -->
-
-<section id="registro-jogos">
-
-    <div class="jogos-container">
-
-        <div class="jogos-header">
-            <small>HISTÓRICO DE PARTIDAS</small>
-            <h2>REGISTRO DE JOGOS</h2>
-            <p>Registre os confrontos e placares da temporada.</p>
-        </div>
-
-        <div id="lista-jogos">
-
-            <!-- JOGO 01 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 01</div>
-
-                <div class="confronto">
-                    <input
-                        type="text"
-                        class="time"
-                        placeholder="TIME 1"
-                    >
-
-                    <input
-                        type="text"
-                        class="placar"
-                        placeholder="0 - 0"
-                    >
-
-                    <input
-                        type="text"
-                        class="time"
-                        placeholder="TIME 2"
-                    >
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 02 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 02</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 03 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 03</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 04 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 04</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 05 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 05</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 06 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 06</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 07 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 07</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 08 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 08</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 09 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 09</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 10 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 10</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 11 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 11</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 12 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 12</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 13 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 13</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 14 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 14</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 15 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 15</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 16 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 16</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 17 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 17</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-            <!-- JOGO 18 -->
-            <div class="jogo-card">
-                <div class="jogo-titulo">JOGO 18</div>
-
-                <div class="confronto">
-                    <input type="text" class="time" placeholder="TIME 1">
-                    <input type="text" class="placar" placeholder="0 - 0">
-                    <input type="text" class="time" placeholder="TIME 2">
-                </div>
-
-                <div class="linha-x">
-                    --------------------- X ---------------------
-                </div>
-            </div>
-
-        </div>
-
-        <div class="botoes-registro">
-
-            <button onclick="salvarJogos()" class="btn-salvar">
-                💾 SALVAR REGISTRO
-            </button>
-
-            <button onclick="limparJogos()" class="btn-limpar">
-                🗑️ LIMPAR REGISTRO
-            </button>
-
-        </div>
-
-        <div id="mensagem-salvo"></div>
-
-    </div>
-
-</section>
-
-
-<style>
-
-/* =====================================================
-   REGISTRO DE JOGOS
-===================================================== */
-
-#registro-jogos {
-    width: 100%;
-    padding: 80px 20px;
-}
-
-#registro-jogos .jogos-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
-}
-
-#registro-jogos .jogos-header {
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-#registro-jogos .jogos-header small {
-    display: block;
-    color: #ff7300;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-}
-
-#registro-jogos .jogos-header h2 {
-    margin: 0;
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-#registro-jogos .jogos-header p {
-    margin-top: 12px;
-    opacity: 0.7;
-}
-
-/* CARD */
-
-.jogo-card {
-    position: relative;
-    padding: 25px 20px;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-/* NÚMERO DO JOGO */
-
-.jogo-titulo {
-    color: #ff7300;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-}
-
-/* CONFRONTO */
-
-.confronto {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-}
-
-/* CAMPOS */
-
-.confronto input {
-    height: 48px;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 6px;
-    background: rgba(255,255,255,0.05);
-    color: inherit;
-    text-align: center;
-    outline: none;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.confronto input:focus {
-    border-color: #ff7300;
-    box-shadow: 0 0 10px rgba(255,115,0,0.2);
-}
-
-.confronto .time {
-    width: 35%;
-}
-
-.confronto .placar {
-    width: 100px;
-    color: #ff7300;
-    font-size: 20px;
-}
-
-/* PLACEHOLDER */
-
-.confronto input::placeholder {
-    color: rgba(255,255,255,0.45);
-}
-
-/* LINHA */
-
-.linha-x {
-    margin-top: 22px;
-    color: rgba(255,255,255,0.18);
-    font-size: 12px;
-    letter-spacing: 1px;
-    overflow: hidden;
-}
-
-/* BOTÕES */
-
-.botoes-registro {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 35px;
-    flex-wrap: wrap;
-}
-
-.botoes-registro button {
-    border: none;
-    padding: 14px 25px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
-    letter-spacing: 1px;
-    transition: 0.2s;
-}
-
-.btn-salvar {
-    background: #ff7300;
-    color: white;
-}
-
-.btn-salvar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(255,115,0,0.3);
-}
-
-.btn-limpar {
-    background: rgba(255,255,255,0.08);
-    color: inherit;
-}
-
-.btn-limpar:hover {
-    background: rgba(255,255,255,0.15);
-}
-
-/* MENSAGEM */
-
-#mensagem-salvo {
-    text-align: center;
-    margin-top: 20px;
-    color: #ff7300;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-/* =====================================================
-   CELULAR
-===================================================== */
-
-@media (max-width: 600px) {
-
-    #registro-jogos {
-        padding: 60px 10px;
-    }
-
-    #registro-jogos .jogos-header h2 {
-        font-size: 28px;
-    }
-
-    .jogo-card {
-        padding: 20px 5px;
-    }
-
-    .confronto {
-        gap: 7px;
-    }
-
-    .confronto .time {
-        width: 38%;
-        font-size: 12px;
-    }
-
-    .confronto .placar {
-        width: 70px;
-        font-size: 17px;
-    }
-
-    .linha-x {
-        font-size: 9px;
-    }
-
-}
-
-</style>
-
-
-<script>
-
-/* =====================================================
-   SALVAR JOGOS
-===================================================== */
-
-async function salvarJogos() {
-
-    const jogos = [];
-
-    document.querySelectorAll(".jogo-card").forEach(function(jogo) {
-
-        const campos = jogo.querySelectorAll("input");
-
-        jogos.push({
-            time1: campos[0].value.trim(),
-            placar: campos[1].value.trim(),
-            time2: campos[2].value.trim()
-        });
-
-    });
-
-    const { error } = await supabaseClient
-        .from("bomba_petch")
-        .upsert(
-            {
-                tipo: "jogos",
-                identificador: "registro-principal",
-                dados: jogos,
-                atualizado_em: new Date().toISOString()
-            },
-            {
-                onConflict: "tipo,identificador"
-            }
-        );
-
-    if (error) {
-
-        console.error("Erro ao salvar jogos:", error);
-
-        alert("❌ Erro ao salvar no banco:\n\n" + error.message);
-
-        return;
-    }
-
-    const mensagem =
-        document.getElementById("mensagem-salvo");
-
-    mensagem.innerText =
-        "✓ REGISTRO SALVO NO BANCO DE DADOS!";
-
-    setTimeout(function() {
-        mensagem.innerText = "";
-    }, 3000);
-}
-
-/* =====================================================
-   CARREGAR JOGOS
-===================================================== */
-
-async function carregarJogos() {
-
-    const { data, error } = await supabaseClient
-        .from("bomba_petch")
-        .select("dados")
-        .eq("tipo", "jogos")
-        .eq("identificador", "registro-principal")
-        .maybeSingle();
-
-    if (error) {
-
-        console.error("Erro ao carregar jogos:", error);
-
-        return;
-    }
-
-    if (!data || !data.dados) {
-        return;
-    }
-
-    const jogos = data.dados;
-
-    const cards =
-        document.querySelectorAll(".jogo-card");
-
-    jogos.forEach(function(jogo, index) {
-
-        if (!cards[index]) {
-            return;
-        }
-
-        const campos =
-            cards[index].querySelectorAll("input");
-
-        campos[0].value = jogo.time1 || "";
-        campos[1].value = jogo.placar || "";
-        campos[2].value = jogo.time2 || "";
-
-    });
-}
-
-
-/* =====================================================
-   LIMPAR JOGOS
-===================================================== */
-
-async function limparJogos() {
-
-    const confirmar = confirm(
-        "Tem certeza que deseja apagar todos os 18 jogos?"
+    console.log(
+        "✅ BOMBA PETCH carregado completamente"
     );
 
-    if (!confirmar) {
-        return;
-    }
-
-    const { error } = await supabaseClient
-        .from("bomba_petch")
-        .delete()
-        .eq("tipo", "jogos")
-        .eq("identificador", "registro-principal");
-
-    if (error) {
-
-        console.error("Erro ao limpar jogos:", error);
-
-        alert(
-            "❌ Erro ao apagar do banco:\n\n" +
-            error.message
-        );
-
-        return;
-    }
-
-    document
-        .querySelectorAll(".jogo-card input")
-        .forEach(function(input) {
-            input.value = "";
-        });
-
-    const mensagem =
-        document.getElementById("mensagem-salvo");
-
-    mensagem.innerText =
-        "✓ REGISTRO APAGADO DO BANCO!";
-
-    setTimeout(function() {
-        mensagem.innerText = "";
-    }, 3000);
 }
 
-/* =====================================================
-   CARREGAR AUTOMATICAMENTE
-===================================================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    carregarJogos
-);
+/* =========================================================
+   INICIAR
+========================================================= */
 
-</script>
-</html>
-```
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeBombaPetch
+    );
+
+}
+
+else {
+
+    initializeBombaPetch();
+
+}
