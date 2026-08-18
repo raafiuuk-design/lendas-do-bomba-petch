@@ -3711,7 +3711,6 @@ function showPlayerSquads(player,button){
 
 }
 
-
 /* =====================================================
    STORAGE DAS TABELAS
 ===================================================== */
@@ -3752,23 +3751,19 @@ function createEmptyTableData(){
 
 }
 
+const SUPABASE_URL =
+    "https://vgurvbdbpxcgkhmunlxr.supabase.co";
 
-/* =====================================================
-   LER TABELA
-===================================================== */
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+const SUPABASE_KEY =
+    "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
 
-<script>
-const SUPABASE_URL = "https://vgurvbdbpxcgkhmunlxr.supabase.co";
-const SUPABASE_KEY = "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 console.log("Supabase conectado!");
-
 /* =====================================================
    LER TABELA
 ===================================================== */
@@ -3786,18 +3781,6 @@ function getTableData(table){
 
 }
 
-
-
-    if(!tableDataCache[table]){
-
-        tableDataCache[table] =
-            createEmptyTableData();
-
-    }
-
-    return tableDataCache[table];
-
-}
 
 
 /* =====================================================
@@ -3828,7 +3811,11 @@ async function loadTableData(table){
         }
 
 
-        if(data && data.length > 0 && data[0].dados){
+        if(
+            data &&
+            data.length > 0 &&
+            data[0].dados
+        ){
 
             const saved =
                 data[0].dados;
@@ -3878,6 +3865,7 @@ async function loadTableData(table){
 
         renderAllTables();
 
+
         console.log(
             "Tabela carregada do Supabase:",
             table
@@ -3894,6 +3882,7 @@ async function loadTableData(table){
     }
 
 }
+
 
 
 /* =====================================================
@@ -3920,6 +3909,7 @@ async function loadAllTables(){
 }
 
 
+
 /* =====================================================
    SALVAR TABELA NO SUPABASE
 ===================================================== */
@@ -3932,7 +3922,10 @@ async function saveTableData(table,data){
 
     try{
 
-        const { data: existing, error: selectError } =
+        const {
+            data: existing,
+            error: selectError
+        } =
             await supabaseClient
                 .from("bomba_petch")
                 .select("id")
@@ -3957,15 +3950,21 @@ async function saveTableData(table,data){
         }
 
 
-        if(existing && existing.length > 0){
+        if(
+            existing &&
+            existing.length > 0
+        ){
 
             const { error } =
                 await supabaseClient
                     .from("bomba_petch")
                     .update({
-                        dados: data
+                        dados:data
                     })
-                    .eq("id", existing[0].id);
+                    .eq(
+                        "id",
+                        existing[0].id
+                    );
 
 
             if(error){
@@ -3990,11 +3989,11 @@ async function saveTableData(table,data){
                     .from("bomba_petch")
                     .insert({
 
-                        tipo: "tabela",
+                        tipo:"tabela",
 
-                        identificador: table,
+                        identificador:table,
 
-                        dados: data
+                        dados:data
 
                     });
 
@@ -4041,7 +4040,6 @@ async function saveTableData(table,data){
     }
 
 }
-
 
 /* =====================================================
    PONTUAÇÃO
