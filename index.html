@@ -3716,36 +3716,33 @@ function showPlayerSquads(player,button){
    STORAGE DAS TABELAS
 ===================================================== */
 
-function getTableData(table){
+/* =====================================================
+   DADOS DAS TABELAS - SUPABASE
+===================================================== */
 
-    const key =
-        "bomba-table-" + table;
+const tableDataCache = {
+    rank: {},
+    championship: {}
+};
 
-    const saved =
-        JSON.parse(
-            localStorage.getItem(key) || "{}"
-        );
+
+/* =====================================================
+   CRIAR DADOS VAZIOS
+===================================================== */
+
+function createEmptyTableData(){
 
     const data = {};
 
-    tablePlayers.forEach(player=>{
+    tablePlayers.forEach(player => {
 
         data[player.id] = {
 
-            wins:
-                Number(
-                    saved[player.id]?.wins || 0
-                ),
+            wins: 0,
 
-            draws:
-                Number(
-                    saved[player.id]?.draws || 0
-                ),
+            draws: 0,
 
-            losses:
-                Number(
-                    saved[player.id]?.losses || 0
-                )
+            losses: 0
 
         };
 
@@ -3756,12 +3753,292 @@ function getTableData(table){
 }
 
 
-function saveTableData(table,data){
+/* =====================================================
+   LER TABELA
+===================================================== */
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    localStorage.setItem(
-        "bomba-table-" + table,
-        JSON.stringify(data)
-    );
+<script>
+const SUPABASE_URL = "https://vgurvbdbpxcgkhmunlxr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+console.log("Supabase conectado!");
+
+/* =====================================================
+   LER TABELA
+===================================================== */
+
+function getTableData(table){
+
+    if(!tableDataCache[table]){
+
+        tableDataCache[table] =
+            createEmptyTableData();
+
+    }
+
+    return tableDataCache[table];
+
+}
+
+
+
+    if(!tableDataCache[table]){
+
+        tableDataCache[table] =
+            createEmptyTableData();
+
+    }
+
+    return tableDataCache[table];
+
+}
+
+
+/* =====================================================
+   CARREGAR TABELA DO SUPABASE
+===================================================== */
+
+async function loadTableData(table){
+
+    try{
+
+        const { data, error } =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("dados")
+                .eq("tipo", "tabela")
+                .eq("identificador", table)
+                .limit(1);
+
+        if(error){
+
+            console.error(
+                "Erro ao carregar tabela " + table,
+                error
+            );
+
+            return;
+
+        }
+
+
+        if(data && data.length > 0 && data[0].dados){
+
+            const saved =
+                data[0].dados;
+
+            const tableData =
+                createEmptyTableData();
+
+
+            tablePlayers.forEach(player => {
+
+                if(saved[player.id]){
+
+                    tableData[player.id] = {
+
+                        wins:
+                            Number(
+                                saved[player.id].wins || 0
+                            ),
+
+                        draws:
+                            Number(
+                                saved[player.id].draws || 0
+                            ),
+
+                        losses:
+                            Number(
+                                saved[player.id].losses || 0
+                            )
+
+                    };
+
+                }
+
+            });
+
+
+            tableDataCache[table] =
+                tableData;
+
+        }else{
+
+            tableDataCache[table] =
+                createEmptyTableData();
+
+        }
+
+
+        renderAllTables();
+
+        console.log(
+            "Tabela carregada do Supabase:",
+            table
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Erro inesperado ao carregar " + table,
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   CARREGAR AS DUAS TABELAS
+===================================================== */
+
+async function loadAllTables(){
+
+    tableDataCache.rank =
+        createEmptyTableData();
+
+    tableDataCache.championship =
+        createEmptyTableData();
+
+
+    await Promise.all([
+
+        loadTableData("rank"),
+
+        loadTableData("championship")
+
+    ]);
+
+}
+
+
+/* =====================================================
+   SALVAR TABELA NO SUPABASE
+===================================================== */
+
+async function saveTableData(table,data){
+
+    tableDataCache[table] =
+        data;
+
+
+    try{
+
+        const { data: existing, error: selectError } =
+            await supabaseClient
+                .from("bomba_petch")
+                .select("id")
+                .eq("tipo", "tabela")
+                .eq("identificador", table)
+                .limit(1);
+
+
+        if(selectError){
+
+            console.error(
+                "Erro ao verificar tabela:",
+                selectError
+            );
+
+            alert(
+                "❌ Não foi possível salvar no banco."
+            );
+
+            return false;
+
+        }
+
+
+        if(existing && existing.length > 0){
+
+            const { error } =
+                await supabaseClient
+                    .from("bomba_petch")
+                    .update({
+                        dados: data
+                    })
+                    .eq("id", existing[0].id);
+
+
+            if(error){
+
+                console.error(
+                    "Erro ao atualizar tabela:",
+                    error
+                );
+
+                alert(
+                    "❌ Erro ao salvar no Supabase."
+                );
+
+                return false;
+
+            }
+
+        }else{
+
+            const { error } =
+                await supabaseClient
+                    .from("bomba_petch")
+                    .insert({
+
+                        tipo: "tabela",
+
+                        identificador: table,
+
+                        dados: data
+
+                    });
+
+
+            if(error){
+
+                console.error(
+                    "Erro ao inserir tabela:",
+                    error
+                );
+
+                alert(
+                    "❌ Erro ao criar tabela no Supabase."
+                );
+
+                return false;
+
+            }
+
+        }
+
+
+        console.log(
+            "Tabela salva no Supabase:",
+            table
+        );
+
+        return true;
+
+
+    }catch(error){
+
+        console.error(
+            "Erro inesperado ao salvar:",
+            error
+        );
+
+        alert(
+            "❌ Erro de conexão com o Supabase."
+        );
+
+        return false;
+
+    }
 
 }
 
@@ -4127,7 +4404,7 @@ document
    CONFIRMAR ALTERAÇÃO
 ===================================================== */
 
-function confirmTableEdit(){
+async function confirmTableEdit(){
 
     const editor =
         document.getElementById(
@@ -4268,10 +4545,17 @@ function confirmTableEdit(){
     };
 
 
-    saveTableData(
+   const saved =
+    await saveTableData(
         editingTable,
         data
     );
+
+if(!saved){
+
+    return;
+
+}
 
 
     addHistory(
@@ -5808,7 +6092,7 @@ owners.forEach(player=>{
    INICIALIZAR TABELAS
 ===================================================== */
 
-renderAllTables();
+loadAllTables();
 
 </script>
 <script>
@@ -5829,21 +6113,7 @@ function abrirRegistroJogos(){
         },100);
     }
 }
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-    const SUPABASE_URL = "https://vgurvbdbpxcgkhmunlxr.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj";
-
-    const supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-    console.log("Supabase conectado!");
-</script>
-     
 <!-- =====================================================
      REGISTRO DE JOGOS - BOMBA PETCH
 ===================================================== -->
