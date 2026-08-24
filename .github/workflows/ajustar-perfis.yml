@@ -1,0 +1,33 @@
+name: Ajustar perfis para somente senha
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  ajustar:
+    if: ${{ !contains(github.event.head_commit.message, 'Ajustar perfis para somente senha') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remover login de usuário dos perfis
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(r"function showSignupForm\(p\)\{.*?\}\s*function showLoginForm", """function showSignupForm(p){document.getElementById('profileBody').innerHTML='<div class=\\\"profile-info\\\">Primeiro acesso de <b>'+p.name+'</b>. Crie somente uma senha para proteger seu perfil.</div><input id=\\\"profilePassword\\\" type=\\\"password\\\" placeholder=\\\"Crie sua senha (mínimo 6 caracteres)\\\" autocomplete=\\\"new-password\\\"><input id=\\\"profilePassword2\\\" type=\\\"password\\\" placeholder=\\\"Repita a senha\\\" autocomplete=\\\"new-password\\\"><button class=\\\"profile-main\\\" onclick=\\\"createPlayerAccount('\\''+p.code+'\\'')\\\">Criar senha</button>'}function showLoginForm""", s, flags=re.S)
+          s=re.sub(r"function showLoginForm\(p\)\{.*?\}\s*function syntheticEmail", """function showLoginForm(p){document.getElementById('profileBody').innerHTML='<div class=\\\"profile-info\\\">Este perfil já possui senha. Digite a senha para entrar.</div><input id=\\\"profilePassword\\\" type=\\\"password\\\" placeholder=\\\"Senha\\\" autocomplete=\\\"current-password\\\"><button class=\\\"profile-main\\\" onclick=\\\"loginPlayer('\\''+p.code+'\\'')\\\">Entrar</button>'}function syntheticEmail""", s, flags=re.S)
+          s=re.sub(r"async function createPlayerAccount\(code\)\{.*?\}\s*async function loginPlayer", """async function createPlayerAccount(code){const p=players.find(x=>x.code===code),pw=document.getElementById('profilePassword').value,pw2=document.getElementById('profilePassword2').value;if(pw.length<6||pw!==pw2){document.getElementById('profileMsg').textContent='A senha deve ter pelo menos 6 caracteres e as duas senhas devem ser iguais.';return}document.getElementById('profileMsg').textContent='Criando senha...';const email='player_'+code.toLowerCase()+'@login.bombapetch.local';const {data,error}=await authClient.auth.signUp({email,password:pw,options:{data:{player_code:code,player_name:p.name}}});if(error){document.getElementById('profileMsg').textContent=error.message;return}if(!data.session||!data.user){document.getElementById('profileMsg').textContent='Cadastro criado, mas o Supabase está exigindo confirmação de e-mail. Desative Confirm email no Auth do Supabase.';return}const {error:claimError}=await authClient.from('player_profiles').update({username:null,auth_user_id:data.user.id}).eq('player_code',code).is('auth_user_id',null);if(claimError){await authClient.auth.signOut();document.getElementById('profileMsg').textContent='Senha criada, mas não foi possível vincular o perfil: '+claimError.message;return}showLoggedProfile(p,data.user)}async function loginPlayer""", s, flags=re.S)
+          s=re.sub(r"async function loginPlayer\(code\)\{.*?\}\s*function showLoggedProfile", """async function loginPlayer(code){const pw=document.getElementById('profilePassword').value;if(!pw){document.getElementById('profileMsg').textContent='Informe a senha.';return}document.getElementById('profileMsg').textContent='Entrando...';const email='player_'+code.toLowerCase()+'@login.bombapetch.local';const {data,error}=await authClient.auth.signInWithPassword({email,password:pw});if(error){document.getElementById('profileMsg').textContent='Senha incorreta.';return}const {data:profile}=await authClient.from('player_profiles').select('player_code,player_name,auth_user_id').eq('player_code',code).eq('auth_user_id',data.user.id).maybeSingle();if(!profile){await authClient.auth.signOut();document.getElementById('profileMsg').textContent='Esta senha não pertence a este jogador.';return}showLoggedProfile(players.find(p=>p.code===code),data.user)}function showLoggedProfile""", s, flags=re.S)
+          s=s.replace("<span class=\\\"muted\\\">Login: '+esc(user.user_metadata?.username||'')+'</span>", "")
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Publicar alteração
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add index.html
+          git commit -m "Ajustar perfis para somente senha" || exit 0
+          git push
