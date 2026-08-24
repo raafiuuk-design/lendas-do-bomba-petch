@@ -1,0 +1,1 @@
+Temporary restore marker. The main index is being restored after the profile-authentication change broke the JavaScript.
