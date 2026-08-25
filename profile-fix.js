@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('passwordSubmit');const i=document.getElementById('password1');if(b){b.onclick=()=>{if(typeof submitPassword==='function')submitPassword()}}if(i){i.addEventListener('keydown',e=>{if(e.key==='Enter'&&typeof submitPassword==='function')submitPassword()})}});
