@@ -1,8 +1,7 @@
 name: Install Tactics
 on:
   push:
-    paths:
-      - '.github/workflows/install-tactics.yml'
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
