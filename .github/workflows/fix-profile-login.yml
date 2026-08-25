@@ -1,4 +1,4 @@
-name: Site patch
+name: Site repair
 on:
   workflow_dispatch:
   push:
@@ -7,25 +7,47 @@ on:
 permissions:
   contents: write
 jobs:
-  patch:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Tactics assets
+      - name: Repair profile login and restore Table
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          if 'tactics.js' not in s:
-              s=s.replace('</head>','<link rel="stylesheet" href="tactics.css"></head>',1)
-              s=s.replace('</body>','<script src="tactics.js"></script></body>',1)
-              p.write_text(s,encoding='utf-8')
+
+          # Restore the main Tabela navigation button, but never add Ranking.
+          if 'data-page="table"' not in s:
+              marker='<button data-page="games">🎮 Partidas</button>'
+              s=s.replace(marker, '<button data-page="table">📋 Tabela</button>'+marker, 1)
+
+          # Restore the protected table page using the table JS already present in the site.
+          if 'id="protectedTable"' not in s:
+              table_html='''<section id="table" class="page"><h1>📋 Tabela</h1><p class="muted">Tabela visível para todos. Somente quem tiver a senha pode editar.</p><div id="protectedTable" class="standings"><h2>📊 Classificação</h2><div class="table-wrap"><table><thead><tr><th>#</th><th>Jogador</th><th>Vitórias</th><th>Empates</th><th>Derrotas</th><th>Pontos</th></tr></thead><tbody id="tableStandingsBody"></tbody></table></div></div><div class="actions"><button class="btn primary" id="tableEditBtn">🔒 Editar tabela</button><button class="btn primary" id="tableSaveBtn">💾 Salvar</button><button class="btn" id="tableCancelBtn">Cancelar</button><span id="tableSaveMessage" class="save-message"></span></div></section>'''
+              marker='<section id="seasons" class="page">'
+              s=s.replace(marker, table_html+marker, 1)
+
+          # Fix the profile password result check. Supabase RPCs can return either
+          # a boolean or an object containing ok/valid.
+          s=s.replace("if(!result.ok){err.textContent='Senha incorreta.';return}", "if(!(result===true || result?.ok===true || result?.valid===true)){err.textContent='Senha incorreta.';return}")
+
+          # Make the profile password button work even if its click binding was lost.
+          if 'id=\"passwordSubmit\"' in s and 'submitPassword);' not in s:
+              s=s.replace('</script></div></div><script src="tactics.js"></script>', 'document.getElementById("passwordSubmit")?.addEventListener("click",submitPassword);document.getElementById("password1")?.addEventListener("keydown",e=>{if(e.key==="Enter")submitPassword()});</script></div></div><script src="tactics.js"></script>', 1)
+
+          # Keep Ranking removed.
+          s=re.sub(r'<button[^>]*data-page=["\']rank["\'][^>]*>.*?</button>', '', s, flags=re.S|re.I)
+          s=re.sub(r'<section[^>]*id=["\']rank["\'][^>]*>.*?</section>', '', s, flags=re.S|re.I)
+
+          p.write_text(s,encoding='utf-8')
           PY
-      - name: Commit patch
+      - name: Commit repair
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git commit -m '[tactics-installed] Adiciona Taticas aos perfis' || exit 0
+          git commit -m 'Corrige perfis e restaura Tabela' || exit 0
           git push
