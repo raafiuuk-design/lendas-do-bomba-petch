@@ -1,0 +1,64 @@
+/* BOMBA PETCH — experiência mobile */
+*{box-sizing:border-box}
+html{overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+@media (max-width:700px){
+  .wrap{width:100%;padding:12px 14px}
+  .top{padding:8px 0;backdrop-filter:blur(10px)}
+  .top .wrap{display:flex;align-items:center;gap:10px;overflow:hidden}
+  .top b{font-size:18px!important;white-space:nowrap}
+  .nav{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:7px;padding:2px 1px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}
+  .nav button{flex:0 0 auto;min-height:44px;padding:10px 12px;font-size:13px;white-space:nowrap}
+  .page{padding:24px 0}
+  .hero{padding:30px 0 45px}
+  .hero h1{font-size:clamp(40px,13vw,62px)!important}
+  .hero .actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .btn{min-height:44px;padding:11px 14px}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .card{padding:16px;border-radius:13px;min-width:0}
+  .profile-card{min-height:120px}
+  .big{font-size:34px}
+  .profile-view{width:100%}
+  .profile-head{padding:22px 14px;border-radius:14px}
+  .profile-head h1{font-size:30px}
+  .profile-stat{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .stat{padding:12px 6px}
+  .stat b{font-size:24px}
+  .stat span{font-size:11px}
+  .team-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .team-tab{min-width:0!important;padding:11px 6px!important;font-size:12px}
+  .roster{padding:12px;margin-top:8px}
+  .position-group{margin-top:16px}
+  .position-title{font-size:15px}
+  .roster-grid{grid-template-columns:1fr;gap:7px}
+  .slot{min-height:42px}
+  .slot-num{width:24px}
+  .roster-input,.game-input{min-height:42px}
+  .roster-save,.save-games{display:grid;grid-template-columns:1fr;gap:8px}
+  .games-grid{gap:8px}
+  .turn-title{font-size:17px;padding:12px;margin-top:18px}
+  .game-row{grid-template-columns:25px minmax(0,1fr) 44px 14px 44px minmax(0,1fr);gap:4px;padding:7px}
+  .game-input{padding:9px 4px;font-size:13px;min-width:0}
+  .score-x{font-size:15px}
+  .game-number{font-size:12px}
+  .standings{margin-top:24px;border-radius:12px}
+  .standings h2{padding:14px;font-size:18px}
+  .standings th,.standings td{padding:10px 8px;font-size:12px}
+  .standings table{min-width:520px}
+  .modal{padding:12px}
+  .modal-box{width:100%;max-height:92vh;padding:18px;border-radius:14px}
+  .modal-actions{display:grid;grid-template-columns:1fr 1fr}
+  .modal-actions .btn{width:100%}
+}
+@media(max-width:420px){
+  .cards{grid-template-columns:1fr 1fr}
+  .cards .card{padding:13px}
+  .profile-card h2{font-size:17px}
+  .game-row{grid-template-columns:22px minmax(0,1fr) 40px 12px 40px minmax(0,1fr);gap:3px}
+  .game-input{font-size:12px}
+  .team-tabs{grid-template-columns:1fr 1fr 1fr}
+}
+@media(min-width:701px){.mobile-only{display:none!important}}
