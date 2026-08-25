@@ -1,4 +1,4 @@
-name: Fix profile login
+name: Site patch
 on:
   workflow_dispatch:
   push:
@@ -7,30 +7,25 @@ on:
 permissions:
   contents: write
 jobs:
-  fix:
+  patch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Replace only profile password logic
+      - name: Install Tactics assets
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          start=s.find('async function openProfile(')
-          end=s.find('function playerCards()', start)
-          if start < 0 or end < 0:
-              raise SystemExit('profile functions not found')
-          new = r'''async function openProfile(code){selectedPlayer=players.find(p=>p.code===code);if(!selectedPlayer)return;try{const key='bomba_petch_password_'+selectedPlayer.code;const exists=!!localStorage.getItem(key);document.getElementById('profileTitle').textContent='🔐 '+selectedPlayer.name;document.getElementById('profileError').textContent='';document.getElementById('profilePassword').value='';document.getElementById('profilePassword2').value='';document.getElementById('profilePassword2').style.display=exists?'none':'block';document.getElementById('profileText').textContent=exists?'Digite sua senha para entrar no perfil.':'Primeiro acesso: escolha uma senha para este perfil.';document.getElementById('profileModal').classList.add('show')}catch(e){console.error(e);document.getElementById('profileError').textContent='Não foi possível abrir o perfil.'}}
-document.getElementById('closeProfile').onclick=()=>document.getElementById('profileModal').classList.remove('show');document.getElementById('profileForm').onsubmit=async e=>{e.preventDefault();const err=document.getElementById('profileError'),p=document.getElementById('profilePassword').value,p2=document.getElementById('profilePassword2').value;err.textContent='';if(p.length<4){err.textContent='A senha deve ter pelo menos 4 caracteres.';return}try{const key='bomba_petch_password_'+selectedPlayer.code;const saved=localStorage.getItem(key);const h=await hashPassword(p);if(!saved){if(p!==p2){err.textContent='As senhas não conferem.';return}localStorage.setItem(key,h)}else if(saved!==h){err.textContent='Senha incorreta.';return}document.getElementById('profileModal').classList.remove('show');go('players');document.getElementById('playersGrid').innerHTML='<div class="card"><div class="big">'+selectedPlayer.code+'</div><h2>'+selectedPlayer.name+'</h2><p class="muted">🔓 Perfil desbloqueado</p><p>Senha confirmada com sucesso. Este é o perfil de <b>'+selectedPlayer.name+'</b>.</p><button class="btn primary" onclick="playerCards()">Voltar aos jogadores</button></div>'}catch(x){console.error(x);err.textContent='Erro ao acessar o perfil. Tente novamente.'}};
-'''
-          p.write_text(s[:start]+new+s[end:],encoding='utf-8')
+          if 'tactics.js' not in s:
+              s=s.replace('</head>','<link rel="stylesheet" href="tactics.css"></head>',1)
+              s=s.replace('</body>','<script src="tactics.js"></script></body>',1)
+              p.write_text(s,encoding='utf-8')
           PY
-      - name: Commit fix
+      - name: Commit patch
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git commit -m 'Fix player password login' || exit 0
+          git commit -m '[tactics-installed] Adiciona Taticas aos perfis' || exit 0
           git push
