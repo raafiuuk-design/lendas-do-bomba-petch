@@ -1,0 +1,60 @@
+name: Protect and enable Tabela
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/protect-table.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update Tabela UI
+        env:
+          PYTHONIOENCODING: utf-8
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          css='''<style id="protected-table-style">.table-editor-bar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:0 0 18px}.table-editor-note{color:#9aa3b0;font-size:13px}.editable-table input{width:100%;box-sizing:border-box;background:#080b10;color:#fff;border:1px solid #343b47;border-radius:7px;padding:9px;text-align:center}.editable-table input.name{text-align:left}.editable-table td:first-child{width:34px;color:#ff7300;font-weight:900}.table-edit-lock{display:inline-flex;gap:8px;align-items:center}.table-password-modal{display:none;position:fixed;inset:0;background:#000c;z-index:200;align-items:center;justify-content:center;padding:20px}.table-password-modal.show{display:flex}.table-password-box{width:min(420px,100%);background:#121720;border:1px solid #ff7300;border-radius:16px;padding:25px}.table-password-box input{width:100%;box-sizing:border-box;padding:13px;margin:10px 0;background:#080b10;color:#fff;border:1px solid #343b47;border-radius:8px}.table-message{min-height:20px;color:#ff7777}.table-editing .editable-table input{border-color:#ff7300}.table-save-row{display:none;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}.table-editing .table-save-row{display:flex}</style>'''
+          if 'protected-table-style' not in s:
+              s=s.replace('</style></head>', '</style>'+css+'</head>')
+          section='''<section id="table" class="page"><h1>📋 Tabela</h1><p class="muted">A tabela é pública para visualização. Para editar, use a senha de administrador.</p><div id="protectedTable" class="standings"><h2>🏆 Classificação</h2><div class="table-editor-bar"><span class="table-editor-note">👁️ Todos podem visualizar · 🔒 Somente com senha é possível editar</span><button class="btn primary" id="tableEditBtn">🔒 Editar tabela</button></div><div class="table-wrap"><table class="editable-table"><thead><tr><th>#</th><th>Jogador</th><th>Vitória</th><th>Empate</th><th>Derrota</th><th>Pontos</th></tr></thead><tbody id="tableStandingsBody"></tbody></table></div><div class="table-save-row"><button class="btn primary" id="tableSaveBtn">💾 Salvar alterações</button><button class="btn" id="tableCancelBtn">Cancelar</button><span id="tableSaveMessage" class="save-message"></span></div></div></section>'''
+          s=re.sub(r'<section id="table" class="page">.*?</section>', section, s, count=1, flags=re.S)
+          modal='''<div id="tablePasswordModal" class="table-password-modal"><div class="table-password-box"><h2>🔐 Senha da Tabela</h2><p class="muted">Digite a senha para liberar a edição.</p><input id="tablePasswordInput" type="password" placeholder="Senha"><div id="tablePasswordMessage" class="table-message"></div><div class="modal-actions"><button class="btn primary" id="tablePasswordSubmit">Entrar</button><button class="btn" id="tablePasswordCancel">Cancelar</button></div></div></div>'''
+          if 'tablePasswordModal' not in s:
+              s=s.replace('</main><div id="passwordModal"', '</main>'+modal+'<div id="passwordModal"')
+          js='''
+          const TABLE_API=SB+'/rest/v1/bomba_petch_tabela';
+          let tableRows=[],tableEditing=false,tablePassword='';
+          function tableHeaders(json=false){return json?{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'}:{apikey:KEY,Authorization:'Bearer '+KEY};}
+          async function loadProtectedTable(){
+            const body=document.getElementById('tableStandingsBody'); if(!body)return;
+            try{const r=await fetch(TABLE_API+'?select=id,player_name,wins,draws,losses,points&order=points.desc,wins.desc,id.asc',{headers:tableHeaders()}); if(!r.ok)throw Error(await r.text()); tableRows=await r.json(); renderProtectedTable();}
+            catch(e){body.innerHTML='<tr><td colspan="6">Não foi possível carregar a tabela.</td></tr>';console.error(e)}
+          }
+          function renderProtectedTable(){
+            const body=document.getElementById('tableStandingsBody'); if(!body)return;
+            body.innerHTML=tableRows.map((r,i)=>tableEditing?'<tr><td>'+(i+1)+'</td><td><input class="name" data-id="'+r.id+'" data-field="player_name" value="'+esc(r.player_name)+'"></td><td><input type="number" min="0" data-id="'+r.id+'" data-field="wins" value="'+Number(r.wins||0)+'"></td><td><input type="number" min="0" data-id="'+r.id+'" data-field="draws" value="'+Number(r.draws||0)+'"></td><td><input type="number" min="0" data-id="'+r.id+'" data-field="losses" value="'+Number(r.losses||0)+'"></td><td><input type="number" data-id="'+r.id+'" data-field="points" value="'+Number(r.points||0)+'"></td></tr>':'<tr><td>'+(i+1)+'</td><td>'+esc(r.player_name)+'</td><td>'+Number(r.wins||0)+'</td><td>'+Number(r.draws||0)+'</td><td>'+Number(r.losses||0)+'</td><td class="points">'+Number(r.points||0)+'</td></tr>').join('');
+          }
+          function openTablePassword(){document.getElementById('tablePasswordInput').value='';document.getElementById('tablePasswordMessage').textContent='';document.getElementById('tablePasswordModal').classList.add('show');setTimeout(()=>document.getElementById('tablePasswordInput').focus(),50)}
+          async function verifyTablePassword(){const pass=document.getElementById('tablePasswordInput').value,msg=document.getElementById('tablePasswordMessage');msg.textContent='';try{const r=await fetch(RPC+'bomba_petch_verify_tabela_password',{method:'POST',headers:tableHeaders(true),body:JSON.stringify({p_password:pass})});if(!r.ok)throw Error(await r.text());const ok=await r.json();if(!ok){msg.textContent='Senha incorreta.';return}tablePassword=pass;tableEditing=true;document.getElementById('tablePasswordModal').classList.remove('show');document.getElementById('protectedTable').classList.add('table-editing');document.getElementById('tableEditBtn').textContent='🔓 Editando';document.getElementById('tableEditBtn').disabled=true;renderProtectedTable();}catch(e){msg.textContent='Erro de conexão.';console.error(e)}}
+          async function saveProtectedTable(){const msg=document.getElementById('tableSaveMessage');msg.textContent='Salvando...';const rows=tableRows.map(r=>{const out={id:r.id};document.querySelectorAll('[data-id="'+r.id+'"]').forEach(el=>{out[el.dataset.field]=el.dataset.field==='player_name'?el.value.trim():Number(el.value||0)});return out});try{const r=await fetch(RPC+'bomba_petch_update_tabela',{method:'POST',headers:tableHeaders(true),body:JSON.stringify({p_password:tablePassword,p_rows:rows})});if(!r.ok)throw Error(await r.text());const ok=await r.json();if(!ok){msg.textContent='Senha expirada ou inválida.';return}msg.textContent='Tabela salva!';tableEditing=false;tablePassword='';document.getElementById('protectedTable').classList.remove('table-editing');document.getElementById('tableEditBtn').textContent='🔒 Editar tabela';document.getElementById('tableEditBtn').disabled=false;await loadProtectedTable();}catch(e){msg.textContent='Erro ao salvar.';console.error(e)}}
+          function cancelProtectedTable(){tableEditing=false;tablePassword='';document.getElementById('protectedTable').classList.remove('table-editing');document.getElementById('tableEditBtn').textContent='🔒 Editar tabela';document.getElementById('tableEditBtn').disabled=false;document.getElementById('tableSaveMessage').textContent='';renderProtectedTable()}
+          document.addEventListener('DOMContentLoaded',()=>{loadProtectedTable();document.getElementById('tableEditBtn')?.addEventListener('click',openTablePassword);document.getElementById('tablePasswordSubmit')?.addEventListener('click',verifyTablePassword);document.getElementById('tablePasswordCancel')?.addEventListener('click',()=>document.getElementById('tablePasswordModal').classList.remove('show'));document.getElementById('tableSaveBtn')?.addEventListener('click',saveProtectedTable);document.getElementById('tableCancelBtn')?.addEventListener('click',cancelProtectedTable);document.getElementById('tablePasswordInput')?.addEventListener('keydown',e=>{if(e.key==='Enter')verifyTablePassword()});});
+          '''
+          if 'bomba_petch_update_tabela' not in s:
+              s=s.replace('</script>', js+'</script>', 1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet || git commit -m 'Protect Tabela with password and enable editing'
+          git push
