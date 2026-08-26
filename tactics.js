@@ -5,3 +5,63 @@ function renderTactics(){const host=document.getElementById('tacticsHost');if(!h
 function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>document.getElementById('tactic-'+i)?.value||'');const data=JSON.parse(localStorage.getItem(tacticsKey())||'{}');data[currentTactic]=vals;localStorage.setItem(tacticsKey(),JSON.stringify(data));const m=document.getElementById('tacticsMsg');m.textContent='✓ Tática salva neste dispositivo!';setTimeout(()=>m.textContent='',2500)}
 function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics()}
 const observer=new MutationObserver(()=>{if(document.getElementById('profile')?.classList.contains('active'))ensureTactics()});observer.observe(document.body,{subtree:true,childList:true});document.addEventListener('DOMContentLoaded',ensureTactics);
+
+/* CORREÇÃO DO ACESSO AOS PERFIS
+   O botão antigo tinha vários handlers simultâneos (onclick + onclick JS + addEventListener).
+   Isso fazia a mesma autenticação ser disparada várias vezes e podia travar a interface. */
+(function(){
+  let busy=false;
+  const btn=document.getElementById('passwordSubmit');
+  const p1=document.getElementById('password1');
+  const p2=document.getElementById('password2');
+  const modal=document.getElementById('passwordModal');
+  const err=document.getElementById('passwordError');
+  function normalize(v){
+    if(Array.isArray(v)) return v[0] ?? null;
+    return v;
+  }
+  async function safeRpc(fn,body,timeout=15000){
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),timeout);
+    try{
+      const r=await fetch((window.RPC||'https://vgurvbdbpxcgkhmunlxr.supabase.co/rest/v1/rpc/')+fn,{method:'POST',headers:window.headers?window.headers(true):{apikey:'sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj',Authorization:'Bearer sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj','Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});
+      if(!r.ok) throw new Error(await r.text());
+      return normalize(await r.json());
+    }finally{clearTimeout(timer)}
+  }
+  async function fixedSubmit(e){
+    if(e){e.preventDefault();e.stopImmediatePropagation();}
+    if(busy)return;
+    const player=window.selectedPlayer;
+    if(!player){if(err)err.textContent='Selecione um jogador novamente.';return;}
+    const a=p1?.value||'',b=p2?.value||'';
+    if(err)err.textContent='';
+    if(a.length<4){if(err)err.textContent='A senha precisa ter pelo menos 4 caracteres.';p1?.focus();return;}
+    if(window.creating&&a!==b){if(err)err.textContent='As senhas não conferem.';p2?.focus();return;}
+    busy=true;
+    if(btn){btn.disabled=true;btn.textContent='Verificando...';}
+    try{
+      if(window.creating){
+        const created=await safeRpc('bomba_petch_set_password',{p_player_code:player.code,p_password:a});
+        if(created!==true){throw new Error('Não foi possível criar a senha.');}
+      }
+      const result=await safeRpc('bomba_petch_verify_profile',{p_player_code:player.code,p_password:a});
+      const ok=result===true || (result&&result.ok===true);
+      if(!ok){if(err)err.textContent='Senha incorreta.';return;}
+      if(modal)modal.classList.remove('show');
+      if(typeof window.showProfile==='function')window.showProfile(result);
+    }catch(ex){
+      console.error('Erro no acesso ao perfil:',ex);
+      if(err)err.textContent=ex.name==='AbortError'?'O banco demorou para responder. Tente novamente.':'Não foi possível entrar no perfil. Tente novamente.';
+    }finally{
+      busy=false;
+      if(btn){btn.disabled=false;btn.textContent='Continuar';}
+    }
+  }
+  if(btn){
+    btn.onclick=null;
+    btn.addEventListener('click',fixedSubmit,true);
+  }
+  if(p1)p1.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();fixedSubmit(e)}},true);
+  if(p2)p2.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();fixedSubmit(e)}},true);
+})();
