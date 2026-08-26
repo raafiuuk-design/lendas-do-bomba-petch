@@ -6,27 +6,53 @@ function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>do
 function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics()}
 const observer=new MutationObserver(()=>{if(document.getElementById('profile')?.classList.contains('active'))ensureTactics()});observer.observe(document.body,{subtree:true,childList:true});document.addEventListener('DOMContentLoaded',ensureTactics);
 
-/* CORREÇÃO: o botão de senha tinha múltiplos handlers e disparava a autenticação várias vezes. */
+/* LOGIN DOS PERFIS: um único handler, sem chamadas duplicadas. */
 (function(){
-  let busy=false;
-  const btn=document.getElementById('passwordSubmit');
-  const p1=document.getElementById('password1');
-  const p2=document.getElementById('password2');
-  if(!btn)return;
-  function runOriginal(e){
-    if(e){e.preventDefault();e.stopImmediatePropagation();}
-    if(busy)return;
-    busy=true;
-    btn.disabled=true;
-    btn.textContent='Verificando...';
-    try{
-      if(typeof window.submitPassword==='function') window.submitPassword();
-    }finally{
-      setTimeout(()=>{busy=false;btn.disabled=false;btn.textContent='Continuar';},1200);
-    }
+  function installAuth(){
+    const modal=document.getElementById('passwordModal');
+    const oldBtn=document.getElementById('passwordSubmit');
+    const oldP1=document.getElementById('password1');
+    const oldP2=document.getElementById('password2');
+    if(!modal||!oldBtn||!oldP1||!oldP2)return;
+    const btn=oldBtn.cloneNode(true),p1=oldP1.cloneNode(true),p2=oldP2.cloneNode(true);
+    btn.removeAttribute('onclick');
+    oldBtn.replaceWith(btn);oldP1.replaceWith(p1);oldP2.replaceWith(p2);
+    let busy=false;
+    const login=async()=>{
+      if(busy)return;
+      const err=document.getElementById('passwordError');
+      const player=window.selectedPlayer;
+      const pass=p1.value;
+      err.textContent='';
+      if(!player){err.textContent='Selecione o jogador novamente.';return}
+      if(pass.length<4){err.textContent='A senha precisa ter pelo menos 4 caracteres.';return}
+      if(window.creating&&pass!==p2.value){err.textContent='As senhas não conferem.';return}
+      busy=true;btn.disabled=true;btn.textContent='Verificando...';
+      const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),10000);
+      try{
+        if(window.creating){
+          const r=await fetch(window.RPC+'bomba_petch_set_password',{method:'POST',headers:window.headers(true),body:JSON.stringify({p_player_code:player.code,p_password:pass}),signal:controller.signal});
+          if(!r.ok)throw new Error(await r.text());
+          if((await r.json())!==true){err.textContent='Não foi possível criar a senha.';return}
+          window.creating=false;
+        }
+        const r=await fetch(window.RPC+'bomba_petch_verify_profile',{method:'POST',headers:window.headers(true),body:JSON.stringify({p_player_code:player.code,p_password:pass}),signal:controller.signal});
+        if(!r.ok)throw new Error(await r.text());
+        const result=await r.json();
+        if(!result||result.ok!==true){err.textContent='Senha incorreta.';return}
+        modal.classList.remove('show');
+        if(typeof window.showProfile==='function')window.showProfile(result);
+      }catch(e){
+        console.error(e);
+        err.textContent=e.name==='AbortError'?'O servidor demorou mais de 10 segundos para responder.':'Erro ao verificar a senha: '+(e.message||'tente novamente.');
+      }finally{
+        clearTimeout(timer);busy=false;btn.disabled=false;btn.textContent='Continuar';
+      }
+    };
+    btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();login()});
+    p1.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();login()}});
+    p2.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();login()}});
   }
-  btn.onclick=null;
-  btn.addEventListener('click',runOriginal,true);
-  if(p1)p1.addEventListener('keydown',e=>{if(e.key==='Enter')runOriginal(e)},true);
-  if(p2)p2.addEventListener('keydown',e=>{if(e.key==='Enter')runOriginal(e)},true);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installAuth);else installAuth();
+  setTimeout(installAuth,800);
 })();
