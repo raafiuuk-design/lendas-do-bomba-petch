@@ -6,47 +6,17 @@ function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>do
 function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics()}
 const observer=new MutationObserver(()=>{if(document.getElementById('profile')?.classList.contains('active'))ensureTactics()});observer.observe(document.body,{subtree:true,childList:true});document.addEventListener('DOMContentLoaded',ensureTactics);
 
-/* CORREÇÃO DO LOGIN DOS PERFIS: não clona nem duplica o botão original. */
+/* CORREÇÃO DO LOGIN: um único clique chama a função original, que tem acesso ao estado do perfil. */
 (function(){
-  const RPC_URL='https://vgurvbdbpxcgkhmunlxr.supabase.co/rest/v1/rpc/';
-  const KEY='sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj';
   function installAuth(){
-    const btn=document.getElementById('passwordSubmit'),p1=document.getElementById('password1'),p2=document.getElementById('password2'),modal=document.getElementById('passwordModal');
-    if(!btn||!p1||!p2||!modal||btn.dataset.authFixed==='1')return;
-    btn.dataset.authFixed='1';btn.removeAttribute('onclick');
-    let busy=false;
-    const login=async()=>{
-      if(busy)return;
-      const err=document.getElementById('passwordError');
-      const player=window.selectedPlayer;
-      const pass=p1.value;
-      err.textContent='';
-      if(!player){err.textContent='Selecione o jogador novamente.';return}
-      if(pass.length<4){err.textContent='A senha precisa ter pelo menos 4 caracteres.';return}
-      const isCreating=window.creating===true;
-      if(isCreating&&pass!==p2.value){err.textContent='As senhas não conferem.';return}
-      busy=true;btn.disabled=true;btn.textContent='Verificando...';
-      try{
-        const h={apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'};
-        if(isCreating){
-          const r=await fetch(RPC_URL+'bomba_petch_set_password',{method:'POST',headers:h,body:JSON.stringify({p_player_code:player.code,p_password:pass})});
-          if(!r.ok)throw new Error(await r.text());
-          const created=await r.json();
-          if(created!==true){err.textContent='Não foi possível criar a senha.';return}
-          window.creating=false;
-        }
-        const r=await fetch(RPC_URL+'bomba_petch_verify_profile',{method:'POST',headers:h,body:JSON.stringify({p_player_code:player.code,p_password:pass})});
-        if(!r.ok)throw new Error(await r.text());
-        const result=await r.json();
-        if(!(result===true||result?.ok===true||result?.valid===true||result?.player_code)) {err.textContent='Senha incorreta.';return}
-        modal.classList.remove('show');
-        if(typeof window.showProfile==='function')window.showProfile(result);
-      }catch(e){console.error(e);err.textContent='Erro de conexão. Tente novamente.'}
-      finally{busy=false;btn.disabled=false;btn.textContent='Continuar'}
-    };
-    btn.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();login()});
-    p1.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();login()}});
-    p2.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();login()}});
+    const btn=document.getElementById('passwordSubmit'),p1=document.getElementById('password1'),p2=document.getElementById('password2');
+    if(!btn||!p1||!p2||btn.dataset.authFixed==='1')return;
+    btn.dataset.authFixed='1';
+    btn.removeAttribute('onclick');
+    const run=e=>{e.preventDefault();e.stopImmediatePropagation();if(typeof submitPassword==='function')submitPassword();};
+    btn.addEventListener('click',run,true);
+    p1.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(typeof submitPassword==='function')submitPassword()}});
+    p2.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(typeof submitPassword==='function')submitPassword()}});
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installAuth);else installAuth();
   setTimeout(installAuth,300);
