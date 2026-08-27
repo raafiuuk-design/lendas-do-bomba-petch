@@ -5,4 +5,34 @@ function renderTactics(){const host=document.getElementById('tacticsHost');if(!h
 function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>document.getElementById('tactic-'+i)?.value||'');const data=JSON.parse(localStorage.getItem(tacticsKey())||'{}');data[currentTactic]=vals;localStorage.setItem(tacticsKey(),JSON.stringify(data));const m=document.getElementById('tacticsMsg');m.textContent='✓ Tática salva neste dispositivo!';setTimeout(()=>m.textContent='',2500)}
 function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics()}
 window.ensureTactics=ensureTactics;
-// IMPORTANTE: não usar MutationObserver aqui. O renderTactics altera o DOM e um observer causava um loop infinito, travando o site.
+
+// CORREÇÃO DOS PERFIS: garante que o botão "Abrir perfil" sempre tenha uma ação.
+function bindProfileButtons(){
+  const cards=document.querySelectorAll('#profileCards [data-player]');
+  cards.forEach(card=>{
+    if(card.dataset.profileBound==='1')return;
+    card.dataset.profileBound='1';
+    card.addEventListener('click',function(e){
+      e.preventDefault();
+      const code=this.dataset.player;
+      if(window.players&&typeof window.openProfile==='function'){
+        const player=window.players.find(p=>p.code===code);
+        if(player) window.openProfile(player);
+      }else if(typeof openProfile==='function'&&typeof players!=='undefined'){
+        const player=players.find(p=>p.code===code);
+        if(player) openProfile(player);
+      }
+    });
+  });
+}
+
+// Inicializa sem MutationObserver para não criar loop de DOM.
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    try{
+      if(typeof renderProfiles==='function') renderProfiles();
+    }catch(e){console.error('Erro ao renderizar perfis:',e)}
+    bindProfileButtons();
+  },50);
+});
+window.bindProfileButtons=bindProfileButtons;
