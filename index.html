@@ -9,7 +9,7 @@
 @media(max-width:700px){.cards{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}.slots{grid-template-columns:1fr}.game{grid-template-columns:25px 1fr 45px 14px 45px 1fr;gap:4px;padding:7px}.game .input{padding:9px 4px;font-size:13px}.wrap{padding:14px}.page{padding:30px 0}}
 @media(max-width:450px){.cards{grid-template-columns:1fr}.nav button{flex:1}.game{grid-template-columns:20px 1fr 38px 12px 38px 1fr}.game .input{font-size:11px}}
 </style>
-</head>
+<link rel="stylesheet" href="tactics.css"></head>
 <body>
 <header class="top"><div class="wrap"><div class="brand">BOMBA <span class="orange">PETCH</span></div><nav class="nav" id="nav"><button data-page="home" class="active">🏠 Início</button><button data-page="profiles">👤 Perfil dos Jogadores</button><button data-page="table">📋 Tabela</button><button data-page="games">🎮 Partidas</button><button data-page="seasons">🏆 Temporadas</button><button data-page="trophies">🏅 Troféus</button><button data-page="history">📜 História</button></nav></div></header>
 <main class="wrap">
@@ -55,5 +55,5 @@ function renderStandings(){const s={};players.forEach(p=>s[p.code]={name:p.name,
 document.getElementById('saveGames').addEventListener('click',saveGames);document.getElementById('resetGames').addEventListener('click',()=>{if(!confirm('Resetar os placares?'))return;games.forEach((g,i)=>{const p=pairs[i%6];g.team_a=p[0];g.team_b=p[1];g.score_a=0;g.score_b=0});renderGames();renderStandings()});
 renderProfiles();renderGames();loadGames();
 </script>
-</body>
+<script src="tactics.js"></script></body>
 </html>
