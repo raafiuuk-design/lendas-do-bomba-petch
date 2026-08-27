@@ -3,8 +3,10 @@ let currentTactic='4-3-3';
 function tacticsKey(){return 'bomba-petch-tactics-'+((window.selectedPlayer&&window.selectedPlayer.code)||'global');}
 function renderTactics(){const host=document.getElementById('tacticsHost');if(!host)return;host.innerHTML='<div class="tactics-panel"><h2>🧠 TÁTICAS</h2><p class="muted">Escolha uma formação para visualizar o time no campo.</p><div class="tactics-tabs">'+Object.keys(TACTIC_FORMATIONS).map(f=>'<button type="button" class="'+(f===currentTactic?'active':'')+'" data-tactic="'+f+'">'+f+'</button>').join('')+'</div><div id="tacticsPitch" class="pitch"></div><div class="tactics-actions"><button type="button" class="btn primary" id="saveTacticsBtn">💾 Salvar tática</button><span id="tacticsMsg" class="tactics-msg"></span></div></div>';host.querySelectorAll('[data-tactic]').forEach(b=>b.onclick=()=>{currentTactic=b.dataset.tactic;renderTactics()});const pitch=document.getElementById('tacticsPitch');pitch.innerHTML=TACTIC_FORMATIONS[currentTactic].map((p,i)=>'<div class="tplayer" style="left:'+p[0]+'%;top:'+p[1]+'%"><span>'+String(i+1)+'</span><input id="tactic-'+i+'" placeholder="'+p[2]+'"></div>').join('');try{const data=JSON.parse(localStorage.getItem(tacticsKey())||'{}')[currentTactic]||[];data.forEach((v,i)=>{const el=document.getElementById('tactic-'+i);if(el)el.value=v})}catch(e){}document.getElementById('saveTacticsBtn').onclick=saveTactics;}
 function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>document.getElementById('tactic-'+i)?.value||'');const data=JSON.parse(localStorage.getItem(tacticsKey())||'{}');data[currentTactic]=vals;localStorage.setItem(tacticsKey(),JSON.stringify(data));const m=document.getElementById('tacticsMsg');m.textContent='✓ Tática salva neste dispositivo!';setTimeout(()=>m.textContent='',2500)}
-function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics()}
+function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics();renderPlayerList()}
 window.ensureTactics=ensureTactics;
+
+function renderPlayerList(){const pc=document.getElementById('profileContent');if(!pc||document.getElementById('playerListHost'))return;const host=document.createElement('div');host.id='playerListHost';host.innerHTML='<div class="card player-list-card"><h2>📋 LISTA DE JOGADORES</h2><p class="muted">Lista independente dos times. Edite os nomes que quiser.</p><div class="player-list-sections"></div><div class="savebar"><button type="button" class="btn primary" id="savePlayerList">💾 Salvar lista</button><span id="playerListMsg" class="ok"></span></div></div>';pc.appendChild(host);const sections=host.querySelector('.player-list-sections');const cats=[['🧤 Goleiros','goleiros',10],['🛡️ Zagueiros','zagueiros',30],['↔️ Laterais','laterais',20],['⚙️ Volantes','volantes',15],['🎯 Meio-campo','meio-campo',30],['⚡ Atacantes','atacantes',40]];sections.innerHTML=cats.map(([label,key,count])=>'<div class="position"><h3>'+label+' ('+count+')</h3><div class="slots">'+Array.from({length:count},(_,i)=>'<label class="slot"><span class="num">'+(i+1)+'</span><input class="input playerListInput" data-category="'+key+'" data-slot="'+(i+1)+'" placeholder="Digite o jogador"></label>').join('')+'</div></div>').join('');const storageKey='bomba-petch-player-list-'+((window.currentProfileCode)||'global');try{const data=JSON.parse(localStorage.getItem(storageKey)||'{}');host.querySelectorAll('.playerListInput').forEach(i=>i.value=data[i.dataset.category]?.[i.dataset.slot-1]||'')}catch(e){}host.querySelector('#savePlayerList').onclick=()=>{const data={};host.querySelectorAll('.playerListInput').forEach(i=>{if(!data[i.dataset.category])data[i.dataset.category]=[];data[i.dataset.category][Number(i.dataset.slot)-1]=i.value.trim()});localStorage.setItem(storageKey,JSON.stringify(data));host.querySelector('#playerListMsg').textContent='✓ Lista salva neste dispositivo!';setTimeout(()=>host.querySelector('#playerListMsg').textContent='',2500)}}
 
 // CORREÇÃO DOS PERFIS: garante que o botão "Abrir perfil" sempre tenha uma ação.
 function bindProfileButtons(){
@@ -26,12 +28,9 @@ function bindProfileButtons(){
   });
 }
 
-// Inicializa sem MutationObserver para não criar loop de DOM.
 document.addEventListener('DOMContentLoaded',()=>{
   setTimeout(()=>{
-    try{
-      if(typeof renderProfiles==='function') renderProfiles();
-    }catch(e){console.error('Erro ao renderizar perfis:',e)}
+    try{if(typeof renderProfiles==='function')renderProfiles()}catch(e){console.error('Erro ao renderizar perfis:',e)}
     bindProfileButtons();
   },50);
 });
