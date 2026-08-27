@@ -5,33 +5,12 @@ function renderTactics(){const host=document.getElementById('tacticsHost');if(!h
 function saveTactics(){const vals=TACTIC_FORMATIONS[currentTactic].map((_,i)=>document.getElementById('tactic-'+i)?.value||'');const data=JSON.parse(localStorage.getItem(tacticsKey())||'{}');data[currentTactic]=vals;localStorage.setItem(tacticsKey(),JSON.stringify(data));const m=document.getElementById('tacticsMsg');m.textContent='✓ Tática salva neste dispositivo!';setTimeout(()=>m.textContent='',2500)}
 function ensureTactics(){const pc=document.getElementById('profileContent');if(!pc)return;if(!document.getElementById('tacticsHost')){const host=document.createElement('div');host.id='tacticsHost';pc.appendChild(host)}renderTactics();renderPlayerList()}
 window.ensureTactics=ensureTactics;
-
 function renderPlayerList(){const pc=document.getElementById('profileContent');if(!pc||document.getElementById('playerListHost'))return;const host=document.createElement('div');host.id='playerListHost';host.innerHTML='<div class="card player-list-card"><h2>📋 LISTA DE JOGADORES</h2><p class="muted">Lista independente dos times. Edite os nomes que quiser.</p><div class="player-list-sections"></div><div class="savebar"><button type="button" class="btn primary" id="savePlayerList">💾 Salvar lista</button><span id="playerListMsg" class="ok"></span></div></div>';pc.appendChild(host);const sections=host.querySelector('.player-list-sections');const cats=[['🧤 Goleiros','goleiros',10],['🛡️ Zagueiros','zagueiros',30],['↔️ Laterais','laterais',20],['⚙️ Volantes','volantes',15],['🎯 Meio-campo','meio-campo',30],['⚡ Atacantes','atacantes',40]];sections.innerHTML=cats.map(([label,key,count])=>'<div class="position"><h3>'+label+' ('+count+')</h3><div class="slots">'+Array.from({length:count},(_,i)=>'<label class="slot"><span class="num">'+(i+1)+'</span><input class="input playerListInput" data-category="'+key+'" data-slot="'+(i+1)+'" placeholder="Digite o jogador"></label>').join('')+'</div></div>').join('');const storageKey='bomba-petch-player-list-'+((window.currentProfileCode)||'global');try{const data=JSON.parse(localStorage.getItem(storageKey)||'{}');host.querySelectorAll('.playerListInput').forEach(i=>i.value=data[i.dataset.category]?.[i.dataset.slot-1]||'')}catch(e){}host.querySelector('#savePlayerList').onclick=()=>{const data={};host.querySelectorAll('.playerListInput').forEach(i=>{if(!data[i.dataset.category])data[i.dataset.category]=[];data[i.dataset.category][Number(i.dataset.slot)-1]=i.value.trim()});localStorage.setItem(storageKey,JSON.stringify(data));host.querySelector('#playerListMsg').textContent='✓ Lista salva neste dispositivo!';setTimeout(()=>host.querySelector('#playerListMsg').textContent='',2500)}}
-
-// CORREÇÃO DOS PERFIS: garante que o botão "Abrir perfil" sempre tenha uma ação.
-function bindProfileButtons(){
-  const cards=document.querySelectorAll('#profileCards [data-player]');
-  cards.forEach(card=>{
-    if(card.dataset.profileBound==='1')return;
-    card.dataset.profileBound='1';
-    card.addEventListener('click',function(e){
-      e.preventDefault();
-      const code=this.dataset.player;
-      if(window.players&&typeof window.openProfile==='function'){
-        const player=window.players.find(p=>p.code===code);
-        if(player) window.openProfile(player);
-      }else if(typeof openProfile==='function'&&typeof players!=='undefined'){
-        const player=players.find(p=>p.code===code);
-        if(player) openProfile(player);
-      }
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded',()=>{
-  setTimeout(()=>{
-    try{if(typeof renderProfiles==='function')renderProfiles()}catch(e){console.error('Erro ao renderizar perfis:',e)}
-    bindProfileButtons();
-  },50);
-});
+function bindProfileButtons(){const cards=document.querySelectorAll('#profileCards [data-player]');cards.forEach(card=>{if(card.dataset.profileBound==='1')return;card.dataset.profileBound='1';card.addEventListener('click',function(e){e.preventDefault();const code=this.dataset.player;if(window.players&&typeof window.openProfile==='function'){const player=window.players.find(p=>p.code===code);if(player)window.openProfile(player)}else if(typeof openProfile==='function'&&typeof players!=='undefined'){const player=players.find(p=>p.code===code);if(player)openProfile(player)}})})}
+document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>{try{if(typeof renderProfiles==='function')renderProfiles()}catch(e){console.error('Erro ao renderizar perfis:',e)}bindProfileButtons()},50)});
 window.bindProfileButtons=bindProfileButtons;
+
+// Ativa automaticamente a lista dentro de cada perfil quando o conteúdo do perfil é criado/trocado.
+const profileObserver=new MutationObserver(()=>{const pc=document.getElementById('profileContent');if(!pc)return;const code=pc.querySelector('.profile-head .big')?.textContent?.trim();if(code){window.currentProfileCode=code;setTimeout(()=>{try{ensureTactics()}catch(e){console.error('Erro ao carregar lista/táticas:',e)}},0)}});
+const profileRoot=document.getElementById('profileContent');
+if(profileRoot)profileObserver.observe(profileRoot,{childList:true,subtree:true});
