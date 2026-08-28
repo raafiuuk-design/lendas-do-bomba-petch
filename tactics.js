@@ -26,3 +26,22 @@ if(profileRoot)profileObserver.observe(profileRoot,{childList:true,subtree:true}
  async function savePage(){const host=document.getElementById('generalPlayerList');const msg=document.getElementById('generalPlayerListMsg');if(!host||!msg)return;msg.textContent='Salvando...';const rows=[];host.querySelectorAll('.generalName').forEach(i=>{const team=host.querySelector('.generalTeam[data-cat="'+i.dataset.cat+'"][data-i="'+i.dataset.i+'"]');rows.push({category:i.dataset.cat,slot_number:Number(i.dataset.i)+1,player_name:i.value.trim(),team_name:team?team.value.trim():'',updated_at:new Date().toISOString()})});try{const r=await fetch(GENERAL_LIST_URL+'?on_conflict=category,slot_number',{method:'POST',headers:{...GENERAL_HEADERS,Prefer:'resolution=merge-duplicates,return=minimal'},body:JSON.stringify(rows)});if(!r.ok)throw new Error(await r.text());msg.textContent='✓ Lista salva no site!';await renderPage();setTimeout(()=>msg.textContent='',2500)}catch(e){console.error('Erro ao salvar lista geral:',e);msg.textContent='✕ Erro ao salvar';alert('Não foi possível salvar a lista de jogadores.')}}
  document.addEventListener('DOMContentLoaded',()=>{addTab();addPage();setTimeout(()=>{const b=document.getElementById('saveGeneralPlayerList');if(b)b.addEventListener('click',savePage)},100)});
 })();
+
+/* Ajuste da roleta: mostra número E nome do jogador sorteado. */
+document.addEventListener('DOMContentLoaded',()=>{
+  setTimeout(()=>{
+    const btn=document.getElementById('spinRoulette');
+    if(!btn || typeof poolData==='undefined') return;
+    btn.addEventListener('click',()=>{
+      setTimeout(()=>{
+        const result=document.getElementById('rouletteResult');
+        const numEl=document.getElementById('rouletteNumber');
+        const pos=window.currentRoulette||currentRoulette;
+        const n=Number(numEl?.textContent||0);
+        if(!result||!n||!poolData.length) return;
+        const row=poolData.find(x=>x.position===pos&&Number(x.slot_number)===n&&String(x.player_name||'').trim());
+        if(row) result.innerHTML='🏆 <strong>'+esc(row.player_name)+'</strong><br><small style="font-size:15px;color:#9aa3b0">Número '+String(n).padStart(2,'0')+'</small>';
+      },2750);
+    },true);
+  },300);
+});
