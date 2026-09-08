@@ -7,122 +7,150 @@
   document.head.appendChild(art);
 })();
 
-// As iniciais R/B/C/L servem apenas para identificar o jogador.
-// Quando o nome do time substituir a inicial, mantemos internamente
-// qual jogador era o dono daquela partida (player_a/player_b).
-function ensureMatchOwners(){
+/*
+  REGRA DAS PARTIDAS:
+  R/B/C/L identificam SEMPRE o jogador.
+  O texto digitado no campo da partida e apenas o nome do time.
+  Ex.: B -> MOSTRO continua contando para B (Berna).
+  Ex.: B x R, com CHINA x BRASIL, conta CHINA para B e BRASIL para R.
+*/
+const PLAYER_PAIRS=[['R','B'],['R','C'],['R','L'],['B','C'],['B','L'],['C','L']];
+
+function ensureGamePlayers(){
   games.forEach((g,i)=>{
-    const p=pairs[i%6];
+    const p=PLAYER_PAIRS[i%PLAYER_PAIRS.length];
     if(!g.player_a) g.player_a=p[0];
     if(!g.player_b) g.player_b=p[1];
   });
 }
 
-async function loadMatchOwners(){
+function updateMatchStandings(){
+  ensureGamePlayers();
+
+  const s={
+    R:{name:'R',j:0,w:0,d:0,l:0,pts:0},
+    B:{name:'B',j:0,w:0,d:0,l:0,pts:0},
+    C:{name:'C',j:0,w:0,d:0,l:0,pts:0},
+    L:{name:'L',j:0,w:0,d:0,l:0,pts:0}
+  };
+
+  games.forEach(g=>{
+    const pa=String(g.player_a||'').trim().toUpperCase();
+    const pb=String(g.player_b||'').trim().toUpperCase();
+    const a=Number(g.score_a), b=Number(g.score_b);
+    if(!s[pa]||!s[pb]||pa===pb)return;
+    if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0)return;
+    // 0 x 0 continua representando partida ainda nao jogada.
+    if(a===0&&b===0)return;
+
+    s[pa].j++;
+    s[pb].j++;
+
+    if(a>b){
+      s[pa].w++;
+      s[pa].pts+=3;
+      s[pb].l++;
+      s[pb].pts-=1;
+    }else if(b>a){
+      s[pb].w++;
+      s[pb].pts+=3;
+      s[pa].l++;
+      s[pa].pts-=1;
+    }else{
+      s[pa].d++;
+      s[pb].d++;
+      s[pa].pts++;
+      s[pb].pts++;
+    }
+  });
+
+  const order=['R','B','C','L'];
+  const rows=order.map(k=>s[k]);
+  const standings=document.getElementById('standingsBody');
+  const table=document.getElementById('tableBody');
+
+  if(standings){
+    standings.innerHTML=rows.map(r=>`<tr><td>${r.name}</td><td>${r.j}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
+  }
+  if(table){
+    const ranked=[...rows].sort((a,b)=>b.pts-a.pts||b.w-a.w||b.j-a.j||order.indexOf(a.name)-order.indexOf(b.name));
+    table.innerHTML=ranked.map((r,i)=>`<tr><td>${i+1}º</td><td>${r.name}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
+  }
+}
+
+window.renderStandings=updateMatchStandings;
+
+// Mantem a tabela com R/B/C/L mesmo que o codigo original tente redesenha-la.
+let fixingTable=false;
+const tableObserver=new MutationObserver(()=>{
+  if(fixingTable)return;
+  clearTimeout(window.__bombaTableTimer);
+  window.__bombaTableTimer=setTimeout(updateMatchStandings,0);
+});
+setTimeout(()=>{
+  const a=document.getElementById('standingsBody');
+  const b=document.getElementById('tableBody');
+  if(a)tableObserver.observe(a,{childList:true,subtree:true});
+  if(b)tableObserver.observe(b,{childList:true,subtree:true});
+  updateMatchStandings();
+},0);
+
+// A posicao da partida define o jogador. O nome digitado nunca altera o jogador.
+document.addEventListener('input',event=>{
+  const el=event.target;
+  if(!el.classList||!el.classList.contains('gameInput'))return;
+  const i=Number(el.dataset.i);
+  if(!games[i])return;
+  const p=PLAYER_PAIRS[i%PLAYER_PAIRS.length];
+  games[i].player_a=p[0];
+  games[i].player_b=p[1];
+  clearTimeout(window.__bombaInputTimer);
+  window.__bombaInputTimer=setTimeout(updateMatchStandings,0);
+},true);
+
+// Salva tambem o jogador dono de cada lado no banco. O nome do time fica em team_a/team_b.
+async function persistPlayerOwners(){
+  ensureGamePlayers();
+  try{
+    for(const g of games){
+      const r=await fetch(GAMES+'?id=eq.'+g.id,{method:'PATCH',headers:{...HJSON,Prefer:'return=minimal'},body:JSON.stringify({player_a:g.player_a,player_b:g.player_b})});
+      if(!r.ok)throw new Error(await r.text());
+    }
+  }catch(e){console.error('Erro ao salvar jogador das partidas:',e)}
+}
+
+document.addEventListener('click',event=>{
+  const btn=event.target.closest&&event.target.closest('#saveGames');
+  if(!btn)return;
+  ensureGamePlayers();
+  setTimeout(persistPlayerOwners,1200);
+},true);
+
+// Carrega/normaliza o dono de cada lado. Para registros antigos sem player_a/player_b,
+// usa a ordem fixa das partidas e grava essa relacao no banco.
+async function hydratePlayerOwners(){
+  ensureGamePlayers();
   try{
     const r=await fetch(GAMES+'?select=id,player_a,player_b&order=id.asc',{headers:H});
     if(r.ok){
       const rows=await r.json();
       rows.forEach(x=>{
         if(x.id>=1&&x.id<=18){
-          games[x.id-1].player_a=x.player_a||pairs[(x.id-1)%6][0];
-          games[x.id-1].player_b=x.player_b||pairs[(x.id-1)%6][1];
+          const i=x.id-1;
+          const p=PLAYER_PAIRS[i%PLAYER_PAIRS.length];
+          games[i].player_a=String(x.player_a||p[0]).toUpperCase();
+          games[i].player_b=String(x.player_b||p[1]).toUpperCase();
         }
       });
     }
-  }catch(e){console.error(e)}
-  ensureMatchOwners();
-  updateMatchStandings();
+    updateMatchStandings();
+    // Garante que registros antigos tambem passem a ter os donos salvos.
+    await persistPlayerOwners();
+  }catch(e){console.error('Erro ao carregar donos dos jogadores:',e);updateMatchStandings()}
 }
+setTimeout(hydratePlayerOwners,900);
 
-// A tabela usa o nome que estiver escrito nos campos das partidas.
-// O jogador pode substituir R/B/C/L por qualquer nome de time.
-function updateMatchStandings(){
-  const s={};
-  const keyOf=value=>String(value ?? '').trim().toLowerCase();
-
-  games.forEach(g=>{
-    const aName=String(g.team_a ?? '').trim();
-    const bName=String(g.team_b ?? '').trim();
-    const aKey=keyOf(aName), bKey=keyOf(bName);
-    const a=Number(g.score_a), b=Number(g.score_b);
-
-    if(!aName||!bName||!aKey||!bKey||aKey===bKey)return;
-    if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0)return;
-    // 0x0 continua sendo considerado campo ainda não jogado.
-    if(a===0&&b===0)return;
-
-    if(!s[aKey])s[aKey]={name:aName,j:0,w:0,d:0,l:0,pts:0};
-    if(!s[bKey])s[bKey]={name:bName,j:0,w:0,d:0,l:0,pts:0};
-
-    s[aKey].j++;
-    s[bKey].j++;
-
-    if(a>b){
-      s[aKey].w++;
-      s[aKey].pts+=3;
-      s[bKey].l++;
-      s[bKey].pts-=1;
-    }else if(b>a){
-      s[bKey].w++;
-      s[bKey].pts+=3;
-      s[aKey].l++;
-      s[aKey].pts-=1;
-    }else{
-      s[aKey].d++;
-      s[bKey].d++;
-      s[aKey].pts++;
-      s[bKey].pts++;
-    }
-  });
-
-  const rows=Object.values(s).sort((a,b)=>b.pts-a.pts||b.w-a.w||b.j-a.j||a.name.localeCompare(b.name));
-  const standings=document.getElementById('standingsBody');
-  const table=document.getElementById('tableBody');
-
-  if(standings){
-    standings.innerHTML=rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${r.j}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
-  }
-  if(table){
-    table.innerHTML=rows.map((r,i)=>`<tr><td>${i+1}º</td><td>${esc(r.name)}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
-  }
-}
-
-window.renderStandings=updateMatchStandings;
-
-// Garante que qualquer nome digitado no lugar da inicial continue ligado
-// ao jogador que estava originalmente naquela posição.
-document.addEventListener('input',(event)=>{
-  const el=event.target;
-  if(!el.classList||!el.classList.contains('gameInput'))return;
-  const i=Number(el.dataset.i);
-  if(!Number.isInteger(i)||!games[i])return;
-  const p=pairs[i%6];
-  if(!games[i].player_a)games[i].player_a=p[0];
-  if(!games[i].player_b)games[i].player_b=p[1];
-},true);
-
-// Antes de o salvamento normal das partidas acontecer, grava tambem
-// os jogadores donos de cada lado no banco.
-const saveGamesButton=document.getElementById('saveGames');
-if(saveGamesButton){
-  saveGamesButton.addEventListener('click',async()=>{
-    ensureMatchOwners();
-    try{
-      for(const g of games){
-        const r=await fetch(GAMES+'?id=eq.'+g.id,{method:'PATCH',headers:{...HJSON,Prefer:'return=minimal'},body:JSON.stringify({player_a:g.player_a,player_b:g.player_b})});
-        if(!r.ok)throw new Error(await r.text());
-      }
-    }catch(e){console.error('Erro ao salvar donos das partidas:',e)}
-  },true);
-}
-
-setTimeout(()=>{
-  ensureMatchOwners();
-  loadMatchOwners();
-},300);
-
-// O RESETAR zera os placares, restaura as iniciais e grava o reset no banco.
+// RESETAR: volta nomes dos times para R/B/C/L, zera placares e preserva o dono de cada lado.
 const resetGamesButton=document.getElementById('resetGames');
 if(resetGamesButton){
   resetGamesButton.addEventListener('click',async(event)=>{
@@ -130,11 +158,11 @@ if(resetGamesButton){
     if(!confirm('Resetar os placares e a tabela?'))return;
 
     games.forEach((g,i)=>{
-      const p=pairs[i%6];
-      g.team_a=p[0];
-      g.team_b=p[1];
+      const p=PLAYER_PAIRS[i%PLAYER_PAIRS.length];
       g.player_a=p[0];
       g.player_b=p[1];
+      g.team_a=p[0];
+      g.team_b=p[1];
       g.score_a=0;
       g.score_b=0;
     });
@@ -148,7 +176,7 @@ if(resetGamesButton){
         if(!r.ok)throw new Error(await r.text());
       }
       const msg=document.getElementById('gamesMsg');
-      if(msg){msg.textContent='✓ Placares, nomes e jogadores resetados!';setTimeout(()=>msg.textContent='',3000)}
+      if(msg){msg.textContent='✓ Placares e tabela resetados!';setTimeout(()=>msg.textContent='',3000)}
     }catch(e){
       console.error(e);
       const msg=document.getElementById('gamesMsg');
