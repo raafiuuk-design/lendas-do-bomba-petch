@@ -15,6 +15,7 @@
   Ex.: B x R, com CHINA x BRASIL, conta CHINA para B e BRASIL para R.
 */
 const PLAYER_PAIRS=[['R','B'],['R','C'],['R','L'],['B','C'],['B','L'],['C','L']];
+const HISTORY_API=SUPA+'/rest/v1/bomba_petch_history';
 
 function ensureGamePlayers(){
   games.forEach((g,i)=>{
@@ -24,61 +25,108 @@ function ensureGamePlayers(){
   });
 }
 
-function updateMatchStandings(){
+function calculateStandings(){
   ensureGamePlayers();
-
   const s={
     R:{name:'R',j:0,w:0,d:0,l:0,pts:0},
     B:{name:'B',j:0,w:0,d:0,l:0,pts:0},
     C:{name:'C',j:0,w:0,d:0,l:0,pts:0},
     L:{name:'L',j:0,w:0,d:0,l:0,pts:0}
   };
-
   games.forEach(g=>{
     const pa=String(g.player_a||'').trim().toUpperCase();
     const pb=String(g.player_b||'').trim().toUpperCase();
-    const a=Number(g.score_a), b=Number(g.score_b);
+    const a=Number(g.score_a),b=Number(g.score_b);
     if(!s[pa]||!s[pb]||pa===pb)return;
     if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0)return;
-    // 0 x 0 continua representando partida ainda nao jogada.
     if(a===0&&b===0)return;
-
-    s[pa].j++;
-    s[pb].j++;
-
-    if(a>b){
-      s[pa].w++;
-      s[pa].pts+=3;
-      s[pb].l++;
-      s[pb].pts-=1;
-    }else if(b>a){
-      s[pb].w++;
-      s[pb].pts+=3;
-      s[pa].l++;
-      s[pa].pts-=1;
-    }else{
-      s[pa].d++;
-      s[pb].d++;
-      s[pa].pts++;
-      s[pb].pts++;
-    }
+    s[pa].j++;s[pb].j++;
+    if(a>b){s[pa].w++;s[pa].pts+=3;s[pb].l++;s[pb].pts-=1}
+    else if(b>a){s[pb].w++;s[pb].pts+=3;s[pa].l++;s[pa].pts-=1}
+    else{s[pa].d++;s[pb].d++;s[pa].pts++;s[pb].pts++}
   });
+  return ['R','B','C','L'].map(k=>s[k]);
+}
 
+function updateMatchStandings(){
+  const rows=calculateStandings();
   const order=['R','B','C','L'];
-  const rows=order.map(k=>s[k]);
   const standings=document.getElementById('standingsBody');
   const table=document.getElementById('tableBody');
-
-  if(standings){
-    standings.innerHTML=rows.map(r=>`<tr><td>${r.name}</td><td>${r.j}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
-  }
+  if(standings)standings.innerHTML=rows.map(r=>`<tr><td>${r.name}</td><td>${r.j}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
   if(table){
     const ranked=[...rows].sort((a,b)=>b.pts-a.pts||b.w-a.w||b.j-a.j||order.indexOf(a.name)-order.indexOf(b.name));
     table.innerHTML=ranked.map((r,i)=>`<tr><td>${i+1}º</td><td>${r.name}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td class="points">${r.pts}</td></tr>`).join('');
   }
 }
-
 window.renderStandings=updateMatchStandings;
+
+/* =========================
+   HISTORIA DOS CAMPEONATOS
+   ========================= */
+let historyData=[];
+let historySelected=0;
+
+function historyTableHTML(snapshot){
+  const rows=Array.isArray(snapshot)?snapshot:[];
+  return `<div class="standings"><table><thead><tr><th>Jogador</th><th>J</th><th>V</th><th>E</th><th>D</th><th>Pontos</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${Number(r.j)||0}</td><td>${Number(r.w)||0}</td><td>${Number(r.d)||0}</td><td>${Number(r.l)||0}</td><td class="points">${Number(r.pts)||0}</td></tr>`).join('')}</tbody></table></div>`;
+}
+
+function renderHistory(){
+  const box=document.getElementById('history');
+  if(!box)return;
+  const intro=`<h1>📜 História</h1><div class="card"><p>O BOMBA PETCH é disputado por <b>Rafagamer, Cristian, Leandro e Berna</b>.</p><p class="muted">As tabelas ficam registradas aqui quando um campeonato é resetado.</p></div>`;
+  if(!historyData.length){
+    box.innerHTML=intro+`<div class="card" style="margin-top:20px"><h2>🏆 Primeiro Campeonato Da Temporada</h2><p class="muted">Ainda não há campeonato encerrado. Quando você clicar em Resetar na aba Partidas, a tabela será salva aqui automaticamente.</p></div>`;
+    return;
+  }
+  const tabs=historyData.map((h,i)=>`<button class="btn ${i===historySelected?'primary':''}" data-history="${i}">🏆 ${esc(h.title)}</button>`).join('');
+  const h=historyData[historySelected]||historyData[0];
+  const date=h.created_at?new Date(h.created_at).toLocaleString('pt-BR'):'';
+  box.innerHTML=intro+`<div class="history-tabs" style="display:flex;gap:10px;flex-wrap:wrap;margin:20px 0">${tabs}</div><div class="card"><h2>${esc(h.title)}</h2><p class="muted">Registrado em ${esc(date)}</p>${historyTableHTML(h.snapshot)}</div>`;
+  box.querySelectorAll('[data-history]').forEach(btn=>btn.addEventListener('click',()=>{historySelected=Number(btn.dataset.history);renderHistory()}));
+}
+
+async function loadHistory(){
+  try{
+    const r=await fetch(HISTORY_API+'?select=id,title,snapshot,created_at&order=id.asc',{headers:H});
+    if(!r.ok)throw new Error(await r.text());
+    historyData=await r.json();
+    historySelected=Math.max(0,historyData.length-1);
+  }catch(e){
+    console.error('Erro ao carregar historia:',e);
+    historyData=[];
+  }
+  renderHistory();
+}
+
+async function saveHistorySnapshot(){
+  const snapshot=calculateStandings();
+  if(!snapshot.length)return false;
+  try{
+    const countResponse=await fetch(HISTORY_API+'?select=id&order=id.desc&limit=1',{headers:H});
+    if(!countResponse.ok)throw new Error(await countResponse.text());
+    const existing=await countResponse.json();
+    const n=(existing.length?Number(existing[0].id):0)+1;
+    const ordinals=['Primeiro','Segundo','Terceiro','Quarto','Quinto','Sexto','Setimo','Oitavo','Nono','Decimo'];
+    const ordinal=ordinals[n-1]||(`${n}º`);
+    const title=`${ordinal} Campeonato Da Temporada`;
+    const r=await fetch(HISTORY_API,{method:'POST',headers:{...HJSON,Prefer:'return=representation'},body:JSON.stringify({title,snapshot})});
+    if(!r.ok)throw new Error(await r.text());
+    const saved=await r.json();
+    if(Array.isArray(saved)&&saved.length)historyData.push(saved[0]);
+    else historyData.push({title,snapshot,created_at:new Date().toISOString()});
+    historySelected=historyData.length-1;
+    renderHistory();
+    return true;
+  }catch(e){
+    console.error('Erro ao salvar historia:',e);
+    const msg=document.getElementById('gamesMsg');
+    if(msg)msg.textContent='✕ Não foi possível salvar a tabela na História';
+    alert('Não foi possível salvar a tabela na História. O reset não foi realizado.');
+    return false;
+  }
+}
 
 // Mantem a tabela com R/B/C/L mesmo que o codigo original tente redesenha-la.
 let fixingTable=false;
@@ -93,6 +141,7 @@ setTimeout(()=>{
   if(a)tableObserver.observe(a,{childList:true,subtree:true});
   if(b)tableObserver.observe(b,{childList:true,subtree:true});
   updateMatchStandings();
+  loadHistory();
 },0);
 
 // A posicao da partida define o jogador. O nome digitado nunca altera o jogador.
@@ -126,8 +175,6 @@ document.addEventListener('click',event=>{
   setTimeout(persistPlayerOwners,1200);
 },true);
 
-// Carrega/normaliza o dono de cada lado. Para registros antigos sem player_a/player_b,
-// usa a ordem fixa das partidas e grava essa relacao no banco.
 async function hydratePlayerOwners(){
   ensureGamePlayers();
   try{
@@ -144,18 +191,20 @@ async function hydratePlayerOwners(){
       });
     }
     updateMatchStandings();
-    // Garante que registros antigos tambem passem a ter os donos salvos.
     await persistPlayerOwners();
   }catch(e){console.error('Erro ao carregar donos dos jogadores:',e);updateMatchStandings()}
 }
 setTimeout(hydratePlayerOwners,900);
 
-// RESETAR: volta nomes dos times para R/B/C/L, zera placares e preserva o dono de cada lado.
+// RESETAR: primeiro guarda a tabela atual na Historia. Depois zera placares e preserva o dono de cada lado.
 const resetGamesButton=document.getElementById('resetGames');
 if(resetGamesButton){
   resetGamesButton.addEventListener('click',async(event)=>{
     event.stopImmediatePropagation();
-    if(!confirm('Resetar os placares e a tabela?'))return;
+    if(!confirm('Salvar a tabela atual na História e depois resetar?'))return;
+
+    const saved=await saveHistorySnapshot();
+    if(!saved)return;
 
     games.forEach((g,i)=>{
       const p=PLAYER_PAIRS[i%PLAYER_PAIRS.length];
@@ -176,7 +225,7 @@ if(resetGamesButton){
         if(!r.ok)throw new Error(await r.text());
       }
       const msg=document.getElementById('gamesMsg');
-      if(msg){msg.textContent='✓ Placares e tabela resetados!';setTimeout(()=>msg.textContent='',3000)}
+      if(msg){msg.textContent='✓ Tabela salva na História e partidas resetadas!';setTimeout(()=>msg.textContent='',4000)}
     }catch(e){
       console.error(e);
       const msg=document.getElementById('gamesMsg');
