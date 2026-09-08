@@ -7,50 +7,48 @@
   document.head.appendChild(art);
 })();
 
-// Corrige a contabilização da tabela de partidas.
-// Aceita tanto os códigos (R/B/C/L) quanto os nomes completos.
-function normalizeMatchPlayer(value){
-  const v=String(value ?? '').trim().toLowerCase();
-  const p=players.find(x => x.code.toLowerCase()===v || x.name.toLowerCase()===v);
-  return p ? p.code : null;
-}
-
+// A tabela usa o nome que estiver escrito nos campos das partidas.
+// O jogador pode substituir R/B/C/L por qualquer nome de time.
 function updateMatchStandings(){
   const s={};
-  players.forEach(p => s[p.code]={name:p.name,j:0,w:0,d:0,l:0,pts:0});
+  const keyOf=value=>String(value ?? '').trim().toLowerCase();
 
-  games.forEach(g => {
-    const aPlayer=normalizeMatchPlayer(g.team_a);
-    const bPlayer=normalizeMatchPlayer(g.team_b);
-    const a=Number(g.score_a);
-    const b=Number(g.score_b);
+  games.forEach(g=>{
+    const aName=String(g.team_a ?? '').trim();
+    const bName=String(g.team_b ?? '').trim();
+    const aKey=keyOf(aName), bKey=keyOf(bName);
+    const a=Number(g.score_a), b=Number(g.score_b);
 
-    if(!aPlayer || !bPlayer || aPlayer===bPlayer) return;
-    if(!Number.isFinite(a) || !Number.isFinite(b) || a<0 || b<0) return;
+    if(!aName || !bName || !aKey || !bKey || aKey===bKey) return;
+    if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<0) return;
+    // 0x0 continua sendo considerado campo ainda não jogado.
     if(a===0 && b===0) return;
 
-    s[aPlayer].j++;
-    s[bPlayer].j++;
+    if(!s[aKey]) s[aKey]={name:aName,j:0,w:0,d:0,l:0,pts:0};
+    if(!s[bKey]) s[bKey]={name:bName,j:0,w:0,d:0,l:0,pts:0};
+
+    s[aKey].j++;
+    s[bKey].j++;
 
     if(a>b){
-      s[aPlayer].w++;
-      s[aPlayer].pts+=3;
-      s[bPlayer].l++;
-      s[bPlayer].pts-=1;
+      s[aKey].w++;
+      s[aKey].pts+=3;
+      s[bKey].l++;
+      s[bKey].pts-=1;
     }else if(b>a){
-      s[bPlayer].w++;
-      s[bPlayer].pts+=3;
-      s[aPlayer].l++;
-      s[aPlayer].pts-=1;
+      s[bKey].w++;
+      s[bKey].pts+=3;
+      s[aKey].l++;
+      s[aKey].pts-=1;
     }else{
-      s[aPlayer].d++;
-      s[bPlayer].d++;
-      s[aPlayer].pts++;
-      s[bPlayer].pts++;
+      s[aKey].d++;
+      s[bKey].d++;
+      s[aKey].pts++;
+      s[bKey].pts++;
     }
   });
 
-  const rows=Object.values(s).sort((a,b)=>b.pts-a.pts || b.w-a.w || b.j-a.j);
+  const rows=Object.values(s).sort((a,b)=>b.pts-a.pts||b.w-a.w||b.j-a.j||a.name.localeCompare(b.name));
   const standings=document.getElementById('standingsBody');
   const table=document.getElementById('tableBody');
 
@@ -62,11 +60,10 @@ function updateMatchStandings(){
   }
 }
 
-// Substitui a função usada pelo site para manter a tabela atualizada.
 window.renderStandings=updateMatchStandings;
 setTimeout(updateMatchStandings,0);
 
-// Ao clicar em RESETAR, zera os placares, a tabela e tambem salva o zero no banco.
+// O RESETAR zera os placares e tambem grava o reset no banco.
 const resetGamesButton=document.getElementById('resetGames');
 if(resetGamesButton){
   resetGamesButton.addEventListener('click',async(event)=>{
