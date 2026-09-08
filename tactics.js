@@ -36,10 +36,12 @@ function updateMatchStandings(){
       s[aPlayer].w++;
       s[aPlayer].pts+=3;
       s[bPlayer].l++;
+      s[bPlayer].pts-=1;
     }else if(b>a){
       s[bPlayer].w++;
       s[bPlayer].pts+=3;
       s[aPlayer].l++;
+      s[aPlayer].pts-=1;
     }else{
       s[aPlayer].d++;
       s[bPlayer].d++;
