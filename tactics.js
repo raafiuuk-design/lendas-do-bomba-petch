@@ -62,6 +62,39 @@ function updateMatchStandings(){
   }
 }
 
-// Mantém a atualização automática enquanto os placares são editados.
+// Substitui a função usada pelo site para manter a tabela atualizada.
 window.renderStandings=updateMatchStandings;
 setTimeout(updateMatchStandings,0);
+
+// Ao clicar em RESETAR, zera os placares, a tabela e tambem salva o zero no banco.
+const resetGamesButton=document.getElementById('resetGames');
+if(resetGamesButton){
+  resetGamesButton.addEventListener('click',async(event)=>{
+    event.stopImmediatePropagation();
+    if(!confirm('Resetar os placares e a tabela?')) return;
+
+    games.forEach((g,i)=>{
+      const p=pairs[i%6];
+      g.team_a=p[0];
+      g.team_b=p[1];
+      g.score_a=0;
+      g.score_b=0;
+    });
+
+    renderGames();
+    updateMatchStandings();
+
+    try{
+      for(const g of games){
+        const r=await fetch(GAMES+'?id=eq.'+g.id,{method:'PATCH',headers:{...HJSON,Prefer:'return=minimal'},body:JSON.stringify({team_a:g.team_a,score_a:0,score_b:0,team_b:g.team_b,updated_at:new Date().toISOString()})});
+        if(!r.ok) throw new Error(await r.text());
+      }
+      const msg=document.getElementById('gamesMsg');
+      if(msg){msg.textContent='✓ Placares e tabela resetados!';setTimeout(()=>msg.textContent='',3000);}
+    }catch(e){
+      console.error(e);
+      const msg=document.getElementById('gamesMsg');
+      if(msg)msg.textContent='✕ Erro ao salvar o reset';
+    }
+  },true);
+}
