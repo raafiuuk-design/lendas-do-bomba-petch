@@ -1,0 +1,34 @@
+name: Atualizar Jornal Bomba Petch
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'jornal-coletiva.svg'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Atualizar bloco do Jornal
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('tactics.js')
+          s=p.read_text(encoding='utf-8')
+          new = r'''function createJournalTab(){const nav=document.getElementById('nav'),main=document.querySelector('main.wrap');if(!nav||!main)return;const oldBtn=document.querySelector('#nav button[data-page="jornal"],#nav button[data-page="journal"]');const oldSec=document.getElementById('jornal')||document.getElementById('journal');if(oldBtn)oldBtn.remove();if(oldSec)oldSec.remove();const btn=document.createElement('button');btn.dataset.page='journal';btn.textContent='📰 Jornal Bomba Petch';nav.appendChild(btn);const sec=document.createElement('section');sec.id='journal';sec.className='page';sec.innerHTML=`<h1>📰 Jornal Bomba Petch</h1><p class="muted">Notícias, resultados e acontecimentos do BOMBA PETCH.</p><div class="card" style="margin-top:20px;text-align:center"><img src="jornal-coletiva.svg" alt="Coletiva de imprensa do técnico Bernardo" style="display:block;width:100%;max-width:900px;height:auto;margin:0 auto;border-radius:14px;border:1px solid #29313d"><div style="text-align:left;margin-top:22px"><div class="orange"><b>📰 NOTÍCIA</b></div><h2>🎙️ Técnico Bernardo convoca coletiva para dar explicações</h2><p>O técnico <b>Bernardo</b> convocou uma coletiva de imprensa para dar explicações sobre os próximos passos de sua equipe e falar sobre as decisões que vêm movimentando os bastidores do BOMBA PETCH.</p><p>Durante a coletiva, o treinador deverá responder aos questionamentos da imprensa e esclarecer a situação antes da sequência da temporada.</p></div></div><div class="cards" style="margin-top:20px"><div class="card"><div class="orange"><b>📰 EDIÇÃO ATUAL</b></div><h2>🔥 Temporada 2026 começou!</h2><p>A temporada 2026 do BOMBA PETCH começou oficialmente. A disputa pelo título do melhor do ano já está valendo e promete muita rivalidade, emoção e grandes partidas.</p></div><div class="card"><div class="orange"><b>🏆 CAMPEÃO</b></div><h2>👑 Leandro é campeão!</h2><p><b>Leandro foi o grande campeão do campeonato.</b> O jogador teve uma campanha de destaque, terminou no topo e conquistou a taça.</p></div><div class="card"><div class="orange"><b>😔 DECEPÇÃO DO CAMPEONATO</b></div><h2>⚠️ Berna decepciona</h2><p><b>Berna foi a grande decepção do campeonato.</b> O desempenho ficou abaixo das expectativas.</p></div><div class="card"><div class="orange"><b>💰 MERCADO DA BOLA</b></div><h2>🚨 Lobo Mau prepara proposta milionária por Ibrahimović</h2><p>O time <b>Lobo Mau</b> teria demonstrado forte interesse na contratação do atacante <b>Ibrahimović</b>.</p><p class="muted"><b>Rumor:</b> a negociação ainda não foi confirmada oficialmente.</p></div><div class="card"><div class="orange"><b>💰 MERCADO DA BOLA</b></div><h2>🚨 Ronaldinho é da Fenix!</h2><p>O craque <b>Ronaldinho</b> foi anunciado como novo reforço da <b>Fenix</b> em uma <b>transação milionária</b>.</p><p>A Fenix envolveu na troca <b>Imperador Adriano</b>, <b>Veron</b> e <b>Deisler</b>.</p></div></div>`;main.appendChild(sec);btn.onclick=()=>showPage('journal')}
+setTimeout(createJournalTab,0);'''
+          pattern=r"function createJournalTab\(\)\{.*?\}\s*setTimeout\(createJournalTab,0\);"
+          ns,n=re.subn(pattern,new,s,count=1,flags=re.S)
+          if n!=1: raise SystemExit('Bloco do Jornal não encontrado')
+          p.write_text(ns,encoding='utf-8')
+          PY
+      - name: Commit da atualização
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tactics.js
+          git diff --cached --quiet || git commit -m 'Atualiza Jornal Bomba Petch com coletiva do Bernardo'
+          git push
