@@ -10,7 +10,7 @@
   function addStyles(){
     if(document.getElementById('artPasswordStyles'))return;
     const st=document.createElement('style');st.id='artPasswordStyles';
-    st.textContent='.art-pass-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}.art-pass-box{width:min(430px,100%);background:#121720;border:1px solid #343b47;border-radius:16px;padding:28px;box-shadow:0 20px 60px #000}.art-pass-box h2{margin-top:0;color:#ff7300}.art-pass-box input{width:100%;padding:13px;margin:7px 0;background:#080b10;color:#fff;border:1px solid #343b47;border-radius:8px;font-size:16px}.art-pass-box .err{color:#ff7373;min-height:24px;margin-top:6px}.art-pass-actions{display:flex;gap:10px;margin-top:12px}.art-pass-actions button{flex:1}';
+    st.textContent='.art-pass-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;z-index:99999;padding:20px}.art-pass-box{width:min(430px,100%);background:#121720;border:1px solid #343b47;border-radius:16px;padding:28px;box-shadow:0 20px 60px #000}.art-pass-box h2{margin-top:0;color:#ff7300}.art-pass-box input{width:100%;padding:13px;margin:7px 0;background:#080b10;color:#fff;border:1px solid #343b47;border-radius:8px;font-size:16px}.art-pass-box .err{color:#ff7373;min-height:24px;margin-top:6px}.art-pass-actions{display:flex;gap:10px;margin-top:12px}.art-pass-actions button{flex:1}.rank-team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}.rank-team-card{background:#121720;border:1px solid #29313d;border-radius:15px;padding:24px;text-align:center}.rank-team-card .rank-number{font-size:38px;font-weight:900;color:#ff7300}.rank-team-card h2{margin:10px 0 0}@media(max-width:700px){.rank-team-grid{grid-template-columns:1fr 1fr}}@media(max-width:450px){.rank-team-grid{grid-template-columns:1fr}}';
     document.head.appendChild(st);
   }
   function hasPassword(){return !!localStorage.getItem('bomba_petch_artilheiros_password')}
@@ -26,26 +26,39 @@
     const input=o.querySelector('#artPass1'), err=o.querySelector('#artPassErr'), btn=o.querySelector('#artPassOk');
     o.querySelector('#artPassCancel').onclick=()=>o.remove();
     btn.onclick=()=>{
-      const p=input.value;
-      err.textContent='';
+      const p=input.value;err.textContent='';
       if(p.length<4){err.textContent='A senha precisa ter pelo menos 4 caracteres.';return}
       if(first){
         const p2=o.querySelector('#artPass2').value;
         if(p!==p2){err.textContent='As senhas não são iguais.';return}
-        localStorage.setItem('bomba_petch_artilheiros_password',p);
-        unlocked=true;o.remove();openPage();return;
+        localStorage.setItem('bomba_petch_artilheiros_password',p);unlocked=true;o.remove();openPage();return;
       }
       if(p===localStorage.getItem('bomba_petch_artilheiros_password')){unlocked=true;o.remove();openPage();}
       else err.textContent='Senha incorreta.';
     };
-    input.addEventListener('keydown',e=>{if(e.key==='Enter')btn.click()});
-    input.focus();
+    input.addEventListener('keydown',e=>{if(e.key==='Enter')btn.click()});input.focus();
   }
   function openPage(){
     document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
     const page=document.getElementById('artilheiros');if(page)page.classList.add('active');
     document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page==='artilheiros'));
     window.scrollTo({top:0,behavior:'smooth'});load();
+  }
+  async function load(){
+    const grid=document.getElementById('artilheirosGrid');if(!grid)return;
+    grid.innerHTML='<p class="muted">Carregando artilheiros...</p>';
+    try{const r=await fetch(API+'?select=id,player_name,goals&order=id.asc',{headers:HEAD,cache:'no-store'});if(!r.ok)throw new Error(await r.text());rows=await r.json();while(rows.length<30)rows.push({id:null,player_name:'',goals:0});render();}
+    catch(e){console.error(e);grid.innerHTML='<p class="muted">Não foi possível carregar os artilheiros.</p>';}
+  }
+  function render(){
+    const grid=document.getElementById('artilheirosGrid');
+    if(!grid)return;
+    grid.innerHTML=rows.slice(0,30).map((r,i)=>'<label class="slot"><span class="num">'+(i+1)+'</span><input class="input artilheiroName" data-i="'+i+'" value="'+esc(r.player_name||'')+'" placeholder="Nome do jogador"><input class="input artilheiroGoals" data-i="'+i+'" type="number" min="0" value="'+Math.max(0,Number(r.goals)||0)+'" placeholder="Gols" style="max-width:120px"></label>').join('');
+  }
+  async function save(){
+    if(!unlocked){openProtected();return}
+    const msg=document.getElementById('artilheirosMsg');if(!msg)return;msg.textContent='Salvando...';
+    try{const names=document.querySelectorAll('.artilheiroName'),goals=document.querySelectorAll('.artilheiroGoals');for(let i=0;i<names.length;i++){const row=rows[i],body={player_name:names[i].value.trim(),goals:Math.max(0,Number(goals[i].value)||0),updated_at:new Date().toISOString()};let r;if(row&&row.id)r=await fetch(API+'?id=eq.'+row.id,{method:'PATCH',headers:{...HEAD,Prefer:'return=minimal'},body:JSON.stringify(body)});else r=await fetch(API,{method:'POST',headers:{...HEAD,Prefer:'return=representation'},body:JSON.stringify(body)});if(!r.ok)throw new Error(await r.text())}msg.textContent='✓ Artilheiros salvos no site!';await load();setTimeout(()=>msg.textContent='',3000)}catch(e){console.error(e);msg.textContent='✕ Erro ao salvar';}
   }
   function addUI(){
     const nav=document.getElementById('nav'),main=document.querySelector('main.wrap');if(!nav||!main)return;
@@ -58,21 +71,25 @@
       s.innerHTML='<h1>⚽ Artilheiros</h1><p class="muted">Cadastre o nome do jogador e a quantidade de gols.</p><div class="card"><div id="artilheirosGrid" class="slots"></div><div class="savebar"><button id="saveArtilheiros" class="btn primary">💾 Salvar artilheiros</button><span id="artilheirosMsg" class="ok"></span></div></div>';
       main.appendChild(s);document.getElementById('saveArtilheiros').onclick=save;
     }
+    if(!document.getElementById('rankTimesNav')){
+      const b=document.createElement('button');b.id='rankTimesNav';b.dataset.page='rank-times';b.textContent='🏆 RANK DOS TIMES';b.onclick=openRankTimes;nav.appendChild(b);
+    }
+    if(!document.getElementById('rank-times')){
+      const s=document.createElement('section');s.id='rank-times';s.className='page';
+      s.innerHTML='<h1>🏆 RANK DOS TIMES</h1><p class="muted">Classificação dos times do BOMBA PETCH.</p><div class="rank-team-grid" id="rankTimesGrid"></div>';
+      main.appendChild(s);renderRankTimes();
+    }
   }
-  async function load(){
-    addUI();const grid=document.getElementById('artilheirosGrid');if(!grid)return;
-    grid.innerHTML='<p class="muted">Carregando artilheiros...</p>';
-    try{const r=await fetch(API+'?select=id,player_name,goals&order=id.asc',{headers:HEAD,cache:'no-store'});if(!r.ok)throw new Error(await r.text());rows=await r.json();while(rows.length<30)rows.push({id:null,player_name:'',goals:0});render();}
-    catch(e){console.error(e);grid.innerHTML='<p class="muted">Não foi possível carregar os artilheiros.</p>';}
+  const TEAM_NAMES=['FENIX','RAFAGAMER','LOBO MAU','XV DE PIRACICABA','NAPOLI','FIORENTINA','KATATUMBA','VERA CRUZ','CRISTIAN SORTE','BARCELONA','REAL MADRI','ATLETICO DE MADRI'];
+  function renderRankTimes(){
+    const grid=document.getElementById('rankTimesGrid');if(!grid)return;
+    grid.innerHTML=TEAM_NAMES.map((name,i)=>'<div class="rank-team-card"><div class="rank-number">'+(i+1)+'º</div><h2>'+name+'</h2></div>').join('');
   }
-  function render(){
-    const grid=document.getElementById('artilheirosGrid');
-    grid.innerHTML=rows.slice(0,30).map((r,i)=>'<label class="slot"><span class="num">'+(i+1)+'</span><input class="input artilheiroName" data-i="'+i+'" value="'+esc(r.player_name||'')+'" placeholder="Nome do jogador"><input class="input artilheiroGoals" data-i="'+i+'" type="number" min="0" value="'+Math.max(0,Number(r.goals)||0)+'" placeholder="Gols" style="max-width:120px"></label>').join('');
-  }
-  async function save(){
-    if(!unlocked){openProtected();return}
-    const msg=document.getElementById('artilheirosMsg');msg.textContent='Salvando...';
-    try{const names=document.querySelectorAll('.artilheiroName'),goals=document.querySelectorAll('.artilheiroGoals');for(let i=0;i<names.length;i++){const row=rows[i],body={player_name:names[i].value.trim(),goals:Math.max(0,Number(goals[i].value)||0),updated_at:new Date().toISOString()};let r;if(row&&row.id)r=await fetch(API+'?id=eq.'+row.id,{method:'PATCH',headers:{...HEAD,Prefer:'return=minimal'},body:JSON.stringify(body)});else r=await fetch(API,{method:'POST',headers:{...HEAD,Prefer:'return=representation'},body:JSON.stringify(body)});if(!r.ok)throw new Error(await r.text())}msg.textContent='✓ Artilheiros salvos no site!';await load();setTimeout(()=>msg.textContent='',3000)}catch(e){console.error(e);msg.textContent='✕ Erro ao salvar';}
+  function openRankTimes(){
+    addUI();document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+    const page=document.getElementById('rank-times');if(page)page.classList.add('active');
+    document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.page==='rank-times'));
+    renderRankTimes();window.scrollTo({top:0,behavior:'smooth'});
   }
   addUI();
 })();
