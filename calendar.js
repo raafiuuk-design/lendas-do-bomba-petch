@@ -47,4 +47,10 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addCalendar);
   else addCalendar();
   setTimeout(addCalendar,500);
+
+  if(!document.querySelector('script[src="games-18-fix.js"]')){
+    const s=document.createElement('script');
+    s.src='games-18-fix.js?v=2';
+    document.head.appendChild(s);
+  }
 })();
