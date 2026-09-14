@@ -1,0 +1,30 @@
+name: Replace Jornal video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/replace-jornal-video.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  replace-video:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download original video from Dropbox
+        env:
+          VIDEO_URL: 'https://uc0dbe77dc1a0c40e10a0fc9ae6b.dl.dropboxusercontent.com/cd/0/get/DILrwKHpIf9VtuN42-hhrBspXHTmjBRI1ba7mhQONsTZsMMtWUVXKXNEco7ls_yL0UVQVuA005yXqNRt--EVTdPzf8_EZcYBc-gI-ilh1E8TvZUG7Uw2kvIqL_nl_0AZqGlGpWwRibZC5i_xytdr6s1iN_ODiXaURkUia44lriN0Aw/file?c_luid=203f18a8'
+        run: |
+          mkdir -p media
+          curl --fail --location "$VIDEO_URL" --output media/leandro-premiacao-2026.mp4
+          test "$(stat -c%s media/leandro-premiacao-2026.mp4)" = "1903139"
+      - name: Commit original video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/leandro-premiacao-2026.mp4
+          git commit -m "Substitui video do Jornal pela versao original" || exit 0
+          git push
