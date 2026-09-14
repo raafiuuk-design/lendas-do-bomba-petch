@@ -30,6 +30,8 @@ jobs:
         run: python3 -c "p='index.html';s=open(p,encoding='utf-8').read();s=s.replace('<title>BOMBA PETCH — Lendas</title>','<title>BOMBA PETCH — RAFAGAMER 2026</title>').replace('LENDAS DO<br><span class=\"orange\">BOMBA PETCH</span>','BOMBA<br><span class=\"orange\">PETCH</span>').replace('<p class=\"orange\"><b>● LIGA DO GRUPO</b></p>','<p class=\"orange\"><b>● BOMBA PETCH — RAFAGAMER 2026</b></p>');open(p,'w',encoding='utf-8').write(s)"
       - name: Aplicar visual premium
         run: python3 -c "p='index.html';s=open(p,encoding='utf-8').read();tag='<link rel=\"stylesheet\" href=\"mobile-premium.css?v=2\">';s=s.replace('</head>',tag+'</head>',1) if tag not in s else s;open(p,'w',encoding='utf-8').write(s)"
+      - name: Ajustar registro do Rank dos Times para 18 partidas
+        run: python3 -c "p='artilheiros.js';s=open(p,encoding='utf-8').read();s=s.replace('Array.from({length:12}', 'Array.from({length:18}').replace('for(let i=0;i<12;i++)', 'for(let i=0;i<18;i++)').replace('Resetar somente os 12 campos de registro?', 'Resetar somente os 18 campos de registro?').replace('REGISTRO DE 12 PARTIDAS', 'REGISTRO DE 18 PARTIDAS');open(p,'w',encoding='utf-8').write(s)"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
