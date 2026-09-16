@@ -1,8 +1,8 @@
 (()=>{
 const U='https://vgurvbdbpxcgkhmunlxr.supabase.co',K='sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj',MATCH=U+'/rest/v1/team_rank_matches',H={apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'};
 const TEAMS=['FENIX','RAFAGEMER','LOBO MAU','REAL MADRI','BARCELONA','ATLETICO DE MADRI','XV DE PIRACICABA','KATATUMBA','VERA CRUZ','NAPOLI','FIORENTINA','CRISTIAN SORTE'];
-const LOGOS={'FENIX':'media/fenix.jpg','KATATUMBA':'media/katatumba.jpg','VERA CRUZ':'media/vera-cruz.jpg','REAL MADRI':'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg','BARCELONA':'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg','NAPOLI':'https://upload.wikimedia.org/wikipedia/commons/2/2d/SSC_Neapel.svg','LOBO MAU':'https://upload.wikimedia.org/wikipedia/en/f/fc/Wolverhampton_Wanderers.svg'};
-const LOCAL={'RAFAGEMER':'☠️','ATLETICO DE MADRI':'🔴⚪','XV DE PIRACICABA':'⚫⚪','FIORENTINA':'⚜️','CRISTIAN SORTE':'🍀'};
+const LOGOS={'FENIX':'media/fenix.jpg','KATATUMBA':'media/katatumba.jpg','VERA CRUZ':'media/vera-cruz.jpg','REAL MADRI':'https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg','BARCELONA':'https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg','ATLETICO DE MADRI':'https://en.wikinews.org/wiki/Special:Redirect/file/Atletico_Madrid_logo.svg','XV DE PIRACICABA':'https://commons.wikimedia.org/wiki/Special:Redirect/file/Esporte_Clube_XV_de_Novembro_de_Piracicaba_logo.svg','NAPOLI':'https://upload.wikimedia.org/wikipedia/commons/2/2d/SSC_Neapel.svg','LOBO MAU':'https://upload.wikimedia.org/wikipedia/en/f/fc/Wolverhampton_Wanderers.svg'};
+const LOCAL={'RAFAGEMER':'☠️','FIORENTINA':'⚜️','CRISTIAN SORTE':'🍀'};
 let matches=[];
 const esc=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;');
 function emptyStats(){let s={};TEAMS.forEach(t=>s[t]={team:t,j:0,v:0,e:0,d:0,sg:0,pts:0});return s}
