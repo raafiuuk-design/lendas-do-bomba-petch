@@ -29,6 +29,10 @@ async function liveHash(){
  const bytes=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(html+"\n"+contents.join("\n")));
  return Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,"0")).join("");
 }
+async function digest(value:string){
+ const bytes=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(value));
+ return Array.from(new Uint8Array(bytes),b=>b.toString(16).padStart(2,"0")).join("");
+}
 Deno.serve(async req=>{
  if(req.method==="OPTIONS")return new Response(null,{headers:cors});
  try{
@@ -36,8 +40,12 @@ Deno.serve(async req=>{
  const config=(await db("bomba_push_config?id=eq.1&select=*"))[0];
  if(action==="check"){
  if(req.method!=="POST"||req.headers.get("x-bomba-token")!==config.send_token)return respond({error:"Unauthorized"},401);
- const hash=await liveHash();
- if(!config.live_hash){await db("bomba_push_config?id=eq.1","PATCH",{live_hash:hash,checked_at:new Date().toISOString()});return respond({initialized:true});}
+ const siteHash=await liveHash();
+ const calendarRows=await db("bomba_calendar_reminders?select=reminder_date,note&order=reminder_date.asc&limit=1000");
+ const calendarHash=await digest(JSON.stringify(calendarRows));
+ const hash=await digest(siteHash+"|"+calendarHash);
+ const calendarChanged=config.calendar_hash!==null&&config.calendar_hash!==calendarHash;
+ if(!config.live_hash){await db("bomba_push_config?id=eq.1","PATCH",{live_hash:hash,calendar_hash:calendarHash,checked_at:new Date().toISOString()});return respond({initialized:true});}
  if(hash===config.live_hash){await db("bomba_push_config?id=eq.1","PATCH",{checked_at:new Date().toISOString()});return respond({changed:false});}
  webpush.setVapidDetails(SITE,config.public_key,config.private_key);
  const rows=await db("bomba_push_subscriptions?select=*&limit=1000");
@@ -45,14 +53,14 @@ Deno.serve(async req=>{
  for(const row of rows){
  if(row.last_hash===hash)continue;
  try{
- const details=webpush.generateRequestDetails(row.subscription,JSON.stringify({title:"⚽ Bomba Patch atualizado!",body:"Tem novidade na liga! Toque para conferir.",url:SITE,tag:"bomba-update-"+hash.slice(0,12)}),{TTL:86400,contentEncoding:"aes128gcm",urgency:"normal",topic:"bomba-update"});
+ const details=webpush.generateRequestDetails(row.subscription,JSON.stringify({title:calendarChanged?"📅 Calendário do Bomba Patch atualizado!":"⚽ Bomba Patch atualizado!",body:calendarChanged?"Uma data ou lembrete foi alterado. Abra o aplicativo para conferir.":"Tem novidade na liga! Toque para conferir.",url:SITE,tag:"bomba-update-"+hash.slice(0,12)}),{TTL:86400,contentEncoding:"aes128gcm",urgency:"normal",topic:"bomba-update"});
  const push=await fetch(details.endpoint,{method:details.method,headers:details.headers,body:details.body,redirect:"error",signal:AbortSignal.timeout(10000)});
  if(push.status===404||push.status===410){await db("bomba_push_subscriptions?endpoint=eq."+encodeURIComponent(row.endpoint),"DELETE");continue;}
  if(!push.ok)throw new Error("Push rejected "+push.status);
- await db("bomba_push_subscriptions?endpoint=eq."+encodeURIComponent(row.endpoint),"PATCH",{last_hash:hash});sent++;
- }catch{failed++;}
+ await db("bomba_push_subscriptions?endpoint=eq."+encodeURIComponent(row.endpoint),"PATCH",{last_hash:hash,last_error:null});sent++;
+ }catch(error){failed++;await db("bomba_push_subscriptions?endpoint=eq."+encodeURIComponent(row.endpoint),"PATCH",{last_error:(error instanceof Error?error.message:"Unknown push failure").slice(0,500)});}
  }
- await db("bomba_push_config?id=eq.1","PATCH",{...(failed===0?{live_hash:hash}:{}),checked_at:new Date().toISOString(),...(sent?{last_sent_at:new Date().toISOString()}: {})});
+ await db("bomba_push_config?id=eq.1","PATCH",{...(failed===0?{live_hash:hash,calendar_hash:calendarHash}:{}),checked_at:new Date().toISOString(),...(sent?{last_sent_at:new Date().toISOString()}: {})});
  return respond({changed:true,sent,failed});
  }
  if(req.headers.get("origin")!==ORIGIN||req.headers.get("apikey")!==APIKEY)return respond({error:"Unauthorized"},401);

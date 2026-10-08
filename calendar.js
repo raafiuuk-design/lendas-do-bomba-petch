@@ -9,6 +9,33 @@
   ];
   const WEEK=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
   let editing=false;
+  let remindersData=loadLocalReminders();
+  let calendarReady=false;
+  let calendarSaving=false;
+  const API='https://vgurvbdbpxcgkhmunlxr.supabase.co/rest/v1/bomba_calendar_reminders';
+  const PUBLIC_KEY='sb_publishable_Dlgj0c5D_PVKP0h7x6GZ4w_BssxbIoj';
+  const HEADERS={apikey:PUBLIC_KEY,Authorization:'Bearer '+PUBLIC_KEY,'Content-Type':'application/json'};
+  async function calendarRequest(path='',method='GET',body,prefer){
+    const response=await fetch(API+path,{method,headers:{...HEADERS,...(prefer?{Prefer:prefer}:{})},cache:'no-store',body:body===undefined?undefined:JSON.stringify(body)});
+    if(!response.ok)throw Error('Não foi possível salvar o calendário no site.');
+    return response.status===204?null:await response.json();
+  }
+  async function syncCalendar(){
+    try{
+      const local=loadLocalReminders();
+      const migratedKey=STORAGE_KEY+'_online_migrated';
+      if(!localStorage.getItem(migratedKey)){
+        const rows=Object.entries(local).filter(([date,note])=>/^2026-\d{2}-\d{2}$/.test(date)&&typeof note==='string'&&note.trim()).map(([date,note])=>({reminder_date:date,note:note.trim().slice(0,3000)}));
+        if(rows.length)await calendarRequest('?on_conflict=reminder_date','POST',rows,'resolution=ignore-duplicates,return=representation');
+        localStorage.setItem(migratedKey,'1');
+      }
+      const rows=await calendarRequest('?select=reminder_date,note&order=reminder_date.asc');
+      remindersData=Object.fromEntries(rows.map(row=>[row.reminder_date,row.note]));
+      saveReminders(remindersData);
+      calendarReady=true;renderMonths();
+      if(!calendarSaving)showMessage('Calendário sincronizado com o site.');
+    }catch(error){calendarReady=false;showMessage('Não foi possível sincronizar o calendário. Conecte à internet e abra novamente.');}
+  }
 
   function escapeHTML(value){
     return String(value??'')
@@ -19,10 +46,12 @@
       .replaceAll("'",'&#039;');
   }
 
-  function loadReminders(){
+  function loadLocalReminders(){
     try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')||{}}
     catch(error){return {}}
   }
+
+  function loadReminders(){return {...remindersData};}
 
   function saveReminders(reminders){
     localStorage.setItem(STORAGE_KEY,JSON.stringify(reminders));
@@ -56,16 +85,24 @@
     });
   }
 
-  function openEditor(key,label){
+  async function openEditor(key,label){
+    if(calendarSaving)return;
+    if(!calendarReady){showMessage('Aguarde a sincronização com o site antes de editar.');return;}
     const reminders=loadReminders();
     const text=prompt(`Lembrete para ${label}:`,reminders[key]||'');
     if(text===null)return;
     const clean=text.trim();
-    if(clean)reminders[key]=clean;
-    else delete reminders[key];
-    saveReminders(reminders);
-    renderMonths();
-    showMessage(clean?'Lembrete salvo!':'Lembrete removido.');
+    if(clean.length>3000){showMessage('Use até 3000 caracteres no lembrete.');return;}
+    if(clean===(reminders[key]||''))return;
+    calendarSaving=true;showMessage('Salvando no site...');
+    try{
+      if(clean)await calendarRequest('?on_conflict=reminder_date','POST',{reminder_date:key,note:clean},'resolution=merge-duplicates,return=representation');
+      else await calendarRequest('?reminder_date=eq.'+encodeURIComponent(key),'DELETE');
+      if(clean)remindersData[key]=clean;else delete remindersData[key];
+      saveReminders(remindersData);renderMonths();
+      showMessage(clean?'Lembrete salvo no site! O aviso será enviado em até 5 minutos.':'Lembrete removido do site.');
+    }catch(error){showMessage(error.message);}
+    finally{calendarSaving=false;}
   }
 
   function showMessage(text){
@@ -104,10 +141,11 @@
       const sec=document.createElement('section');
       sec.id='calendar';
       sec.className='page';
-      sec.innerHTML=`<h1>📅 Calendário 2026</h1><p class="muted">Calendário do BOMBA PATCH de setembro até dezembro.</p><div class="actions"><button id="editCalendar" class="btn" type="button">✏️ Editar</button><span id="calendarMsg" class="ok" role="status"></span></div><div class="calendar-wrap"></div>`;
+      sec.innerHTML=`<h1>📅 Calendário 2026</h1><p class="muted">Calendário compartilhado do BOMBA PATCH de setembro até dezembro. As alterações ficam salvas no site.</p><div class="actions"><button id="editCalendar" class="btn" type="button">✏️ Editar</button><span id="calendarMsg" class="ok" role="status"></span></div><div class="calendar-wrap"></div>`;
       main.appendChild(sec);
       document.getElementById('editCalendar').onclick=toggleEditing;
       renderMonths();
+      syncCalendar();
     }
     if(!document.getElementById('calendarStyles')){
       const style=document.createElement('style');
@@ -120,6 +158,7 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addCalendar);
   else addCalendar();
   setTimeout(addCalendar,500);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&!calendarSaving)syncCalendar();});
 
   if(!document.querySelector('script[src="games-18-fix.js"]')){
     const script=document.createElement('script');
