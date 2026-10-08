@@ -1,0 +1,2 @@
+[functions.bomba-app-push]
+verify_jwt = false
