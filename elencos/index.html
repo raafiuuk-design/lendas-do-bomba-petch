@@ -6,7 +6,7 @@
 <header class="hero"><div class="tag">GUIA DE FUTEBOL • ELENCOS ATUAIS • TEMPORADA 2026/27</div><h1>ELENCOS <span style="color:var(--green)">PREMIER LEAGUE</span></h1><p>Pesquise os clubes da Premier League 2026/27. Esta primeira atualização reúne jogadores que constam nas listas atuais e aparições na Premier League 2025/26. Dados individuais ainda não confirmados aparecem como “A confirmar”; a lista completa de 26 por clube ainda precisa ser verificada.</p></header>
 <section class="panel"><div class="controls"><input id="search" placeholder="Digite o nome do time ou jogador..." aria-label="Pesquisar time ou jogador"><select id="club" aria-label="Selecionar clube"></select></div><div class="teams" id="teams"></div></section>
 <section class="panel"><div class="badge">ELENCO DO CLUBE</div><h2 id="clubTitle">Arsenal</h2><p class="sub" id="count"></p><div id="list" class="players"></div><p class="sub">Fontes: <a href="https://www.premierleague.com/en/news/4706139/see-all-the-202627-premier-league-squad-lists" target="_blank" rel="noopener">listas oficiais de elenco 2026/27</a> e <a href="https://www.statbunker.com/competitions/SeasonAppearances?comp_id=776" target="_blank" rel="noopener">aparências na Premier League 2025/26</a>. Partidas indica aparições na liga, não em todas as competições.</p></section>
-<footer>Elencos Premier League 2026/27 • Aston Villa revisado com base na lista oficial atual e nas aparições de 2025/26. Dados físicos individuais podem aparecer como “A confirmar”.</footer>
+<footer>Elencos Premier League 2026/27 • Bournemouth atualizado com base na lista oficial de camisas 2026/27 e nas aparições de 2025/26. Dados físicos individuais podem aparecer como “A confirmar”.</footer>
 </main><script>
 const clubs=["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Burnley","Chelsea","Crystal Palace","Everton","Fulham","Leeds United","Liverpool","Manchester City","Manchester United","Newcastle United","Nottingham Forest","Sunderland","Tottenham Hotspur","West Ham United","Wolverhampton Wanderers"];
 const make=(rows)=>rows.map(([n,a])=>[n,"A confirmar","—","A confirmar",a]);
@@ -43,7 +43,34 @@ const data={
 ["Ibrahim Mbaye","Atacante",19,"Senegal",0],
 ["Brian Madjo","Atacante",39,"Inglaterra",0]
 ],
-"Bournemouth":make([["Marcos Senesi",37],["Alex Scott",37],["Adrien Truffert",37],["Tyler Adams",25],["Ryan Christie",26],["Eli Junior Kroupi",32]]),
+"Bournemouth":[
+["Djordje Petrović","Goleiro",1,"Sérvia",38],
+["Adrien Truffert","Lateral-esquerdo",3,"França",38],
+["Alex Scott","Meio-campista",8,"Inglaterra",37],
+["Evanilson","Atacante",9,"Brasil",36],
+["Marcus Tavernier","Meio-campista/atacante",16,"Inglaterra",34],
+["Eli Junior Kroupi","Atacante",22,"França",32],
+["David Brooks","Meia-atacante",7,"País de Gales",31],
+["Amine Adli","Atacante",21,"Marrocos",31],
+["James Hill","Zagueiro",5,"Inglaterra",29],
+["Ryan Christie","Meio-campista",10,"Escócia",26],
+["Tyler Adams","Volante",12,"Estados Unidos",25],
+["Adam Smith","Lateral-direito",15,"Inglaterra",22],
+["Justin Kluivert","Meia-atacante",19,"Países Baixos",20],
+["Lewis Cook","Meio-campista",4,"Inglaterra",18],
+["Bafodé Diakité","Zagueiro",18,"França",18],
+["Rayan","Atacante",37,"Brasil",15],
+["Alex Tóth","Meio-campista",27,"Hungria",9],
+["Ben Gannon-Doak","Atacante",11,"Escócia",8],
+["Veljko Milosavljević","Zagueiro",44,"Sérvia",7],
+["Julio Soler","Lateral-esquerdo",6,"Argentina",3],
+["Ben Winterburn","Defensor",47,"Inglaterra",1],
+["Julian Araujo","Lateral-direito",2,"México",0],
+["Antonio Silva","Zagueiro",14,"Portugal",0],
+["Fraser Forster","Goleiro",17,"Inglaterra",0],
+["Michele Di Gregorio","Goleiro",20,"Itália",0],
+["Juanlu Sánchez","Lateral-direito",24,"Espanha",0]
+],
 "Brentford":make([["Michael Kayode",37],["Igor Thiago",37],["Yegor Yarmolyuk",33],["Mikkel Damsgaard",33],["Vitaly Janelt",25],["Sepp van den Berg",32]]),
 "Brighton":make([["Ferdi Kadioglu",37],["Jan Paul van Hecke",36],["Danny Welbeck",37],["Yankuba Minteh",34],["Lewis Dunk",33],["Kaoru Mitoma",25],["Georginio Rutter",32]]),
 "Burnley":make([["Kyle Walker",36],["Josh Laurent",33],["Florentino",31]]),
@@ -64,6 +91,33 @@ const data={
 };
 const $=id=>document.getElementById(id);let selected="Arsenal";
 const profiles={
+"Djordje Petrović":{age:"26 anos",height:"1,90 m",weight:"A confirmar"},
+"Adrien Truffert":{age:"24 anos",height:"1,76 m",weight:"A confirmar"},
+"Alex Scott":{age:"23 anos",height:"1,78 m",weight:"A confirmar"},
+"Evanilson":{age:"26 anos",height:"1,83 m",weight:"A confirmar"},
+"Marcus Tavernier":{age:"27 anos",height:"1,78 m",weight:"A confirmar"},
+"Eli Junior Kroupi":{age:"20 anos",height:"1,79 m",weight:"A confirmar"},
+"David Brooks":{age:"29 anos",height:"1,73 m",weight:"A confirmar"},
+"Amine Adli":{age:"26 anos",height:"1,74 m",weight:"A confirmar"},
+"James Hill":{age:"24 anos",height:"1,84 m",weight:"A confirmar"},
+"Ryan Christie":{age:"31 anos",height:"1,78 m",weight:"A confirmar"},
+"Tyler Adams":{age:"27 anos",height:"1,75 m",weight:"A confirmar"},
+"Adam Smith":{age:"35 anos",height:"1,80 m",weight:"A confirmar"},
+"Justin Kluivert":{age:"27 anos",height:"1,71 m",weight:"A confirmar"},
+"Lewis Cook":{age:"29 anos",height:"1,75 m",weight:"A confirmar"},
+"Bafodé Diakité":{age:"25 anos",height:"1,85 m",weight:"A confirmar"},
+"Rayan":{age:"20 anos",height:"1,85 m",weight:"A confirmar"},
+"Alex Tóth":{age:"21 anos",height:"1,81 m",weight:"A confirmar"},
+"Ben Gannon-Doak":{age:"21 anos",height:"1,73 m",weight:"A confirmar"},
+"Veljko Milosavljević":{age:"19 anos",height:"1,92 m",weight:"A confirmar"},
+"Julio Soler":{age:"21 anos",height:"1,73 m",weight:"A confirmar"},
+"Ben Winterburn":{age:"20 anos",height:"A confirmar",weight:"A confirmar"},
+"Julian Araujo":{age:"25 anos",height:"1,75 m",weight:"A confirmar"},
+"Antonio Silva":{age:"23 anos",height:"1,87 m",weight:"A confirmar"},
+"Fraser Forster":{age:"38 anos",height:"2,01 m",weight:"A confirmar"},
+"Michele Di Gregorio":{age:"29 anos",height:"1,87 m",weight:"A confirmar"},
+"Juanlu Sánchez":{age:"23 anos",height:"1,86 m",weight:"A confirmar"},
+
 "Matty Cash":{age:"29 anos",height:"1,85 m",weight:"68 kg"},
 "Emiliano Buendía":{age:"29 anos",height:"1,72 m",weight:"72 kg"},
 "Ian Maatsen":{age:"24 anos",height:"1,68 m",weight:"57 kg"},
