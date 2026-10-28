@@ -6,7 +6,7 @@
 <header class="hero"><div class="tag">GUIA DE FUTEBOL • ELENCOS ATUAIS • TEMPORADA 2026/27</div><h1>ELENCOS <span style="color:var(--green)">PREMIER LEAGUE</span></h1><p>Pesquise os clubes da Premier League 2026/27. Esta primeira atualização reúne jogadores que constam nas listas atuais e aparições na Premier League 2025/26. Dados individuais ainda não confirmados aparecem como “A confirmar”; a lista completa de 26 por clube ainda precisa ser verificada.</p></header>
 <section class="panel"><div class="controls"><input id="search" placeholder="Digite o nome do time ou jogador..." aria-label="Pesquisar time ou jogador"><select id="club" aria-label="Selecionar clube"></select></div><div class="teams" id="teams"></div></section>
 <section class="panel"><div class="badge">ELENCO DO CLUBE</div><h2 id="clubTitle">Arsenal</h2><p class="sub" id="count"></p><div id="list" class="players"></div><p class="sub">Fontes: <a href="https://www.premierleague.com/en/news/4706139/see-all-the-202627-premier-league-squad-lists" target="_blank" rel="noopener">listas oficiais de elenco 2026/27</a> e <a href="https://www.statbunker.com/competitions/SeasonAppearances?comp_id=776" target="_blank" rel="noopener">aparências na Premier League 2025/26</a>. Partidas indica aparições na liga, não em todas as competições.</p></section>
-<footer>Elencos Premier League 2026/27 • Bournemouth atualizado com base na lista oficial de camisas 2026/27 e nas aparições de 2025/26. Dados físicos individuais podem aparecer como “A confirmar”.</footer>
+<footer>Elencos Premier League 2026/27 • Brentford e Bournemouth atualizados com base nas listas oficiais de camisas 2026/27 e nas aparições de 2025/26. Dados físicos individuais podem aparecer como “A confirmar”.</footer>
 </main><script>
 const clubs=["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Burnley","Chelsea","Crystal Palace","Everton","Fulham","Leeds United","Liverpool","Manchester City","Manchester United","Newcastle United","Nottingham Forest","Sunderland","Tottenham Hotspur","West Ham United","Wolverhampton Wanderers"];
 const make=(rows)=>rows.map(([n,a])=>[n,"A confirmar","—","A confirmar",a]);
@@ -42,6 +42,34 @@ const data={
 ["Tammy Abraham","Atacante",18,"Inglaterra",12],
 ["Ibrahim Mbaye","Atacante",19,"Senegal",0],
 ["Brian Madjo","Atacante",39,"Inglaterra",0]
+],
+"Brentford":[
+["Caoimhín Kelleher","Goleiro",1,"Irlanda",37],
+["Igor Thiago","Atacante",9,"Brasil",38],
+["Michael Kayode","Lateral-direito",33,"Itália",37],
+["Nathan Collins","Zagueiro",22,"Irlanda",35],
+["Kevin Schade","Atacante",7,"Alemanha",35],
+["Yehor Yarmoliuk","Meio-campista",6,"Ucrânia",37],
+["Mathias Jensen","Meio-campista",8,"Dinamarca",36],
+["Keane Lewis-Potter","Atacante/lateral",23,"Inglaterra",36],
+["Dango Ouattara","Atacante",11,"Burkina Faso",32],
+["Mikkel Damsgaard","Meia-atacante",24,"Dinamarca",33],
+["Sepp van den Berg","Zagueiro",4,"Países Baixos",32],
+["Kristoffer Ajer","Zagueiro",20,"Noruega",27],
+["Vitaly Janelt","Meio-campista",27,"Alemanha",25],
+["Rico Henry","Lateral-esquerdo",3,"Jamaica",25],
+["Aaron Hickey","Lateral-direito",2,"Escócia",21],
+["Ethan Pinnock","Zagueiro",5,"Jamaica",4],
+["Fábio Carvalho","Meia-atacante",14,"Portugal",6],
+["Hákon Valdimarsson","Goleiro",12,"Islândia",1],
+["Antoni Milambo","Meio-campista",17,"Países Baixos",1],
+["Kaye Furo","Atacante",47,"Bélgica",1],
+["Jaidon Anthony","Atacante",19,"Inglaterra",0],
+["Mamadou Sangaré","Meio-campista",18,"Mali",0],
+["Callum Wilson","Atacante",13,"Inglaterra",0],
+["Jannik Schuster","Zagueiro",44,"Áustria",0],
+["Benjamin Fredrick","Zagueiro",48,"Nigéria",0],
+["Jayden Meghoma","Lateral-esquerdo",21,"Inglaterra",0]
 ],
 "Bournemouth":[
 ["Djordje Petrović","Goleiro",1,"Sérvia",38],
@@ -91,6 +119,33 @@ const data={
 };
 const $=id=>document.getElementById(id);let selected="Arsenal";
 const profiles={
+"Caoimhín Kelleher":{age:"28 anos",height:"1,88 m",weight:"A confirmar"},
+"Igor Thiago":{age:"25 anos",height:"1,91 m",weight:"A confirmar"},
+"Michael Kayode":{age:"22 anos",height:"1,79 m",weight:"A confirmar"},
+"Nathan Collins":{age:"25 anos",height:"1,93 m",weight:"A confirmar"},
+"Kevin Schade":{age:"24 anos",height:"1,85 m",weight:"A confirmar"},
+"Yehor Yarmoliuk":{age:"22 anos",height:"1,80 m",weight:"A confirmar"},
+"Mathias Jensen":{age:"30 anos",height:"1,80 m",weight:"A confirmar"},
+"Keane Lewis-Potter":{age:"25 anos",height:"1,70 m",weight:"A confirmar"},
+"Dango Ouattara":{age:"24 anos",height:"1,77 m",weight:"A confirmar"},
+"Mikkel Damsgaard":{age:"26 anos",height:"1,80 m",weight:"A confirmar"},
+"Sepp van den Berg":{age:"24 anos",height:"1,92 m",weight:"A confirmar"},
+"Kristoffer Ajer":{age:"28 anos",height:"1,98 m",weight:"A confirmar"},
+"Vitaly Janelt":{age:"28 anos",height:"1,84 m",weight:"A confirmar"},
+"Rico Henry":{age:"29 anos",height:"1,70 m",weight:"A confirmar"},
+"Aaron Hickey":{age:"24 anos",height:"1,85 m",weight:"A confirmar"},
+"Ethan Pinnock":{age:"33 anos",height:"1,87 m",weight:"A confirmar"},
+"Fábio Carvalho":{age:"24 anos",height:"1,70 m",weight:"A confirmar"},
+"Hákon Valdimarsson":{age:"25 anos",height:"1,95 m",weight:"A confirmar"},
+"Antoni Milambo":{age:"21 anos",height:"1,79 m",weight:"A confirmar"},
+"Kaye Furo":{age:"19 anos",height:"A confirmar",weight:"A confirmar"},
+"Jaidon Anthony":{age:"26 anos",height:"1,83 m",weight:"A confirmar"},
+"Mamadou Sangaré":{age:"24 anos",height:"A confirmar",weight:"A confirmar"},
+"Callum Wilson":{age:"34 anos",height:"1,80 m",weight:"A confirmar"},
+"Jannik Schuster":{age:"20 anos",height:"A confirmar",weight:"A confirmar"},
+"Benjamin Fredrick":{age:"20 anos",height:"A confirmar",weight:"A confirmar"},
+"Jayden Meghoma":{age:"20 anos",height:"1,80 m",weight:"A confirmar"},
+
 "Djordje Petrović":{age:"26 anos",height:"1,90 m",weight:"A confirmar"},
 "Adrien Truffert":{age:"24 anos",height:"1,76 m",weight:"A confirmar"},
 "Alex Scott":{age:"23 anos",height:"1,78 m",weight:"A confirmar"},
