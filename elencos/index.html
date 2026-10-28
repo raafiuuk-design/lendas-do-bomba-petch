@@ -6,7 +6,7 @@
 <header class="hero"><div class="tag">GUIA DE FUTEBOL • ELENCOS ATUAIS • TEMPORADA 2026/27</div><h1>ELENCOS <span style="color:var(--green)">PREMIER LEAGUE</span></h1><p>Pesquise os clubes da Premier League 2026/27. Esta primeira atualização reúne jogadores que constam nas listas atuais e aparições na Premier League 2025/26. Dados individuais ainda não confirmados aparecem como “A confirmar”; a lista completa de 26 por clube ainda precisa ser verificada.</p></header>
 <section class="panel"><div class="controls"><input id="search" placeholder="Digite o nome do time ou jogador..." aria-label="Pesquisar time ou jogador"><select id="club" aria-label="Selecionar clube"></select></div><div class="teams" id="teams"></div></section>
 <section class="panel"><div class="badge">ELENCO DO CLUBE</div><h2 id="clubTitle">Arsenal</h2><p class="sub" id="count"></p><div id="list" class="players"></div><p class="sub">Fontes: <a href="https://www.premierleague.com/en/news/4706139/see-all-the-202627-premier-league-squad-lists" target="_blank" rel="noopener">listas oficiais de elenco 2026/27</a> e <a href="https://www.statbunker.com/competitions/SeasonAppearances?comp_id=776" target="_blank" rel="noopener">aparências na Premier League 2025/26</a>. Partidas indica aparições na liga, não em todas as competições.</p></section>
-<footer>Elencos Premier League 2026/27 • Atualização inicial dos clubes e jogadores. A lista de 26 jogadores por equipe e os dados físicos/individuais ainda precisam de conferência.</footer>
+<footer>Elencos Premier League 2026/27 • Aston Villa revisado com base na lista oficial atual e nas aparições de 2025/26. Dados físicos individuais podem aparecer como “A confirmar”.</footer>
 </main><script>
 const clubs=["Arsenal","Aston Villa","Bournemouth","Brentford","Brighton","Burnley","Chelsea","Crystal Palace","Everton","Fulham","Leeds United","Liverpool","Manchester City","Manchester United","Newcastle United","Nottingham Forest","Sunderland","Tottenham Hotspur","West Ham United","Wolverhampton Wanderers"];
 const make=(rows)=>rows.map(([n,a])=>[n,"A confirmar","—","A confirmar",a]);
@@ -15,7 +15,36 @@ const arsenal=[
 ].map(([n,a])=>[n,"A confirmar","—","A confirmar",a]);
 const data={
 "Arsenal":arsenal,
-"Aston Villa":make([["Morgan Rogers",37],["Ollie Watkins",37],["Matty Cash",35],["Ezri Konsa",34],["Emiliano Martínez",32],["Amadou Onana",25],["Youri Tielemans",25]]),
+"Aston Villa":[
+["Matty Cash","Lateral-direito",2,"Polônia",35],
+["Emiliano Buendía","Meio-campista",10,"Argentina",36],
+["Ian Maatsen","Lateral-esquerdo",22,"Países Baixos",30],
+["Lamare Bogarde","Meio-campista/defensor",26,"Países Baixos",28],
+["Amadou Onana","Volante",24,"Bélgica",25],
+["Ross Barkley","Meio-campista",6,"Inglaterra",21],
+["Boubacar Kamara","Volante",8,"França",18],
+["Tyrone Mings","Zagueiro",5,"Inglaterra",17],
+["Victor Lindelöf","Zagueiro",3,"Suécia",17],
+["Marco Bizot","Goleiro",40,"Países Baixos",7],
+["Alysson","Atacante",47,"Brasil",3],
+["Zion Suzuki","Goleiro",1,"Japão",0],
+["James Wright","Goleiro",42,"Inglaterra",0],
+["Owen Asemota","Goleiro",60,"Inglaterra",0],
+["Taylor Harwood-Bellis","Zagueiro",4,"Inglaterra",0],
+["Matteo Ruggeri","Lateral-esquerdo",13,"Itália",0],
+["Pau Torres","Zagueiro",14,"Espanha",21],
+["Aaron Wan-Bissaka","Lateral-direito",29,"República Democrática do Congo",0],
+["Modou Kéba Cissé","Zagueiro",48,"Senegal",0],
+["John McGinn","Meio-campista",7,"Escócia",30],
+["Leon Goretzka","Meio-campista",27,"Alemanha",0],
+["João Gomes","Volante",35,"Brasil",0],
+["Johan Manzambi","Meio-campista",44,"Suíça",0],
+["Nicolas Jackson","Atacante",11,"Senegal",0],
+["Alejandro Garnacho","Atacante",17,"Argentina",0],
+["Tammy Abraham","Atacante",18,"Inglaterra",12],
+["Ibrahim Mbaye","Atacante",19,"Senegal",0],
+["Brian Madjo","Atacante",39,"Inglaterra",0]
+],
 "Bournemouth":make([["Marcos Senesi",37],["Alex Scott",37],["Adrien Truffert",37],["Tyler Adams",25],["Ryan Christie",26],["Eli Junior Kroupi",32]]),
 "Brentford":make([["Michael Kayode",37],["Igor Thiago",37],["Yegor Yarmolyuk",33],["Mikkel Damsgaard",33],["Vitaly Janelt",25],["Sepp van den Berg",32]]),
 "Brighton":make([["Ferdi Kadioglu",37],["Jan Paul van Hecke",36],["Danny Welbeck",37],["Yankuba Minteh",34],["Lewis Dunk",33],["Kaoru Mitoma",25],["Georginio Rutter",32]]),
@@ -37,6 +66,34 @@ const data={
 };
 const $=id=>document.getElementById(id);let selected="Arsenal";
 const profiles={
+"Matty Cash":{age:"29 anos",height:"1,85 m",weight:"68 kg"},
+"Emiliano Buendía":{age:"29 anos",height:"1,72 m",weight:"72 kg"},
+"Ian Maatsen":{age:"24 anos",height:"1,68 m",weight:"57 kg"},
+"Lamare Bogarde":{age:"22 anos",height:"1,84 m",weight:"A confirmar"},
+"Amadou Onana":{age:"25 anos",height:"1,95 m",weight:"76 kg"},
+"Ross Barkley":{age:"32 anos",height:"1,89 m",weight:"76 kg"},
+"Boubacar Kamara":{age:"26 anos",height:"1,84 m",weight:"68 kg"},
+"Tyrone Mings":{age:"33 anos",height:"1,96 m",weight:"77 kg"},
+"Victor Lindelöf":{age:"32 anos",height:"1,87 m",weight:"80 kg"},
+"Marco Bizot":{age:"35 anos",height:"1,93 m",weight:"88 kg"},
+"Alysson":{age:"20 anos",height:"A confirmar",weight:"A confirmar"},
+"Zion Suzuki":{age:"24 anos",height:"1,90 m",weight:"A confirmar"},
+"Taylor Harwood-Bellis":{age:"24 anos",height:"1,88 m",weight:"A confirmar"},
+"Matteo Ruggeri":{age:"24 anos",height:"1,87 m",weight:"A confirmar"},
+"Pau Torres":{age:"29 anos",height:"1,91 m",weight:"80 kg"},
+"Aaron Wan-Bissaka":{age:"28 anos",height:"1,83 m",weight:"72 kg"},
+"John McGinn":{age:"32 anos",height:"1,78 m",weight:"68 kg"},
+"Leon Goretzka":{age:"31 anos",height:"1,89 m",weight:"82 kg"},
+"João Gomes":{age:"25 anos",height:"1,76 m",weight:"74 kg"},
+"Johan Manzambi":{age:"20 anos",height:"1,82 m",weight:"A confirmar"},
+"Nicolas Jackson":{age:"25 anos",height:"1,87 m",weight:"78 kg"},
+"Alejandro Garnacho":{age:"22 anos",height:"1,80 m",weight:"80 kg"},
+"Tammy Abraham":{age:"29 anos",height:"1,94 m",weight:"80 kg"},
+"Ibrahim Mbaye":{age:"18 anos",height:"1,85 m",weight:"A confirmar"},
+"Brian Madjo":{age:"17 anos",height:"A confirmar",weight:"A confirmar"},
+"James Wright":{age:"21 anos",height:"A confirmar",weight:"A confirmar"},
+"Owen Asemota":{age:"18 anos",height:"A confirmar",weight:"A confirmar"},
+"Modou Kéba Cissé":{age:"21 anos",height:"A confirmar",weight:"A confirmar"},
 "David Raya":{age:"31 anos",height:"1,83 m",weight:"80 kg"},
 "Kepa Arrizabalaga":{age:"32 anos",height:"1,88 m",weight:"84 kg"},
 "Illan Meslier":{age:"26 anos",height:"1,97 m",weight:"74 kg"},
