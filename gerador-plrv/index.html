@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerador PLRV — Bomba Patch</title>
+<style>
+:root{color-scheme:dark;--bg:#090b10;--panel:#141923;--line:#2c3545;--red:#f04438;--text:#f4f6fb;--muted:#aab4c4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:24px 16px 48px}.top{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+h1{font-size:clamp(25px,5vw,36px);margin:0 0 8px}.sub{color:var(--muted);margin:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin:16px 0}
+label{display:block;font-weight:700;margin:14px 0 6px}input{width:100%;padding:13px;border-radius:9px;border:1px solid var(--line);background:#080b10;color:var(--text);font-size:16px}
+button{border:0;border-radius:10px;background:var(--red);color:white;font-weight:700;padding:14px 18px;font-size:16px;cursor:pointer;width:100%;margin-top:18px}
+.note{color:var(--muted);font-size:14px}.warning{border-left:4px solid #e7a23b;padding:10px 12px;background:#201b12;border-radius:6px}.ok{min-height:24px;color:#9be3b0;margin-top:12px}
+a{color:#ff8b82}code{color:#ffd1cd}
+</style>
+</head>
+<body>
+<main>
+<header class="top">
+<p class="sub">BOMBA PATCH · WE10</p>
+<h1>Gerador de arquivo .PLRV</h1>
+<p class="sub">Gere um arquivo binário <code>.PLRV</code> usando o modelo Nicola como base.</p>
+</header>
+<section class="panel">
+<h2>Dados do jogador</h2>
+<p class="note">Preencha o nome que aparece no cadastro e o nome curto exibido no jogo.</p>
+<label for="fullName">Nome do jogador</label>
+<input id="fullName" maxlength="15" value="Luciano" autocomplete="off">
+<label for="shortName">Nome curto (até 7 caracteres)</label>
+<input id="shortName" maxlength="7" value="LUCIANO" autocomplete="off">
+<button id="download">BAIXAR ARQUIVO .PLRV</button>
+<div id="status" class="ok" role="status"></div>
+</section>
+<section class="panel">
+<h2>Importante</h2>
+<p class="warning">Este primeiro gerador exporta um arquivo binário <code>.PLRV</code> de 124 bytes, alterando os dois campos de nome do modelo Nicola e preservando os demais bytes originais. Ele ainda não altera atributos, posição, nacionalidade ou clube: o mapa desses campos precisa ser confirmado para não gerar um arquivo inválido.</p>
+<p class="note">O download não é JSON. O nome do arquivo gerado será <code>JOGADOR_PLRV.PLRV</code>.</p>
+</section>
+<p class="note"><a href="../">Voltar ao site Lendas do Bomba Patch</a></p>
+</main>
+<script>
+const TEMPLATE_BASE64 = "TgBpAGsAbwBsAGEAIABWAGEAcwBpAGwAagAAAAAAAABOSUtPTEEAAAAAAAAAAAAARHIAAAAAnlxSQUZIYEk2PDg2QEgoUyglJCpSSzdCTl2dpoAAAA6gAC1UIniEQApsgxAAAA8AAABAd3d3dwcAADseAFCq2rxsh00Xaw==";
+function makeBytes(fullName, shortName){
+  const raw = atob(TEMPLATE_BASE64);
+  const bytes = Uint8Array.from(raw, c => c.charCodeAt(0));
+  if(bytes.length !== 124) throw new Error("O modelo PLRV não tem 124 bytes.");
+  const encoder = new TextEncoder();
+  const safeFull = fullName.trim();
+  const safeShort = shortName.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Z0-9 _-]/g,"");
+  if(!safeFull) throw new Error("Digite o nome do jogador.");
+  if(safeFull.length > 15) throw new Error("Use até 15 caracteres no nome.");
+  if(!safeShort || safeShort.length > 7) throw new Error("O nome curto deve ter de 1 a 7 caracteres.");
+  bytes.fill(0,0,32);
+  for(let i=0;i<safeFull.length;i++){
+    const code=safeFull.charCodeAt(i);
+    if(code>0xffff) throw new Error("Use caracteres simples no nome.");
+    bytes[i*2]=code & 255; bytes[i*2+1]=(code>>8)&255;
+  }
+  bytes.fill(0,32,40);
+  const shortBytes=encoder.encode(safeShort);
+  bytes.set(shortBytes.slice(0,7),32);
+  return bytes;
+}
+document.getElementById("download").addEventListener("click",()=>{
+  const status=document.getElementById("status");
+  try{
+    const full=document.getElementById("fullName").value;
+    const short=document.getElementById("shortName").value;
+    const bytes=makeBytes(full,short);
+    const blob=new Blob([bytes],{type:"application/octet-stream"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url;
+    const base=(short.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9_-]/g,"_")||"JOGADOR").toUpperCase();
+    a.download=base+"_PLRV.PLRV";
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    status.textContent="Arquivo .PLRV gerado: 124 bytes. Confira no WEDB Workshop antes de usar no jogo.";
+  }catch(e){status.textContent=e.message;}
+});
+</script>
+</body>
+</html>
