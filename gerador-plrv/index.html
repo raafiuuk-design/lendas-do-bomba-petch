@@ -13,16 +13,19 @@
 <section class="panel"><h2>Dados do jogador</h2><div class="grid">
 <div><label for="fullName">Nome completo</label><input id="fullName" maxlength="15" value="Luciano"></div>
 <div><label for="shortName">Nome curto (até 7 caracteres)</label><input id="shortName" maxlength="7" value="LUCIANO"></div>
-<div><label for="club">Clube</label><input id="club" value="Brasil"></div>
-<div><label for="position">Posição</label><select id="position"><option>GOL</option><option>LD</option><option>ZD</option><option>ZC</option><option>ZE</option><option>LE</option><option>VOL</option><option>MC</option><option>MEI</option><option>PD</option><option>PE</option><option>SA</option><option selected>CA</option></select></div>
+<div><label for="nationality">Nacionalidade</label><input id="nationality" value="Brasil" placeholder="Ex.: Brasil"></div>
+<div><label for="club">Clube</label><input id="club" value="Brasil" placeholder="Nome do clube"></div>
+<div><label for="position">Posição principal</label><select id="position"><option>GOL</option><option>LD</option><option>ZD</option><option>ZC</option><option>ZE</option><option>LE</option><option>VOL</option><option>MC</option><option>MEI</option><option>PD</option><option>PE</option><option>SA</option><option selected>CA</option></select></div>
+<div><label for="foot">Pé dominante</label><select id="foot"><option value="D" selected>Direito</option><option value="E">Esquerdo</option></select></div>
+<div><label for="weight">Peso (kg)</label><input id="weight" type="number" min="35" max="150" value="75"></div>
 </div></section>
-<section class="panel"><h2>20 atributos do jogador</h2><p class="note">Os valores podem ser preenchidos de 1 a 99.</p><div class="attrs" id="attrs"></div></section>
-<section class="panel"><h2>Exportação</h2><p class="warning">O botão gera um arquivo binário <code>.PLRV</code> baseado no modelo Nicola (124 bytes). Nesta versão recuperada, somente os dois campos de nome têm posições confirmadas no modelo binário. Clube, posição e atributos ficam disponíveis no formulário, mas ainda não são gravados no binário porque os seus endereços não foram confirmados; não vou inventar posições que possam corromper o arquivo.</p><button id="download">BAIXAR O JOGADOR COMO .PLRV</button><div id="status" class="ok" role="status"></div></section>
+<section class="panel"><h2>Habilidades do jogador</h2><p class="note">Edite as habilidades de 1 a 99. Os nomes seguem atributos comuns do WE10.</p><div class="attrs" id="attrs"></div></section>
+<section class="panel"><h2>Exportação</h2><p class="warning">O botão gera um arquivo binário <code>.PLRV</code> baseado no modelo Nicola (124 bytes). Os campos de nome estão mapeados no modelo. Nacionalidade, clube, posição, pé dominante, peso e habilidades voltaram ao formulário, mas ainda não são gravados no binário: precisamos confirmar os endereços desses dados no formato PLRV antes de salvar para não corromper o arquivo.</p><button id="download">BAIXAR O JOGADOR COMO .PLRV</button><div id="status" class="ok" role="status"></div></section>
 <p class="note"><a href="../">Voltar ao site Lendas do Bomba Patch</a></p>
 </main>
 <script>
 const TEMPLATE_BASE64 = "TgBpAGsAbwBsAGEAIABWAGEAcwBpAGwAagAAAAAAAABOSUtPTEEAAAAAAAAAAAAARHIAAAAAnlxSQUZIYEk2PDg2QEgoUyglJCpSSzdCTl2dpoAAAA6gAC1UIniEQApsgxAAAA8AAABAd3d3dwcAADseAFCq2rxsh00Xaw==";
-const names=["Velocidade","Aceleração","Resistência","Força","Salto","Equilíbrio","Precisão de cabeça","Precisão de chute","Potência de chute","Técnica de chute","Precisão de passe curto","Velocidade de passe curto","Precisão de passe longo","Velocidade de passe longo","Precisão de curva","Efeito","Controle de bola","Drible","Desarme","Técnica do goleiro"];
+const names=["Ataque","Defesa","Equilíbrio","Resistência","Velocidade máxima","Aceleração","Resposta","Agilidade","Precisão de drible","Velocidade de drible","Precisão de passe curto","Velocidade de passe curto","Precisão de passe longo","Velocidade de passe longo","Precisão de chute","Potência de chute","Técnica de chute","Precisão de falta","Efeito","Precisão de cabeça","Salto","Técnica","Agressividade","Mentalidade","Habilidade de goleiro","Trabalho em equipe"];
 document.getElementById("attrs").innerHTML=names.map((n,i)=>'<div><label for="a'+i+'">'+n+'</label><input id="a'+i+'" type="number" min="1" max="99" value="70"></div>').join("");
 function makeBytes(fullName,shortName){
  const raw=atob(TEMPLATE_BASE64),bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
@@ -37,6 +40,6 @@ document.getElementById("download").addEventListener("click",()=>{const status=d
  const url=URL.createObjectURL(new Blob([bytes],{type:"application/octet-stream"})),a=document.createElement("a");
  a.href=url;const base=(short.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9_-]/g,"_")||"JOGADOR").toUpperCase();a.download=base+".PLRV";
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
- status.textContent="Download binário .PLRV iniciado (124 bytes). Os atributos/clube/posição ainda não são gravados no modelo.";
+ status.textContent="Download binário .PLRV iniciado (124 bytes). Atenção: somente os nomes são gravados atualmente; os demais dados do formulário ainda não são gravados no modelo.";
 }catch(e){status.textContent=e.message;}});
 </script></body></html>
