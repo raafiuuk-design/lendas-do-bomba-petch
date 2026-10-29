@@ -10,7 +10,7 @@
 </head>
 <body><main>
 <header class="top"><p class="sub">BOMBA PATCH · WE10</p><h1>WE10 PLRV Studio atualizado</h1><p class="sub">Preencha os dados do jogador e baixe no formato binário <b>.PLRV</b>.</p></header>
-<section class="panel"><h2>Dados do jogador</h2><div class="grid">
+<section class="panel"><h2>1. Abrir jogador .PLRV</h2><p>Abra um arquivo PLRV real do WE10 para preservar os dados binários originais. Depois altere o nome e exporte novamente.</p><label for="plrvFile">Arquivo .PLRV existente</label><input id="plrvFile" type="file" accept=".plrv,.PLRV,application/octet-stream"><div id="loadStatus" class="ok" role="status"></div></section><section class="panel"><h2>2. Dados do jogador</h2><div class="grid">
 <div><label for="fullName">Nome completo</label><input id="fullName" maxlength="15" value="Luciano"></div>
 <div><label for="shortName">Nome curto (até 7 caracteres)</label><input id="shortName" maxlength="7" value="LUCIANO"></div>
 <div><label for="nationality">Nacionalidade</label><input id="nationality" value="Brasil" placeholder="Ex.: Brasil"></div>
@@ -20,7 +20,7 @@
 <div><label for="weight">Peso (kg)</label><input id="weight" type="number" min="35" max="150" value="75"></div>
 </div></section>
 <section class="panel"><h2>Habilidades do jogador</h2><p class="note">Edite as habilidades de 1 a 99. Os nomes seguem atributos comuns do WE10.</p><div class="attrs" id="attrs"></div></section>
-<section class="panel"><h2>Exportação</h2><p class="warning">O botão gera um arquivo binário <code>.PLRV</code> baseado no modelo Nicola (124 bytes). Os campos de nome estão mapeados no modelo. Nacionalidade, clube, posição, pé dominante, peso e habilidades voltaram ao formulário, mas ainda não são gravados no binário: precisamos confirmar os endereços desses dados no formato PLRV antes de salvar para não corromper o arquivo.</p><button id="download">BAIXAR O JOGADOR COMO .PLRV</button><div id="status" class="ok" role="status"></div></section>
+<section class="panel"><h2>Exportação</h2><p class="warning">O editor agora pode abrir um PLRV existente e manter os bytes originais, alterando apenas os campos de nome já identificados. Os demais campos do formulário ainda não serão gravados porque o mapa binário completo do PLRV não foi confirmado; não vou alterar posições desconhecidas e arriscar corromper seu jogador.</p><button id="download">3. BAIXAR O JOGADOR COMO .PLRV</button><div id="status" class="ok" role="status"></div></section>
 <p class="note"><a href="../">Voltar ao site Lendas do Bomba Patch</a></p>
 </main>
 <script>
@@ -35,11 +35,11 @@ function makeBytes(fullName,shortName){
  bytes.fill(0,0,32);for(let i=0;i<full.length;i++){const c=full.charCodeAt(i);if(c>0xffff)throw new Error("Use caracteres simples no nome.");bytes[i*2]=c&255;bytes[i*2+1]=(c>>8)&255;}
  bytes.fill(0,32,40);bytes.set(new TextEncoder().encode(short).slice(0,7),32);return bytes;
 }
-document.getElementById("download").addEventListener("click",()=>{const status=document.getElementById("status");try{
+document.getElementById("plrvFile").addEventListener("change",async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{const b=new Uint8Array(await file.arrayBuffer());if(b.length!==124){document.getElementById("loadStatus").textContent="Arquivo carregado com "+b.length+" bytes. O modelo conhecido tem 124 bytes; por segurança, este editor só aceita o formato de 124 bytes.";sourceBytes=null;return;}sourceBytes=b;const full=decodeName(b,0,32);document.getElementById("fullName").value=full;let short="";for(let i=32;i<39&&b[i];i++)short+=String.fromCharCode(b[i]);document.getElementById("shortName").value=short;document.getElementById("loadStatus").textContent="PLRV carregado: "+file.name+" ("+b.length+" bytes). Os dados binários originais serão preservados, exceto os campos de nome."; }catch(err){document.getElementById("loadStatus").textContent="Não foi possível abrir o arquivo.";}});\ndocument.getElementById("download").addEventListener("click",()=>{const status=document.getElementById("status");try{
  const full=document.getElementById("fullName").value,short=document.getElementById("shortName").value,bytes=makeBytes(full,short);
  const url=URL.createObjectURL(new Blob([bytes],{type:"application/octet-stream"})),a=document.createElement("a");
  a.href=url;const base=(short.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9_-]/g,"_")||"JOGADOR").toUpperCase();a.download=base+".PLRV";
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
- status.textContent="Download binário .PLRV iniciado (124 bytes). Atenção: somente os nomes são gravados atualmente; os demais dados do formulário ainda não são gravados no modelo.";
+ status.textContent="Download .PLRV iniciado ("+bytes.length+" bytes). Os nomes foram atualizados e os demais bytes do arquivo foram preservados.";
 }catch(e){status.textContent=e.message;}});
 </script></body></html>
