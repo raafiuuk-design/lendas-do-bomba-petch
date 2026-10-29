@@ -27,12 +27,14 @@
 const TEMPLATE_BASE64 = "TgBpAGsAbwBsAGEAIABWAGEAcwBpAGwAagAAAAAAAABOSUtPTEEAAAAAAAAAAAAARHIAAAAAnlxSQUZIYEk2PDg2QEgoUyglJCpSSzdCTl2dpoAAAA6gAC1UIniEQApsgxAAAA8AAABAd3d3dwcAADseAFCq2rxsh00Xaw==";
 const names=["Ataque","Defesa","Equilíbrio","Resistência","Velocidade máxima","Aceleração","Resposta","Agilidade","Precisão de drible","Velocidade de drible","Precisão de passe curto","Velocidade de passe curto","Precisão de passe longo","Velocidade de passe longo","Precisão de chute","Potência de chute","Técnica de chute","Precisão de falta","Efeito","Precisão de cabeça","Salto","Técnica","Agressividade","Mentalidade","Habilidade de goleiro","Trabalho em equipe"];
 document.getElementById("attrs").innerHTML=names.map((n,i)=>'<div><label for="a'+i+'">'+n+'</label><input id="a'+i+'" type="number" min="1" max="99" value="70"></div>').join("");
+let sourceBytes=null;
+function decodeName(bytes,start,end){let out="";for(let i=start;i+1<end;i+=2){const n=bytes[i]|(bytes[i+1]<<8);if(!n)break;out+=String.fromCharCode(n);}return out;}
 function makeBytes(fullName,shortName){
- const raw=atob(TEMPLATE_BASE64),bytes=Uint8Array.from(raw,c=>c.charCodeAt(0));
- if(bytes.length!==124)throw new Error("Modelo PLRV inválido.");
- const full=fullName.trim(),short=shortName.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Z0-9 _-]/g,"");
+ const raw=sourceBytes?null:atob(TEMPLATE_BASE64),bytes=sourceBytes?sourceBytes.slice():Uint8Array.from(raw,c=>c.charCodeAt(0));
+ if(bytes.length!==124)throw new Error("Modelo PLRV inválido: esperado 124 bytes.");
+ const full=fullName.trim(),short=shortName.trim().toUpperCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^A-Z0-9 _-]/g,"");
  if(!full)throw new Error("Digite o nome completo.");if(full.length>15)throw new Error("Use até 15 caracteres no nome.");if(!short||short.length>7)throw new Error("O nome curto deve ter de 1 a 7 caracteres.");
- bytes.fill(0,0,32);for(let i=0;i<full.length;i++){const c=full.charCodeAt(i);if(c>0xffff)throw new Error("Use caracteres simples no nome.");bytes[i*2]=c&255;bytes[i*2+1]=(c>>8)&255;}
+ bytes.fill(0,0,32);for(let i=0;i<full.length;i++){const n=full.charCodeAt(i);if(n>0xffff)throw new Error("Use caracteres simples no nome.");bytes[i*2]=n&255;bytes[i*2+1]=(n>>8)&255;}
  bytes.fill(0,32,40);bytes.set(new TextEncoder().encode(short).slice(0,7),32);return bytes;
 }
 document.getElementById("plrvFile").addEventListener("change",async e=>{const file=e.target.files&&e.target.files[0];if(!file)return;try{const b=new Uint8Array(await file.arrayBuffer());if(b.length!==124){document.getElementById("loadStatus").textContent="Arquivo carregado com "+b.length+" bytes. O modelo conhecido tem 124 bytes; por segurança, este editor só aceita o formato de 124 bytes.";sourceBytes=null;return;}sourceBytes=b;const full=decodeName(b,0,32);document.getElementById("fullName").value=full;let short="";for(let i=32;i<39&&b[i];i++)short+=String.fromCharCode(b[i]);document.getElementById("shortName").value=short;document.getElementById("loadStatus").textContent="PLRV carregado: "+file.name+" ("+b.length+" bytes). Os dados binários originais serão preservados, exceto os campos de nome."; }catch(err){document.getElementById("loadStatus").textContent="Não foi possível abrir o arquivo.";}});\ndocument.getElementById("download").addEventListener("click",()=>{const status=document.getElementById("status");try{
