@@ -32,7 +32,7 @@ function decodeName(bytes,start,end){let out="";for(let i=start;i+1<end;i+=2){co
 function makeBytes(fullName,shortName){
  const raw=sourceBytes?null:atob(TEMPLATE_BASE64),bytes=sourceBytes?sourceBytes.slice():Uint8Array.from(raw,c=>c.charCodeAt(0));
  if(bytes.length!==124)throw new Error("Modelo PLRV inválido: esperado 124 bytes.");
- const full=fullName.trim(),short=shortName.trim().toUpperCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").replace(/[^A-Z0-9 _-]/g,"");
+ const full=fullName.trim(),short=shortName.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Z0-9 _-]/g,"");
  if(!full)throw new Error("Digite o nome completo.");if(full.length>15)throw new Error("Use até 15 caracteres no nome.");if(!short||short.length>7)throw new Error("O nome curto deve ter de 1 a 7 caracteres.");
  bytes.fill(0,0,32);for(let i=0;i<full.length;i++){const n=full.charCodeAt(i);if(n>0xffff)throw new Error("Use caracteres simples no nome.");bytes[i*2]=n&255;bytes[i*2+1]=(n>>8)&255;}
  bytes.fill(0,32,40);bytes.set(new TextEncoder().encode(short).slice(0,7),32);return bytes;
